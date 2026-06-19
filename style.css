@@ -1,0 +1,10 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px;
+}
+
+h1 {
+  font-size: 3rem;
+}
