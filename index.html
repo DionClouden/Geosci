@@ -8,27 +8,33 @@
     <title>Geosci | Exploring Earth Science</title>
 
     <link rel="stylesheet" href="styles.css">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 
 <body>
 
-<header>
-    <div class="container">
+<header class="navbar">
 
-        <h1>GEOSCI</h1>
+    <div class="nav-container">
+
+        <h1 class="logo">GEOSCI</h1>
 
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="#">Explore</a></li>
                 <li><a href="#">Articles</a></li>
+                <li><a href="#">Research</a></li>
                 <li><a href="#">News</a></li>
-                <li><a href="#">Topics</a></li>
-                <li><a href="#">About</a></li>
             </ul>
         </nav>
 
     </div>
+
 </header>
 
 
@@ -36,19 +42,59 @@
 
 <section class="hero">
 
-    <div class="container">
+    <div class="hero-content">
 
-        <h2>Explore Earth's Story</h2>
+        <p class="tagline">
+            EARTH SCIENCE • GEOLOGY • DISCOVERY
+        </p>
+
+        <h2>
+            Understanding Earth,
+            One Discovery at a Time
+        </h2>
 
         <p>
-            Discover geology, climate, oceans, volcanoes and the science that shapes our planet.
+            Explore the forces that shape our planet — from deep oceans to towering volcanoes, climate and Earth's hidden systems.
         </p>
+
+        <a href="#" class="button">
+            Explore Geoscience
+        </a>
 
     </div>
 
 </section>
 
+<section class="featured-discovery">
 
+    <div class="container featured-grid">
+
+        <div class="featured-image">
+            <img src="images/volcano.jpg" alt="Volcano landscape">
+        </div>
+
+        <div class="featured-text">
+
+            <p class="eyebrow">FEATURED DISCOVERY</p>
+
+            <h2>
+                The Forces That Shape Our Planet
+            </h2>
+
+            <p>
+                From volcanic eruptions to shifting tectonic plates,
+                Earth's geology tells the story of a constantly changing world.
+            </p>
+
+            <a href="#" class="button">
+                Explore Discovery
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
 <section class="featured container">
 
@@ -57,35 +103,81 @@
 
 <div class="cards">
 
-    <article>
+    <article class="card">
+
+        <img src="images/volcano.jpg" alt="Volcano">
+
         <h3>Volcanoes</h3>
+
         <p>
-            Explore Earth's volcanic systems and the forces beneath our feet.
+            Discover how magma, tectonic plates and eruptions reshape continents.
         </p>
+
     </article>
 
 
-    <article>
-        <h3>Earthquakes</h3>
+    <article class="card">
+
+        <img src="images/earth.jpg" alt="Earth">
+
+        <h3>Planet Earth</h3>
+
         <p>
-            Understand tectonic plates and the movement of our planet.
+            Explore the systems that make Earth a dynamic living planet.
         </p>
+
     </article>
 
 
-    <article>
-        <h3>Climate Science</h3>
+    <article class="card">
+
+        <img src="images/mountain.jpg" alt="Mountain">
+
+        <h3>Mountain Building</h3>
+
         <p>
-            Learn how Earth's systems interact and change over time.
+            Learn how collisions between continents create Earth's greatest landscapes.
         </p>
+
     </article>
 
-
+</div>
 </div>
 
 
 </section>
 
+<section class="stats">
+
+    <div class="container">
+
+        <div class="stats-grid">
+
+            <div class="stat hidden">
+
+    <h3 class="counter decimal" data-target="4.5">0</h3>
+    <p>Billion Years of Earth's History</p>
+</div>
+
+<div class="stat hidden">
+    <h3 class="counter" data-target="15">0</h3>
+    <p>Major Tectonic Plates</p>
+</div>
+
+<div class="stat hidden">
+    <h3 class="counter" data-target="500">0</h3>
+    <p>Active Volcanoes</p>
+</div>
+
+<div class="stat hidden">
+    <h3 class="counter" data-target="71">0</h3>
+    <p>Ocean Coverage</p>
+</div>
+        </div>
+
+    </div>
+
+</section>
 
 </main>
 
@@ -99,6 +191,8 @@
 
 </footer>
 
+
+<script src="navbar_script.js"></script>
 
 </body>
 
