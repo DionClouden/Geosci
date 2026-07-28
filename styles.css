@@ -1,114 +1,116 @@
-
-
-/* Reset default browser styles */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-/* Basic styles */
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    color: #222;
+    background: #f7f5f0;
 }
+
 
 .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
 }
 
+
+/* Navigation */
+
 header {
-    background-color: #333;
-    color: #fff;
+    background: #1d3b34;
+    color: white;
     padding: 20px 0;
 }
 
+
 header h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 2rem;
 }
+
 
 nav ul {
-    list-style-type: none;
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin-top: 15px;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
 
-nav ul li a {
-    color: #fff;
+nav a {
+    color: white;
     text-decoration: none;
 }
 
-main {
-    padding: 20px 0;
-}
 
-section {
-    margin-bottom: 30px;
-}
+/* Hero section */
 
-section h2 {
-    margin-bottom: 10px;
-}
+.hero {
+    background: linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.45)
+    ),
+    url("images/earth.jpg");
 
-section p {
-    margin-bottom: 20px;
-}
+    background-size: cover;
+    background-position: center;
 
-ul {
-    margin-bottom: 20px;
-}
+    color: white;
 
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
+    padding: 120px 0;
     text-align: center;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-    }
 
-    header h1 {
-        font-size: 20px;
-    }
-
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
+.hero h2 {
+    font-size: 3rem;
 }
 
 
-/* Dropdown menu styles */
-.dropdown {
-    position: relative;
+.hero p {
+    font-size: 1.2rem;
+    margin-top: 20px;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    z-index: 1;
+
+
+/* Article cards */
+
+.featured {
+    padding: 60px 0;
 }
 
-.dropdown-content a {
-    color: #333;
-    padding: 10px;
-    display: block;
+
+.cards {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
+
+article {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    flex: 1;
+}
+
+
+article h3 {
+    color: #1d3b34;
+}
+
+
+/* Footer */
+
+footer {
+    background: #1d3b34;
+    color: white;
+    text-align: center;
+    padding: 20px;
 }
