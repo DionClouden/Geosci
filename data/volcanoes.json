@@ -37,24 +37,100 @@
         "name": "Mount Fuji",
         "lat": 35.3606,
         "lon": 138.7274,
-        "status":"dormant"
+        "status":"Active",
+
+
+        "country": "Japan",
+
+        "location": "Honshu",
+
+        "type": "Stratovolcano",
+
+        "elevation": "1,222 m",
+
+        "lastEruption": "1708",
+
+        "description": "Mount Fuji is Japan's highest peak, renowned for its towering near-symmetrical cone shape as well as inspiring centuries worth of Japanese art, literature and poetry.",
+
+        "geology": "The stratovolcano is located on the Pacific ring of fire, at a triple junction between the Pacific, Phillipine and Eurasian plate.",
+
+        "image": "images/fuji.jpg",
+
+        "article": "articles/iceland1.html"
     },
     {
         "name": "Kilauea",
         "lat": 19.421,
         "lon": -155.287,
-        "status" : "active"
+
+        "status" : "Active",
+
+        "country": "USA",
+
+        "location": "Hawaii",
+
+        "type": "Shield volcano",
+
+        "elevation": "1,222 m",
+
+        "lastEruption": "2026",
+
+        "description": "Unlike other volcanoes, Kilauea erupts slowly and gently producing flowing 'pahoehoe' lava as opposed to highly explosive blasts.",
+
+        "geology": "The shield volcano is fed by the Hawaiian hotspot - a lone mantle plume in the centre of the pacific plate.",
+
+        "image": "images/kilauea.jpg",
+
+        "article": "articles/iceland1.html"
     },
     {
         "name": "Mount St. Helens",
         "lat": 46.1912,
         "lon": -122.1944,
-        "status" : "active"
+        "status" : "Active",
+
+        "country": "USA",
+
+        "location": "Washington",
+
+        "type": "Stratovolcano",
+
+        "elevation": "2,549 m",
+
+        "lastEruption": "2008",
+
+        "description": "Mount St Helens is best known for its unexpected catastrophic 1980 eruption. An earthquake kickstarted a landslide, which triggered a sideways blast, devastating hundreds of square miles at hurricane speeds.",
+
+        "geology": "The Volcano sits above the Cascadia Subduction Zone, where the partial melting of the Juan de Fuca plate results in magma-fuelled eruptions.",
+
+        "image": "images/sthelens.jpg",
+
+        "article": "articles/iceland1.html"
+
+
     },
     {
         "name": "Etna",
         "lat": 37.751,
         "lon": 14.993,
-        "status" : "active"
+        "status" : "active",
+
+        "country": "Italy",
+
+        "location": "Sicily",
+
+        "type": "Stratovolcano",
+
+        "elevation": "3,403 m",
+
+        "lastEruption": "2026",
+
+        "description": "Mount Etna is Europe's most active volcano. Its frequent, spectacular eruptions constantly reshape Sicily's landscape and demonstrate the relentless power of persistent basaltic volcanism.",
+
+        "geology": "Etna is a complex stratovolcano formed by the collision of the African and Eurasian plates, fueling its highly active and fluid magma system.",
+
+        "image": "images/etna.jpg",
+
+        "article": "articles/iceland1.html"
     }
 ]
