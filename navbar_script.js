@@ -93,3 +93,31 @@ counters.forEach(counter => {
     counterObserver.observe(counter);
 
 });
+
+
+
+
+
+window.addEventListener("scroll", () => {
+
+    const scrollTop = window.scrollY;
+
+    const docHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+    const progress = (scrollTop / docHeight) * 100;
+
+    document.querySelector(".reading-progress-fill").style.height =
+        progress + "%";
+const progressBar = document.querySelector(".reading-progress");
+const hero = document.querySelector(".article-hero");
+
+if (window.scrollY > hero.offsetHeight - 100) {
+    progressBar.classList.add("visible");
+} else {
+    progressBar.classList.remove("visible");
+}
+
+});
+
