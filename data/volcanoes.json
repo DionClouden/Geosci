@@ -132,5 +132,86 @@
         "image": "images/etna.jpg",
 
         "article": "articles/iceland1.html"
+    },
+
+ {
+        "name": "Krakatoa",
+        "lat": -6.102,
+        "lon": 105.423,
+        "status" : "active",
+
+        "country": "Indonesia",
+
+        "location": "Sunda Strait",
+
+        "type": "Stratovolcano",
+
+        "elevation": "285 m",
+
+        "lastEruption": "2024",
+
+        "description": "The original Krakatoa volcano was destroyed in it's famous 1883 eruption, which is often described as 'the loudest sound in recorded history', heard up to 5,000 km away.",
+
+        "geology": "Krakatoa lives on through Anak Krakatau ('Child of Krakatoa'), which demonstrates frequent, small eruptions.",
+
+        "image": "images/krakatoa.jpg",
+
+        "article": "articles/iceland1.html",
+    },
+
+
+
+ {
+        "name": "Ojos del Salado",
+        "lat": 27.109,
+        "lon": 68.541,
+        "status" : "active",
+
+        "country": "Chile - Argentina",
+
+        "location": "Andes",
+
+        "type": "Stratovolcano",
+
+        "elevation": "6,893 m",
+
+        "lastEruption": "2026",
+
+        "description": "Sitting on the Chile - Argentina border, Ojos del Salado is the highest active volcano in the world.",
+
+        "geology": "Ojos del Salado is a complex stratovolcano formed by the subduction of the Nazca plate beneath the South American plate.",
+
+        "image": "images/ojosdelsalado.jpg",
+
+        "article": "articles/iceland1.html"
+    },
+
+    {
+        "name": "Mount Kilimanjaro",
+        "lat": -3.479,
+        "lon": 37.356,
+        "status" : "dormant",
+
+        "country": "Tanzania",
+
+        "location": "Kilimanjaro National Park",
+
+        "type": "Stratovolcano",
+
+        "elevation": "5,895 m",
+
+        "lastEruption": "100,000 years ago",
+
+        "description": "Mount Kilimanjaro is the highest peak in Africa and the tallest free-standing mountain in the world.",
+
+        "geology": "Mount Kilimanjaro is a complex stratovolcano formed by the East African Rift system, the same system responsible for most african volcanism today..",
+
+        "image": "images/kilimanjaro.jpg",
+
+        "article": "articles/iceland1.html"
     }
+
+
+
+
 ]
