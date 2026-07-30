@@ -1,0 +1,60 @@
+[
+    
+        
+    
+{
+    
+        "name": "Eyjafjallajökull",
+        "lat": 63.633,
+        "lon": -19.62,
+
+        "status": "active",
+
+        "country": "Iceland",
+
+        "location": "Southern Iceland",
+
+        "type": "Stratovolcano",
+
+        "elevation": "1,651 m",
+
+        "lastEruption": "2010",
+
+        "description": "Eyjafjallajökull is one of Iceland's most famous volcanoes. Its 2010 eruption caused widespread disruption to European aviation and demonstrated the powerful interaction between ice, water and magma.",
+
+        "geology": "Located along Iceland's volcanic rift zone, Eyjafjallajökull is shaped by the interaction between the North American and Eurasian tectonic plates.",
+
+        "image": "images/eyjafjallajokull.jpg",
+
+        "article": "articles/iceland1.html"
+
+}
+
+
+
+    ,
+    {
+        "name": "Mount Fuji",
+        "lat": 35.3606,
+        "lon": 138.7274,
+        "status":"dormant"
+    },
+    {
+        "name": "Kilauea",
+        "lat": 19.421,
+        "lon": -155.287,
+        "status" : "active"
+    },
+    {
+        "name": "Mount St. Helens",
+        "lat": 46.1912,
+        "lon": -122.1944,
+        "status" : "active"
+    },
+    {
+        "name": "Etna",
+        "lat": 37.751,
+        "lon": 14.993,
+        "status" : "active"
+    }
+]

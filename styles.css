@@ -326,9 +326,9 @@ footer {
 
     -webkit-backdrop-filter: blur(10px);
 
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.062);
 
-    border-radius: 50px;
+    border-radius: 55px;
 
     transition:
         padding 0.35s ease,
@@ -376,6 +376,14 @@ footer {
     gap: 30px;
 
     list-style: none;
+
+     align-items:center;
+
+    margin:0;
+
+    padding:0;
+
+    list-style:none;
 
 }
 
@@ -1115,14 +1123,449 @@ figcaption {
 
 
 
-#cesiumContainer {
 
-    width: 100%;
+/*explore page*/
 
-    height: 700px;
 
-    border-radius: 30px;
 
-    overflow: hidden;
+html,
+body,
+.explore-page {
+
+    width:100%;
+    height:100%;
+    margin:0;
+    overflow:hidden;
 
 }
+
+
+/* globe area */
+
+.explore-page .explore-main {
+
+    top:0;
+
+    height:calc(100% - 60px);
+
+}
+
+
+/* Cesium itself */
+
+#cesiumContainer {
+
+    width:100%;
+
+    height:60%;
+
+    border-radius:0px;
+
+    top: 0;
+
+}
+.explore-page {
+    background-color: #000000;
+}
+
+/*navbar for explore*/
+
+/* EXPLORE FLOATING NAVBAR */
+
+.explore-page .navbar {
+
+    position:absolute;
+
+    top:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:auto;
+
+    height:auto;
+
+    z-index:500;
+
+    background:none;
+
+    backdrop-filter:none;
+
+    border:none;
+
+}
+
+
+.explore-page .nav-container {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:40px;
+
+    height:52px;
+
+    width:1000px;
+
+    padding:0 28px;
+
+    background:rgba(10,10,10,0.45);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:30px;
+
+}
+
+
+
+
+.explore-page .logo {
+
+    font-size:1.4rem;
+
+}
+
+.explore-page .volcano-info {
+
+    top:calc(50% + 30px);
+
+}
+
+
+/*floating panel on explore*/
+
+.explore-panel{
+
+    position:absolute;
+
+    left:50px;
+
+    top: 420px;
+
+    transform:translateY(-50%);
+
+    width:240px;
+
+    height: 400px;
+
+    padding:20px;
+
+    background:rgba(20,20,20,.55);
+
+    backdrop-filter:blur(24px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:28px;
+
+    z-index:100;
+
+}
+
+.explore-page .explore-panel {
+
+    top:calc(100%-50px);
+
+}
+
+.explore-panel h2 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.902);
+}
+
+
+
+
+.panel-subtitle{
+
+    color:#b79b5b;
+
+    letter-spacing:3px;
+
+
+    font-size:.8rem;
+
+    margin-bottom:0px;
+
+
+}
+
+.explore-panel h2{
+
+    margin-bottom: auto;
+
+}
+
+.layer-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin-top: 20px;
+
+}
+
+.layer-list label{
+
+    display:flex;
+
+    align-items:center;
+
+
+    gap:12px;
+
+    cursor:pointer;
+
+}
+
+.layer-list input{
+
+    accent-color:#b79b5b;
+
+}
+
+.layer-item{
+
+    width:100%;
+
+    background:none;
+
+    border:none;
+
+    color:#9a9a9a;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    padding:6px 0;
+
+    text-align:left;
+
+    font:inherit;
+
+}
+
+.layer-dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#555;
+
+    transition:.3s;
+
+}
+
+.layer-item.active .layer-dot{
+
+    background:#e6a986;
+
+    box-shadow:
+
+        0 0 10px #e07a3f,
+
+        0 0 20px #e07a3f;
+
+}
+
+.layer-item:hover{
+
+    color:white;
+
+    transform:translateX(6px);
+
+}
+
+.layer-item.active{
+
+    color:#ffffff;
+
+    font-weight:600;
+
+}
+
+
+
+/*volcano popup*/
+
+.volcano-info {
+
+    display:none;
+
+    position:fixed;
+
+    right:50px;
+
+    top:calc(50% + 40px);
+
+    left:auto;
+
+    transform:translateY(-50%);
+
+    width:380px;
+
+    background:rgba(15,15,15,0.72);
+
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    border-radius:32px;
+
+    overflow:hidden;
+
+    color:white;
+
+    z-index:200;
+
+}
+
+
+
+
+
+
+.info-image {
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+.info-content {
+
+    padding:28px;
+
+}
+
+
+.info-status {
+
+    color:#e09b42;
+
+    font-size:.75rem;
+
+    letter-spacing:3px;
+
+    font-weight:700;
+
+}
+
+.info-name {
+
+    font-size:2rem;
+
+    margin:10px 0;
+
+}
+
+.info-details {
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    color:#aaa;
+
+    font-size:.9rem;
+
+}
+
+.info-description {
+
+    line-height:1.6;
+
+    color:#ddd;
+
+}
+
+#articleLink {
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:12px 20px;
+
+    border-radius:20px;
+
+    background:#b79b5b;
+
+    color:white;
+
+    text-decoration:none;
+
+}
+
+
+
+
+
+
+
+
+
+.close-panel {
+
+    position:absolute;
+
+    top:18px;
+
+    right:22px;
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    opacity:0.7;
+
+    transition:0.2s;
+
+}
+
+
+.close-panel:hover {
+
+    opacity:1;
+
+    transform:scale(1.15);
+
+}
+
+
+
+
+

@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Explore - Geosci </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="styles.css">
+<title>Explore - Geosci</title>
 
+<link rel="stylesheet" href="styles.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://cesium.com/downloads/cesiumjs/releases/1.130/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
- <link href="Cesium-1/Build/Cesium/Cesium.js">
-<link href="Cesium-1/Build/Cesium/Widgets/widgets.css">
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="Cesium-1/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 </head>
-<body>
+
+
+
+<body class="explore-page">
+
 
 <header class="navbar">
 
     <div class="nav-container">
 
-<h1 class="logo">
+        <h1 class="logo">
+            <a href="index.html">GEOSCI</a>
+        </h1>
 
-    <a href="index.html">GEOSCI</a>
-
-</h1>
 
         <nav>
+
             <ul>
+
                 <li><a href="explore.html">Explore</a></li>
+
                 <li><a href="articles/articles_index.html">Articles</a></li>
+
                 <li><a href="research/research_index">Research</a></li>
+
                 <li><a href="news/news_index">News</a></li>
+
             </ul>
+
         </nav>
 
     </div>
@@ -43,16 +54,184 @@
 </header>
 
 
-<main>
 
-<div id="cesiumContainer"></div>
 
+<section class="explore-ui">
+
+
+
+<!-- CESIUM GLOBE -->
+
+<main class="explore-main">
+
+    <div id="cesiumContainer"></div>
 
 </main>
 
 
 
-    <footer>
+
+
+<!-- LAYER PANEL -->
+
+<aside class="explore-panel">
+
+
+<p class="panel-subtitle">
+EXPLORE
+</p>
+
+
+<h2>
+Layers
+</h2>
+
+
+
+<div class="layer-list">
+
+
+<button class="layer-item active" data-layer="volcanoes">
+
+<span class="layer-dot"></span>
+
+Volcanoes
+
+</button>
+
+
+
+<button class="layer-item" data-layer="plates">
+
+<span class="layer-dot"></span>
+
+Plate Boundaries
+
+</button>
+
+
+
+
+<button class="layer-item" data-layer="earthquakes">
+
+<span class="layer-dot"></span>
+
+Earthquakes
+
+</button>
+
+
+
+
+<button class="layer-item" data-layer="mountains">
+
+<span class="layer-dot"></span>
+
+Mountain Ranges
+
+</button>
+
+
+
+
+<button class="layer-item" data-layer="glaciers">
+
+<span class="layer-dot"></span>
+
+Glaciers
+
+</button>
+
+
+
+</div>
+
+
+</aside>
+
+
+
+
+
+
+<!-- VOLCANO INFORMATION PANEL -->
+
+
+<div class="volcano-info" id="volcanoInfo">
+
+
+<button class="close-panel" id="closePanel">
+
+×
+
+</button>
+
+
+
+<img class="info-image">
+
+
+
+<div class="info-content">
+
+
+<p class="info-status"></p>
+
+
+<h2 class="info-name"></h2>
+
+
+<p class="info-location"></p>
+
+
+
+<div class="info-details">
+
+
+<p class="info-type"></p>
+
+<p class="info-height"></p>
+
+<p class="info-eruption"></p>
+
+
+</div>
+
+
+
+
+<p class="info-description"></p>
+
+
+<p class="info-geology"></p>
+
+
+
+
+<a id="articleLink">
+
+Explore full article →
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+
+
+
+<footer>
 
 <p>
 © 2026 Geosci. Exploring Earth through science.
@@ -60,11 +239,24 @@
 
 </footer>
 
+
+
+
+<script>
+    window.CESIUM_BASE_URL = "Cesium-1/Build/Cesium/";
+</script>
+
 <script src="Cesium-1/Build/Cesium/Cesium.js"></script>
+
+
 
 <script src="cesium_globe.js"></script>
 
+<script src="Cesium-1/Build/Cesium/Cesium.js"></script>
+
+
 <script src="navbar_script.js"></script>
+
 
 </body>
 
