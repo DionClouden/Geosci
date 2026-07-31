@@ -209,7 +209,241 @@
         "image": "images/kilimanjaro.jpg",
 
         "article": "articles/iceland1.html"
+    },
+
+    {
+        "name": "Mount Vesuvius",
+        "lat": 40.821,
+        "lon": 14.426,
+        "status" : "active",
+
+        "country": "Italy",
+
+        "location": "Campania",
+
+        "type": "Stratovolcano",
+
+        "elevation": "1,281 m",
+
+        "lastEruption": "1944",
+
+        "description": "Mount Vesuvius is best known for its catastrophic eruption in 79 AD, which buried the Roman cities of Pompeii and Herculaneum under a thick blanket of volcanic ash.",
+
+        "geology": "Vesuvius is a complex stratovolcano formed by the subduction of the African plate beneath the Eurasian plate in the Mediterranean region.",
+
+        "image": "images/vesuvius.jpg",
+
+        "article": "articles/iceland1.html"
+    },
+
+    {
+        "name": "Mount Elbrus",
+        "lat": 43.355,
+        "lon": 42.437,
+        "status" : "dormant",
+
+        "country": "Russia",
+
+        "location": "Caucasus Mountains",
+
+        "type": "Stratovolcano",
+
+        "elevation": "5,642 m",
+
+        "lastEruption": "50 AD",
+
+        "description": "Mount Elbrus is the highest peak in Europe and one of the Seven Summits, attracting climbers from around the world.",
+        "geology": "Elbrus is a complex stratovolcano formed by the subduction of the Arabian plate beneath the Eurasian plate.",
+        "image": "images/elbrus.jpg",
+        "article": "articles/elbrus.html"
+    },
+
+    {
+        "name": "Mount Pelee",
+        "lat": 14.809,
+        "lon": -61.165,
+        "status" : "active",
+
+        "country": "Martinique",
+
+        "location": "Caribbean",
+
+        "type": "Stratovolcano",
+
+        "elevation": "1,397 m",
+
+        "lastEruption": "1932",
+
+        "description": "Mount Pelee is a stratovolcano located on the Caribbean island of Martinique. It is infamous for its catastrophic eruption in 1902, which destroyed the town of Saint-Pierre and killed nearly 30,000 people.",
+        "geology": "Pelee is a complex stratovolcano formed by the subduction of the North American plate beneath the Caribbean plate.",
+        "image": "images/pelee.jpg",
+        "article": "articles/pelee.html"
+    },
+
+    {
+        "name": "Mount Merapi",
+        "lat": -7.540,
+        "lon": 110.446,
+        "status" : "active",
+
+        "country": "Indonesia",
+
+        "location": "Java",
+
+        "type": "Stratovolcano",
+
+        "elevation": "2,930 m",
+
+        "lastEruption": "2020",
+
+        "description": "Mount Merapi is one of Indonesia's most active volcanoes, known for its frequent eruptions and pyroclastic flows that pose significant hazards to nearby communities.",
+        "geology": "Merapi is a complex stratovolcano formed by the subduction of the Indo-Australian plate beneath the Eurasian plate.",
+        "image": "images/merapi.jpg",
+        "article": "articles/merapi.html"
+    },
+
+    {
+        "name": "Mount Warning",
+        "lat": -28.392,
+        "lon": 153.602,
+        "status" : "dormant",
+
+        "country": "Australia",
+
+        "location": "New South Wales",
+
+        "type": "Shield volcano",
+
+        "elevation": "1,156 m",
+
+        "lastEruption": "23 million years ago",
+
+        "description": "Mount Warning is a shield volcano located in New South Wales, Australia. It is the remnant of an ancient volcanic caldera and is known for its unique geological features and biodiversity.",
+
+        "geology": "Mount Warning is a shield volcano formed by the eruption of basaltic lava flows during the Miocene epoch.",
+        "image": "images/warning.jpg",
+        "article": "articles/warning.html"
+    },
+
+    {
+        "name": "Mount Erebus",
+        "lat": -77.530,
+        "lon": 167.160,
+        "status" : "active",
+
+        "country": "Antarctica",
+
+        "location": "Ross Island",
+
+        "type": "Stratovolcano",
+
+        "elevation": "3,794 m",
+
+        "lastEruption": "2021",
+
+        "description": "Mount Erebus is the southernmost active volcano on Earth, located on Ross Island in Antarctica. It is known for its persistent lava lake and unique ice fumaroles.",
+
+        "geology": "Erebus is a complex stratovolcano formed by the subduction of the Pacific plate beneath the Antarctic plate.",
+        "image": "images/erebus.jpg",
+        "article": "articles/erebus.html"
+    },
+
+    {
+        "name": "Mount Rainier",
+        "lat": 46.852,
+        "lon": -121.760,
+        "status" : "active",
+
+        "country": "USA",
+
+        "location": "Washington",
+
+        "type": "Stratovolcano",
+
+        "elevation": "4,392 m",
+
+        "lastEruption": "1894",
+
+        "description": "Mount Rainier is a massive stratovolcano located in Washington State, USA. It is the highest peak in the Cascade Range and is considered one of the most dangerous volcanoes in the United States due to its potential for lahars and pyroclastic flows.",
+
+        "geology": "Rainier is a complex stratovolcano formed by the subduction of the Juan de Fuca plate beneath the North American plate.",
+        "image": "images/rainier.jpg",
+        "article": "articles/rainier.html"
+    
+
+},
+
+{
+        "name": "Mount Shasta",
+        "lat": 41.409,
+        "lon": -122.194,
+        "status" : "active",
+
+        "country": "USA",
+
+        "location": "California",
+
+        "type": "Stratovolcano",
+
+        "elevation": "4,322 m",
+
+        "lastEruption": "1786",
+
+        "description": "Mount Shasta is a prominent stratovolcano located in northern California, USA. It is part of the Cascade Range and is known for its stunning beauty and recreational opportunities.",
+
+        "geology": "Shasta is a complex stratovolcano formed by the subduction of the Juan de Fuca plate beneath the North American plate.",
+        "image": "images/shasta.jpg",
+        "article": "articles/shasta.html"
+    },
+
+    {
+        "name": "Mount Teide",
+        "lat": 28.272,
+        "lon": -16.642,
+        "status" : "active",
+
+        "country": "Spain, Canary Islands",
+
+        "location": "Tenerife",
+
+        "type": "Stratovolcano",
+
+        "elevation": "3,718 m",
+
+        "lastEruption": "1909",
+
+        "description": "Mount Teide is the highest peak in Spain and the third highest volcano in the world when measured from its base on the ocean floor. It is located on the island of Tenerife in the Canary Islands.",
+
+        "geology": "Teide is a complex stratovolcano formed by the interaction of the African and Eurasian tectonic plates.",
+        "image": "images/teide.jpg",
+        "article": "articles/teide.html"
+    },
+
+    {
+        "name": "Mount Ruapehu",
+        "lat": -39.281,
+        "lon": 175.563,
+        "status" : "active",
+
+        "country": "New Zealand",
+
+        "location": "North Island",
+
+        "type": "Stratovolcano",
+
+        "elevation": "2,797 m",
+
+        "lastEruption": "2007",
+
+        "description": "Mount Ruapehu is the largest active volcano in New Zealand and is located in the central North Island. It is known for its ski fields and the Tongariro National Park, which is a UNESCO World Heritage site.",
+        "geology": "Ruapehu is a complex stratovolcano formed by the subduction of the Pacific plate beneath the Australian plate.",
+        "image": "images/ruapehu.jpg",
+        "article": "articles/ruapehu.html"
     }
+
+
+
+
 
 
 
