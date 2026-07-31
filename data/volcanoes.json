@@ -156,15 +156,15 @@
 
         "image": "images/krakatoa.jpg",
 
-        "article": "articles/iceland1.html",
+        "article": "articles/iceland1.html"
     },
 
 
 
  {
         "name": "Ojos del Salado",
-        "lat": 27.109,
-        "lon": 68.541,
+        "lat": -27.112,
+        "lon": -68.541,
         "status" : "active",
 
         "country": "Chile - Argentina",
