@@ -108,55 +108,320 @@ viewer.scene.globe.enableLighting = false;
 
 
 
-
-
-
-
-
-
 // --------------------------
 // CONTINENTS
 // --------------------------
+
+let continentLayer = null;
 
 Cesium.GeoJsonDataSource.load(
     "data/continents.json"
 )
 .then(function(dataSource){
 
+    continentLayer = dataSource;
 
-    viewer.dataSources.add(dataSource);
+    viewer.dataSources.add(continentLayer);
+
+    const entities =
+        continentLayer.entities.values;
+
+
+    for(let i = 0; i < entities.length; i++){
+
+        const entity = entities[i];
+
+
+        if(entity.polygon){
+
+            entity.polygon.material =
+                Cesium.Color.fromCssColorString("#000000");
+
+
+            entity.polygon.fill = false;
+
+
+            entity.polygon.outline = true;
+
+
+            entity.polygon.outlineColor =
+                Cesium.Color.fromCssColorString(
+                    "#b79b5b"
+                );
+
+        }
+
+    }
+
+
+    continentLayer.show = true;
+
+    viewer.scene.requestRender();
+
+});
+
+
+
+// ---------------------
+// MOUNTAIN RANGES
+// ---------------------
+
+let mountainLayer = null;
+let activeMountainLabel = null;
+let mountainLabelLayer = null;
+
+mountainLabelLayer =
+new Cesium.CustomDataSource("mountain labels");
+
+
+viewer.dataSources.add(mountainLabelLayer);
+
+
+
+Cesium.GeoJsonDataSource.load(
+    "data/mountains.geojson"
+)
+
+.then(function(dataSource){
+
+
+    mountainLayer = dataSource;
+
+
+    viewer.dataSources.add(mountainLayer);
+
+
+    mountainLayer.show = false;
+    mountainLabelLayer.show = false;
+
 
 
     const entities =
-        dataSource.entities.values;
+        mountainLayer.entities.values;
 
 
-    for (let i = 0; i < entities.length; i++) {
+
+    for(let i = 0; i < entities.length; i++){
 
 
         const entity = entities[i];
 
 
-       if(entity.polygon){
+
+        if(entity.polygon){
 
 
-    entity.polygon.material =
-        Cesium.Color.TRANSPARENT;
+            entity.polygon.material =
+                Cesium.Color.fromCssColorString("#c05959")
+                .withAlpha(0.48);
 
 
-    entity.polygon.fill = true;
+
+            entity.polygon.outline = true;
 
 
-    entity.polygon.outline = true;
+            entity.polygon.outlineColor =
+                Cesium.Color.fromCssColorString("#d7c7a0");
 
 
-    entity.polygon.outlineColor =
-        Cesium.Color.fromCssColorString(
-            "#b79b5b"
+
+            entity.polygon.height =
+                undefined;
+
+
+            entity.polygon.heightReference =
+                Cesium.HeightReference.NONE;
+
+
+        }
+
+
+
+        
+// Mountain range information label
+if(entity.properties){
+
+    const lon =
+        entity.properties.labellon.getValue();
+
+    const lat =
+        entity.properties.labellat.getValue();
+
+
+    entity.position =
+        Cesium.Cartesian3.fromDegrees(
+            lon,
+            lat,
+            15000
         );
 
 
-}
+
+};
+
+entity.mountainData = {
+
+    name:
+    entity.properties.name.getValue(),
+
+    highestPeak:
+    entity.properties["highest peak"].getValue(),
+
+    country:
+    entity.properties["highest peak country"].getValue()
+
+};
+
+entity.clickLabel = new Cesium.LabelGraphics({
+
+    text: "",
+
+    font:
+        "500 14px Inter",
+
+    fillColor:
+        Cesium.Color.fromCssColorString("#d7c7a0"),
+
+    outlineColor:
+        Cesium.Color.BLACK,
+
+    outlineWidth:
+        3,
+
+    style:
+        Cesium.LabelStyle.FILL_AND_OUTLINE,
+
+    showBackground:
+        true,
+
+    backgroundColor:
+        Cesium.Color.BLACK.withAlpha(0.65),
+
+    pixelOffset:
+        new Cesium.Cartesian2(0,-25),
+
+    disableDepthTestDistance:
+        0,
+
+    show:
+        false
+
+});
+
+entity.label = new Cesium.LabelGraphics({
+
+    text:
+        entity.properties.name.getValue(),
+
+    font:
+        "500 13px Inter",
+
+    fillColor:
+        Cesium.Color.fromCssColorString("#d7c7a0"),
+
+    outlineColor:
+        Cesium.Color.BLACK,
+
+    outlineWidth:
+        2,
+
+    style:
+        Cesium.LabelStyle.FILL_AND_OUTLINE,
+
+    showBackground:
+        true,
+
+    backgroundColor:
+        Cesium.Color.BLACK.withAlpha(0.5),
+
+    pixelOffset:
+        new Cesium.Cartesian2(0,-10),
+
+    disableDepthTestDistance:
+        0,
+
+    show:
+        false
+
+});
+
+    }
+
+    viewer.scene.requestRender();
+
+});
+
+
+
+
+
+// ---------------------
+    
+
+
+
+// ---------------------
+// PLATE BOUNDARIES
+// ---------------------
+
+let plateLayer = null;
+
+
+Cesium.GeoJsonDataSource.load(
+    "data/plate_boundaries.json"
+)
+
+.then(function(dataSource){
+
+
+    plateLayer = dataSource;
+
+
+    viewer.dataSources.add(plateLayer);
+
+
+
+    plateLayer.show = false;
+
+
+
+    const entities =
+        plateLayer.entities.values;
+
+
+
+    for(let i = 0; i < entities.length; i++){
+
+
+        const entity = entities[i];
+
+
+        if(entity.polyline){
+
+
+            entity.polyline.width = 1.6;
+
+
+            entity.polyline.clampToGround = false;
+
+
+
+            entity.polyline.material =
+                new Cesium.PolylineGlowMaterialProperty({
+
+                    glowPower:0.12,
+
+                    taperPower:0.6,
+
+                    color:
+                    Cesium.Color.fromCssColorString(
+                        "#b84747"
+                    )
+
+                });
+
+
+        }
 
 
     }
@@ -166,8 +431,6 @@ Cesium.GeoJsonDataSource.load(
 
 
 });
-
-    
 
 
 
@@ -180,138 +443,273 @@ Cesium.GeoJsonDataSource.load(
 // ---------------------
 
 let volcanoLayer =
-new Cesium.CustomDataSource("volcanoes");
+new Cesium.CustomDataSource(
+    "volcanoes"
+);
 
 
 
-viewer.dataSources.add(volcanoLayer);
+viewer.dataSources.add(
+    volcanoLayer
+);
 
 
 
-fetch("data/volcanoes.json")
+fetch(
+    "data/volcanoes.json"
+
+)
 
 .then(res=>res.json())
 
 .then(volcanoes=>{
 
 
-volcanoes.forEach(volcano=>{
 
 
-let icon =
-"images/volcano-dormant.svg";
+    volcanoes.forEach(volcano=>{
 
 
-if(volcano.status==="active")
-icon="images/volcano-active.svg";
+        let icon =
 
-
-if(volcano.status==="extinct")
-icon="images/volcano-extinct.svg";
+        "images/volcano-dormant.svg";
 
 
 
-const entity =
-volcanoLayer.entities.add({
 
-
-name: volcano.name,
-
-
-volcanoData: volcano,
-
-
-position:
-Cesium.Cartesian3.fromDegrees(
-
-volcano.lon,
-
-volcano.lat,
-
-10000
-
-),
+        if(volcano.status==="active")
+            icon="images/volcano-active.svg";
 
 
 
-billboard:{
+
+        if(volcano.status==="extinct")
 
 
-image:icon,
-
-width:45,
-
-height:45,
-
-verticalOrigin:
-Cesium.VerticalOrigin.BOTTOM
+            icon="images/volcano-extinct.svg";
 
 
-}
 
+
+            volcanoLayer.entities.add({
+
+
+
+
+
+
+                name: volcano.name,
+
+
+
+
+
+                volcanoData: volcano,
+
+
+            position:
+
+
+            Cesium.Cartesian3.fromDegrees(
+
+
+                volcano.lon,
+
+
+                volcano.lat,
+
+
+                50000
+
+
+            ),
+
+
+
+    
+            billboard:{
+
+
+                image:icon,
+
+
+                width:45,
+
+
+                height:45,
+
+
+                verticalOrigin:
+
+                Cesium.VerticalOrigin.BOTTOM,
+
+
+            
+
+                disableDepthTestDistance:
+1000000
+
+
+            }
+
+
+        });
+
+
+    });
+
+
+
+    viewer.scene.requestRender();
 
 
 });
 
-
-});
-
-
-});
-
-console.log("VOLCANOES LOADED");
 
 
 
 
 // ---------------------
-// LAYER BUTTON
+// FINAL LAYER ORDER
+// ---------------------
+
+setTimeout(()=>{
+
+
+    if(continentLayer){
+
+        viewer.dataSources.lowerToBottom(
+            continentLayer
+        );
+
+    }
+
+
+
+    if(mountainLayer){
+
+        viewer.dataSources.raiseToTop(
+            mountainLayer
+        );
+
+    }
+
+    if(mountainLabelLayer){
+
+    viewer.dataSources.raiseToTop(
+        mountainLabelLayer
+    );
+
+}
+
+
+
+    if(plateLayer){
+
+        viewer.dataSources.raiseToTop(
+            plateLayer
+        );
+
+    }
+
+
+
+    if(volcanoLayer){
+
+        viewer.dataSources.raiseToTop(
+            volcanoLayer
+        );
+
+    }
+
+
+
+    viewer.scene.requestRender();
+
+
+},2000);
+
+// ---------------------
+// LAYER BUTTONS
 // ---------------------
 
 document.querySelectorAll(".layer-item")
-.forEach(button=>{
+.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const layer = button.dataset.layer;
 
 
-button.addEventListener("click",()=>{
+        // Volcanoes
+        if(layer === "volcanoes"){
+
+            volcanoLayer.show =
+                !volcanoLayer.show;
+
+            button.classList.toggle("active");
+
+        }
 
 
-const layer =
-button.dataset.layer;
+        // Plate boundaries
+        if(layer === "plates" && plateLayer){
+
+            plateLayer.show =
+                !plateLayer.show;
+
+            button.classList.toggle("active");
+
+        }
 
 
-if(layer==="volcanoes"){
+        // Mountain ranges
+        if(layer === "mountains" && mountainLayer){
+
+            mountainLayer.show =
+                !mountainLayer.show;
 
 
-volcanoLayer.show =
-!volcanoLayer.show;
+            // hide popup labels when layer turns off
+
+            if(!mountainLayer.show){
+
+                mountainLabelLayer.entities.removeAll();
+
+                mountainLabelLayer.show = false;
+
+            }
 
 
-button.classList.toggle("active");
+            button.classList.toggle("active");
+
+        }
 
 
-viewer.scene.requestRender();
+        viewer.scene.requestRender();
 
-
-}
-
+    });
 
 });
 
 
-});
+
+
+
+
+
 
 
 
 
 // ---------------------
-// CLICK VOLCANO
+// CLICK OBJECTS
 // ---------------------
 
 const handler =
 new Cesium.ScreenSpaceEventHandler(
-viewer.scene.canvas
+    viewer.scene.canvas
 );
-
 
 
 handler.setInputAction(function(click){
@@ -327,7 +725,85 @@ return;
 
 
 
-if(!picked.id || !picked.id.volcanoData)
+// ---------------------
+// MOUNTAIN CLICK
+// ---------------------
+if(
+    picked.id &&
+    picked.id.mountainData
+){
+
+    // remove old label
+    mountainLabelLayer.entities.removeAll();
+
+
+    const mountain =
+        picked.id.mountainData;
+
+
+    mountainLabelLayer.entities.add({
+
+        position:
+        picked.id.position.getValue(),
+
+        label: {
+
+            text:
+            mountain.name +
+            "\nHighest peak: " +
+            mountain.highestPeak +
+            "\nCountry: " +
+            mountain.country,
+
+
+            font:
+            "500 12px Inter",
+
+
+            fillColor:
+            Cesium.Color.fromCssColorString("#d7c7a0"),
+
+
+            outlineColor:
+            Cesium.Color.BLACK,
+
+
+            outlineWidth:2,
+
+
+            style:
+            Cesium.LabelStyle.FILL_AND_OUTLINE,
+
+
+            showBackground:true,
+
+
+            backgroundColor:
+            Cesium.Color.BLACK.withAlpha(0.55),
+
+
+            disableDepthTestDistance:0
+
+        }
+
+    });
+
+
+    mountainLabelLayer.show = true;
+
+    return;
+
+}
+
+
+// ---------------------
+// VOLCANO CLICK
+// ---------------------
+
+if(
+    !picked.id ||
+    !picked.id.volcanoData
+)
 return;
 
 
@@ -337,37 +813,33 @@ picked.id.volcanoData;
 
 
 
-// fly there
-
 viewer.camera.flyTo({
 
-destination:
-Cesium.Cartesian3.fromDegrees(
+    destination:
+    Cesium.Cartesian3.fromDegrees(
 
-volcano.lon,
+        volcano.lon,
 
-volcano.lat,
+        volcano.lat,
 
-5000000
+        5000000
 
-),
+    ),
 
-duration:2
+    duration:2
 
 });
 
 
 
-// open panel
-
-
 const panel =
 document.getElementById(
-"volcanoInfo"
+    "volcanoInfo"
 );
 
 
 panel.style.display="block";
+
 
 setTimeout(()=>{
 
@@ -385,25 +857,20 @@ document.querySelector(".info-status").textContent =
 volcano.status.toUpperCase();
 
 
-
 document.querySelector(".info-name").textContent =
 volcano.name;
-
 
 
 document.querySelector(".info-location").textContent =
 volcano.country;
 
 
-
 document.querySelector(".info-type").textContent =
 volcano.type;
 
 
-
 document.querySelector(".info-description").textContent =
 volcano.description;
-
 
 
 document.getElementById("articleLink").href =
@@ -417,8 +884,6 @@ viewer.scene.requestRender();
 
 },
 Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-
 
 
 
@@ -457,3 +922,62 @@ document.getElementById("closePanel")
 
 });
 
+document.addEventListener("keydown", function(event){
+
+    if(event.key.toLowerCase() === "r"){
+
+        viewer.camera.flyTo({
+
+            destination: Cesium.Cartesian3.fromDegrees(
+                0,
+                0,
+                25000000
+            ),
+
+            orientation: {
+                heading: 0,
+                pitch: Cesium.Math.toRadians(-90),
+                roll: 0
+            },
+
+            duration: 2
+
+        });
+
+
+
+    }
+
+});
+
+function resetViewer(){
+
+    viewer.camera.flyTo({
+
+        destination:
+        Cesium.Cartesian3.fromDegrees(
+            -20,
+            40,
+            27000000
+        ),
+
+        orientation:{
+            heading:0,
+            pitch:Cesium.Math.toRadians(-90),
+            roll:0
+        },
+
+        duration:3
+
+    });
+
+}
+
+
+document
+.getElementById("resetViewButton")
+.addEventListener("click", ()=>{
+
+    resetViewer();
+
+});

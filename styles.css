@@ -236,6 +236,60 @@ footer {
 }
 
 
+/*buttons*/
+
+.layer-item-2 {
+
+    width: 120px;
+    height: 32px;
+
+    background: rgba(0, 0, 0, 0.341);
+
+    border: 1px solid #b79b5b62;
+
+    border-radius: 6px;
+
+    color: #d7c7a0;
+
+    font-family: Inter, sans-serif;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    font-weight: 10;
+
+    z-index: 10;
+
+    text-align: center;
+
+    transition: 0.2s;
+
+    justify-content: center;
+
+    position: relative;
+
+    bottom: 1%;
+
+    
+
+
+
+}
+
+
+.layer-item-2:hover {
+
+    background: rgba(183,155,91,0.25);
+
+}
+
+
+.layer-item-2.active {
+
+    background: rgba(183,155,91,0.35);
+
+}
 
 
 /*cards*/
@@ -1247,7 +1301,7 @@ overflow:hidden;
 
     width:240px;
 
-    height: 400px;
+    height: 420px;
 
     padding:20px;
 
