@@ -212,7 +212,7 @@ Cesium.GeoJsonDataSource.load(
 
 
             entity.polygon.material =
-                Cesium.Color.fromCssColorString("#c05959")
+                Cesium.Color.fromCssColorString("#z08z08z")
                 .withAlpha(0.48);
 
 
@@ -221,7 +221,8 @@ Cesium.GeoJsonDataSource.load(
 
 
             entity.polygon.outlineColor =
-                Cesium.Color.fromCssColorString("#d7c7a0");
+                Cesium.Color.fromCssColorString("#b79b5b")
+                .withAlpha(0.35);
 
 
 
@@ -433,6 +434,55 @@ Cesium.GeoJsonDataSource.load(
 });
 
 
+
+
+// ---------------------
+// GLACIERS 
+// ---------------------
+
+Cesium.GeoJsonDataSource.load(
+    "data/glaciers.json"
+)
+
+.then(function(dataSource){
+
+    glacierLayer = dataSource;
+
+    viewer.dataSources.add(glacierLayer);
+
+    glacierLayer.show = false;
+
+
+    const entities =
+        glacierLayer.entities.values;
+
+
+    for(let i = 0; i < entities.length; i++){
+
+        const entity = entities[i];
+
+
+        if(entity.polygon){
+
+            entity.polygon.material =
+                Cesium.Color.fromCssColorString("#bfe8ff")
+                .withAlpha(0.45);
+
+
+            entity.polygon.outline = true;
+
+
+            entity.polygon.outlineColor =
+                Cesium.Color.WHITE;
+
+        }
+
+    }
+
+
+    viewer.scene.requestRender();
+
+});
 
 
 
@@ -648,6 +698,18 @@ document.querySelectorAll(".layer-item")
                 !volcanoLayer.show;
 
             button.classList.toggle("active");
+
+        }
+
+        // Glaciers
+
+        
+        if(layer === "glaciers"){
+
+            glacierLayer.show =
+                !glacierLayer.show;
+
+                button.classList.toggle("active");
 
         }
 
