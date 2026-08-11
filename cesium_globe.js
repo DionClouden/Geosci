@@ -213,7 +213,7 @@ Cesium.GeoJsonDataSource.load(
 
             entity.polygon.material =
                 Cesium.Color.fromCssColorString("#z08z08z")
-                .withAlpha(0.48);
+                .withAlpha(1);
 
 
 
