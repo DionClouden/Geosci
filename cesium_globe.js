@@ -441,7 +441,8 @@ Cesium.GeoJsonDataSource.load(
 // ---------------------
 
 Cesium.GeoJsonDataSource.load(
-    "data/glaciers.json"
+    "data/glaaaaacier.geojson"
+    
 )
 
 .then(function(dataSource){
@@ -469,7 +470,8 @@ Cesium.GeoJsonDataSource.load(
                 .withAlpha(0.45);
 
 
-            entity.polygon.outline = true;
+            entity.polygon.outline = Cesium.Color.fromCssColorString("#bfe8ff")
+                .withAlpha(1);;
 
 
             entity.polygon.outlineColor =
