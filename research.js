@@ -1,53 +1,17 @@
+/* =========================
+   RESEARCH CAROUSEL
+========================= */
+
 const slides =
     document.querySelectorAll(".research-slide");
 
-const nextButton =
-    document.querySelector(".research-carousel-next");
-
-const prevButton =
-    document.querySelector(".research-carousel-prev");
+const dotsContainer =
+    document.querySelector(".research-carousel-dots");
 
 let currentSlide = 0;
 
 
-function showSlide(index) {
-
-    slides.forEach(function(slide) {
-        slide.classList.remove("active");
-    });
-
-    slides[index].classList.add("active");
-
-}
-
-prevButton.addEventListener("click", function() {
-
-    currentSlide--;
-
-    if (currentSlide < 0) {
-        currentSlide = slides.length - 1;
-    }
-
-    showSlide(currentSlide);
-
-});
-
-let autoPlay =
-    setInterval(function() {
-
-        currentSlide++;
-
-        if (currentSlide >= slides.length) {
-            currentSlide = 0;
-        }
-
-        showSlide(currentSlide);
-
-    }, 10000);
-
-    const dotsContainer =
-    document.querySelector(".research-carousel-dots");
-
+/* CREATE DOTS */
 
 slides.forEach(function(slide, index) {
 
@@ -66,11 +30,16 @@ slides.forEach(function(slide, index) {
 
         showSlide(currentSlide);
 
+        resetAutoPlay();
+
     });
 
     dotsContainer.appendChild(dot);
 
 });
+
+
+/* SHOW SLIDE */
 
 function showSlide(index) {
 
@@ -91,3 +60,94 @@ function showSlide(index) {
         .classList.add("active");
 
 }
+
+
+/* AUTOPLAY */
+
+let autoPlay =
+    setInterval(function() {
+
+        currentSlide++;
+
+        if (currentSlide >= slides.length) {
+            currentSlide = 0;
+        }
+
+        showSlide(currentSlide);
+
+    }, 10000);
+
+
+/* RESET AUTOPLAY AFTER DOT CLICK */
+
+function resetAutoPlay() {
+
+    clearInterval(autoPlay);
+
+    autoPlay =
+        setInterval(function() {
+
+            currentSlide++;
+
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            }
+
+            showSlide(currentSlide);
+
+        }, 10000);
+
+}
+
+
+/* =========================
+   RESEARCH INDEX ALPHABET
+========================= */
+
+const alphabetButtons =
+    document.querySelectorAll(
+        ".research-alphabet button[data-target]"
+    );
+
+alphabetButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        const targetId =
+            this.dataset.target;
+
+        const target =
+            document.getElementById(targetId);
+
+        if (!target) return;
+
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    });
+
+});
+
+const researchIndex =
+    document.querySelector(".research-index");
+
+const researchTopBlur =
+    document.querySelector(".research-top-blur");
+
+
+window.addEventListener("scroll", function() {
+
+    if (!researchIndex || !researchTopBlur) return;
+
+    const indexTop =
+        researchIndex.getBoundingClientRect().top;
+
+    if (indexTop <= 0) {
+        researchTopBlur.classList.add("visible");
+    } else {
+        researchTopBlur.classList.remove("visible");
+    }
+
+});
