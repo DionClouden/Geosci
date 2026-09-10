@@ -36,7 +36,7 @@ header {
     background: #070b0a;
     color: white;
     padding: 25px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    
 }
 
 
@@ -59,51 +59,94 @@ nav a {
 }
 
 
-
-
-/* Hero (big image) section */
+/* =========================
+   HOMEPAGE HERO
+========================= */
 
 .hero {
-
     position: relative;
     overflow: hidden;
 
-    padding-top: 90px;
+    min-height: 100vh;
 
-    background:
+    /* keeps the fixed navbar from sitting directly on the hero content */
+    padding-top: 90px;
+    padding-bottom: 90px;
+
+    display: flex;
+    align-items: flex-end;
+
+    color: white;
+    text-align: left;
+
+    background-image:
         linear-gradient(
-            rgba(0,0,0,0.65),
-            rgba(0,0,0,0.75)
+            to top,
+            rgba(11, 15, 14, 0.95) 0%,
+            rgba(11, 15, 14, 0.55) 45%,
+            rgba(11, 15, 14, 0.15) 100%
         ),
         url("images/mountain.jpg");
 
     background-size: cover;
     background-position: center 70%;
+    background-repeat: no-repeat;
+}
 
-    min-height: 80vh;
+.hero-content {
+    position: relative;
+    z-index: 2;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: min(90%, 1300px);
+    margin: 0 auto;
+}
 
-    color: white;
+.hero .tagline {
+    margin: 0 0 22px;
 
-    text-align: center;
+    color: #b8a06a;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+.hero h2 {
+    max-width: 1000px;
+
+    margin: 0;
+
+    font-size: clamp(4rem, 9vw, 9rem);
+    font-weight: 500;
+    line-height: 0.88;
+    letter-spacing: -6px;
+}
+
+.hero p:not(.tagline) {
+    max-width: 500px;
+
+    margin: 35px 0 30px;
+
+    color: rgba(255, 255, 255, 0.7);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.hero .button {
+    display: inline-block;
 }
 
 .hero::after {
-
     content: "";
 
     position: absolute;
-
+    left: 0;
+    right: 0;
     bottom: 0;
 
-    left: 0;
-
-    width: 100%;
-
-    height: 200px;
+    height: 300px;
 
     background: linear-gradient(
         transparent,
@@ -111,42 +154,346 @@ nav a {
     );
 
     pointer-events: none;
-
 }
 
 
-.hero h2 {
+.hero-title > .word > span {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.88);
+    animation: title-wave 4s ease-in-out infinite;
+}
 
-    font-size: clamp(3rem, 7vw, 5.5rem);
+.hero-title > .word:nth-of-type(1) span:nth-child(1) { animation-delay: 0s; }
+.hero-title > .word:nth-of-type(1) span:nth-child(2) { animation-delay: 0.12s; }
+.hero-title > .word:nth-of-type(1) span:nth-child(3) { animation-delay: 0.24s; }
+.hero-title > .word:nth-of-type(1) span:nth-child(4) { animation-delay: 0.36s; }
+.hero-title > .word:nth-of-type(1) span:nth-child(5) { animation-delay: 0.48s; }
+.hero-title > .word:nth-of-type(1) span:nth-child(6) { animation-delay: 0.60s; }
 
-    font-weight: 800;
+.hero-title > .word:nth-of-type(2) span:nth-child(1) { animation-delay: 0.72s; }
 
-    letter-spacing: -3px;
+.hero-title > .word:nth-of-type(3) span:nth-child(1) { animation-delay: 0.84s; }
+.hero-title > .word:nth-of-type(3) span:nth-child(2) { animation-delay: 0.96s; }
+.hero-title > .word:nth-of-type(3) span:nth-child(3) { animation-delay: 1.08s; }
+.hero-title > .word:nth-of-type(3) span:nth-child(4) { animation-delay: 1.20s; }
+.hero-title > .word:nth-of-type(3) span:nth-child(5) { animation-delay: 1.32s; }
+.hero-title > .word:nth-of-type(3) span:nth-child(6) { animation-delay: 1.44s; }
 
-    line-height: 0.95;
+.hero-title > .word:nth-of-type(4) span:nth-child(1) { animation-delay: 1.56s; }
+.hero-title > .word:nth-of-type(4) span:nth-child(2) { animation-delay: 1.68s; }
+.hero-title > .word:nth-of-type(4) span:nth-child(3) { animation-delay: 1.80s; }
+.hero-title > .word:nth-of-type(4) span:nth-child(4) { animation-delay: 1.92s; }
+.hero-title > .word:nth-of-type(4) span:nth-child(5) { animation-delay: 2.04s; }
+.hero-title > .word:nth-of-type(4) span:nth-child(6) { animation-delay: 2.16s; }
 
-    margin: 0 auto;
+
+@keyframes title-wave {
+
+    0%,
+    45%,
+    100% {
+        color: rgba(255, 255, 255, 0.88);
+        text-shadow: none;
+    }
+
+    50% {
+        color: rgba(255, 255, 255, 1);
+        text-shadow:
+            0 0 10px rgba(255, 255, 255, 0.45),
+            0 0 25px rgba(255, 255, 255, 0.18);
+    }
+
+    57% {
+        color: rgba(255, 255, 255, 0.88);
+        text-shadow: none;
+    }
 }
 
 
 
+/* =========================
+   HERO PHOTO LOCATION
+========================= */
 
-.hero p {
-    font-size: 1.2rem;
-    margin-top: 20px;
+.hero-location {
+
+    position: absolute;
+
+    /*
+       Keeps it aligned roughly with
+       the Explore Earth button.
+    */
+
+    right: 38px;
+    bottom: 91px;
+
+    width: 8px;
+    height: 8px;
+
+    z-index: 5;
+
+    cursor: pointer;
 }
 
-.hero {
-    position: relative;
+
+/* =========================
+   SMALL SQUARE
+========================= */
+
+.location-square {
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    width: 7px;
+    height: 7px;
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    background: rgba(255, 255, 255, 0.08);
+
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.hero {
+
+/* =========================
+   VERTICAL LINE
+========================= */
+
+.location-line {
+
+    position: absolute;
+
+    right: 3px;
+    bottom: 7px;
+
+    width: 1px;
+    height: 0;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    transform-origin: bottom;
+
+    transition:
+        height 0.45s cubic-bezier(.76, 0, .24, 1);
+}
+
+
+/* =========================
+   LOCATION BOX
+========================= */
+.location-info {
+    position: absolute;
+
+    right: 4px;
+    bottom: 62px;
+
+    width: 124px;
+    min-width: 0;
+
+    height: 58px;
+
+    box-sizing: border-box;
+
+    padding: 0 15px;
+
     overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0);
+
+    background: rgba(11, 15, 14, 0.18);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    opacity: 0;
+
+    clip-path: inset(0 0 0 100%);
+
+    transition:
+        clip-path 0.5s cubic-bezier(.76, 0, .24, 1),
+        opacity 0.25s ease 0.1s,
+        border-color 0.4s ease;
+}
+
+/* =========================
+   LOCATION TEXT
+========================= */
+.location-name,
+.location-country {
+
+    position: absolute;
+
+    right: 15px;
+
+    white-space: nowrap;
+
+    font-family: "Courier New", monospace;
+
+    opacity: 0;
 }
 
 
+/* =========================
+   LOCATION NAME
+========================= */
+
+.location-name {
+
+    top: 13px;
+
+    color: rgba(255, 255, 255, 0.9);
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
+    overflow: hidden;
+
+    width: 0;
+
+    animation: none;
+}
 
 
+/* =========================
+   COUNTRY
+========================= */
+
+.location-country {
+
+    top: 32px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    transform: translateY(4px);
+
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
+}
+
+/* Main location */
+
+.location-name {
+
+    top: 13px;
+
+    color: rgba(255, 255, 255, 0.9);
+
+    font-size: 11px;
+
+}
+
+
+/* Country */
+
+.location-country {
+
+    top: 32px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   HOVER STATE
+========================= */
+.hero-location:hover .location-line {
+    height: 55px;
+}
+
+.hero-location:hover .location-info {
+
+    opacity: 1;
+
+    clip-path: inset(0 0 0 0);
+
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+
+.hero-location:hover .location-square {
+
+    background: rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================
+   TEXT REVEAL
+========================= */
+
+.hero-location:hover .location-name {
+
+    opacity: 1;
+
+    width: 105px;
+
+    animation: location-type 0.8s steps(12, end) forwards;
+}
+
+
+.hero-location:hover .location-country {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+    transition-delay: 0.8s;
+}
+
+
+/* =========================
+   TYPEWRITER ANIMATION
+========================= */
+
+@keyframes location-type {
+
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 1;
+    }
+
+    100% {
+        width: 95px;
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes location-country-fade {
+
+    0% {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
 
 
 
@@ -411,19 +758,161 @@ footer {
 
 
 
-/* Logo */
+/* =========================
+   GEOSCI NAVBAR LOGO
+========================= */
 
 .logo {
+    margin: 0;
+}
 
+.logo a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 32px;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================
+   LOGO MOVEMENT
+========================= */
+
+.logo-mark-wrap {
+    position: absolute;
+    left: 0;
+
+    width: 30px;
+    height: 30px;
+
+    transform: translateX(170px);
+
+    animation: logo-slide-in 2s cubic-bezier(.76, 0, .24, 1) forwards;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-mark {
+    display: block;
+
+    width: 30px;
+    height: 30px;
+
+    object-fit: contain;
+
+    will-change: transform;
+}
+
+
+/* =========================
+   GEOSCI TEXT
+========================= */
+
+.logo-text {
+    display: flex;
+
+    margin-left: 40px;
+
+    font-weight: 750;
     font-size: 1.8rem;
 
-    letter-spacing: 3px;
+    color: #ddd;
+    letter-spacing: 0.1px;
 
-    font-weight: 800;
+    transition: color 0.3s ease;
+}
 
 
+/* =========================
+   LETTER REVEAL
+========================= */
+
+.logo-text span {
+    display: inline-block;
+
+    opacity: 0;
+    transform: translateX(18px);
+
+    animation: letter-reveal 0.35s ease forwards;
+}
+
+.logo-text span:nth-child(6) {
+    animation-delay: 0.75s;
+}
+
+.logo-text span:nth-child(5) {
+    animation-delay: 0.85s;
+}
+
+.logo-text span:nth-child(4) {
+    animation-delay: 0.95s;
+}
+
+.logo-text span:nth-child(3) {
+    animation-delay: 1.05s;
+}
+
+.logo-text span:nth-child(2) {
+    animation-delay: 1.15s;
+}
+
+.logo-text span:nth-child(1) {
+    animation-delay: 1.25s;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.logo a:hover .logo-text {
+    color: #b8a06a;
+}
+
+
+/* =========================
+   ENTRANCE
+========================= */
+
+@keyframes logo-slide-in {
+
+    0% {
+        transform: translateX(170px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 
 }
+
+
+/* =========================
+   LETTER ANIMATION
+========================= */
+
+@keyframes letter-reveal {
+
+    0% {
+        opacity: 0;
+        transform: translateX(18px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+
 
 
 
@@ -591,6 +1080,39 @@ footer {
 
 }
 
+.featured-text .eyebrow {
+    color: #c6b58d;
+    animation: featured-glow 3s ease-in-out infinite;
+}
+
+@keyframes featured-glow {
+
+    0%,
+    72%,
+    100% {
+        opacity: 0.95;
+        text-shadow: none;
+    }
+
+    76% {
+        opacity: 1;
+        text-shadow:
+            0 0 6px rgba(184, 160, 106, 0.45),
+            0 0 18px rgba(184, 160, 106, 0.18);
+    }
+
+    80% {
+        opacity: 0.95;
+        text-shadow: none;
+    }
+
+    84% {
+        opacity: 1;
+        text-shadow:
+            0 0 8px rgba(184, 160, 106, 0.5),
+            0 0 20px rgba(184, 160, 106, 0.2);
+    }
+}
 
 
 

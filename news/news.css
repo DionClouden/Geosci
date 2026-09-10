@@ -139,6 +139,17 @@ body {
     box-shadow: none !important;
 }
 
+.logo-text {
+    display: flex;
+
+    margin-left: 40px;
+
+    font-weight: 900;
+    font-size: 1.8rem;
+    color:#3f403c;
+    letter-spacing: 1px;
+}
+
 .navbar a {
     color: #0b0f0e ;
 }

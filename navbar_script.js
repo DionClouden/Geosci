@@ -121,3 +121,102 @@ if (window.scrollY > hero.offsetHeight - 100) {
 
 });
 
+
+
+
+
+// =========================
+// GEOSCI LOGO
+// =========================
+
+const logoLink = document.querySelector(".logo a");
+const logoMark = document.querySelector(".logo-mark");
+
+if (logoLink && logoMark) {
+
+    let currentRotation = 0;
+    let spinning = false;
+
+
+    // =========================
+    // ENTRANCE ROLL
+    // =========================
+
+    const entrance = logoMark.animate(
+        [
+            {
+                transform: "rotate(0deg)"
+            },
+            {
+                transform: "rotate(-360deg)"
+            }
+        ],
+        {
+            duration: 2000,
+            easing: "cubic-bezier(.76, 0, .24, 1)",
+            fill: "forwards"
+        }
+    );
+
+
+    entrance.finished.then(() => {
+
+        currentRotation = -360;
+
+        logoMark.style.transform =
+            `rotate(${currentRotation}deg)`;
+
+    });
+
+
+    // =========================
+    // HOVER SPIN
+    // =========================
+
+    logoLink.addEventListener("mouseenter", () => {
+
+        /*
+            Don't start another animation if one
+            is already running.
+        */
+
+        if (spinning) return;
+
+        spinning = true;
+
+
+        const startRotation = currentRotation;
+        const endRotation = currentRotation - 360;
+
+
+        const spin = logoMark.animate(
+            [
+                {
+                    transform: `rotate(${startRotation}deg)`
+                },
+                {
+                    transform: `rotate(${endRotation}deg)`
+                }
+            ],
+            {
+                duration: 750,
+                easing: "cubic-bezier(.76, 0, .24, 1)",
+                fill: "forwards"
+            }
+        );
+
+
+        spin.finished.then(() => {
+
+            currentRotation = endRotation;
+
+            logoMark.style.transform =
+                `rotate(${currentRotation}deg)`;
+
+            spinning = false;
+
+        });
+
+    });
+
+}
