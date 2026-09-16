@@ -134,59 +134,218 @@
 
 </section>
 
-<section class="featured container">
-
-<h2>Featured Topics</h2>
 
 
-<div class="cards">
+
+<section class="featured">
+
+    <div class="container">
+
+        <div class="featured-header">
+            <span>FEATURED ARTICLES</span>
+            <span class="featured-counter">01 / 03</span>
+        </div>
 
 
-<article class="card" onclick="window.location='articles/iceland1.html'">
-    
+        <div class="article-carousel">
 
-        <img src="images/volcano.jpg" alt="Volcano">
-
-        <h3>Volcanoes</h3>
-
-        <p>Discover the hidden thermodynamic world beneath our feet. </p>
-    </article>
-
-</a>
+            <div class="article-track">
 
 
-    <article class="card">
+                <!-- ARTICLE 01 -->
 
-        <img src="images/earth.jpg" alt="Earth">
+                <article class="card">
 
-        <h3>Planet Earth</h3>
+                    <a href="articles/iceland1.html" class="card-image">
 
-        <p>
-            Explore the systems that make Earth a dynamic living planet.
-        </p>
+                        <img
+                            src="images/volcano.jpg"
+                            alt="Volcano"
+                        >
 
-    </article>
+                    </a>
 
 
-    <article class="card">
+                    <div class="card-content">
 
-        <img src="images/Himalayas/himalayaeagle.jpg" alt="Mountain">
+                        <span class="card-number">01</span>
 
-        <h3>Mountain Building</h3>
+                        <h3>Volcanoes</h3>
 
-        <p>
-            Learn how collisions between continents create Earth's greatest landscapes.
-        </p>
+                        <p>
+                            Discover the hidden thermodynamic
+                            world beneath our feet.
+                        </p>
 
-    </article>
+                        <a
+                            href="articles/iceland1.html"
+                            class="card-link"
+                        >
+                            Explore article
+                            <span>↗</span>
+                        </a>
 
-</div>
-</div>
+                    </div>
 
+                </article>
+
+
+
+                <!-- ARTICLE 02 -->
+
+                <article class="card">
+
+                    <a href="#" class="card-image">
+
+                        <img
+                            src="images/earth.jpg"
+                            alt="Earth"
+                        >
+
+                    </a>
+
+
+                    <div class="card-content">
+
+                        <span class="card-number">02</span>
+
+                        <h3>Planet Earth</h3>
+
+                        <p>
+                            Explore the systems that make Earth
+                            a dynamic living planet.
+                        </p>
+
+                        <a
+                            href="#"
+                            class="card-link"
+                        >
+                            Explore article
+                            <span>↗</span>
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ARTICLE 03 -->
+
+                <article class="card">
+
+                    <a href="articles/himalayas1.html" class="card-image">
+
+                        <img
+                            src="images/Himalayas/himalayaeagle.jpg"
+                            alt="Mountain"
+                        >
+
+                    </a>
+
+
+                    <div class="card-content">
+
+                        <span class="card-number">03</span>
+
+                        <h3>Mountain Building</h3>
+
+                        <p>
+                            Learn how collisions between continents
+                            create Earth's greatest landscapes.
+                        </p>
+
+                        <a
+                            href="articles/himalayas1.html"
+                            class="card-link"
+                        >
+                            Explore article
+                            <span>↗</span>
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="carousel-controls">
+
+            <button
+                class="carousel-arrow prev"
+                type="button"
+                aria-label="Previous article"
+            >
+                ←
+            </button>
+
+
+            <div class="carousel-progress">
+
+                <span class="progress-bar"></span>
+
+            </div>
+
+
+            <button
+                class="carousel-arrow next"
+                type="button"
+                aria-label="Next article"
+            >
+                →
+            </button>
+
+        </div>
+
+    </div>
 
 </section>
 
+
+
+<section class="research">
+
+    <div class="container">
+
+        <div class="research-grid">
+
+            <div class="research-text">
+
+                <p class="eyebrow">RESEARCH</p>
+
+                <h2>
+                    Advancing Earth Science
+                </h2>
+
+                <p>
+                    Explore the latest research and discoveries
+                    in the field of Earth science.
+                </p>
+
+                <a href="research/research.html" class="button">
+                    Explore Research
+                </a>
+
+            </div>
+
+            <div class="research-image">
+                <img src="images/earth.jpg" alt="Research">
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
 <section class="stats">
+
 
     <div class="container">
 
@@ -231,6 +390,141 @@
 
 
 <script src="navbar_script.js"></script>
+
+
+
+
+
+<script>
+const cards = document.querySelectorAll(".featured .card");
+const nextButton = document.querySelector(".carousel-arrow.next");
+const prevButton = document.querySelector(".carousel-arrow.prev");
+const counter = document.querySelector(".featured-counter");
+const progress = document.querySelector(".progress-bar");
+
+let currentIndex = 0;
+let isAnimating = false;
+
+function showSlide(newIndex, direction) {
+
+    if (isAnimating || newIndex === currentIndex) return;
+
+    isAnimating = true;
+
+    const current = cards[currentIndex];
+    const next = cards[newIndex];
+
+    /*
+     * Direction:
+     * next  = new slide comes from the right
+     * prev  = new slide comes from the left
+     */
+
+    current.classList.remove("is-active");
+    current.classList.add(
+        direction === "next"
+            ? "is-exiting-left"
+            : "is-exiting-right"
+    );
+
+    next.classList.remove(
+        "is-exiting-left",
+        "is-exiting-right"
+    );
+
+    next.classList.add(
+        direction === "next"
+            ? "is-entering-right"
+            : "is-entering-left"
+    );
+
+    /*
+     * Force the browser to register the starting position
+     * before moving the slide.
+     */
+    requestAnimationFrame(() => {
+
+        requestAnimationFrame(() => {
+
+            current.classList.remove(
+                "is-exiting-left",
+                "is-exiting-right"
+            );
+
+            next.classList.remove(
+                "is-entering-right",
+                "is-entering-left"
+            );
+
+            next.classList.add("is-active");
+
+        });
+
+    });
+
+    currentIndex = newIndex;
+
+    counter.textContent =
+        `${String(currentIndex + 1).padStart(2, "0")} / ${String(cards.length).padStart(2, "0")}`;
+
+    progress.style.transform =
+        `translateX(${currentIndex * 100}%)`;
+
+    setTimeout(() => {
+        cards.forEach((card, index) => {
+            if (index !== currentIndex) {
+                card.classList.remove(
+                    "is-active",
+                    "is-entering-right",
+                    "is-entering-left",
+                    "is-exiting-left",
+                    "is-exiting-right"
+                );
+            }
+        });
+
+        isAnimating = false;
+
+    }, 950);
+}
+
+
+nextButton.addEventListener("click", () => {
+
+    const nextIndex =
+        currentIndex === cards.length - 1
+            ? 0
+            : currentIndex + 1;
+
+    showSlide(nextIndex, "next");
+
+});
+
+
+prevButton.addEventListener("click", () => {
+
+    const prevIndex =
+        currentIndex === 0
+            ? cards.length - 1
+            : currentIndex - 1;
+
+    showSlide(prevIndex, "prev");
+
+});
+
+
+/* INITIAL STATE */
+
+cards.forEach((card, index) => {
+    card.classList.toggle(
+        "is-active",
+        index === 0
+    );
+});
+
+counter.textContent = `01 / ${String(cards.length).padStart(2, "0")}`;
+</script>
+
 
 </body>
 
