@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inside a Volcano | Geosci</title>
+<link rel="icon" type="image/png" href="../images/geosci_logo.png">
+<link rel="stylesheet" href="../styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Scoped to .vx so it sits inside your existing styles.css. Colours match your site. */
+.vx{--lava:#ff5a1f;--gold:#b8a06a;--paper:#f1f1e8;--panel:#0f1514;position:relative;color:var(--paper);
+background:#050807}
+.vx section{min-height:100vh;padding:14vh 0 8vh;display:flex;align-items:center}
+.vx .in{width:90%;max-width:1200px;margin:auto}
+.vx .in.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:64px;align-items:center}
+.vx .eyebrow{color:var(--gold);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.vx h1,.vx h2{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.04;margin-bottom:20px}
+.vx p{max-width:52ch;margin:0 0 12px;color:rgba(241,241,232,.8)}
+.vx .card{background:var(--panel);border:1px solid rgba(184,160,106,.25);border-radius:4px;padding:20px}
+.vx canvas{display:block;width:100%;height:auto;border-radius:2px}
+.vx .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.vx .btn,.vx .chip{font:600 15px Inter,sans-serif;border-radius:2px;padding:.65em 1.3em;cursor:pointer}
+.vx .btn{background:var(--gold);color:#0b0f0e;border:1px solid var(--gold)}
+.vx .chip{background:transparent;color:var(--gold);border:1px solid rgba(184,160,106,.5)}
+.vx .chip[aria-pressed=true]{background:var(--gold);color:#0b0f0e}
+.vx :is(.btn,.chip,input):focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+.vx label{font-size:15px}
+.vx input[type=range]{width:100%;accent-color:var(--gold);margin:10px 0 4px}
+.vx .out{min-height:3.6em;margin-top:14px;padding-left:12px;border-left:2px solid var(--gold);color:var(--paper)}
+.vx .sky{position:relative;height:250px;border-radius:2px;overflow:hidden;background:linear-gradient(#070b0a,#16323f 76%,#2c5566)}
+.vx .sky i{position:absolute;left:12px;font:600 13px Inter,sans-serif;font-style:normal;opacity:.8}
+.vx .sky .tr{position:absolute;left:0;right:0;bottom:0;height:24%;border-top:1px dashed rgba(241,241,232,.5)}
+.vx .col{position:absolute;left:50%;bottom:0;width:26px;transform:translateX(-50%);height:20%;background:linear-gradient(#4a4340,#7a6e68);border-radius:13px 13px 0 0;transition:height .25s}
+.vx .col::after{content:"";position:absolute;left:50%;top:-22px;width:90px;height:50px;transform:translateX(-50%);background:radial-gradient(#8a7e78,#5a504c 70%,transparent 72%);border-radius:50%}
+.vx .dots{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+.vx .dots b{aspect-ratio:1;border-radius:2px;background:#39403d;transition:background .25s,box-shadow .25s}
+.vx .dots b.m{background:var(--lava);box-shadow:0 0 10px var(--lava)}
+.vx .cue{margin-top:40px;color:var(--gold);font-weight:600}
+.vx .gauge{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:5;display:none;flex-direction:column;gap:10px;align-items:flex-end}
+.vx .gauge a{display:flex;gap:8px;align-items:center;color:var(--paper);text-decoration:none;font:600 12px Inter,sans-serif}
+.vx .gauge a span{opacity:0;transition:opacity .2s;background:#070b0a;border:1px solid rgba(184,160,106,.4);padding:2px 8px}
+.vx .gauge a::after{content:"";width:9px;height:9px;background:rgba(184,160,106,.35)}
+.vx .gauge a.on span{opacity:1}
+.vx .gauge a.on::after{background:var(--gold)}
+.vx .note{font-size:14px;opacity:.7;margin-top:14px}
+@media(max-width:860px){.vx .in.two{grid-template-columns:1fr;gap:32px}.vx .gauge{display:none!important}}
+@media(prefers-reduced-motion:reduce){.vx .col{transition:none}}
+.vx .world{position:sticky;top:0;height:100vh;margin-bottom:-100vh;z-index:0;pointer-events:none}
+.vx .world canvas{width:100%;height:100%;border-radius:0}
+.vx section{position:relative;z-index:1}
+.vx .card{background:rgba(10,15,14,.8);backdrop-filter:blur(6px)}
+.vx .tx{text-shadow:0 1px 14px rgba(0,0,0,.8)}
+.vx .dread{align-self:flex-end;background:#070b0a;border:1px solid rgba(184,160,106,.4);color:var(--gold);font:600 12px Inter,sans-serif;padding:3px 8px;margin-bottom:8px}
+</style></head>
+<body>
+<header class="navbar"><div class="nav-container">
+<h1 class="logo"><a href="../index.html">
+<span class="logo-mark-wrap"><img src="../images/geosci_logo.png" alt="GEOSCI" class="logo-mark"></span>
+<span class="logo-text"><span>G</span><span>E</span><span>O</span><span>S</span><span>C</span><span>I</span></span>
+</a></h1>
+<nav><ul>
+<li><a href="../explore.html">Explore</a></li>
+<li><a href="../articles/articles.html">Articles</a></li>
+<li><a href="../research/research.html">Research</a></li>
+<li><a href="../news/news.html">News</a></li>
+</ul></nav></div></header>
+<main>
+<div class="vx" id="vx">
+<div class="world" aria-hidden="true"><canvas id="wd"></canvas></div>
+<nav class="gauge" id="gauge" aria-label="Volcano layers"></nav>
+
+<section id="s0" data-name="Top"><div class="in">
+<p class="eyebrow">GEOSCI / VOLCANOES</p>
+<h1>Inside a volcano</h1>
+<p>Start in the sky above the crater and scroll down through every layer, all the way to where the magma is made. The world behind the page moves with you, and each stop has something to touch.</p>
+<p class="cue">Scroll down ↓</p></div></section>
+
+<section id="s1" data-name="Atmosphere"><div class="in two">
+<div class="tx"><p class="eyebrow">01 / 07 · Atmosphere</p>
+<h2>Atmosphere</h2>
+<p>A big eruption throws a column of ash and gas upward. How high it gets decides whether it's a local problem or a global one.</p></div>
+<div class="card">
+<canvas id="sk" width="700" height="300"></canvas>
+<label>Eruption column height: <b id="kmv">10</b> km<input type="range" id="km" min="1" max="45" value="28"></label>
+<p class="out" id="kmt"></p></div></div></section>
+
+<section id="s2" data-name="Ash & gases"><div class="in two">
+<div class="tx"><p class="eyebrow">02 / 07 · Ash and gases</p>
+<h2>Ash cloud and volcanic gases</h2>
+<p>The plume is a mix of rock fragments and gas. Pick an ingredient to see what it does.</p></div>
+<div class="card"><canvas id="gas" width="700" height="260" style="background:linear-gradient(#1c2b33,#34464e)"></canvas>
+<div class="row" id="gchips"></div><p class="out" id="gt"></p></div></div></section>
+
+<section id="s3" data-name="Pyroclastic flows"><div class="in two">
+<div class="tx"><p class="eyebrow">03 / 07 · Pyroclastic flows</p>
+<h2>Pyroclastic flows</h2>
+<p>Sometimes the column collapses. An avalanche of hot gas and rock hugs the ground and races downhill, faster than you can drive.</p></div>
+<div class="card">
+<canvas id="py" width="700" height="280"></canvas>
+<div class="row"><button class="btn" id="go">Release the flow</button></div>
+<p class="out" id="flt">Up to about 700 km/h and 1,000 °C. Nothing in its path survives.</p></div></div></section>
+
+<section id="s4" data-name="Magma chamber"><div class="in two">
+<div class="tx"><p class="eyebrow">04 / 07 · Magma chamber</p>
+<h2>Magma chamber</h2>
+<p>Under the volcano, molten rock collects in a pocket. Dissolved gas forms bubbles as it sits, like a shaken fizzy drink. Turn up the pressure.</p></div>
+<div class="card"><canvas id="ch" width="700" height="240"></canvas>
+<label>Gas pressure<input type="range" id="pr" min="0" max="100" value="20"></label>
+<p class="out" id="prt"></p></div></div></section>
+
+<section id="s5" data-name="Conduit"><div class="in two">
+<div class="tx"><p class="eyebrow">05 / 07 · Conduit</p>
+<h2>Conduit</h2>
+<p>A conduit is the pipe magma climbs on its way to the surface, from the mantle, past the chamber, up to the crater. What happens on the way depends on how sticky the magma is.</p></div>
+<div class="card"><canvas id="cd" width="700" height="240"></canvas>
+<div class="row"><button class="chip" id="runny" aria-pressed="true">Runny (basalt)</button><button class="chip" id="sticky" aria-pressed="false">Sticky (rhyolite)</button></div>
+<p class="out" id="cdt"></p></div></div></section>
+
+<section id="s6" data-name="Mantle melting"><div class="in two">
+<div class="tx"><p class="eyebrow">06 / 07 · Mantle melting</p>
+<h2>Mantle melting</h2>
+<p>The mantle is solid rock, so where does magma come from? Rock doesn't need to get hotter to melt. It just needs less pressure. Lift this block of mantle and watch.</p></div>
+<div class="card"><canvas id="mn" width="700" height="280"></canvas>
+<label>Rock rising toward the surface<input type="range" id="rise" min="0" max="100" value="0"></label>
+<p class="out" id="mt"></p></div></div></section>
+
+<section id="s7" data-name="Darkness"><div class="in">
+<p class="eyebrow">07 / 07 · Darkness</p>
+<h2>Darkness</h2>
+<p>Below about 100 km there is no light, no air and no sound. This is where every eruption starts, slowly, over thousands of years. Now put it all together.</p>
+<p class="cue">Keep going ↓</p></div></section>
+
+<section id="s8" data-name="Play"><div class="in two">
+<div class="tx"><p class="eyebrow">Playable · Eruption</p>
+<h2>Make it erupt</h2>
+<p>Everything you just scrolled through, in one go.</p></div>
+<div class="card"><canvas id="fin" width="720" height="440"></canvas>
+<div class="row"><button class="btn" id="play">▶ Play</button><span class="out" id="cap" style="min-height:0" aria-live="polite">Cutaway of a volcano at rest.</span></div>
+<p class="note">Artistic licence: basalt volcanoes usually ooze rather than explode. The blast here is dramatised so you can see every step.</p></div></div></section>
+</div>
+</main>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const lerp=(a,b,t)=>a+(b-a)*t,cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),R=Math.random,rr=(a,b)=>a+R()*(b-a),TAU=6.2832;
+let sticky=false;const rd=[],poke=()=>{if(rm)rd.forEach(f=>f())};
+
+/* ---------- shared toolkit ---------- */
+function spr(col){const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d'),g=x.createRadialGradient(32,32,0,32,32,32);
+g.addColorStop(0,`rgba(${col},.9)`);g.addColorStop(.55,`rgba(${col},.4)`);g.addColorStop(1,`rgba(${col},0)`);x.fillStyle=g;x.fillRect(0,0,64,64);return c}
+const S={ash:spr('104,98,94'),dark:spr('46,40,38'),steam:spr('236,240,242'),so2:spr('236,214,80'),fire:spr('255,120,40'),glow:spr('255,80,25')};
+const dp=(c,s,x,y,r,a)=>{c.globalAlpha=a;c.drawImage(s,x-r,y-r,r*2,r*2)};
+function loop(cv,fn){let vis=false,last=0;const f=t=>{if(!vis)return;fn(Math.min(.05,(t-last)/1e3||.016),t/1e3);last=t;if(!rm)requestAnimationFrame(f)};
+rd.push(()=>{if(vis)fn(.016,performance.now()/1e3)});
+new IntersectionObserver(e=>{if(e[0].isIntersecting){if(!vis){vis=true;last=performance.now();requestAnimationFrame(f)}}else vis=false}).observe(cv)}
+/* rising ash column that stalls at a ceiling and spreads sideways (like a real plume) */
+function plume(a,x0,y0,cy,dt,n,sc){
+let ri=0;for(const p of a)if(!p.sp)ri++;for(let i=0,m=Math.min(n-ri,Math.ceil(n*dt*.5));i<m;i++)a.push({x:x0+rr(-5,5)*sc,y:y0,vx:rr(-9,9)*sc,vy:-rr(90,170)*sc,r:rr(7,15)*sc,al:.6,sp:0,t:R()<.06?S.so2:R()<.2?S.steam:S.ash,k:rr(.9,1.05)});
+for(const p of a){if(!p.sp){p.y+=p.vy*dt;p.x+=p.vx*dt;p.r+=7*sc*dt;if(p.y<y0-(y0-cy)*p.k)p.sp=1}else{p.x+=(p.x>x0?1:-1)*(22+p.r*.6)*sc*dt;p.r+=4*sc*dt;p.al-=.1*dt;p.y-=2*dt}}
+for(let i=a.length-1;i>=0;i--)if(a[i].al<=0)a.splice(i,1)}
+const drawPl=(c,a)=>{for(const p of a)dp(c,p.t,p.x,p.y,p.r,Math.max(0,p.al));c.globalAlpha=1};
+const xt=[...Array(24)].map(()=>({a:R()*TAU,d:R(),s:rr(8,14),r:rr(3,6)}));
+/* magma chamber: churning convection, sinking crystals, growing bubbles, gas cap, roof cracks */
+function chamber(c,cx,cy,rx,ry,tm,dt,P,k,bs){c.globalAlpha=1;
+const s=1+P/900,blob=z=>{c.beginPath();for(let i=0;i<=48;i++){const a=i/48*TAU,r=z*s*(1+.07*Math.sin(a*3+tm*.5)+.04*Math.sin(a*5-tm*.7));const x=cx+Math.cos(a)*rx*r,y=cy+Math.sin(a)*ry*r;i?c.lineTo(x,y):c.moveTo(x,y)}c.closePath()};
+blob(1.08);c.fillStyle='#2a120c';c.fill();
+let g=c.createRadialGradient(cx,cy,0,cx,cy,rx);g.addColorStop(0,'#ffc04a');g.addColorStop(.45,'#ff6a1f');g.addColorStop(.85,'#b32d0a');g.addColorStop(1,'#5a1608');
+blob(1);c.fillStyle=g;c.fill();c.save();blob(1);c.clip();
+c.globalCompositeOperation='lighter';
+for(let i=0;i<9;i++){const a=tm*(.22+.04*i)+i*1.7;dp(c,S.fire,cx+Math.cos(a)*rx*.6*((i%3)+1)/3,cy+Math.sin(a*1.3)*ry*.5,ry*.8,.3)}
+c.globalCompositeOperation='source-over';c.globalAlpha=.85;c.fillStyle='#3d2b25';
+for(const o of xt){const x=cx+(o.d-.5)*rx*1.5,y=cy-ry+((tm*o.s*k+o.a*40)%(2*ry)),r=o.r*k;c.beginPath();c.moveTo(x,y-r*1.4);c.lineTo(x+r,y);c.lineTo(x,y+r*1.4);c.lineTo(x-r,y);c.fill()}
+c.globalAlpha=1;const n=Math.round(10+P*.5);while(bs.length<n)bs.push({x:rr(-.8,.8),y:R()});bs.length=Math.min(bs.length,n);c.lineWidth=1;
+for(const b of bs){b.y+=(.08+P/900)*dt;if(b.y>1){b.y=0;b.x=rr(-.8,.8)}c.beginPath();c.arc(cx+b.x*rx*.8,cy+ry*(1-2*b.y),(2+4*b.y)*k*1.4,0,TAU);c.fillStyle='rgba(255,225,160,.3)';c.fill();c.strokeStyle='rgba(255,240,200,.7)';c.stroke()}
+g=c.createLinearGradient(0,cy-ry,0,cy);g.addColorStop(0,`rgba(255,240,190,${P/170})`);g.addColorStop(1,'rgba(255,240,190,0)');c.fillStyle=g;c.fillRect(cx-rx,cy-ry,rx*2,ry);
+c.restore();
+if(P>45){c.strokeStyle='rgba(0,0,0,.6)';c.lineWidth=2;[-.3,0,.35].forEach((o,j)=>{c.beginPath();for(let i=0;i<=6;i++)c.lineTo(cx+o*rx+Math.sin(i*2.3+j)*10*k,cy-ry*1.05-i*(P-45)/55*24*k);c.stroke()})}}
+
+/* ---------- WORLD: the scroll-driven background ---------- */
+const vx=$('vx'),wc=$('wd'),w=wc.getContext('2d'),secs=[...vx.querySelectorAll('section')],g0=$('gauge');
+const dr=document.createElement('div');dr.className='dread';g0.prepend(dr);
+const DV=[60,35,10,0,-8,-25,-70,-150,-250];
+let W,H,Rg,dpr,C=[],k,cx,yRim,yBase,yCh,ry,rx,yMt,kmPx,stars=[],spk=[],dust=[],cls=[],wpl=[],drops=[],wbs=[],ltn=0,lf=0,lx=0;
+const Y=(i,o=0)=>C[i]*Rg+H/2+o;
+function size(){dpr=Math.min(devicePixelRatio||1,1.5);W=wc.clientWidth;H=wc.clientHeight;if(!W||!H)return;wc.width=W*dpr;wc.height=H*dpr;
+Rg=Math.max(1,vx.offsetHeight-H);C=secs.map(s=>(s.offsetTop+s.offsetHeight/2-H/2)/Rg);
+k=H/760;cx=W/2;yRim=Y(3,-.22*H);yBase=yRim+300*k;yCh=Y(4);ry=150*k;rx=Math.min(W*.34,360);yMt=Y(6,-.3*H);kmPx=(yRim-Y(0,-.4*H))/50;
+stars=[...Array(90)].map(()=>({x:R()*W,y:Y(0,-.5*H)+R()*(yRim-Y(0,-.5*H))*.4,p:R()*7}));
+spk=[...Array(200)].map(()=>({x:R()*W,y:yBase+R()*(yMt-yBase)}));
+dust=[...Array(60)].map(()=>({x:R()*W,y:R()*H,f:rr(.9,1.4),s:rr(1,2.2)}));
+cls=[...Array(6)].map(()=>({x:R()*W,y:yBase-rr(40,220)*k,r:rr(70,140)*k,v:rr(4,12)}));
+wpl.length=0;for(let i=0;i<200;i++)plume(wpl,cx,yRim,yRim-(+$('km').value)*kmPx,.05,260,k)}
+function world(dt,tm){if(!W)return;const c=w,cam=cl(-vx.getBoundingClientRect().top,0,Rg),t=cam/Rg,P=+$('pr').value;
+c.setTransform(dpr,0,0,dpr,0,-cam*dpr);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.textAlign='right';
+let g=c.createLinearGradient(0,Y(0,-.5*H),0,yBase);g.addColorStop(0,'#02030a');g.addColorStop(.4,'#0b1c33');g.addColorStop(.8,'#2a4a66');g.addColorStop(1,'#b06a45');
+c.fillStyle=g;c.fillRect(0,cam,W,H);
+c.fillStyle='#fff';for(const s of stars)if(s.y>cam-5&&s.y<cam+H){c.globalAlpha=.4+.5*Math.sin(tm*1.5+s.p);c.fillRect(s.x,s.y,1.4,1.4)}c.globalAlpha=1;
+/* clouds + altitude lines */
+for(const o of cls){o.x=(o.x+o.v*dt)%(W+300);for(let j=0;j<5;j++)dp(c,S.steam,o.x-150+j*o.r*.6,o.y+Math.sin(j*2)*o.r*.15,o.r*.7,.16)}c.globalAlpha=1;
+c.font='600 12px Inter,sans-serif';c.setLineDash([6,8]);c.lineWidth=1;c.strokeStyle='rgba(241,241,232,.28)';c.fillStyle='rgba(241,241,232,.55)';
+[[yRim-12*kmPx,'12 km · top of the weather'],[yRim-50*kmPx,'50 km · top of the stratosphere']].forEach(([y,l])=>{c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke();c.fillText(l,W-16,y-6)});c.setLineDash([]);
+/* plume (height follows the Atmosphere slider) */
+plume(wpl,cx,yRim,yRim-(+$('km').value)*kmPx,dt,260,k);dp(c,S.glow,cx,yRim-10,220*k,.5+.15*Math.sin(tm*7));drawPl(c,wpl);
+if(tm>ltn){ltn=tm+rr(2,5);lx=cx+rr(-40,40);lf=1}
+if(lf>0){lf-=dt*4;c.strokeStyle=`rgba(230,235,255,${Math.max(0,lf)})`;c.lineWidth=2;c.beginPath();let x=lx,y=yRim-rr(180,420)*k;c.moveTo(x,y);for(let i=0;i<7;i++){x+=rr(-14,14);y+=rr(14,26)*k;c.lineTo(x,y)}c.stroke()}
+/* cone */
+const rX=70*k,tr=o=>{c.moveTo(-40,yBase+o);c.quadraticCurveTo(lerp(-40,cx-rX,.72),yBase-14*k+o,cx-rX,yRim+o);c.lineTo(cx+rX,yRim+o);c.quadraticCurveTo(lerp(W+40,cx+rX,.72),yBase-14*k+o,W+40,yBase+o)};
+g=c.createLinearGradient(0,yRim,0,yBase);g.addColorStop(0,'#4a3c36');g.addColorStop(1,'#241c19');c.beginPath();tr(0);c.closePath();c.fillStyle=g;c.fill();
+c.save();c.beginPath();tr(0);c.closePath();c.clip();
+for(let j=1;j<8;j++){c.strokeStyle=j%2?'rgba(255,255,255,.06)':'rgba(0,0,0,.28)';c.lineWidth=3*k;c.beginPath();tr(j*22*k);c.stroke()}
+const fl=.3+.2*Math.sin(tm*1.3),bz=(u,s)=>{const x0=s<0?cx-rX:cx+rX,x1=s<0?-40:W+40,px=lerp(s<0?-40:W+40,x0,.72),a=(1-u)*(1-u),b=2*(1-u)*u,d=u*u;return[a*x0+b*px+d*x1,a*yRim+b*(yBase-14*k)+d*yBase]};
+for(const s of[-1,1])for(const [w1,al,L] of[[7*k,.25,fl+.1],[2.5*k,.9,fl]]){c.strokeStyle=`rgba(255,110,30,${al})`;c.lineWidth=w1;c.lineCap='round';c.beginPath();for(let i=0;i<=12;i++){const p=bz(L*i/12,s);i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1])}c.stroke()}
+c.restore();
+c.beginPath();c.ellipse(cx,yRim,rX*.95,9*k,0,0,TAU);c.fillStyle='#ff7a20';c.fill();
+/* rock below the surface */
+g=c.createLinearGradient(0,yBase,0,yMt);g.addColorStop(0,'#2d2622');g.addColorStop(.5,'#241a16');g.addColorStop(1,'#2a120a');c.fillStyle=g;c.fillRect(0,yBase,W,yMt-yBase+80*k);
+c.lineWidth=1.5;for(let j=1;j<16;j++){const y0=yBase+j*(yMt-yBase)/16;c.strokeStyle=j%3?'rgba(255,255,255,.035)':'rgba(0,0,0,.25)';c.beginPath();for(let x=0;x<=W;x+=40)c.lineTo(x,y0+Math.sin(x*.01+j)*8*k);c.stroke()}
+c.fillStyle='rgba(255,255,255,.08)';for(const s of spk)c.fillRect(s.x,s.y,1.5,1.5);
+/* heat, pipes, chamber */
+c.globalCompositeOperation='lighter';dp(c,S.glow,cx,yCh,rx*1.7,.22+P/500);for(let y=yRim;y<yCh;y+=180*k)dp(c,S.glow,cx,y,110*k,.14);c.globalCompositeOperation='source-over';c.globalAlpha=1;
+const fs=sticky?15:70,pipe=(y0,y1,wd,sp)=>{c.fillStyle='#1a0d09';c.fillRect(cx-wd/2-5*k,y0,wd+10*k,y1-y0);const gg=c.createLinearGradient(cx-wd/2,0,cx+wd/2,0);gg.addColorStop(0,'#c2410c');gg.addColorStop(.5,'#ffb02e');gg.addColorStop(1,'#c2410c');c.fillStyle=gg;c.fillRect(cx-wd/2,y0,wd,y1-y0);
+const L=y1-y0;c.fillStyle='rgba(255,240,180,.5)';for(let i=0;i<L/70;i++){const y=y0+(((i*70-tm*sp)%L)+L)%L;c.fillRect(cx-wd/4+Math.sin(i*3)*wd/6,y,wd/6,Math.min(18*k,y1-y))}};
+c.strokeStyle='rgba(255,110,30,.45)';c.lineWidth=5*k;[[-1,.3],[1,.55]].forEach(([s,f])=>{const y=yRim+(yCh-yRim)*f;c.beginPath();c.moveTo(cx,y);c.lineTo(cx+s*rx*.8,y+70*k);c.stroke()});
+pipe(yRim+6,yCh-ry+30*k,34*k,fs*.6);pipe(yCh+ry-30*k,yMt+10*k,26*k,fs);
+chamber(c,cx+(P>75?(R()-.5)*3:0),yCh,rx,ry,tm,dt,P,k,wbs);
+/* mantle */
+g=c.createLinearGradient(0,yMt-40*k,0,Y(7));g.addColorStop(0,'rgba(120,32,8,0)');g.addColorStop(.12,'#7a220a');g.addColorStop(.4,'#c2410c');g.addColorStop(.7,'#4a1204');g.addColorStop(1,'#030202');
+c.fillStyle=g;c.fillRect(0,yMt-40*k,W,Y(7)-yMt+40*k);c.fillStyle='#020202';c.fillRect(0,Y(7),W,Rg+2*H);
+c.globalCompositeOperation='lighter';for(let i=0;i<14;i++){const a=tm*.12*(1+i%3)+i*2.1;dp(c,S.fire,W*(.1+.8*((i*.37)%1))+Math.cos(a)*90*k,yMt+(i%5)*70*k+Math.sin(a)*60*k+80*k,130*k,.22)}
+const m=(+$('rise').value)*.2;if(R()<(3+m*2)*dt&&drops.length<70)drops.push({x:cx+rr(-rx,rx),y:yMt+rr(20,240)*k,vy:-rr(30,60)});
+for(let i=drops.length-1;i>=0;i--){const d=drops[i];d.y+=d.vy*dt;d.x+=(cx-d.x)*.5*dt;dp(c,S.fire,d.x,d.y,8*k,.9);if(d.y<yCh+ry)drops.splice(i,1)}
+c.globalCompositeOperation='source-over';c.globalAlpha=1;
+c.font='600 12px Inter,sans-serif';c.fillStyle='rgba(241,241,232,.5)';
+[[yRim,'Surface · 0 km'],[yCh-ry-14,'Magma chamber · roughly 3–10 km down'],[yMt-14,'Mantle · 35+ km down (not to scale)']].forEach(([y,l])=>c.fillText(l,W-16,y));
+/* screen-space finish: vignette, text shade, drifting dust */
+c.setTransform(dpr,0,0,dpr,0,0);
+g=c.createRadialGradient(W/2,H/2,H*.35,W/2,H/2,H*.95);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.6)');c.fillStyle=g;c.fillRect(0,0,W,H);
+g=c.createLinearGradient(0,0,W*.55,0);g.addColorStop(0,'rgba(5,8,7,.55)');g.addColorStop(1,'rgba(5,8,7,0)');c.fillStyle=g;c.fillRect(0,0,W,H);
+const under=cam+H/2>yBase;c.fillStyle=under?'rgba(255,150,70,.5)':'rgba(220,220,220,.3)';
+for(const d of dust){const y=(((d.y-cam*d.f)%H)+H)%H;c.fillRect((d.x+Math.sin(tm+d.y)*6+W)%W,y,d.s,d.s)}
+let i=0;while(i<C.length-2&&t>C[i+1])i++;const v=lerp(DV[i],DV[i+1],cl((t-C[i])/((C[i+1]-C[i])||1)));dr.textContent=(v>=0?'Altitude ≈ ':'Depth ≈ ')+Math.abs(Math.round(v))+' km'}
+size();new ResizeObserver(size).observe(vx);addEventListener('resize',size);
+if(document.fonts)document.fonts.ready.then(size);
+loop(wc,world);if(rm)addEventListener('scroll',()=>world(.016,0),{passive:true});
+
+/* depth gauge */
+const secL=secs.slice(1),links=[];
+secL.forEach(s=>{const a=document.createElement('a');a.href='#'+s.id;a.innerHTML='<span>'+s.dataset.name+'</span>';g0.appendChild(a);links.push(a)});
+const so=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)links.forEach((l,i)=>l.classList.toggle('on',secL[i]===x.target))}),{rootMargin:'-45% 0px -45% 0px'});secL.forEach(s=>so.observe(s));
+new IntersectionObserver(e=>{g0.style.display=e[0].isIntersecting?'flex':'none'},{rootMargin:'-30% 0px -30% 0px'}).observe(vx);
+
+/* ---------- 1 ATMOSPHERE card ---------- */
+(function(){const cv=$('sk'),c=cv.getContext('2d'),W=700,H=300,pa=[],pk=(H-24)/48,y0=H-6;let px=-30;
+function txt(){const km=+$('km').value;$('kmv').textContent=km;$('kmt').textContent=km<12?'Stays in the troposphere. Rain rinses the ash out within days.':km<25?'Punches into the stratosphere. There is no weather up here, so ash and gas linger for weeks.':'Global territory. Pinatubo (1991) reached about 35 km and its sulfur haze cooled the planet by roughly 0.5 °C for around two years.'}
+$('km').oninput=()=>{txt();poke()};txt();
+for(let i=0;i<150;i++)plume(pa,350,y0,y0-28*pk,.05,90,.55);
+loop(cv,(dt,tm)=>{const km=+$('km').value;let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#04060f');g.addColorStop(.6,'#16324a');g.addColorStop(1,'#4d8ab0');c.fillStyle=g;c.fillRect(0,0,W,H);
+c.font='12px Inter,sans-serif';c.textAlign='right';c.lineWidth=1;c.strokeStyle='rgba(255,255,255,.4)';c.fillStyle='rgba(255,255,255,.7)';
+for(const v of[0,10,20,30,40]){const y=y0-v*pk;c.beginPath();c.moveTo(W-14,y);c.lineTo(W,y);c.stroke();c.fillText(v+' km',W-18,y+4)}
+c.setLineDash([5,6]);c.beginPath();c.moveTo(0,y0-12*pk);c.lineTo(W-70,y0-12*pk);c.stroke();c.setLineDash([]);c.textAlign='left';c.fillText('top of the weather (12 km)',10,y0-12*pk-6);
+plume(pa,350,y0,y0-km*pk,dt,90,.55);dp(c,S.glow,350,y0,40,.7);drawPl(c,pa);
+px=(px+dt*45+40)%(W+80)-40;const py=y0-11*pk;c.fillStyle='#e8eef2';c.beginPath();c.moveTo(px-16,py);c.lineTo(px+12,py-2);c.lineTo(px+18,py);c.lineTo(px+12,py+2);c.fill();c.beginPath();c.moveTo(px-2,py);c.lineTo(px-10,py-9);c.lineTo(px-6,py-9);c.lineTo(px+4,py);c.fill();
+c.fillStyle='rgba(255,255,255,.7)';c.fillText('airliner cruising height',px-40,py+20)})})();
+
+/* ---------- 2 GASES card ---------- */
+const gases={'Steam (H₂O)':'The most abundant volcanic gas. Harmless on its own, but it fuels the plume and helps it rise.','Carbon dioxide (CO₂)':'Heavier than air, so it can pool in hollows. In 1986 a CO₂ release at Lake Nyos suffocated around 1,700 people.','Sulfur dioxide (SO₂)':'Turns into a sulfate haze that reflects sunlight and cools the climate. It also causes acid rain.','Ash':'Not burnt ash. It is tiny shards of rock and glass under 2 mm. It is abrasive, and it can stall jet engines.'};
+(function(){const cv=$('gas'),c=cv.getContext('2d'),W=700,H=260;let sel=3;
+const A=[[['#ff6b5a',0,0,1],['#f4f7fa',-.95,.75,.55],['#f4f7fa',.95,.75,.55]],[['#3a3f45',0,0,.85],['#ff6b5a',-1.6,0,.95],['#ff6b5a',1.6,0,.95]],[['#e8d34a',0,-.2,1.15],['#ff6b5a',-1.4,.9,.85],['#ff6b5a',1.4,.9,.85]]],F=['H₂O','CO₂','SO₂','ash shards'];
+const ps=[...Array(44)].map((_,i)=>({k:i%4,x:R()*W,y:R()*H,a:R()*TAU,va:rr(-1,1),s:rr(8,12),v:rr(14,34)}));
+Object.keys(gases).forEach((n,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=n;b.setAttribute('aria-pressed',i==3);
+b.onclick=()=>{[...$('gchips').children].forEach(x=>x.setAttribute('aria-pressed',x===b));sel=i;$('gt').textContent=gases[n];poke()};$('gchips').appendChild(b)});$('gt').textContent=gases['Ash'];
+loop(cv,(dt,tm)=>{let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#1c2b33');g.addColorStop(1,'#34464e');c.fillStyle=g;c.fillRect(0,0,W,H);
+for(let i=0;i<7;i++)dp(c,S.ash,((tm*12+i*130)%(W+200))-100,60+Math.sin(i*2+tm*.3)*40+i*22,90,.28);
+for(const p of ps){p.y-=p.v*dt;p.x+=(16+Math.sin(p.y/30)*10)*dt;p.a+=p.va*dt;if(p.y<-20){p.y=H+20;p.x=R()*W}if(p.x>W+20)p.x=-20;
+c.globalAlpha=p.k==sel?1:.16;c.save();c.translate(p.x,p.y);c.rotate(p.a);
+if(p.k==3){const s=p.s*.8;c.beginPath();c.moveTo(s,0);c.lineTo(s*.2,s*.8);c.lineTo(-s*.9,s*.3);c.lineTo(-s*.6,-.7*s);c.lineTo(s*.3,-s*.6);c.closePath();c.fillStyle='#8a817b';c.fill()}
+else for(const[col,x,y,r]of A[p.k]){c.beginPath();c.arc(x*p.s,y*p.s,r*p.s*.75,0,TAU);c.fillStyle=col;c.fill()}c.restore()}
+c.globalAlpha=1;c.fillStyle='#f1f1e8';c.font='700 15px Inter,sans-serif';c.fillText('Highlighted: '+F[sel],14,H-14)})})();
+
+/* ---------- 3 PYROCLASTIC card ---------- */
+(function(){const cv=$('py'),c=cv.getContext('2d'),W=700,H=280,PX=350,PY=78;
+const sy=x=>x<PX?250-172*Math.pow(x/PX,1.3):PY+162*Math.pow((x-PX)/(W-PX),.8);
+const tr=[...Array(11)].map((_,i)=>({x:410+i*27+rr(-6,6),s:0}));let run=false,tt=0,fx=PX,fv=0,pf=[],sm=0;
+$('go').onclick=()=>{run=true;tt=0;fx=PX;fv=40;pf=[];tr.forEach(o=>o.s=0);$('flt').textContent='The eruption column collapses…';poke()};
+loop(cv,(dt,tm)=>{let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#1a2226');g.addColorStop(1,'#3b3532');c.fillStyle=g;c.fillRect(0,0,W,H);
+c.beginPath();c.moveTo(0,H);for(let x=0;x<=W;x+=10)c.lineTo(x,sy(x));c.lineTo(W,H);c.closePath();c.fillStyle='#2b211e';c.fill();
+dp(c,S.glow,PX,PY,50,.5+.2*Math.sin(tm*6));c.globalAlpha=1;
+for(const o of tr){c.save();c.translate(o.x,sy(o.x));if(o.s==2)c.rotate(1.35);c.fillStyle=o.s?'#15100e':'#2f5a3a';c.beginPath();c.moveTo(0,-30);c.lineTo(7,-6);c.lineTo(-7,-6);c.closePath();c.fill();c.fillStyle='#3b2a20';c.fillRect(-1.5,-6,3,6);c.restore()}
+if(run){tt+=dt;if(tt<1.3){if(R()<.7)pf.push({x:PX+rr(-8,8),h:0,vh:rr(60,110),vx:rr(-8,8),r:rr(10,18),al:.7,t:S.ash,d:.28})}
+else{fv=Math.min(300,fv+150*dt);fx+=fv*dt;$('flt').textContent=`Speed: ${Math.round(fv*2.3)} km/h · about 1,000 °C`;
+for(let i=0;i<3;i++)pf.push({x:fx-rr(0,90),h:rr(4,22),vh:rr(4,18),vx:fv*.85,r:rr(12,24),al:.85,t:S.dark,d:.3});
+if(R()<.5)pf.push({x:fx-rr(0,90),h:rr(30,50),vh:rr(25,45),vx:fv*.6,r:rr(22,34),al:.4,t:S.ash,d:.2});
+for(const o of tr){if(fx>o.x-12&&!o.s)o.s=1;if(fx>o.x+40)o.s=2}
+if(fx>W+90){run=false;$('flt').textContent='When it stops it leaves a thick layer of hot ash and rock that can stay hot for weeks.'}}}
+else{sm+=dt;if(sm>.4){sm=0;pf.push({x:PX+rr(-6,6),h:0,vh:rr(14,26),vx:rr(6,14),r:6,al:.3,t:S.steam,d:.15})}}
+if(run&&tt>1.3)dp(c,S.glow,fx-30,sy(fx-30)-14,60,.45);
+for(const p of pf){p.x+=p.vx*dt;p.h+=p.vh*dt;p.r+=12*dt;p.al-=p.d*dt;p.vx*=.995;dp(c,p.t,p.x,sy(p.x)-p.h,p.r,Math.max(0,p.al))}c.globalAlpha=1;pf=pf.filter(p=>p.al>0)})})();
+
+/* ---------- 4 CHAMBER card ---------- */
+(function(){const cv=$('ch'),c=cv.getContext('2d'),bs=[];
+function txt(){const p=+$('pr').value;$('prt').textContent=p<35?'Quiet. Gas leaks away as fast as it forms.':p<75?'Restless. The ground swells and small earthquakes start.':'Critical. The gas pressure is beating the strength of the rock above.'}
+$('pr').oninput=()=>{txt();poke()};txt();
+loop(cv,(dt,tm)=>{const p=+$('pr').value;cv.style.transform=p>75?`translate(${(R()-.5)*4}px,${(R()-.5)*4}px)`:'none';
+let g=c.createLinearGradient(0,0,0,240);g.addColorStop(0,'#241a16');g.addColorStop(1,'#180d0a');c.fillStyle=g;c.fillRect(0,0,700,240);
+c.strokeStyle='rgba(255,255,255,.04)';for(let y=20;y<240;y+=26){c.beginPath();c.moveTo(0,y);c.lineTo(700,y+8);c.stroke()}
+chamber(c,340,124,255,88,tm,dt,p,.6,bs);
+c.strokeStyle='rgba(241,241,232,.6)';c.lineWidth=1;c.strokeRect(662,16,14,208);c.fillStyle=`hsl(${120-p*1.2},80%,50%)`;c.fillRect(663,224-p*2.06,12,p*2.06);
+c.fillStyle='rgba(241,241,232,.7)';c.font='12px Inter,sans-serif';c.textAlign='right';c.fillText('pressure',676,12)})})();
+
+/* ---------- 5 CONDUIT card ---------- */
+(function(){const cv=$('cd'),c=cv.getContext('2d'),W=700,H=260,SY=48,bs=[],ej=[],ap=[];
+function txt(){$('cdt').textContent=sticky?'Thick, silica-rich magma traps its gas. Bubbles swell as pressure drops, then the whole plug blows apart: an explosive eruption.':'Runny basalt lets gas slip out on the way up. You get lava fountains and rivers of lava, like Hawaii.'}
+[['runny',false],['sticky',true]].forEach(([id,v])=>$(id).onclick=()=>{sticky=v;$('runny').setAttribute('aria-pressed',!v);$('sticky').setAttribute('aria-pressed',v);txt();poke()});txt();
+loop(cv,(dt,tm)=>{let g=c.createLinearGradient(0,0,0,SY);g.addColorStop(0,'#0e1a26');g.addColorStop(1,'#3a3a44');c.fillStyle=g;c.fillRect(0,0,W,SY+1);
+c.fillStyle='#211814';c.beginPath();c.moveTo(0,H);c.lineTo(0,SY+18);c.lineTo(230,SY+18);c.lineTo(305,SY);c.lineTo(305,H);c.fill();c.beginPath();c.moveTo(W,H);c.lineTo(W,SY+18);c.lineTo(470,SY+18);c.lineTo(395,SY);c.lineTo(395,H);c.fill();
+c.strokeStyle='rgba(255,255,255,.05)';for(let y=SY+40;y<H;y+=28){c.beginPath();c.moveTo(0,y);c.lineTo(305,y+6);c.moveTo(395,y+6);c.lineTo(W,y);c.stroke()}
+g=c.createLinearGradient(305,0,395,0);const a=sticky?'#9a3410':'#c2410c',b=sticky?'#e07a20':'#ffb02e';g.addColorStop(0,a);g.addColorStop(.5,b);g.addColorStop(1,a);c.fillStyle=g;c.fillRect(305,SY,90,H-SY);
+const L=H-SY,fs=sticky?14:60;c.fillStyle='rgba(255,236,170,.35)';for(let i=0;i<9;i++)c.fillRect(310+((i*37)%60),SY+(((i*28-tm*fs)%L)+L)%L,8+(i%3)*4,14);
+const n=sticky?7:16;while(bs.length<n)bs.push({x:305+rr(8,82),y:H-rr(0,L)});bs.length=n;
+for(const p of bs){p.y-=(sticky?22:90)*dt;const r=(sticky?3:2.5)*(1+(H-p.y)/L*(sticky?3.2:.5));
+if(p.y<SY){if(sticky){for(let i=0;i<14;i++)ej.push({x:p.x,y:SY,vx:rr(-150,150),vy:-rr(150,300),l:1});for(let i=0;i<3;i++)ap.push({x:p.x,y:SY-10,r:14,al:.6})}else for(let i=0;i<2;i++)ej.push({x:p.x,y:SY,vx:rr(-40,40),vy:-rr(90,160),l:1});p.y=H;p.x=305+rr(8,82)}
+c.beginPath();c.arc(p.x,p.y,r,0,TAU);c.fillStyle='rgba(255,225,160,.35)';c.fill();c.strokeStyle='rgba(255,240,200,.8)';c.lineWidth=1;c.stroke()}
+if(!sticky&&R()<.6)ej.push({x:350+rr(-12,12),y:SY,vx:rr(-40,40),vy:-rr(120,200),l:1});
+for(const e of ej){e.x+=e.vx*dt;e.y+=e.vy*dt;e.vy+=500*dt;e.l-=dt*.7;c.fillStyle=`rgba(255,${120+e.l*80},40,${Math.min(1,e.l)})`;c.beginPath();c.arc(e.x,e.y,2.6,0,TAU);c.fill()}
+for(let i=ej.length-1;i>=0;i--)if(ej[i].y>SY+2&&ej[i].vy>0||ej[i].l<=0)ej.splice(i,1);
+for(const p of ap){p.y-=30*dt;p.r+=25*dt;p.al-=.3*dt;dp(c,S.ash,p.x,p.y,p.r,Math.max(0,p.al))}c.globalAlpha=1;for(let i=ap.length-1;i>=0;i--)if(ap[i].al<=0)ap.splice(i,1)})})();
+
+/* ---------- 6 MANTLE card ---------- */
+(function(){const cv=$('mn'),c=cv.getContext('2d'),W=700,H=280,gr=[],dw=[];
+for(let r=0;r<6;r++)for(let i=0;i<12;i++)gr.push({x:30+i*58+(r%2)*29,y:52+r*42,r:22+R()*5,h:28+R()*16});
+function txt(){const v=+$('rise').value,m=Math.round(v*.2);$('mt').textContent=`Depth about ${Math.round(100-v*.6)} km. Melted: ${m}%. `+(m<3?'Still solid. It is hot but under huge pressure.':'Just 5 to 20% melt is enough. Droplets join up, and being lighter than rock, they rise.')}
+$('rise').oninput=()=>{txt();poke()};txt();
+loop(cv,(dt,tm)=>{const v=+$('rise').value,m=v*.2;let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#241a16');g.addColorStop(1,'#3a1a0c');c.fillStyle=g;c.fillRect(0,0,W,H);
+const oy=-v*.5;for(const o of gr){c.beginPath();c.arc(o.x,o.y+oy,o.r,0,TAU);c.fillStyle=`hsl(20,8%,${o.h}%)`;c.fill();c.lineWidth=.5+m*.3;c.strokeStyle=m>1?`rgba(255,${90+m*4},31,${.3+m/25})`:'rgba(0,0,0,.4)';c.stroke()}
+if(m>1&&R()<.04+m*.03&&dw.length<80)dw.push({x:rr(20,W-20),y:rr(H*.3,H),vy:-rr(15,40)});
+for(let i=dw.length-1;i>=0;i--){const d=dw[i];d.y+=d.vy*dt;dp(c,S.fire,d.x,d.y,7,.9);if(d.y<-10)dw.splice(i,1)}c.globalAlpha=1;
+c.strokeStyle='rgba(241,241,232,.6)';c.lineWidth=1;c.strokeRect(8,10,10,H-20);c.fillStyle='rgba(184,160,106,.9)';const ph=(1-v*.006)*(H-22);c.fillRect(9,H-12-ph,8,ph);
+c.fillStyle='rgba(241,241,232,.75)';c.font='12px Inter,sans-serif';c.textAlign='left';c.fillText('pressure',24,22)})})();
+
+/* ---------- 8 FINALE ---------- */
+(function(){const cv=$('fin'),c=cv.getContext('2d'),cap=$('cap'),W=720,H=440,PK=[335,385,150],GY=260,LX=110,RX=610;
+let T=0,run=false,spawned=false,bombs=[],fp=[],bs=[],lf=0;const st=[...Array(40)].map(()=>[R()*W,R()*200,R()*7]);
+const caps=[[0,'Pressure builds in the chamber.'],[2.2,'Eruption! Gas and rock blast out of the crater.'],[3.2,'Pyroclastic flows race down the flanks.'],[5.5,'Lava slows and cools into basalt.'],[9,'Done: a fresh layer of basalt, so the volcano is taller and wider.']];
+const mix=(a,b,t)=>`rgb(${a.map((v,i)=>Math.round(lerp(v,b[i],t))).join()})`;
+function cone(d,fill){c.beginPath();c.moveTo(LX-d*3.5,GY);c.lineTo(PK[0]-d,PK[2]-d*.8);c.lineTo(PK[1]+d,PK[2]-d*.8);c.lineTo(RX+d*3.5,GY);c.closePath();c.fillStyle=fill;c.fill()}
+$('play').onclick=()=>{T=0;spawned=false;bombs=[];fp=[];run=true;$('play').textContent='Playing…';poke()};
+loop(cv,(dt,tm)=>{
+if(run){T+=dt;if(T>2.2&&!spawned){spawned=true;for(let i=0;i<70;i++)bombs.push({x:360,y:PK[2],px:360,py:PK[2],vx:rr(-150,150),vy:-rr(180,400),l:1})}
+if(T>2.2&&T<4)for(let i=0;i<2;i++)bombs.push({x:360,y:PK[2],px:360,py:PK[2],vx:rr(-80,80),vy:-rr(200,330),l:1});
+if(T>3&&T<7&&R()<.07)lf=1;if(T>=11){run=false;$('play').textContent='↻ Replay'}cap.textContent=caps.filter(x=>T>=x[0]).pop()[1]}
+for(const b of bombs){b.px=b.x;b.py=b.y;b.x+=b.vx*dt;b.y+=b.vy*dt;b.vy+=320*dt;b.l-=dt/3}bombs=bombs.filter(b=>b.l>0&&b.y<GY+4);
+plume(fp,360,PK[2],50,dt,run&&T>2.2&&T<6.5?70:0,.7);
+const e=cl(T-2.2)*(1-cl((T-8)/3));c.save();c.globalAlpha=1;
+if(T<2.2&&T>0)c.translate((R()-.5)*T*2.2,(R()-.5)*T*2.2);
+let g=c.createLinearGradient(0,0,0,GY);g.addColorStop(0,'#0b1024');g.addColorStop(1,'#c9663a');c.fillStyle=g;c.fillRect(-10,-10,W+20,GY+10);
+c.fillStyle='#fff';for(const s of st){c.globalAlpha=.6*Math.sin(tm+s[2])**2*(1-e*.7);c.fillRect(s[0],s[1],1.4,1.4)}c.globalAlpha=1;
+g=c.createLinearGradient(0,GY,0,H);g.addColorStop(0,'#241612');g.addColorStop(.7,'#1a0f0c');g.addColorStop(1,'#6a230d');c.fillStyle=g;c.fillRect(-10,GY,W+20,H);
+c.fillStyle='rgba(255,255,255,.5)';c.font='13px Inter,sans-serif';c.textAlign='left';c.fillText('Mantle (melting)',14,H-12);c.fillText('Magma chamber',500,392);
+c.strokeStyle='rgba(255,255,255,.04)';for(let y=GY+20;y<H;y+=24){c.beginPath();c.moveTo(0,y);c.lineTo(W,y+6);c.stroke()}
+cone(0,'#4a3730');const dep=cl((T-6)/4);
+if(dep>0){cone(dep*16,'#2b2b30');c.setLineDash([5,5]);c.strokeStyle='rgba(255,255,255,.6)';c.beginPath();c.moveTo(LX,GY);c.lineTo(PK[0],PK[2]);c.lineTo(PK[1],PK[2]);c.lineTo(RX,GY);c.stroke();c.setLineDash([]);
+c.fillStyle='#fff';c.fillText('New basalt layer',RX-60+dep*30,GY-16);c.fillText('Old surface',LX+40,GY-38)}
+const glow=T<2.2?cl(T/2.2):cl(1-(T-2.2)/5)*.6;
+c.fillStyle=mix([80,30,15],[255,110,30],glow);c.fillRect(352,PK[2],16,GY+120-PK[2]);
+c.fillStyle=`rgba(255,236,170,${.5*glow})`;for(let i=0;i<8;i++)c.fillRect(355+(i%3)*3,PK[2]+(((i*30-tm*50)%150)+150)%150,3,12);
+chamber(c,360,340,125,36,tm,dt,T<2.2?Math.min(100,T*45+15):20,.5,bs);
+const lp=cl((T-2.6)/3),cool=cl((T-5)/4),lc=mix([255,90,31],[43,43,48],cool);
+if(lp>0){c.lineCap='round';[[16,.25],[8,1]].forEach(([lw,al])=>{c.lineWidth=lw;c.globalAlpha=al;c.strokeStyle=lc;[[PK[0],LX],[PK[1],RX]].forEach(([sx,ex])=>{c.beginPath();c.moveTo(sx,PK[2]);c.lineTo(lerp(sx,ex,lp),lerp(PK[2],GY,lp));c.stroke()})});c.globalAlpha=1}
+const q=(T-3.2)/3.3;if(q>0&&q<1)[[PK[0],LX],[PK[1],RX]].forEach(([sx,ex])=>{for(let i=0;i<7;i++){const u=cl(q*q-i*.035),x=lerp(sx,ex,u),y=lerp(PK[2],GY,u)-8-i*4;if(!i)dp(c,S.glow,x,y+6,34,.5);dp(c,S.dark,x,y,22-i,.85*(1-q*.5))}});
+c.globalCompositeOperation='lighter';dp(c,S.glow,360,PK[2],230,.55*e);c.globalCompositeOperation='source-over';
+drawPl(c,fp);
+if(lf>0){lf-=dt*6;c.strokeStyle=`rgba(235,240,255,${Math.max(0,lf)})`;c.lineWidth=2;c.beginPath();let x=360+rr(-30,30),y=PK[2]-rr(110,170);c.moveTo(x,y);for(let i=0;i<6;i++){x+=rr(-12,12);y+=rr(14,22);c.lineTo(x,y)}c.stroke()}
+for(const b of bombs){c.strokeStyle=`rgba(255,150,50,${b.l})`;c.lineWidth=2;c.beginPath();c.moveTo(b.px,b.py);c.lineTo(b.x,b.y);c.stroke();c.fillStyle=`rgba(255,190,80,${b.l})`;c.beginPath();c.arc(b.x,b.y,3,0,TAU);c.fill()}
+c.restore()})})();
+})();
+</script></body></html>
