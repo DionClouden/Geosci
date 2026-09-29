@@ -121,7 +121,8 @@ background:#050807}
 <div class="tx"><p class="eyebrow">06 / 07 · Mantle melting</p>
 <h2>Mantle melting</h2>
 <p>The mantle is solid rock, so where does magma come from? Rock doesn't need to get hotter to melt. It just needs less pressure. Lift this block of mantle and watch.</p></div>
-<div class="card"><canvas id="mn" width="700" height="280"></canvas>
+<div class="card"><canvas id="mn" width="700" height="340"></canvas>
+<div class="row"><button class="btn" id="mplay">Let the rock rise</button></div>
 <label>Rock rising toward the surface<input type="range" id="rise" min="0" max="100" value="0"></label>
 <p class="out" id="mt"></p></div></div></section>
 
@@ -137,7 +138,7 @@ background:#050807}
 <p>Everything you just scrolled through, in one go.</p></div>
 <div class="card"><canvas id="fin" width="720" height="440"></canvas>
 <div class="row"><button class="btn" id="play">▶ Play</button><span class="out" id="cap" style="min-height:0" aria-live="polite">Cutaway of a volcano at rest.</span></div>
-<p class="note">Basalt volcanoes usually ooze rather than explode. The blast here is dramatised so you can see every step.</p></div></div></section>
+<p class="note">Artistic licence: basalt volcanoes usually ooze rather than explode. The blast here is dramatised so you can see every step.</p></div></div></section>
 </div>
 </main>
 
@@ -157,10 +158,16 @@ rd.push(()=>{if(vis)fn(.016,performance.now()/1e3)});
 new IntersectionObserver(e=>{if(e[0].isIntersecting){if(!vis){vis=true;last=performance.now();requestAnimationFrame(f)}}else vis=false}).observe(cv)}
 /* rising ash column that stalls at a ceiling and spreads sideways (like a real plume) */
 function plume(a,x0,y0,cy,dt,n,sc){
-let ri=0;for(const p of a)if(!p.sp)ri++;for(let i=0,m=Math.min(n-ri,Math.ceil(n*dt*.5));i<m;i++)a.push({x:x0+rr(-5,5)*sc,y:y0,vx:rr(-9,9)*sc,vy:-rr(90,170)*sc,r:rr(7,15)*sc,al:.6,sp:0,t:R()<.06?S.so2:R()<.2?S.steam:S.ash,k:rr(.9,1.05)});
-for(const p of a){if(!p.sp){p.y+=p.vy*dt;p.x+=p.vx*dt;p.r+=7*sc*dt;if(p.y<y0-(y0-cy)*p.k)p.sp=1}else{p.x+=(p.x>x0?1:-1)*(22+p.r*.6)*sc*dt;p.r+=4*sc*dt;p.al-=.1*dt;p.y-=2*dt}}
+a.cy=a.cy===undefined?cy:a.cy+(cy-a.cy)*Math.min(1,dt*2.5);const top=a.cy,Lz=Math.max(140*sc,(y0-top)*.35);
+a.acc=(a.acc||0)+n*.12*dt;
+while(a.acc>=1){a.acc--;if(a.length<n){const v=-rr(90,170)*sc;a.push({x:x0+rr(-5,5)*sc,y:y0,vx:rr(-9,9)*sc,vy:v,v0:v,r:rr(7,15)*sc,al:.6,dir:R()<.5?-1:1,t:R()<.06?S.so2:R()<.2?S.steam:S.ash,k:rr(.9,1.05)})}}
+for(const p of a){const f=cl((p.y-(y0-(y0-top)*p.k))/Lz),e=f*f*(3-2*f),sp=1-e;
+p.vy+=(p.v0*e-2*sc-p.vy)*Math.min(1,dt*1.8);p.y+=p.vy*dt;
+p.vx+=p.dir*sp*(30+p.r*.5)*sc*dt;p.vx*=Math.max(0,1-.7*dt);p.x+=p.vx*dt;
+p.r+=(7*e+8*sp)*sc*dt;p.al-=(.02+.2*sp*sp)*dt}
 for(let i=a.length-1;i>=0;i--)if(a[i].al<=0)a.splice(i,1)}
 const drawPl=(c,a)=>{for(const p of a)dp(c,p.t,p.x,p.y,p.r,Math.max(0,p.al));c.globalAlpha=1};
+const meltF=v=>{const z=100-.7*v;return cl(((1450-.5*(100-z))-(1100+3.9*z))/10,0,20)};
 const xt=[...Array(24)].map(()=>({a:R()*TAU,d:R(),s:rr(8,14),r:rr(3,6)}));
 /* magma chamber: churning convection, sinking crystals, growing bubbles, gas cap, roof cracks */
 function chamber(c,cx,cy,rx,ry,tm,dt,P,k,bs){c.globalAlpha=1;
@@ -191,7 +198,7 @@ stars=[...Array(90)].map(()=>({x:R()*W,y:Y(0,-.5*H)+R()*(yRim-Y(0,-.5*H))*.4,p:R
 spk=[...Array(200)].map(()=>({x:R()*W,y:yBase+R()*(yMt-yBase)}));
 dust=[...Array(60)].map(()=>({x:R()*W,y:R()*H,f:rr(.9,1.4),s:rr(1,2.2)}));
 cls=[...Array(6)].map(()=>({x:R()*W,y:yBase-rr(40,220)*k,r:rr(70,140)*k,v:rr(4,12)}));
-wpl.length=0;for(let i=0;i<200;i++)plume(wpl,cx,yRim,yRim-(+$('km').value)*kmPx,.05,260,k)}
+wpl.length=0;for(let i=0;i<260;i++)plume(wpl,cx,yRim,yRim-(+$('km').value)*kmPx,.05,260,k)}
 function world(dt,tm){if(!W)return;const c=w,cam=cl(-vx.getBoundingClientRect().top,0,Rg),t=cam/Rg,P=+$('pr').value;
 c.setTransform(dpr,0,0,dpr,0,-cam*dpr);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.textAlign='right';
 let g=c.createLinearGradient(0,Y(0,-.5*H),0,yBase);g.addColorStop(0,'#02030a');g.addColorStop(.4,'#0b1c33');g.addColorStop(.8,'#2a4a66');g.addColorStop(1,'#b06a45');
@@ -229,7 +236,7 @@ chamber(c,cx+(P>75?(R()-.5)*3:0),yCh,rx,ry,tm,dt,P,k,wbs);
 g=c.createLinearGradient(0,yMt-40*k,0,Y(7));g.addColorStop(0,'rgba(120,32,8,0)');g.addColorStop(.12,'#7a220a');g.addColorStop(.4,'#c2410c');g.addColorStop(.7,'#4a1204');g.addColorStop(1,'#030202');
 c.fillStyle=g;c.fillRect(0,yMt-40*k,W,Y(7)-yMt+40*k);c.fillStyle='#020202';c.fillRect(0,Y(7),W,Rg+2*H);
 c.globalCompositeOperation='lighter';for(let i=0;i<14;i++){const a=tm*.12*(1+i%3)+i*2.1;dp(c,S.fire,W*(.1+.8*((i*.37)%1))+Math.cos(a)*90*k,yMt+(i%5)*70*k+Math.sin(a)*60*k+80*k,130*k,.22)}
-const m=(+$('rise').value)*.2;if(R()<(3+m*2)*dt&&drops.length<70)drops.push({x:cx+rr(-rx,rx),y:yMt+rr(20,240)*k,vy:-rr(30,60)});
+const m=meltF(+$('rise').value);if(R()<(3+m*2)*dt&&drops.length<70)drops.push({x:cx+rr(-rx,rx),y:yMt+rr(20,240)*k,vy:-rr(30,60)});
 for(let i=drops.length-1;i>=0;i--){const d=drops[i];d.y+=d.vy*dt;d.x+=(cx-d.x)*.5*dt;dp(c,S.fire,d.x,d.y,8*k,.9);if(d.y<yCh+ry)drops.splice(i,1)}
 c.globalCompositeOperation='source-over';c.globalAlpha=1;
 c.font='600 12px Inter,sans-serif';c.fillStyle='rgba(241,241,232,.5)';
@@ -255,7 +262,7 @@ new IntersectionObserver(e=>{g0.style.display=e[0].isIntersecting?'flex':'none'}
 (function(){const cv=$('sk'),c=cv.getContext('2d'),W=700,H=300,pa=[],pk=(H-24)/48,y0=H-6;let px=-30;
 function txt(){const km=+$('km').value;$('kmv').textContent=km;$('kmt').textContent=km<12?'Stays in the troposphere. Rain rinses the ash out within days.':km<25?'Punches into the stratosphere. There is no weather up here, so ash and gas linger for weeks.':'Global territory. Pinatubo (1991) reached about 35 km and its sulfur haze cooled the planet by roughly 0.5 °C for around two years.'}
 $('km').oninput=()=>{txt();poke()};txt();
-for(let i=0;i<150;i++)plume(pa,350,y0,y0-28*pk,.05,90,.55);
+for(let i=0;i<220;i++)plume(pa,350,y0,y0-28*pk,.05,90,.55);
 loop(cv,(dt,tm)=>{const km=+$('km').value;let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#04060f');g.addColorStop(.6,'#16324a');g.addColorStop(1,'#4d8ab0');c.fillStyle=g;c.fillRect(0,0,W,H);
 c.font='12px Inter,sans-serif';c.textAlign='right';c.lineWidth=1;c.strokeStyle='rgba(255,255,255,.4)';c.fillStyle='rgba(255,255,255,.7)';
 for(const v of[0,10,20,30,40]){const y=y0-v*pk;c.beginPath();c.moveTo(W-14,y);c.lineTo(W,y);c.stroke();c.fillText(v+' km',W-18,y+4)}
@@ -327,17 +334,39 @@ for(const e of ej){e.x+=e.vx*dt;e.y+=e.vy*dt;e.vy+=500*dt;e.l-=dt*.7;c.fillStyle
 for(let i=ej.length-1;i>=0;i--)if(ej[i].y>SY+2&&ej[i].vy>0||ej[i].l<=0)ej.splice(i,1);
 for(const p of ap){p.y-=30*dt;p.r+=25*dt;p.al-=.3*dt;dp(c,S.ash,p.x,p.y,p.r,Math.max(0,p.al))}c.globalAlpha=1;for(let i=ap.length-1;i>=0;i--)if(ap[i].al<=0)ap.splice(i,1)})})();
 
-/* ---------- 6 MANTLE card ---------- */
-(function(){const cv=$('mn'),c=cv.getContext('2d'),W=700,H=280,gr=[],dw=[];
-for(let r=0;r<6;r++)for(let i=0;i<12;i++)gr.push({x:30+i*58+(r%2)*29,y:52+r*42,r:22+R()*5,h:28+R()*16});
-function txt(){const v=+$('rise').value,m=Math.round(v*.2);$('mt').textContent=`Depth about ${Math.round(100-v*.6)} km. Melted: ${m}%. `+(m<3?'Still solid. It is hot but under huge pressure.':'Just 5 to 20% melt is enough. Droplets join up, and being lighter than rock, they rise.')}
+/* ---------- 6 MANTLE card: decompression melting ---------- */
+(function(){const cv=$('mn'),c=cv.getContext('2d'),W=700,H=340,CX=200,gr=[],dw=[];let pool=0;
+for(let r=-3;r<=3;r++)for(let i=-5;i<=5;i++){const x=i*25+(r&1)*12.5,y=r*22;if((x/100)**2+(y/68)**2<1)gr.push({x,y,r:11+R()*2.5,h:26+R()*18,ph:R()*TAU})}
+const zOf=v=>100-.7*v,Tp=z=>1450-.5*(100-z),Ts=z=>1100+3.9*z,X=T=>438+(T-1150)/350*230,Yd=z=>56+(z-30)/70*230;
+function txt(){const v=+$('rise').value,z=zOf(v),F=meltF(v);$('mt').textContent=`Depth about ${Math.round(z)} km, pressure about ${(z/33).toFixed(1)} GPa. Melted: ${Math.round(F)}%. `+(F<1?'Still solid. It is hot, but the pressure keeps it from melting.':'Now hotter than its melting point at this lower pressure, so it melts. Just 5 to 20% melt is enough: droplets join up and, being lighter than rock, they rise.')}
 $('rise').oninput=()=>{txt();poke()};txt();
-loop(cv,(dt,tm)=>{const v=+$('rise').value,m=v*.2;let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#241a16');g.addColorStop(1,'#3a1a0c');c.fillStyle=g;c.fillRect(0,0,W,H);
-const oy=-v*.5;for(const o of gr){c.beginPath();c.arc(o.x,o.y+oy,o.r,0,TAU);c.fillStyle=`hsl(20,8%,${o.h}%)`;c.fill();c.lineWidth=.5+m*.3;c.strokeStyle=m>1?`rgba(255,${90+m*4},31,${.3+m/25})`:'rgba(0,0,0,.4)';c.stroke()}
-if(m>1&&R()<.04+m*.03&&dw.length<80)dw.push({x:rr(20,W-20),y:rr(H*.3,H),vy:-rr(15,40)});
-for(let i=dw.length-1;i>=0;i--){const d=dw[i];d.y+=d.vy*dt;dp(c,S.fire,d.x,d.y,7,.9);if(d.y<-10)dw.splice(i,1)}c.globalAlpha=1;
-c.strokeStyle='rgba(241,241,232,.6)';c.lineWidth=1;c.strokeRect(8,10,10,H-20);c.fillStyle='rgba(184,160,106,.9)';const ph=(1-v*.006)*(H-22);c.fillRect(9,H-12-ph,8,ph);
-c.fillStyle='rgba(241,241,232,.75)';c.font='12px Inter,sans-serif';c.textAlign='left';c.fillText('pressure',24,22)})})();
+$('mplay').onclick=()=>{const t0=performance.now(),s0=+$('rise').value>=99?0:+$('rise').value;(function s(n){const u=cl((n-t0)/7000);$('rise').value=lerp(s0,100,u);txt();poke();if(u<1)requestAnimationFrame(s)})(t0)};
+loop(cv,(dt,tm)=>{const v=+$('rise').value,z=zOf(v),F=meltF(v),py=lerp(270,170,v/100);c.textAlign='left';
+let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#3a1e12');g.addColorStop(1,'#5a220c');c.fillStyle=g;c.fillRect(0,0,410,H);
+c.globalCompositeOperation='lighter';for(let i=0;i<5;i++)dp(c,S.fire,50+i*80+Math.sin(tm*.3+i)*20,140+((i*97+tm*8)%200),70,.1);c.globalCompositeOperation='source-over';c.globalAlpha=1;
+c.fillStyle='#2b2b2f';c.fillRect(0,0,410,90);c.strokeStyle='rgba(255,255,255,.05)';c.lineWidth=1;for(let y=14;y<90;y+=16){c.beginPath();c.moveTo(0,y);c.lineTo(410,y+4);c.stroke()}
+c.fillStyle='rgba(241,241,232,.75)';c.font='600 12px Inter,sans-serif';c.fillText('Crust',12,26);c.fillText('Mantle: solid rock that slowly flows',12,H-10);
+pool+=(F/20-pool)*Math.min(1,dt*2);
+if(pool>.02){const lr=30+pool*120;dp(c,S.fire,CX,92,lr*1.3,.6);c.globalAlpha=Math.min(1,.25+pool*1.5);c.beginPath();c.ellipse(CX,92,lr,5+pool*14,0,0,TAU);c.fillStyle='#ff7a20';c.fill();c.globalAlpha=1;if(pool>.15){c.fillStyle='#ffd9c2';c.fillText('melt collects',CX+lr+8,96)}}
+const al=8+34*(z-30)/70;c.strokeStyle='rgba(241,241,232,.6)';c.fillStyle='rgba(241,241,232,.6)';c.lineWidth=2;
+for(let x=CX-80;x<=CX+80;x+=40){const y1=py-74,y0=y1-al;c.beginPath();c.moveTo(x,y0);c.lineTo(x,y1);c.stroke();c.beginPath();c.moveTo(x-5,y1-6);c.lineTo(x+5,y1-6);c.lineTo(x,y1);c.fill()}
+c.font='12px Inter,sans-serif';c.fillText('pressure',12,py-84);
+for(const o of gr){const x=CX+o.x+Math.sin(tm*.8+o.ph)*.8,y=py+o.y+Math.cos(tm*.7+o.ph)*.8;c.beginPath();c.arc(x,y,o.r,0,TAU);c.fillStyle=`hsl(20,9%,${o.h}%)`;c.fill();
+c.lineWidth=.8+F*.28;c.strokeStyle=F>.3?`rgba(255,${100+F*3},30,${.35+F/28})`:'rgba(0,0,0,.45)';c.stroke();if(F>1.5)dp(c,S.fire,x+Math.cos(o.ph)*o.r*.9,y+Math.sin(o.ph)*o.r*.9,3+F*.5,.7)}c.globalAlpha=1;
+if(R()<F*3*dt&&dw.length<90){const o=gr[(R()*gr.length)|0];dw.push({x:CX+o.x,y:py+o.y,vy:-rr(30,55)})}
+for(let i=dw.length-1;i>=0;i--){const d=dw[i];d.y+=d.vy*dt;d.x+=(CX-d.x)*.8*dt;dp(c,S.fire,d.x,d.y,6,.9);if(d.y<96)dw.splice(i,1)}c.globalAlpha=1;
+/* graph */
+c.fillStyle='#0c1110';c.fillRect(410,0,290,H);c.strokeStyle='rgba(184,160,106,.35)';c.strokeRect(410.5,.5,289,H-1);
+c.fillStyle='rgba(241,241,232,.8)';c.font='600 12px Inter,sans-serif';c.fillText('Melting point vs. rock temperature',428,28);
+c.beginPath();for(let d=30;d<=100;d+=10)c.lineTo(X(Ts(d)),Yd(d));c.lineTo(668,Yd(100));c.lineTo(668,Yd(30));c.closePath();c.fillStyle='rgba(255,110,30,.14)';c.fill();
+c.strokeStyle='rgba(241,241,232,.4)';c.lineWidth=1;c.beginPath();c.moveTo(438,56);c.lineTo(438,286);c.lineTo(668,286);c.stroke();
+c.font='11px Inter,sans-serif';c.fillStyle='rgba(241,241,232,.6)';c.textAlign='right';[30,60,100].forEach(d=>c.fillText(d+' km',432,Yd(d)+4));c.textAlign='center';[1200,1400].forEach(T=>c.fillText(T+' °C',X(T),302));c.fillText('temperature →',553,322);
+c.fillStyle='rgba(255,190,120,.85)';c.fillText('partly molten',622,84);c.fillStyle='rgba(241,241,232,.55)';c.fillText('solid',510,260);
+c.strokeStyle='#ffb02e';c.lineWidth=2;c.beginPath();c.moveTo(X(Ts(30)),Yd(30));c.lineTo(X(Ts(100)),Yd(100));c.stroke();c.textAlign='right';c.fillStyle='#ffb02e';c.fillText('melting point',X(Ts(62))-8,Yd(62)+4);
+c.strokeStyle='rgba(241,241,232,.4)';c.setLineDash([4,4]);c.beginPath();c.moveTo(X(Tp(100)),Yd(100));c.lineTo(X(Tp(30)),Yd(30));c.stroke();c.setLineDash([]);
+c.strokeStyle='#f1f1e8';c.lineWidth=2;c.beginPath();c.moveTo(X(Tp(100)),Yd(100));c.lineTo(X(Tp(z)),Yd(z));c.stroke();
+const zc=300/3.4;c.strokeStyle='#ffb02e';c.lineWidth=1.5;c.beginPath();c.arc(X(Tp(zc)),Yd(zc),4.5,0,TAU);c.stroke();c.textAlign='left';c.fillStyle='rgba(255,190,120,.85)';c.fillText('melting starts',X(Tp(zc))-30,Yd(zc)-10);
+const hot=F>.3;if(hot)dp(c,S.fire,X(Tp(z)),Yd(z),16,.8);c.globalAlpha=1;c.beginPath();c.arc(X(Tp(z)),Yd(z),5,0,TAU);c.fillStyle=hot?'#ff5a1f':'#f1f1e8';c.fill()})})();
 
 /* ---------- 8 FINALE ---------- */
 (function(){const cv=$('fin'),c=cv.getContext('2d'),cap=$('cap'),W=720,H=440,PK=[335,385,150],GY=260,LX=110,RX=610;
@@ -351,7 +380,7 @@ if(run){T+=dt;if(T>2.2&&!spawned){spawned=true;for(let i=0;i<70;i++)bombs.push({
 if(T>2.2&&T<4)for(let i=0;i<2;i++)bombs.push({x:360,y:PK[2],px:360,py:PK[2],vx:rr(-80,80),vy:-rr(200,330),l:1});
 if(T>3&&T<7&&R()<.07)lf=1;if(T>=11){run=false;$('play').textContent='↻ Replay'}cap.textContent=caps.filter(x=>T>=x[0]).pop()[1]}
 for(const b of bombs){b.px=b.x;b.py=b.y;b.x+=b.vx*dt;b.y+=b.vy*dt;b.vy+=320*dt;b.l-=dt/3}bombs=bombs.filter(b=>b.l>0&&b.y<GY+4);
-plume(fp,360,PK[2],50,dt,run&&T>2.2&&T<6.5?70:0,.7);
+plume(fp,360,PK[2],50,dt,run&&T>2.2&&T<6.5?110:0,.7);
 const e=cl(T-2.2)*(1-cl((T-8)/3));c.save();c.globalAlpha=1;
 if(T<2.2&&T>0)c.translate((R()-.5)*T*2.2,(R()-.5)*T*2.2);
 let g=c.createLinearGradient(0,0,0,GY);g.addColorStop(0,'#0b1024');g.addColorStop(1,'#c9663a');c.fillStyle=g;c.fillRect(-10,-10,W+20,GY+10);
@@ -361,7 +390,7 @@ c.fillStyle='rgba(255,255,255,.5)';c.font='13px Inter,sans-serif';c.textAlign='l
 c.strokeStyle='rgba(255,255,255,.04)';for(let y=GY+20;y<H;y+=24){c.beginPath();c.moveTo(0,y);c.lineTo(W,y+6);c.stroke()}
 cone(0,'#4a3730');const dep=cl((T-6)/4);
 if(dep>0){cone(dep*16,'#2b2b30');c.setLineDash([5,5]);c.strokeStyle='rgba(255,255,255,.6)';c.beginPath();c.moveTo(LX,GY);c.lineTo(PK[0],PK[2]);c.lineTo(PK[1],PK[2]);c.lineTo(RX,GY);c.stroke();c.setLineDash([]);
-c.fillStyle='#fff';c.fillText('New basalt layer',RX-60+dep*30,GY-16);c.fillText('Old surface',LX+40,GY-38)}
+}
 const glow=T<2.2?cl(T/2.2):cl(1-(T-2.2)/5)*.6;
 c.fillStyle=mix([80,30,15],[255,110,30],glow);c.fillRect(352,PK[2],16,GY+120-PK[2]);
 c.fillStyle=`rgba(255,236,170,${.5*glow})`;for(let i=0;i<8;i++)c.fillRect(355+(i%3)*3,PK[2]+(((i*30-tm*50)%150)+150)%150,3,12);
@@ -373,6 +402,11 @@ c.globalCompositeOperation='lighter';dp(c,S.glow,360,PK[2],230,.55*e);c.globalCo
 drawPl(c,fp);
 if(lf>0){lf-=dt*6;c.strokeStyle=`rgba(235,240,255,${Math.max(0,lf)})`;c.lineWidth=2;c.beginPath();let x=360+rr(-30,30),y=PK[2]-rr(110,170);c.moveTo(x,y);for(let i=0;i<6;i++){x+=rr(-12,12);y+=rr(14,22);c.lineTo(x,y)}c.stroke()}
 for(const b of bombs){c.strokeStyle=`rgba(255,150,50,${b.l})`;c.lineWidth=2;c.beginPath();c.moveTo(b.px,b.py);c.lineTo(b.x,b.y);c.stroke();c.fillStyle=`rgba(255,190,80,${b.l})`;c.beginPath();c.arc(b.x,b.y,3,0,TAU);c.fill()}
+const tag=(txt,x,y,px,py,al)=>{c.save();c.globalAlpha=al;c.font='600 13px Inter,sans-serif';c.textAlign='left';const w=c.measureText(txt).width;c.strokeStyle='rgba(255,255,255,.85)';c.lineWidth=1.2;c.beginPath();c.moveTo(x+w/2,y+9);c.lineTo(px,py);c.stroke();c.fillStyle='rgba(8,10,10,.8)';c.fillRect(x-6,y-14,w+12,24);c.fillStyle='#f1f1e8';c.fillText(txt,x,y+3);c.beginPath();c.arc(px,py,3.5,0,TAU);c.fillStyle='#fff';c.fill();c.restore()};
+if(dep>0){const d=dep*16,x1=385+d,y1=150-.8*d,x2=610+3.5*d;tag('New basalt layer',500,90,560,y1+(560-x1)/(x2-x1)*(260-y1),dep);tag('Old surface',18,166,200,216,dep)}
 c.restore()})})();
 })();
 </script></body></html>
+
+ <script src="../navbar_script.js"></script>
+    

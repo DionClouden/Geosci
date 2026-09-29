@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Impact | Geosci</title>
+<link rel="icon" type="image/png" href="../images/geosci_logo.png">
+<link rel="stylesheet" href="../styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Scoped to .vx so it sits inside your existing styles.css. Colours match your site. */
+.vx{--lava:#ff5a1f;--gold:#b8a06a;--paper:#f1f1e8;--panel:#0f1514;position:relative;color:var(--paper);
+background:#050807}
+.vx section{min-height:100vh;padding:14vh 0 8vh;display:flex;align-items:center}
+.vx .in{width:90%;max-width:1200px;margin:auto}
+.vx .in.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:64px;align-items:center}
+.vx .eyebrow{color:var(--gold);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.vx h1,.vx h2{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.04;margin-bottom:20px}
+.vx p{max-width:52ch;margin:0 0 12px;color:rgba(241,241,232,.8)}
+.vx .card{background:var(--panel);border:1px solid rgba(184,160,106,.25);border-radius:4px;padding:20px}
+.vx canvas{display:block;width:100%;height:auto;border-radius:2px}
+.vx .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.vx .btn,.vx .chip{font:600 15px Inter,sans-serif;border-radius:2px;padding:.65em 1.3em;cursor:pointer}
+.vx .btn{background:var(--gold);color:#0b0f0e;border:1px solid var(--gold)}
+.vx .chip{background:transparent;color:var(--gold);border:1px solid rgba(184,160,106,.5)}
+.vx .chip[aria-pressed=true]{background:var(--gold);color:#0b0f0e}
+.vx :is(.btn,.chip,input):focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+.vx label{font-size:15px}
+.vx input[type=range]{width:100%;accent-color:var(--gold);margin:10px 0 4px}
+.vx .out{min-height:3.6em;margin-top:14px;padding-left:12px;border-left:2px solid var(--gold);color:var(--paper)}
+.vx .sky{position:relative;height:250px;border-radius:2px;overflow:hidden;background:linear-gradient(#070b0a,#16323f 76%,#2c5566)}
+.vx .sky i{position:absolute;left:12px;font:600 13px Inter,sans-serif;font-style:normal;opacity:.8}
+.vx .sky .tr{position:absolute;left:0;right:0;bottom:0;height:24%;border-top:1px dashed rgba(241,241,232,.5)}
+.vx .col{position:absolute;left:50%;bottom:0;width:26px;transform:translateX(-50%);height:20%;background:linear-gradient(#4a4340,#7a6e68);border-radius:13px 13px 0 0;transition:height .25s}
+.vx .col::after{content:"";position:absolute;left:50%;top:-22px;width:90px;height:50px;transform:translateX(-50%);background:radial-gradient(#8a7e78,#5a504c 70%,transparent 72%);border-radius:50%}
+.vx .dots{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+.vx .dots b{aspect-ratio:1;border-radius:2px;background:#39403d;transition:background .25s,box-shadow .25s}
+.vx .dots b.m{background:var(--lava);box-shadow:0 0 10px var(--lava)}
+.vx .cue{margin-top:40px;color:var(--gold);font-weight:600}
+.vx .gauge{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:5;display:none;flex-direction:column;gap:10px;align-items:flex-end}
+.vx .gauge a{display:flex;gap:8px;align-items:center;color:var(--paper);text-decoration:none;font:600 12px Inter,sans-serif}
+.vx .gauge a span{opacity:0;transition:opacity .2s;background:#070b0a;border:1px solid rgba(184,160,106,.4);padding:2px 8px}
+.vx .gauge a::after{content:"";width:9px;height:9px;background:rgba(184,160,106,.35)}
+.vx .gauge a.on span{opacity:1}
+.vx .gauge a.on::after{background:var(--gold)}
+.vx .note{font-size:14px;opacity:.7;margin-top:14px}
+@media(max-width:860px){.vx .in.two{grid-template-columns:1fr;gap:32px}.vx .gauge{display:none!important}}
+@media(prefers-reduced-motion:reduce){.vx .col{transition:none}}
+.vx .world{position:sticky;top:0;height:100vh;margin-bottom:-100vh;z-index:0;pointer-events:none}
+.vx .world canvas{width:100%;height:100%;border-radius:0}
+.vx section{position:relative;z-index:1}
+.vx .card{background:rgba(10,15,14,.8);backdrop-filter:blur(6px)}
+.vx .tx{text-shadow:0 1px 14px rgba(0,0,0,.8)}
+.vx .dread{align-self:flex-end;background:#070b0a;border:1px solid rgba(184,160,106,.4);color:var(--gold);font:600 12px Inter,sans-serif;padding:3px 8px;margin-bottom:8px}
+</style></head>
+<body>
+<header class="navbar"><div class="nav-container">
+<h1 class="logo"><a href="../index.html">
+<span class="logo-mark-wrap"><img src="../images/geosci_logo.png" alt="GEOSCI" class="logo-mark"></span>
+<span class="logo-text"><span>G</span><span>E</span><span>O</span><span>S</span><span>C</span><span>I</span></span>
+</a></h1>
+<nav><ul>
+<li><a href="../explore.html">Explore</a></li>
+<li><a href="../articles/articles.html">Articles</a></li>
+<li><a href="../research/research.html">Research</a></li>
+<li><a href="../news/news.html">News</a></li>
+</ul></nav></div></header>
+<main>
+<div class="vx" id="vx">
+<div class="world" aria-hidden="true"><canvas id="wd"></canvas></div>
+<nav class="gauge" id="gauge" aria-label="Impact timeline"></nav>
+
+<section id="s0" data-name="Space"><div class="in">
+<p class="eyebrow">GEOSCI / IMPACTS</p>
+<h1>Impact</h1>
+<p>Ride an asteroid from the dark between the planets to the moment it hits, then follow the aftermath through hours, months and thousands of years. The world behind the page moves with you, and every stop has something to play with.</p>
+<p class="cue">Scroll down ↓</p></div></section>
+
+<section id="s1" data-name="Asteroid belt"><div class="in two">
+<div class="tx"><p class="eyebrow">01 / 08 · Asteroid belt</p><h2>The asteroid belt</h2>
+<p>Between Mars and Jupiter, millions of leftover rocks orbit the Sun: the raw material of a planet that never formed. Jupiter's gravity keeps stirring them. Turn up its pull and see what gets thrown our way.</p></div>
+<div class="card"><canvas id="bt" width="700" height="320"></canvas>
+<label>Jupiter's pull<input type="range" id="jt" min="0" max="100" value="0"></label><p class="out" id="btt"></p></div></div></section>
+
+<section id="s2" data-name="Collision course"><div class="in two">
+<div class="tx"><p class="eyebrow">02 / 08 · On a collision course</p><h2>One rock breaks away</h2>
+<p>Sooner or later a nudged rock crosses Earth's orbit. What happens next depends on how big it is and how fast it travels. Energy grows with the cube of the size, so big rocks are in a different league.</p></div>
+<div class="card"><canvas id="en" width="700" height="230"></canvas>
+<label>Width: <b id="dv"></b><input type="range" id="dia" min="0" max="100" value="52"></label>
+<label>Speed: <b id="sv"></b> km/s<input type="range" id="spd" min="11" max="40" value="20"></label><p class="out" id="ent"></p></div></div></section>
+
+<section id="s3" data-name="Impact"><div class="in two">
+<div class="tx"><p class="eyebrow">03 / 08 · Impact</p><h2>Impact</h2>
+<p>It hits at around 20 km/s, roughly 20 times faster than a rifle bullet. In minutes it digs a crater many times wider than itself. Press play and watch it form in four stages.</p></div>
+<div class="card"><canvas id="im" width="700" height="340"></canvas>
+<div class="row"><button class="btn" id="play">▶ Play</button><span class="out" id="cap" aria-live="polite" style="min-height:0;margin:0">A city-sized rock is about to hit.</span></div>
+<p class="note">Chicxulub: a rock roughly 10 km wide left a crater about 180 km across.</p></div></div></section>
+
+<section id="s4" data-name="Blast & fire"><div class="in two">
+<div class="tx"><p class="eyebrow">04 / 08 · Blast and fire</p><h2>Blast and firestorm</h2>
+<p>A flash of heat and a shock wave race outwards. How far they reach depends on the asteroid's energy. Pick a famous one and watch the rings.</p></div>
+<div class="card"><canvas id="bl" width="700" height="320"></canvas><div class="row" id="bch"></div><p class="out" id="blt"></p></div></div></section>
+
+<section id="s5" data-name="Tsunami"><div class="in two">
+<div class="tx"><p class="eyebrow">05 / 08 · Tsunami</p><h2>Tsunami</h2>
+<p>Hit the ocean and you launch waves. In deep water they are fast and low. Near the coast they slow down, bunch up and grow. Change the size and watch one reach the shore.</p></div>
+<div class="card"><canvas id="ts" width="700" height="320"></canvas>
+<label>Asteroid width: <b id="tzv"></b> km<input type="range" id="tsz" min="1" max="10" value="6"></label><p class="out" id="tst"></p></div></div></section>
+
+<section id="s6" data-name="Impact winter"><div class="in two">
+<div class="tx"><p class="eyebrow">06 / 08 · Impact winter</p><h2>Impact winter</h2>
+<p>Dust, soot and vapour thrown into the sky can block sunlight for months. Drag the timeline and watch the light, the cold and the plants.</p></div>
+<div class="card"><canvas id="wn" width="700" height="320"></canvas>
+<label>Months after impact: <b id="mov"></b><input type="range" id="mo" min="0" max="24" step=".5" value="1"></label><p class="out" id="wnt"></p></div></div></section>
+
+<section id="s7" data-name="Mass extinction"><div class="in two">
+<div class="tx"><p class="eyebrow">07 / 08 · Mass extinction</p><h2>Mass extinction</h2>
+<p>About 66 million years ago the Chicxulub impact ended the reign of the non-avian dinosaurs and wiped out roughly three quarters of all species. Each dot below is 1% of species. Step through time, or pick a group.</p></div>
+<div class="card"><canvas id="ex" width="700" height="290"></canvas><div class="row" id="ech"></div>
+<label>Time since impact: <b id="yrv"></b><input type="range" id="yr" min="0" max="100" value="0"></label><p class="out" id="ext"></p></div></div></section>
+
+<section id="s8" data-name="Aftermath"><div class="in two">
+<div class="tx"><p class="eyebrow">08 / 08 · Aftermath</p><h2>How we know</h2>
+<p>The impact left fingerprints in rock all over the world. Green shoots return, and detectives read the evidence millions of years later. Pick a clue.</p></div>
+<div class="card"><canvas id="ev" width="700" height="310"></canvas><div class="row" id="vch"></div><p class="out" id="evt"></p></div></div></section>
+</div>
+</main>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const lerp=(a,b,t)=>a+(b-a)*t,cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),R=Math.random,rr=(a,b)=>a+R()*(b-a),TAU=6.2832,sm=f=>f*f*(3-2*f);
+const rd=[],poke=()=>{if(rm)rd.forEach(f=>f())};
+function spr(col){const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d'),g=x.createRadialGradient(32,32,0,32,32,32);
+g.addColorStop(0,`rgba(${col},.9)`);g.addColorStop(.55,`rgba(${col},.4)`);g.addColorStop(1,`rgba(${col},0)`);x.fillStyle=g;x.fillRect(0,0,64,64);return c}
+const S={ash:spr('104,98,94'),dark:spr('46,40,38'),steam:spr('236,240,242'),fire:spr('255,120,40'),glow:spr('255,80,25'),white:spr('255,255,255'),blue:spr('110,170,255')};
+const dp=(c,s,x,y,r,a)=>{c.globalAlpha=Math.max(0,a);c.drawImage(s,x-r,y-r,r*2,r*2)};
+function loop(cv,fn){let vis=false,last=0;const f=t=>{if(!vis)return;fn(Math.min(.05,(t-last)/1e3||.016),t/1e3);last=t;if(!rm)requestAnimationFrame(f)};
+rd.push(()=>{if(vis)fn(.016,performance.now()/1e3)});
+new IntersectionObserver(e=>{if(e[0].isIntersecting){if(!vis){vis=true;last=performance.now();requestAnimationFrame(f)}}else vis=false}).observe(cv)}
+const rock=(c,x,y,r,a,p,lit,fill)=>{c.globalAlpha=1;c.save();c.translate(x,y);c.rotate(a);c.beginPath();p.forEach((v,i)=>{const t=i/p.length*TAU;i?c.lineTo(Math.cos(t)*r*v,Math.sin(t)*r*v):c.moveTo(Math.cos(t)*r*v,Math.sin(t)*r*v)});c.closePath();c.fillStyle=fill||'#4a4643';c.fill();c.strokeStyle=`rgba(255,220,180,${lit})`;c.lineWidth=1;c.stroke();c.restore()};
+const poly=()=>[...Array(9)].map(()=>rr(.65,1.15));
+let EM=1,DM=1000;const dOf=v=>Math.pow(10,1+3.176*v/100);
+
+/* ================= WORLD ================= */
+const vx=$('vx'),wc=$('wd'),w=wc.getContext('2d'),secs=[...vx.querySelectorAll('section')],g0=$('gauge');
+const dr=document.createElement('div');dr.className='dread';g0.prepend(dr);
+const TL=['T − ∞','T − 8 months','T − 3 days','T + 0','T + 1 hour','T + 12 hours','T + 3 months','T + 3 years','T + 10,000 years'];
+const TOP=[[1,2,10],[1,2,10],[1,2,10],[30,10,8],[58,15,8],[46,54,64],[14,17,19],[8,9,10],[26,64,104]],BOT=[[10,16,48],[10,16,48],[10,16,48],[255,138,58],[255,90,31],[196,132,92],[70,76,80],[30,33,36],[224,170,110]];
+const SUN=[0,0,0,0,0,.5,.12,.05,.9],EMB=[0,0,0,1,1,.5,.1,0,0],ASH=[0,0,0,.3,.5,.4,1,.6,.1],SNW=[0,0,0,0,0,0,.6,.4,0],GLM=[0,0,0,.1,.15,.1,.5,.7,0],GRN=[0,0,0,0,0,0,0,0,1],WAV=[0,0,0,0,.2,1,0,0,0],GLW=[0,0,0,1,1,.4,0,0,0],PLM=[0,0,0,1,.8,.25,.05,0,0];
+let W,H,Rg,dpr,C=[],ci=0,cf=0,stars=[],rocks=[],trees=[],ptl=[],plm=[],hero=poly();
+const seg=t=>{let i=0;while(i<C.length-2&&t>C[i+1])i++;ci=i;cf=cl((t-C[i])/((C[i+1]-C[i])||1))};
+const kf=a=>lerp(a[ci],a[ci+1],sm(cf)),kc=a=>`rgb(${[0,1,2].map(j=>Math.round(lerp(a[ci][j],a[ci+1][j],sm(cf)))).join()})`;
+function size(){dpr=Math.min(devicePixelRatio||1,1.5);W=wc.clientWidth;H=wc.clientHeight;if(!W||!H)return;wc.width=W*dpr;wc.height=H*dpr;
+Rg=Math.max(1,vx.offsetHeight-H);C=secs.map(s=>(s.offsetTop+s.offsetHeight/2-H/2)/Rg);
+stars=[...Array(220)].map(()=>({x:R()*W,y:R()*H,f:[.05,.12,.25][R()*3|0],p:R()*7,s:R()<.1?2:1}));
+rocks=[...Array(150)].map(()=>({x:R()*W,y:R()*H*1.4,f:rr(.5,1.8),r:rr(2,13),a:R()*TAU,va:rr(-.6,.6),vx:rr(-6,6),p:poly()}));
+trees=[...Array(34)].map((_,i)=>({x:(i+R())/34*W,h:rr(40,110),z:R()}));
+ptl=[...Array(240)].map((_,i)=>({x:R()*W,y:R()*H,v:rr(60,240),u:R(),s:rr(1,2.6),k:i%3}))}
+function space(c,tm,cam){
+let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#01020a');g.addColorStop(1,'#0a1030');c.fillStyle=g;c.fillRect(0,0,W,H);
+dp(c,S.white,W*.05,H*.08,H*.5,.06+.03*Math.sin(tm));c.fillStyle='#fff';
+for(const s of stars){c.globalAlpha=.35+.5*Math.sin(tm*1.4+s.p)**2;c.fillRect(s.x,(((s.y-cam*s.f)%H)+H)%H,s.s,s.s)}c.globalAlpha=1;
+const n=Math.round(rocks.length*kf([0,1,.5,0,0,0,0,0,0])),hh=H+80;
+for(let i=0;i<n;i++){const o=rocks[i];o.a+=o.va*.016;rock(c,((o.x+tm*o.vx)%W+W)%W,(((o.y-cam*o.f*.9)%hh)+hh)%hh-40,o.r*(.6+o.f*.5),o.a,o.p,.25+.2*o.f)}
+/* Earth rising */
+const top=lerp(H*1.2,H*.62,kf([0,0,.15,1,1,1,1,1,1])),rad=Math.max(W*1.05,H*.9),ex=W*.62,ey=top+rad;
+if(top<H){g=c.createRadialGradient(ex,ey,rad*.97,ex,ey,rad*1.07);g.addColorStop(0,'rgba(110,170,255,.55)');g.addColorStop(1,'rgba(110,170,255,0)');c.fillStyle=g;c.fillRect(0,top-rad*.1,W,H);
+g=c.createRadialGradient(ex-rad*.3,ey-rad*.55,rad*.1,ex,ey,rad);g.addColorStop(0,'#3b86d4');g.addColorStop(.6,'#0f3466');g.addColorStop(1,'#03102a');c.fillStyle=g;c.beginPath();c.arc(ex,ey,rad,0,TAU);c.fill();
+c.save();c.beginPath();c.arc(ex,ey,rad,0,TAU);c.clip();c.fillStyle='rgba(70,115,62,.75)';
+[[-.5,-.9,.22,.07],[.1,-.95,.3,.05],[.55,-.85,.2,.08],[-.15,-.8,.12,.04]].forEach(o=>{c.beginPath();c.ellipse(ex+o[0]*rad,ey+o[1]*rad,o[2]*rad,o[3]*rad,.2,0,TAU);c.fill()});
+for(let i=0;i<9;i++)dp(c,S.white,ex+(i-4)*W*.13+Math.sin(tm*.1+i)*20,top+H*.05+(i%3)*H*.03,70,.16);c.restore();c.globalAlpha=1}
+/* the asteroid */
+const ax=W*kf([.9,.8,.3,.63,.63,.63,.63,.63,.63]),ay=H*kf([-.1,.34,.28,.6,.6,.6,.6,.6,.6]),ar=kf([8,24,44,72,72,72,72,72,72]),L=kf([0,0,140,520,0,0,0,0,0]),ht=kf([0,0,.25,1,0,0,0,0,0]);
+for(let j=0;j<16;j++){const p=j/16;dp(c,S.fire,ax-.85*L*p,ay-.5*L*p,ar*(1.6-p),(1-p)*.7*ht);dp(c,S.glow,ax-.85*L*p*1.2,ay-.5*L*p*1.2,ar*2*(1.2-p),(1-p)*.3*ht)}
+dp(c,S.fire,ax,ay,ar*2.2,ht*.8);rock(c,ax,ay,ar,tm*.3,hero,.9,'#3d3733');
+const lb=kf([0,1,.3,0,0,0,0,0,0]);if(lb>.02){c.globalAlpha=lb;c.fillStyle='#b8a06a';c.font='600 13px Inter,sans-serif';c.textAlign='right';c.fillText('this one ▸',ax-ar-12,ay+4);c.globalAlpha=1}}
+function ground(c,tm,cam,dt){const hz=H*.7;
+let g=c.createLinearGradient(0,0,0,hz);g.addColorStop(0,kc(TOP));g.addColorStop(1,kc(BOT));c.fillStyle=g;c.fillRect(0,0,W,hz+2);
+const sn=kf(SUN),gr=kf(GRN),ems=kf(EMB);
+if(sn>.01){const sx=W*.72,sy=hz-H*.12;dp(c,S.white,sx,sy,H*.28,sn*.5);dp(c,S.fire,sx,sy,H*.12,sn*.9);c.globalAlpha=sn;c.fillStyle='#fff3d6';c.beginPath();c.arc(sx,sy,H*.04,0,TAU);c.fill();c.globalAlpha=1}
+dp(c,S.fire,W*.3,hz,W*.5,kf(GLW)*.7);
+if(R()<kf(PLM)*dt*40&&plm.length<140)plm.push({x:W*.3+rr(-20,20),y:hz,vy:-rr(40,90),r:rr(20,40),a:0});
+for(let i=plm.length-1;i>=0;i--){const p=plm[i];p.a+=dt;p.y+=p.vy*dt;p.r+=18*dt;if(p.y<H*.3)p.x+=(p.x>W*.3?1:-1)*24*dt;dp(c,S.fire,p.x,p.y,p.r,.8*(1-p.a/1.6));dp(c,S.dark,p.x,p.y,p.r,.55*(1-p.a/9));if(p.a>9)plm.splice(i,1)}c.globalAlpha=1;
+const hg=`rgb(${lerp(14,30,gr)},${lerp(14,52,gr)},${lerp(14,32,gr)})`;c.fillStyle=hg;c.beginPath();c.moveTo(0,H);
+for(let x=0;x<=W+20;x+=20)c.lineTo(x,hz-20-Math.sin(x*.006)*18-Math.sin(x*.017+2)*8);c.lineTo(W,H);c.fill();
+const wv=kf(WAV);if(wv>.02){c.fillStyle='#1d3f52';c.beginPath();c.moveTo(0,H);for(let x=0;x<=W+20;x+=20){const y=hz-wv*H*.32*(.6+.4*Math.sin(x*.01+tm*1.2))*(.7+.3*Math.sin(x*.004));c.lineTo(x,y);if(wv>.4&&x%60==0)dp(c,S.white,x,y+4,26,wv*.5)}c.globalAlpha=1;c.lineTo(W,H);c.fill()}
+g=c.createLinearGradient(0,hz,0,H);g.addColorStop(0,hg);g.addColorStop(1,'#050606');c.fillStyle=g;c.fillRect(0,hz-4,W,H);
+for(const t of trees){const y=hz+t.z*H*.2,h=t.h*(.6+t.z*.6)*(H/760);
+if(ems>.3)dp(c,S.fire,t.x,y-h*.3,h*.8,ems*.6*(.6+.4*Math.sin(tm*9+t.x)));c.globalAlpha=1;c.strokeStyle='#0c0a09';c.lineWidth=3;c.beginPath();c.moveTo(t.x,y);c.lineTo(t.x,y-h);c.moveTo(t.x,y-h*.5);c.lineTo(t.x-h*.25,y-h*.75);c.moveTo(t.x,y-h*.6);c.lineTo(t.x+h*.22,y-h*.85);c.stroke();
+if(gr>.15){c.fillStyle=`rgb(${lerp(10,40,gr)},${lerp(10,120,gr)},${lerp(10,60,gr)})`;c.beginPath();c.moveTo(t.x,y-h*(1+.25*gr));c.lineTo(t.x+h*.3*gr,y-h*.4);c.lineTo(t.x-h*.3*gr,y-h*.4);c.fill()}}
+const e=kf(EMB),a=kf(ASH),s=kf(SNW);
+for(let i=0;i<ptl.length;i++){const p=ptl[i];p.y+=p.v*dt*(p.k?.6:1.2);p.x+=(p.k==0?-.35:Math.sin(tm+p.ph||0)*.1)*p.v*dt;if(p.y>H){p.y=-10;p.x=R()*W}if(p.x<-10)p.x=W;
+if(p.k==0&&p.u<e){c.strokeStyle='rgba(255,150,60,.9)';c.lineWidth=1.5;c.beginPath();c.moveTo(p.x,p.y);c.lineTo(p.x+p.v*.05,p.y-p.v*.12);c.stroke()}
+else if(p.k==1&&p.u<a){c.fillStyle='rgba(160,160,160,.5)';c.fillRect(p.x,p.y,p.s,p.s)}
+else if(p.k==2&&p.u<s){c.fillStyle='rgba(255,255,255,.8)';c.fillRect(p.x,p.y,p.s,p.s)}}
+if(gr>0)for(let i=0;i<70;i++){const x=(i+.5)*W/70,y=hz+H*.08+((i*37)%17)*H*.012,h=gr*(8+(i*13)%16);c.strokeStyle=`rgba(${90+(i%3)*20},${170+(i%4)*15},80,.9)`;c.lineWidth=2;c.beginPath();c.moveTo(x,y);c.lineTo(x-3,y-h);c.moveTo(x,y);c.lineTo(x+4,y-h*.8);c.stroke()}
+c.fillStyle=`rgba(0,0,0,${kf(GLM)})`;c.fillRect(0,0,W,H)}
+function world(dt,tm){if(!W)return;const c=w,cam=cl(-vx.getBoundingClientRect().top,0,Rg),t=cam/Rg;c.setTransform(dpr,0,0,dpr,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.textAlign='left';seg(t);
+if(t<C[3])space(c,tm,cam);else ground(c,tm,cam,dt);
+const wd=(C[3]-C[2])*.12,f=t<C[3]-wd?0:t<C[3]?(t-(C[3]-wd))/wd:cl(1-(t-C[3])/(wd*4));
+let g=c.createRadialGradient(W/2,H/2,H*.35,W/2,H/2,H*.95);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.55)');c.fillStyle=g;c.fillRect(0,0,W,H);
+g=c.createLinearGradient(0,0,W*.55,0);g.addColorStop(0,'rgba(5,8,7,.55)');g.addColorStop(1,'rgba(5,8,7,0)');c.fillStyle=g;c.fillRect(0,0,W,H);
+if(f>0){c.fillStyle=`rgba(255,245,230,${f})`;c.fillRect(0,0,W,H)}
+let k=0,bd=9;C.forEach((v,i)=>{if(Math.abs(t-v)<bd){bd=Math.abs(t-v);k=i}});dr.textContent=TL[k]}
+size();new ResizeObserver(size).observe(vx);addEventListener('resize',size);if(document.fonts)document.fonts.ready.then(size);
+loop(wc,world);if(rm)addEventListener('scroll',()=>world(.016,0),{passive:true});
+const secL=secs.slice(1),links=[];
+secL.forEach(s=>{const a=document.createElement('a');a.href='#'+s.id;a.innerHTML='<span>'+s.dataset.name+'</span>';g0.appendChild(a);links.push(a)});
+const so=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)links.forEach((l,i)=>l.classList.toggle('on',secL[i]===x.target))}),{rootMargin:'-45% 0px -45% 0px'});secL.forEach(s=>so.observe(s));
+new IntersectionObserver(e=>{g0.style.display=e[0].isIntersecting?'flex':'none'},{rootMargin:'-30% 0px -30% 0px'}).observe(vx);
+
+/* ================= 1 BELT ================= */
+(function(){const cv=$('bt'),c=cv.getContext('2d'),cx=350,cy=160,sc=29,ecc=jt=>jt*.62;
+const A=[...Array(230)].map(()=>{const a=rr(2.1,3.3);return{a,th:R()*TAU,e0:rr(0,.08),gap:a>2.44&&a<2.56,ph:R()*TAU}});
+function txt(){const jt=+$('jt').value/100,q=2.5*(1-ecc(jt)),n=A.filter(o=>o.gap).length;
+$('btt').textContent=jt<.05?'Left alone, the belt is a calm ring of rocks.':jt<.6?'Rocks in the gold band meet Jupiter at the same point in their orbit again and again. The tugs add up and stretch their orbits.':q<1.52&&jt<.9?`Now ${n} rocks cross Mars's orbit. Some will be thrown further in.`:`${n} rocks now cross the orbits of Mars and Earth. This is how asteroids reach us.`}
+$('jt').oninput=()=>{txt();poke()};txt();
+loop(cv,(dt,tm)=>{const jt=+$('jt').value/100;c.fillStyle='#060a12';c.fillRect(0,0,700,320);c.lineWidth=1;
+[[1,'rgba(110,170,255,.4)'],[1.52,'rgba(220,120,80,.35)'],[5.2,'rgba(255,255,255,.12)']].forEach(([r,s])=>{c.strokeStyle=s;c.beginPath();c.arc(cx,cy,r*sc,0,TAU);c.stroke()});
+dp(c,S.fire,cx,cy,26,.9);dp(c,S.white,cx,cy,9,1);
+const pl=(r,sp,col,rad)=>{const a=tm*sp,x=cx+Math.cos(a)*r*sc,y=cy+Math.sin(a)*r*sc;c.globalAlpha=1;c.fillStyle=col;c.beginPath();c.arc(x,y,rad,0,TAU);c.fill();return[x,y]};
+pl(1,.9,'#5aa0ff',3);pl(1.52,.5,'#e0784f',2.6);const J=pl(5.2,.08,'#e8c9a0',7);
+for(const o of A){const e=ecc(jt)*(o.gap?1:0)+o.e0,q=o.a*(1-e);o.th+=dt*.7/Math.pow(o.a,1.5)*(1+e);const r=o.a*(1-e*e)/(1+e*Math.cos(o.th-o.ph)),x=cx+Math.cos(o.th)*r*sc,y=cy+Math.sin(o.th)*r*sc;
+const hot=o.gap&&jt>0,col=hot?(q<1.05?'#ff4a2a':q<1.52?'#ff9a3a':'#e6c56a'):'#8a857e';
+if(hot&&jt>.1){c.strokeStyle=`rgba(232,201,160,${jt*.12})`;c.beginPath();c.moveTo(J[0],J[1]);c.lineTo(x,y);c.stroke()}
+c.fillStyle=col;c.beginPath();c.arc(x,y,hot?2:1.3,0,TAU);c.fill()}
+c.fillStyle='rgba(241,241,232,.6)';c.font='12px Inter,sans-serif';c.fillText('asteroid belt',cx+2.7*sc*.72,cy-2.7*sc*.72-6);c.fillText('Jupiter',J[0]+10,J[1]);c.fillText('Earth',cx+sc+4,cy-6)})})();
+
+/* ================= 2 SIZE / ENERGY ================= */
+(function(){const cv=$('en'),c=cv.getContext('2d'),MK=[[20,'Chelyabinsk 2013'],[50,'Tunguska 1908'],[490,'Bennu'],[1e3,'1 km'],[1e4,'Chicxulub']],xd=d=>50+(Math.log10(d)-1)/3.176*600,
+YR=[[10,1],[20,60],[50,1e3],[140,2e4],[1e3,5e5],[1e4,1e8],[15e3,3e8]],hp=poly();
+function yrs(d){for(let i=0;i<YR.length-1;i++)if(d<=YR[i+1][0]){const f=Math.log(d/YR[i][0])/Math.log(YR[i+1][0]/YR[i][0]);return Math.exp(lerp(Math.log(YR[i][1]),Math.log(YR[i+1][1]),cl(f)))}return 3e8}
+const fmt=n=>n>=1e9?(n/1e9).toFixed(1)+' billion':n>=1e6?(n/1e6).toFixed(1)+' million':n>=100?Math.round(n).toLocaleString('en-GB'):n>=10?Math.round(n)+'':n.toFixed(1);
+function upd(){const d=dOf(+$('dia').value),v=+$('spd').value;DM=d;const m=3000*4/3*Math.PI*Math.pow(d/2,3),Mt=.5*m*(v*1e3)**2/4.184e15;EM=Mt;
+$('dv').textContent=d<1e3?Math.round(d)+' m':(d/1e3).toFixed(d<1e4?1:0)+' km';$('sv').textContent=v;const y=yrs(d);
+const fate=d<25?'Most rocks this size explode in the air, like the Chelyabinsk fireball in 2013.':d<150?'Can flatten a forest or a city (Tunguska, 1908).':d<1e3?'A regional catastrophe: a big crater, tsunamis if it lands at sea.':d<5e3?'Global climate effects are likely.':'Mass-extinction class.';
+$('ent').textContent=`About ${Mt<1?Math.round(Mt*1e3)+' kilotons':fmt(Mt)+' megatons'} of TNT, roughly ${fmt(Mt/.015)} Hiroshima bombs. Hits like this happen about once every ${y<1.5?'year':fmt(y)+' years'}. ${fate}`;poke()}
+$('dia').oninput=upd;$('spd').oninput=upd;upd();
+loop(cv,(dt,tm)=>{c.fillStyle='#08100f';c.fillRect(0,0,700,230);c.strokeStyle='rgba(241,241,232,.5)';c.lineWidth=1;c.beginPath();c.moveTo(50,150);c.lineTo(650,150);c.stroke();
+c.font='11px Inter,sans-serif';c.textAlign='center';MK.forEach(([d,l],i)=>{const x=xd(d);c.strokeStyle='rgba(184,160,106,.6)';c.beginPath();c.moveTo(x,142);c.lineTo(x,158);c.stroke();c.fillStyle='rgba(241,241,232,.7)';c.fillText(l,x,i%2?176:132)});
+const x=xd(DM),lg=Math.log10(DM),r=6+(lg-1)/3.176*44,heat=cl((Math.log10(EM)+3)/12);
+dp(c,S.fire,x,72,r*2.4,.25+heat*.6);rock(c,x,72,r,tm*.4,hp,.7,'#3d3733');c.fillStyle='#b8a06a';c.beginPath();c.moveTo(x,150);c.lineTo(x-6,140);c.lineTo(x+6,140);c.fill();
+c.strokeStyle='rgba(184,160,106,.35)';c.setLineDash([3,4]);c.beginPath();c.moveTo(x,72+r);c.lineTo(x,140);c.stroke();c.setLineDash([]);
+c.fillStyle='rgba(241,241,232,.6)';c.textAlign='left';c.fillText('energy (each step is 10× more)',50,205);c.fillStyle='rgba(255,255,255,.08)';c.fillRect(50,212,600,10);
+const g=c.createLinearGradient(50,0,650,0);g.addColorStop(0,'#b8a06a');g.addColorStop(1,'#ff4a1f');c.fillStyle=g;c.fillRect(50,212,600*heat,10)})})();
+
+/* ================= 3 IMPACT (playable) ================= */
+(function(){const cv=$('im'),c=cv.getContext('2d'),W=700,H=340,GY=170,CX=350,RM=150,DMX=88;let T=0,run=false,ej=[],pm=[],sp=false;const ease=x=>1-Math.pow(1-x,3),hp=poly();
+const caps=[[0,'Approach: about 20 km/s, roughly 20× a rifle bullet.'],[1.1,'Contact. Rock and ground vaporise in a fraction of a second.'],[1.6,'Excavation: a shock wave blasts out a bowl and hurls ejecta up and out.'],[3.7,'Collapse: the walls slump and the floor springs back into a central peak.'],[6,'Aftermath: melted rock, a ring of ejecta, and a plume climbing into the sky.']];
+$('play').onclick=()=>{T=0;run=true;sp=false;ej=[];pm=[];$('play').textContent='Playing…';poke()};
+loop(cv,(dt,tm)=>{if(run){T+=dt;$('cap').textContent=caps.filter(x=>T>=x[0]).pop()[1];if(T>12){run=false;$('play').textContent='↻ Replay'}}
+const e1=cl((T-1.1)/2.6),col=cl((T-3.7)/2.6),Rn=RM*ease(e1)*(1+.12*col),dn=DMX*ease(e1)*(1-.55*col),pk=DMX*.42*col;
+const surf=x=>{if(Rn<2)return GY;const d=Math.abs(x-CX)/Rn;return GY+(d<1?dn*(1-d*d):0)-pk*Math.exp(-Math.pow(d*3.2,2))-(d>=.9&&d<1.7?dn*.18*Math.sin(Math.PI*(d-.9)/.8):0)};
+let g=c.createLinearGradient(0,0,0,GY);g.addColorStop(0,'#0e2a52');g.addColorStop(1,'#5b9ac8');c.fillStyle=g;c.fillRect(0,0,W,GY+2);
+if(T>1.1)dp(c,S.fire,CX,GY,300,.35*ease(e1)*(1-cl((T-8)/3)));
+if(T<1.1){const u=Math.pow(T/1.1,1.4),x=lerp(40,CX,u),y=lerp(-40,GY,u);for(let j=0;j<12;j++){dp(c,S.fire,x-j*11,y-j*9.5,20-j,.7-j*.05)}rock(c,x,y,13,tm*3,hp,.9,'#3d3733')}
+if(T>1.1&&T<1.4)dp(c,S.white,CX,GY,300,1-(T-1.1)/.3);c.globalAlpha=1;
+g=c.createLinearGradient(0,GY,0,H);g.addColorStop(0,'#4a3d34');g.addColorStop(1,'#1a1210');c.fillStyle=g;c.beginPath();c.moveTo(0,H);for(let x=0;x<=W;x+=5)c.lineTo(x,surf(x));c.lineTo(W,H);c.fill();
+c.save();c.beginPath();c.moveTo(0,H);for(let x=0;x<=W;x+=5)c.lineTo(x,surf(x));c.lineTo(W,H);c.clip();
+for(let k=1;k<8;k++){c.strokeStyle=k%2?'rgba(255,255,255,.09)':'rgba(0,0,0,.3)';c.lineWidth=2;c.beginPath();for(let x=0;x<=W;x+=5){const b=GY+k*26;c.lineTo(x,b+(surf(x)-GY)*Math.max(0,1-k*26/(dn*1.6+40)))}c.stroke()}
+if(T>1.1&&T<5){c.strokeStyle=`rgba(255,235,180,${.4*(1-(T-1.1)/3.9)})`;c.lineWidth=2;c.beginPath();c.arc(CX,GY,(T-1.1)*150,0,Math.PI);c.stroke()}
+if(T>1.1)dp(c,S.fire,CX,GY+dn*.85,Rn*.7+10,.75*(1-col*.6));c.restore();c.globalAlpha=1;
+c.strokeStyle=T>1.1?'#5b4a3d':'#3f5a34';c.lineWidth=3;c.beginPath();for(let x=0;x<=W;x+=5)c.lineTo(x,surf(x));c.stroke();
+if(T>1.1&&!sp){sp=true;for(let i=0;i<260;i++){const a=rr(.35,2.79),s=rr(90,420);ej.push({x:CX+rr(-20,20),y:GY,px:CX,py:GY,vx:Math.cos(a)*s,vy:-Math.sin(a)*s,l:1,h:R()<.5})}}
+if(T>1.1&&T<4.2&&run)for(let i=0;i<3;i++)pm.push({x:CX+rr(-25,25),y:GY-4,vy:-rr(70,130),r:rr(18,30),a:0});
+for(let i=ej.length-1;i>=0;i--){const p=ej[i];p.px=p.x;p.py=p.y;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=260*dt;p.l-=dt/5;if(p.l<=0||p.y>GY+3&&p.vy>0){ej.splice(i,1);continue}c.strokeStyle=p.h?`rgba(255,170,80,${p.l})`:`rgba(150,130,115,${p.l})`;c.lineWidth=2;c.beginPath();c.moveTo(p.px,p.py);c.lineTo(p.x,p.y);c.stroke()}
+for(let i=pm.length-1;i>=0;i--){const p=pm[i];p.a+=dt;p.y+=p.vy*dt;p.r+=16*dt;if(p.y<70)p.x+=(p.x>CX?1:-1)*30*dt;dp(c,S.fire,p.x,p.y,p.r,.9*(1-p.a/1.6));dp(c,S.dark,p.x,p.y,p.r,.55*(1-p.a/7));if(p.a>7)pm.splice(i,1)}c.globalAlpha=1;
+c.fillStyle='rgba(241,241,232,.75)';c.font='12px Inter,sans-serif';c.textAlign='center';if(col>.7)c.fillText('central peak',CX,GY-pk-8);if(col>.7)c.fillText('ejecta blanket',CX+RM*1.5,GY-8)})})();
+
+/* ================= 4 BLAST ================= */
+(function(){const cv=$('bl'),c=cv.getContext('2d'),cx=350,cy=160;let last=-1;
+[['Chelyabinsk 20 m',20],['Tunguska 50 m',50],['1 km',1e3],['Chicxulub 10 km',1e4]].forEach(([n,d])=>{const b=document.createElement('button');b.className='chip';b.textContent=n;b.setAttribute('aria-pressed','false');b.onclick=()=>{$('dia').value=(Math.log10(d)-1)/3.176*100;$('dia').oninput();[...$('bch').children].forEach(x=>x.setAttribute('aria-pressed',x===b))};$('bch').appendChild(b)});
+const km=v=>v<10?v.toFixed(1):Math.round(v).toLocaleString('en-GB');
+loop(cv,(dt,tm)=>{const Mt=EM,k3=Math.cbrt(Mt),rs=7*k3,rb=11*k3,rw=20*k3,px=150/rw;c.fillStyle='#0d1412';c.fillRect(0,0,700,320);c.strokeStyle='rgba(255,255,255,.04)';for(let x=0;x<700;x+=50){c.beginPath();c.moveTo(x,0);c.lineTo(x,320);c.stroke();c.beginPath();c.moveTo(0,x*.46);c.lineTo(700,x*.46);c.stroke()}
+const ring=(r,f,s)=>{c.beginPath();c.arc(cx,cy,r,0,TAU);c.fillStyle=f;c.fill();c.strokeStyle=s;c.lineWidth=1.5;c.stroke()};
+ring(rw*px,'rgba(255,240,200,.07)','rgba(255,240,200,.5)');ring(rb*px,'rgba(255,150,60,.16)','rgba(255,150,60,.7)');ring(rs*px,'rgba(255,60,20,.3)','rgba(255,90,40,.9)');
+const f=(tm*.4)%1;c.strokeStyle=`rgba(255,255,255,${.5*(1-f)})`;c.lineWidth=2;c.beginPath();c.arc(cx,cy,f*rw*px,0,TAU);c.stroke();dp(c,S.white,cx,cy,22+8*Math.sin(tm*8),.8);dp(c,S.fire,cx,cy,40,.6);c.globalAlpha=1;
+c.setLineDash([4,4]);c.strokeStyle='rgba(184,160,106,.8)';c.lineWidth=1;c.beginPath();c.arc(cx,cy,Math.max(3,10*px),0,TAU);c.stroke();c.setLineDash([]);
+c.font='12px Inter,sans-serif';c.textAlign='left';c.fillStyle='#ffb090';c.fillText(km(rs)+' km · buildings collapse',cx+rs*px*.7+6,cy-rs*px*.7);c.fillStyle='#ffc890';c.fillText(km(rb)+' km · severe burns',cx+rb*px*.7+6,cy+rb*px*.7+4);c.fillStyle='#f1f1e8';c.fillText(km(rw)+' km · windows shatter',cx+rw*px*.7+4,cy+rw*px*.7+16);
+c.fillStyle='#b8a06a';c.fillText('dashed: a large city, 20 km across',12,20);
+let L=Math.pow(10,Math.round(Math.log10(70/px)));c.fillStyle='rgba(241,241,232,.8)';c.fillRect(14,300,L*px,3);c.fillText(km(L)+' km',14,294);
+if(Mt!==last){last=Mt;$('blt').textContent=Mt>1e5?'Past a few hundred km these rings stop making sense: the planet-wide effects that follow are what matter.':Mt<.2?'Small rocks usually explode in the air, so the damage is a broken-window airburst.':'Rough scaling only: real damage depends on the angle, the rock and the ground.'}})})();
+
+/* ================= 5 TSUNAMI ================= */
+(function(){const cv=$('ts'),c=cv.getContext('2d'),W=700,H=320,SEA=150,N=175,fl=[],tau=[];
+const floor=x=>x<420?SEA+130:x<600?lerp(SEA+130,SEA+10,(x-420)/180):lerp(SEA+10,SEA-72,(x-600)/100);let acc=0;
+for(let i=0;i<=N;i++){const x=i*4;fl.push(floor(x));acc+=i?4/Math.sqrt(Math.max(fl[i]-SEA,0)+4):0;tau.push(acc)}
+const kk=12/tau[150];for(let i=0;i<=N;i++)tau[i]*=kk;
+function txt(){const s=+$('tsz').value;$('tzv').textContent=s;$('tst').textContent=`Deep water: fast (roughly 800 km/h) and low. On the shelf the waves slow, bunch up and grow, then run inland. Models of the Chicxulub impact suggest waves over 100 m tall near the crater. This animation is illustrative, not a forecast.`}
+$('tsz').oninput=()=>{txt();poke()};txt();
+loop(cv,(dt,tm)=>{const A0=+$('tsz').value*7,t=tm%18;let g=c.createLinearGradient(0,0,0,SEA);g.addColorStop(0,'#3a3a44');g.addColorStop(1,'#c88a5a');c.fillStyle=g;c.fillRect(0,0,W,H);dp(c,S.fire,560,60,60,.25);c.globalAlpha=1;
+const yw=[];for(let i=0;i<=N;i++){const x=i*4,h=Math.max(fl[i]-SEA,0),A=Math.min(120,A0*Math.sqrt(60/(x+60))*Math.pow(130/(h+8),.25)*(1+(x>420?(x-420)/150:0))),t0=t-tau[i],env=cl(t0/1.2)*Math.exp(-Math.max(0,t0-6)/4);yw.push(Math.min(SEA-env*A*Math.sin(2.4*t0),fl[i]))}
+c.fillStyle='#2a1f1a';c.beginPath();c.moveTo(0,H);fl.forEach((y,i)=>c.lineTo(i*4,y));c.lineTo(W,H);c.fill();
+c.fillStyle='#8a7a60';c.beginPath();c.moveTo(600,fl[150]);for(let i=150;i<=N;i++)c.lineTo(i*4,fl[i]);c.lineTo(W,H);c.lineTo(600,H);c.fill();
+g=c.createLinearGradient(0,SEA-60,0,SEA+130);g.addColorStop(0,'rgba(50,120,150,.92)');g.addColorStop(1,'rgba(10,40,60,.95)');c.fillStyle=g;c.beginPath();yw.forEach((y,i)=>i?c.lineTo(i*4,y):c.moveTo(0,y));for(let i=N;i>=0;i--)c.lineTo(i*4,fl[i]);c.fill();
+c.strokeStyle='rgba(255,255,255,.75)';c.lineWidth=2;c.beginPath();yw.forEach((y,i)=>i?c.lineTo(i*4,y):c.moveTo(0,y));c.stroke();
+[625,645,665,685].forEach((x,j)=>{const i=x>>2,by=fl[i],wet=yw[i]<by-4,gone=wet&&yw[i]<by-14&&t>tau[i]+.6&&t<tau[i]+9;if(gone)return;c.fillStyle=wet?'#4a3a34':'#c8b89a';c.fillRect(x-7,by-13,14,13);c.fillStyle=wet?'#3a2a26':'#8a3a2a';c.beginPath();c.moveTo(x-9,by-13);c.lineTo(x,by-22);c.lineTo(x+9,by-13);c.fill()});
+if(t<3)for(let j=0;j<10;j++)dp(c,S.steam,40+Math.sin(j*3)*15,SEA-((j*37)%140)*(1-t/3),22,.5*(1-t/3));c.globalAlpha=1;
+c.fillStyle='rgba(241,241,232,.75)';c.font='12px Inter,sans-serif';c.textAlign='left';c.fillText('impact site',10,SEA-150);c.fillText('deep ocean: fast, low',180,SEA+150);c.fillText('shelf: slows and grows',440,SEA+70);c.fillText('coast',655,SEA-95);c.fillText('T + '+(t/18*10).toFixed(1)+' hours',10,20)})})();
+
+/* ================= 6 IMPACT WINTER ================= */
+(function(){const cv=$('wn'),c=cv.getContext('2d'),W=700,H=320,HZ=210,sun=m=>1-Math.exp(-Math.pow(m/9,1.4)),dT=m=>-18*Math.exp(-m/13);
+const fl=[...Array(140)].map(()=>({x:R()*W,y:R()*H,v:rr(10,40),ph:R()*7,s:rr(1,2.4)})),trs=[...Array(12)].map((_,i)=>({x:30+i*52+rr(-10,10),h:rr(50,90)}));
+const mixc=(a,b,t)=>`rgb(${a.map((v,i)=>Math.round(lerp(v,b[i],t))).join()})`;
+function txt(){const m=+$('mo').value,s=sun(m);$('mov').textContent=m;$('wnt').textContent=`About ${Math.round(s*100)}% of normal sunlight and roughly ${Math.round(dT(m))} °C from normal (estimates vary a lot). `+(s<.25?'Photosynthesis has stalled. Plants and plankton starve, and so does everything that eats them.':s<.7?'Light is creeping back, but the food web is already broken.':'Sunlight is back. Survivors slowly rebuild.')}
+$('mo').oninput=()=>{txt();poke()};txt();
+loop(cv,(dt,tm)=>{const m=+$('mo').value,s=sun(m),t=dT(m);let g=c.createLinearGradient(0,0,0,HZ);g.addColorStop(0,mixc([5,6,7],[63,127,184],s));g.addColorStop(1,mixc([42,45,47],[188,214,230],s));c.fillStyle=g;c.fillRect(0,0,W,H);
+if(s>.02){dp(c,S.white,520,80,90,s*.5);c.globalAlpha=s;c.fillStyle='#fff3d6';c.beginPath();c.arc(520,80,20,0,TAU);c.fill();c.globalAlpha=1}
+for(let i=0;i<9;i++)dp(c,S.dark,((tm*10+i*90)%800)-50,40+(i%4)*40,100,(1-s)*.8);c.globalAlpha=1;
+c.fillStyle=mixc([14,14,14],[46,84,40],s);c.fillRect(0,HZ,W,H-HZ);const snow=cl((-t-5)/10)*(1-s*.6);c.fillStyle=`rgba(240,245,250,${snow})`;c.fillRect(0,HZ,W,H-HZ);
+for(const o of trs){c.strokeStyle='#0c0a09';c.lineWidth=3;c.beginPath();c.moveTo(o.x,HZ+40);c.lineTo(o.x,HZ+40-o.h);c.stroke();c.fillStyle=mixc([62,50,40],[47,122,58],s);c.beginPath();c.moveTo(o.x,HZ+40-o.h-24);c.lineTo(o.x+22,HZ+40-o.h*.35);c.lineTo(o.x-22,HZ+40-o.h*.35);c.fill()}
+if(snow>.05){c.fillStyle='rgba(255,255,255,.85)';for(const f of fl){f.y+=f.v*dt;f.x+=Math.sin(tm+f.ph)*8*dt;if(f.y>H){f.y=-5;f.x=R()*W}c.fillRect(f.x,f.y,f.s,f.s)}}
+c.strokeStyle='rgba(241,241,232,.7)';c.lineWidth=1;c.strokeRect(650,40,14,200);const fh=cl((t+20)/20)*198;c.fillStyle=mixc([90,160,255],[255,110,60],1-cl((t+20)/20)*0+0-(1-cl((t+20)/20)));c.fillStyle=mixc([255,110,60],[90,160,255],1-cl((t+20)/20));c.fillRect(651,239-fh,12,fh);
+c.fillStyle='rgba(241,241,232,.8)';c.font='12px Inter,sans-serif';c.textAlign='left';c.fillText(Math.round(t)+' °C',640,260);c.fillText('Photosynthesis: '+(s<.2?'OFF':s<.6?'dim':'on'),12,24)})})();
+
+/* ================= 7 MASS EXTINCTION ================= */
+(function(){const cv=$('ex'),c=cv.getContext('2d'),W=700,H=290,G=[['Non-avian dinosaurs','#e0693a',12,12,'No large land animals survived. (Birds, their living descendants, did.)'],['Plankton & shellfish','#3aa0e0',30,26,'Sunless oceans starved the food chain from the bottom up.'],['Sea reptiles & ammonites','#7a6ae0',8,8,'Giant marine reptiles and ammonites vanished.'],['Pterosaurs','#d05aa0',3,3,'The flying reptiles disappeared.'],['Mammals','#c8a06a',10,7,'Small, burrowing, omnivorous mammals fared best. They later spread into empty niches.'],['Birds','#8ad06a',8,6,'A few beaked, ground-feeding lineages survived and became all living birds.'],['Plants','#3a9a4a',14,8,'Seeds and spores in the soil let many plants re-sprout.'],['Freshwater & amphibians','#4ac8b8',10,3,'Rivers and ponds buffered many species.'],['Insects & burrowers','#c8c84a',5,2,'Small, buried or short-lived life came through best.']];
+const dots=[];let sel=-1;G.forEach((g,gi)=>{for(let j=0;j<g[2];j++)dots.push({g:gi,d:j<g[3]?rr(.12,.7):9,ph:R()*7})});
+const LB=[[0,'impact day'],[8,'first months'],[25,'the first years'],[50,'thousands of years'],[80,'about a million years']];
+G.forEach((g,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=g[0];b.setAttribute('aria-pressed','false');b.onclick=()=>{sel=sel==i?-1:i;[...$('ech').children].forEach((x,j)=>x.setAttribute('aria-pressed',j==sel));txt();poke()};$('ech').appendChild(b)});
+const lost=f=>Math.round(dots.filter(o=>o.d<=f*.85).length);
+function txt(){const v=+$('yr').value,f=v/100;$('yrv').textContent=LB.filter(x=>v>=x[0]).pop()[1];$('ext').textContent=`Species lost so far: about ${lost(f)}%. `+(sel>=0?G[sel][0]+': '+G[sel][4]:'Roughly three quarters of all species are gone by the end. Survivors were mostly small, burrowing or able to eat almost anything.')}
+$('yr').oninput=()=>{txt();poke()};txt();
+loop(cv,(dt,tm)=>{const f=+$('yr').value/100;c.fillStyle='#0a0f0e';c.fillRect(0,0,W,H);
+dots.forEach((o,i)=>{const x=34+(i%20)*32,y=34+Math.floor(i/20)*40+Math.sin(tm*2+o.ph)*1.5,dim=sel>=0&&o.g!=sel?.22:1,dead=o.d<=f*.85,fresh=f*.85-o.d;c.globalAlpha=dim;
+if(!dead){c.fillStyle=G[o.g][1];c.beginPath();c.arc(x,y,11,0,TAU);c.fill()}
+else if(fresh<.05){c.fillStyle='#fff';c.beginPath();c.arc(x,y,11*(1-fresh/.05)+2,0,TAU);c.fill()}
+else{c.strokeStyle='rgba(150,150,150,.5)';c.lineWidth=1.5;c.beginPath();c.moveTo(x-4,y-4);c.lineTo(x+4,y+4);c.moveTo(x+4,y-4);c.lineTo(x-4,y+4);c.stroke();
+if(f>.8&&o.d<9){const a=cl((f-.8)/.2);c.fillStyle='#b8a06a';c.globalAlpha=dim*a;c.beginPath();c.arc(x,y,7*a,0,TAU);c.fill()}}});c.globalAlpha=1;
+c.fillStyle='#f1f1e8';c.font='700 44px Inter,sans-serif';c.textAlign='left';c.fillText(lost(f)+'%',34,258);c.font='14px Inter,sans-serif';c.fillStyle='rgba(241,241,232,.7)';c.fillText('of species lost',140,254);
+if(f>.8){c.fillStyle='#b8a06a';c.fillText('gold dots: new species evolve into the empty spaces',300,254)}})})();
+
+/* ================= 8 EVIDENCE ================= */
+(function(){const cv=$('ev'),c=cv.getContext('2d'),W=700,H=310;let m=0;
+const IT=[['Iridium spike','A thin clay layer found worldwide holds far more iridium than normal. It is rare in Earth\'s crust but common in asteroids. It led Luis and Walter Alvarez to propose the impact idea in 1980.',1],['Shocked quartz','Only huge impacts (or nuclear blasts) squeeze quartz hard enough to leave parallel cracks inside the crystal.',1],['Glassy spherules','Rock melted by the impact was flung into space, cooled into tiny glass beads and rained down worldwide.',1],['The crater','Chicxulub lies buried beneath Mexico\'s Yucatán coast, about 180 km wide. Drilling in 2016 sampled its ring-shaped peak.',-1],['Fern spike','Just above the boundary, fern spores surge while tree pollen collapses. Ferns are among the first plants to colonise wrecked ground.',2]];
+IT.forEach((o,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=o[0];b.setAttribute('aria-pressed',i==0);b.onclick=()=>{m=i;[...$('vch').children].forEach((x,j)=>x.setAttribute('aria-pressed',j==i));$('evt').textContent=o[1];poke()};$('vch').appendChild(b)});$('evt').textContent=IT[0][1];
+const LY=[[20,90,'#8a7a68','Paleogene: mammals radiate'],[90,105,'#4f7a3a','fern layer'],[105,118,'#5b5652','boundary clay'],[118,290,'#b8ad98','Cretaceous: dinosaur era']];
+loop(cv,(dt,tm)=>{c.fillStyle='#0a0f0e';c.fillRect(0,0,W,H);
+LY.forEach((l,i)=>{c.fillStyle=l[2];c.fillRect(60,l[0],140,l[1]-l[0]);c.fillStyle='rgba(241,241,232,.75)';c.font='12px Inter,sans-serif';c.textAlign='left';c.fillText(l[3],210,(l[0]+l[1])/2+4)});
+for(let i=0;i<4;i++){c.strokeStyle='rgba(60,50,40,.6)';c.lineWidth=2;c.beginPath();c.arc(90+i*36,180+(i%2)*40,9-i,0,4.5);c.stroke()}
+const hl=IT[m][2]==-1?-1:IT[m][2]==2?1:2;if(hl>=0){c.strokeStyle=`rgba(255,200,90,${.6+.4*Math.sin(tm*5)})`;c.lineWidth=2;c.strokeRect(58,LY[hl][0]-1,144,LY[hl][1]-LY[hl][0]+2)}
+const ox=380,p=cl((tm%4)/2.5);c.textAlign='center';
+if(m==0){c.strokeStyle='rgba(241,241,232,.4)';c.lineWidth=1;c.beginPath();c.moveTo(ox,20);c.lineTo(ox,290);c.lineTo(670,290);c.stroke();c.fillStyle='rgba(241,241,232,.6)';c.fillText('iridium ▸',540,306);c.save();c.beginPath();c.rect(ox,0,300*p+2,H);c.clip();c.strokeStyle='#ffb02e';c.lineWidth=2.5;c.beginPath();
+for(let y=290;y>=20;y-=3){const d=(y-111)/40,v=15+12*Math.exp(-Math.abs(y-111)*.03)+(y>105&&y<118?190:0)*Math.exp(-d*d*3);c.lineTo(ox+v,y)}c.stroke();c.restore()}
+else if(m==1){c.save();c.translate(510,150);c.rotate(tm*.3);c.fillStyle='rgba(200,225,255,.35)';c.strokeStyle='rgba(220,240,255,.9)';c.lineWidth=2;c.beginPath();for(let i=0;i<6;i++)c.lineTo(Math.cos(i*1.047)*90,Math.sin(i*1.047)*90);c.closePath();c.fill();c.stroke();c.strokeStyle=`rgba(255,200,90,${.5+.4*Math.sin(tm*4)})`;for(let k=-2;k<=2;k++){c.beginPath();c.moveTo(-70,k*22);c.lineTo(70,k*22+14);c.stroke()}c.restore()}
+else if(m==2){for(let i=0;i<40;i++){const x=ox+20+((i*53)%280),y=((i*97+tm*90)%190)+20;dp(c,S.white,x,y,9,.5);c.globalAlpha=1;c.fillStyle='rgba(200,225,235,.8)';c.beginPath();c.arc(x,y,3+i%3,0,TAU);c.fill()}c.fillStyle='rgba(241,241,232,.6)';c.fillText('tiny glass beads rain onto the clay',520,306)}
+else if(m==3){for(const [r,a] of[[120,.4],[60,.7]]){c.strokeStyle=`rgba(255,160,80,${a})`;c.lineWidth=3;c.setLineDash(r==120?[6,6]:[]);c.beginPath();c.arc(520,150,r,0,TAU);c.stroke()}c.setLineDash([]);dp(c,S.fire,520,150,20+4*Math.sin(tm*3),.8);c.globalAlpha=1;c.fillStyle='rgba(241,241,232,.8)';c.fillText('outer rim, ~180 km',520,20);c.fillText('peak ring',520,150+72)}
+else{[['trees',420,cl(1-p)*1],['ferns',600,p]].forEach(([n,x,v],i)=>{c.fillStyle=i?'#7ac860':'#2f7a3a';const h=(i?.15+.85*p:1-.85*p)*200;c.fillRect(x-30,270-h,60,h);c.fillStyle='rgba(241,241,232,.8)';c.fillText(n+' pollen',x,290)});c.fillText('before  ▸  after the impact',510,20)}})})();
+})();
+</script></body></html>
+
+ <script src="../navbar_script.js"></script>
+    
