@@ -2064,7 +2064,6 @@ border: #b79b5b;
 
 
 
-
 .article-hero3 {
     width: 100vw;
 
@@ -2183,12 +2182,47 @@ border: #b79b5b;
 
 
 
+.interactive-article-card {
+
+    display: flex;
+
+    gap: 35px;
+
+    padding: 25px;
+
+    margin-bottom: 35px;
+
+    background:fixed linear-gradient(
+        315deg,
+        rgba(204, 211, 209, 0.252),
+        rgba(11,15,14,0.7)
+    );
 
 
+    border-radius: 20px;
+
+    border: solid 2px #555;
+    
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+        
+    
+
+}
+
+.interactive-article-card:hover {
+    box-shadow: 0 0 80px rgba(183, 155, 91, 0.2);
+}
 
 
-
-
+.interactive-article-card .article-category {
+    color: #b79b5b;
+    font-size: 1.1rem;
+    text-align: right;
+}
 
 
 
