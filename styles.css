@@ -499,67 +499,64 @@ nav a {
 
 
 
-
-
-
-
-/* =========================
+/* =========================================================
    FEATURED ARTICLES
-========================= */
+========================================================= */
 
 .featured {
     position: relative;
-    padding: 100px 0 100px;
+
+    width: 100%;
+    min-height: 650px;
+
+    padding: 100px 0 80px;
+
+    box-sizing: border-box;
+
     overflow: hidden;
     isolation: isolate;
+
     border-top: 0.2px solid #b8a16a61;
     border-bottom: 0.2px solid #b8a16a61;
+
     background: #0b0f0e;
 }
 
-.featured-header {
-    width: min(1200px, calc(100% - 48px));
-    margin: 0 auto 42px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 
-    color: rgba(241, 241, 232, 0.42);
-    font-family: "Courier New", monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    line-height: 1;
-}
+/* =========================================================
+   FEATURED CARD / CAROUSEL
+========================================================= */
 
-.featured-counter {
-    color: #b8a06a;
-}
-
-
-/* =========================
-   CAROUSEL
-========================= */
-
-.article-carousel {
+.featured .article-carousel {
     position: relative;
+
     width: min(1200px, calc(100% - 48px));
     height: 490px;
+
     margin: 0 auto;
+
+    box-sizing: border-box;
+
     overflow: hidden;
 }
 
-.article-track {
+.featured .article-track {
     position: relative;
+
     width: 100%;
     height: 100%;
+
+    box-sizing: border-box;
 }
 
 
-/* =========================
+/* =========================================================
    CARD
-========================= */
+========================================================= */
+
 .featured .card {
     position: absolute;
+
     inset: 0;
 
     width: 100%;
@@ -567,10 +564,12 @@ nav a {
 
     display: grid;
 
-    /* Important: both columns are allowed to shrink */
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(280px, 0.65fr);
 
     align-items: stretch;
+
     gap: clamp(24px, 4vw, 60px);
 
     margin: 0;
@@ -578,13 +577,18 @@ nav a {
 
     box-sizing: border-box;
 
+    min-width: 0;
+    min-height: 0;
+
     background: transparent;
     border: 0;
 
+    overflow: hidden;
+
     opacity: 0;
     visibility: hidden;
-
     pointer-events: none;
+
     z-index: 1;
 
     transform: none;
@@ -594,14 +598,17 @@ nav a {
         visibility 0s linear 0.8s;
 }
 
-/* =========================
+
+/* =========================================================
    ACTIVE CARD
-========================= */
+========================================================= */
 
 .featured .card.is-active {
     opacity: 1;
     visibility: visible;
+
     pointer-events: auto;
+
     z-index: 2;
 
     transition:
@@ -609,9 +616,195 @@ nav a {
 }
 
 
-/* =========================
-   IMAGE ANIMATION
-========================= */
+/* =========================================================
+   CARD CHILDREN
+========================================================= */
+
+/*
+   IMPORTANT:
+   Grid children are allowed to shrink.
+   This prevents long titles from forcing
+   the card wider than its container.
+*/
+
+.featured .card > * {
+    min-width: 0;
+    max-width: 100%;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TEXT COLUMN
+========================================================= */
+
+.featured .card-content {
+    align-self: center;
+
+    width: 100%;
+    max-width: 560px;
+
+    min-width: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    opacity: 1;
+
+    transform: translate3d(0, 0, 0);
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.featured .card-number {
+    display: block;
+
+    margin: 0 0 22px;
+
+    color: #b8a06a;
+
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   ARTICLE TITLE
+========================================================= */
+
+.featured .card h3,
+.featured .card .title,
+.featured .card .article-title {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin: 0;
+
+    box-sizing: border-box;
+
+    color: #f1f1e8;
+
+    /*
+       Responsive size without becoming enormous
+       on wider screens.
+    */
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
+
+    font-weight: 500;
+
+    /*
+       Slightly more breathing room than your
+       previous 0.88 line-height.
+    */
+    line-height: 0.95;
+
+    letter-spacing: clamp(-3px, -0.25vw, -1.5px);
+
+    /*
+       This is the important part for long titles.
+    */
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   ARTICLE DESCRIPTION
+========================================================= */
+
+.featured .card p {
+    width: 100%;
+    max-width: 285px;
+    min-width: 0;
+
+    margin: 27px 0 0;
+
+    color: rgba(241, 241, 232, 0.48);
+
+    font-size: 13px;
+    line-height: 1.75;
+
+    box-sizing: border-box;
+
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+
+/* =========================================================
+   ARTICLE LINK
+========================================================= */
+
+.featured .card-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    max-width: 100%;
+
+    margin-top: 32px;
+    padding-bottom: 7px;
+
+    color: #f1f1e8;
+
+    border-bottom: 1px solid rgba(184, 160, 106, 0.5);
+
+    font-family: "Courier New", monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+
+    text-decoration: none;
+
+    box-sizing: border-box;
+
+    transition:
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.featured .card-link span {
+    display: inline-block;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.featured .card-link:hover {
+    color: #b8a06a;
+    border-color: #b8a06a;
+}
+
+.featured .card-link:hover span {
+    transform: translate(3px, -3px);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
 
 .featured .card-image {
     position: relative;
@@ -628,8 +821,9 @@ nav a {
 
     text-decoration: none;
 
-    /* image starts slightly outside */
     clip-path: inset(0 0 0 0);
+
+    box-sizing: border-box;
 }
 
 .featured .card-image img {
@@ -653,12 +847,12 @@ nav a {
     transition:
         transform 1.45s cubic-bezier(0.16, 1, 0.3, 1),
         filter 0.9s ease;
-
-    
 }
 
 
-/* Active image settles very slowly */
+/* =========================================================
+   ACTIVE IMAGE
+========================================================= */
 
 .featured .card.is-active .card-image img {
     transform: scale(1.015);
@@ -668,7 +862,10 @@ nav a {
         saturate(0.72);
 }
 
-/* Restore hover */
+
+/* =========================================================
+   IMAGE HOVER
+========================================================= */
 
 .featured .card.is-active .card-image:hover img {
     transform: scale(1.045);
@@ -679,9 +876,28 @@ nav a {
 }
 
 
-/* =========================
-   IMAGE EDGE MOVEMENT
-========================= */
+/* =========================================================
+   IMAGE BORDER
+========================================================= */
+
+.featured .card-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    pointer-events: none;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   IMAGE ENTER ANIMATION
+========================================================= */
 
 .featured .card.is-entering-right .card-image {
     transform: translate3d(55vw, 0, 0);
@@ -706,182 +922,55 @@ nav a {
 }
 
 
-/* =========================
-   TEXT
-========================= */
-
-.featured .card-content {
-    align-self: center;
-
-    width: 100%;
-    max-width: 360px;
-
-    /* No large left offset */
-    padding: 0;
-
-    box-sizing: border-box;
-
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-
-    transition:
-        opacity 0.5s ease,
-        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.featured .card h3 {
-    margin: 0;
-
-    color: #f1f1e8;
-
-    font-size: clamp(3rem, 4.4vw, 4.8rem);
-    font-weight: 500;
-
-    line-height: 0.88;
-    letter-spacing: -3.5px;
-
-    max-width: 100%;
-}
-
-
-/* Text enters gently */
+/* =========================================================
+   TEXT ENTER ANIMATION
+========================================================= */
 
 .featured .card.is-entering-right .card-content {
     opacity: 0;
+
     transform: translate3d(14px, 0, 0);
 }
 
 .featured .card.is-entering-left .card-content {
     opacity: 0;
+
     transform: translate3d(-14px, 0, 0);
 }
 
 .featured .card.is-active .card-content {
     opacity: 1;
+
     transform: translate3d(0, 0, 0);
 }
 
 
-
-/* =========================
-   CARD TYPOGRAPHY
-========================= */
-
-.featured .card-number {
-    display: block;
-
-    margin: 0 0 22px;
-
-    color: #b8a06a;
-
-    font-family: "Courier New", monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    line-height: 1;
-}
-
-.featured .card h3 {
-    margin: 0;
-
-    color: #f1f1e8;
-
-    font-size: clamp(3.4rem, 5vw, 5.6rem);
-    font-weight: 500;
-
-    line-height: 0.88;
-    letter-spacing: -4px;
-}
-
-.featured .card p {
-    max-width: 285px;
-
-    margin: 27px 0 0;
-
-    color: rgba(241, 241, 232, 0.48);
-
-    font-size: 13px;
-    line-height: 1.75;
-}
-
-.featured .card-link {
-    display: inline-flex;
-    align-items: center;
-
-    gap: 10px;
-
-    margin-top: 32px;
-    padding-bottom: 7px;
-
-    color: #f1f1e8;
-
-    border-bottom: 1px solid rgba(184, 160, 106, 0.5);
-
-    font-family: "Courier New", monospace;
-    font-size: 9px;
-    letter-spacing: 1.5px;
-
-    text-decoration: none;
-
-    transition:
-        color 0.3s ease,
-        border-color 0.3s ease;
-}
-
-.featured .card-link span {
-    display: inline-block;
-
-    transition:
-        transform 0.3s ease;
-}
-
-.featured .card-link:hover {
-    color: #b8a06a;
-    border-color: #b8a06a;
-}
-
-.featured .card-link:hover span {
-    transform: translate(3px, -3px);
-}
-
-
-/* =========================
-   IMAGE BORDER
-========================= */
-
-.featured .card-image::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    border: 1px solid rgba(255, 255, 255, 0.09);
-
-    pointer-events: none;
-}
-
-
-/* =========================
+/* =========================================================
    CONTROLS
-========================= */
+========================================================= */
 
-.carousel-controls {
+.featured .carousel-controls {
     width: min(1200px, calc(100% - 48px));
 
     margin: 32px auto 0;
 
     display: flex;
+
     align-items: center;
 
     gap: 18px;
+
+    box-sizing: border-box;
 }
 
-.carousel-arrow {
+.featured .carousel-arrow {
     width: 44px;
     height: 44px;
 
     flex: 0 0 44px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -893,6 +982,7 @@ nav a {
     background: transparent;
 
     border: 1px solid rgba(255, 255, 255, 0.15);
+
     border-radius: 50%;
 
     font-family: Arial, sans-serif;
@@ -908,7 +998,7 @@ nav a {
         transform 0.3s ease;
 }
 
-.carousel-arrow:hover {
+.featured .carousel-arrow:hover {
     color: #0b0f0e;
 
     background: #b8a06a;
@@ -917,7 +1007,12 @@ nav a {
     transform: scale(1.05);
 }
 
-.carousel-progress {
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.featured .carousel-progress {
     position: relative;
 
     width: 110px;
@@ -928,7 +1023,7 @@ nav a {
     background: rgba(255, 255, 255, 0.12);
 }
 
-.progress-bar {
+.featured .progress-bar {
     display: block;
 
     width: 33.333%;
@@ -943,195 +1038,30 @@ nav a {
 }
 
 
-/* =========================
+/* =========================================================
    TABLET
-========================= */
+========================================================= */
 
 @media (max-width: 900px) {
 
-    .article-carousel {
-        height: 460px;
+    .featured {
+        min-height: 620px;
     }
 
     .featured .card {
-        height: 460px;
-
         grid-template-columns:
-            minmax(0, 1.3fr)
-            minmax(250px, 0.7fr);
+            minmax(0, 1.1fr)
+            minmax(220px, 0.9fr);
 
-        gap: 40px;
+        gap: 30px;
     }
 
-    .featured .card-content {
-        padding-left: 40px;
-    }
+    .featured .card h3,
+    .featured .card .title,
+    .featured .card .article-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
 
-    .featured .card h3 {
-        font-size: clamp(3rem, 6vw, 4.5rem);
-        letter-spacing: -3px;
-    }
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    .featured {
-        padding: 90px 0 110px;
-    }
-
-    .featured-header {
-        width: calc(100% - 36px);
-        margin-bottom: 28px;
-    }
-
-    .article-carousel {
-        width: calc(100% - 36px);
-        height: auto;
-    }
-
-    .article-track {
-        height: auto;
-    }
-
-    .featured .card {
-        position: relative;
-        inset: auto;
-
-        width: 100%;
-        height: auto;
-
-        display: flex;
-        flex-direction: column;
-
-        gap: 28px;
-
-        opacity: 0;
-        visibility: hidden;
-
-        transform: none;
-    }
-
-    .featured .card.is-active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .featured .card-image {
-        width: 100%;
-        height: 340px;
-
-        flex: 0 0 340px;
-    }
-
-    .featured .card-content {
-        width: 100%;
-        max-width: none;
-
-        padding: 0 0 10px;
-    }
-
-    .featured .card h3 {
-        font-size: 3.4rem;
-        line-height: 0.9;
-        letter-spacing: -2.5px;
-    }
-
-    .featured .card p {
-        max-width: 310px;
-
-        margin-top: 20px;
-
-        font-size: 12px;
-        line-height: 1.7;
-    }
-
-    .featured .card-link {
-        margin-top: 25px;
-    }
-
-    .carousel-controls {
-        width: calc(100% - 36px);
-
-        margin-top: 28px;
-
-        gap: 14px;
-    }
-
-    .carousel-arrow {
-        width: 42px;
-        height: 42px;
-
-        flex-basis: 42px;
-    }
-
-    .carousel-progress {
-        width: 90px;
-    }
-}
-
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
-@media (max-width: 420px) {
-
-    .featured .card-image {
-        height: 300px;
-        flex-basis: 300px;
-    }
-
-    .featured .card h3 {
-        font-size: 3rem;
-    }
-}
-
-
-/* =========================
-   REDUCED MOTION
-========================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .featured .card,
-    .featured .card-image,
-    .featured .card-image img,
-    .featured .card-content,
-    .carousel-arrow,
-    .carousel-progress .progress-bar {
-        transition: none !important;
-    }
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 900px) {
-
-    .article-carousel {
-        height: 460px;
-    }
-
-    .featured .card {
-        height: 460px;
-
-        grid-template-columns: 58% 42%;
-    }
-
-    .featured .card-content {
-        padding-left: 40px;
-    }
-
-    .featured .card h3 {
-        font-size: clamp(3rem, 6vw, 4.5rem);
-        letter-spacing: -3px;
+        line-height: 0.95;
     }
 }
 
@@ -1143,130 +1073,67 @@ nav a {
 @media (max-width: 700px) {
 
     .featured {
-        padding: 110px 0 120px;
+        min-height: auto;
+
+        padding: 70px 0 60px;
     }
 
-    .featured-header {
-        width: calc(100% - 36px);
+    .featured .article-carousel {
+        width: calc(100% - 32px);
 
-        margin-bottom: 28px;
-    }
-
-    .article-carousel {
-        width: calc(100% - 36px);
         height: auto;
+        min-height: 700px;
+    }
+
+    .featured .article-track {
+        min-height: 700px;
+    }
+
+    .featured .card {
+        grid-template-columns: 1fr;
+
+        grid-template-rows:
+            auto
+            300px;
+
+        gap: 35px;
+
+        height: auto;
+        min-height: 700px;
 
         overflow: hidden;
     }
 
-    .article-track {
-        height: auto;
-    }
-
-    .featured .card {
-        height: auto;
-        min-height: 0;
-
-        display: flex;
-        flex-direction: column;
-
-        flex: 0 0 100%;
-
-        gap: 28px;
-    }
-
-
-    /* IMAGE */
-
-    .featured .card-image {
-        width: 100%;
-        height: 340px;
-
-        flex: 0 0 340px;
-    }
-
-    .featured .card-image img {
-        width: 100%;
-        height: 100%;
-
-        object-fit: cover;
-        object-position: center;
-    }
-
-
-    /* CONTENT */
-
     .featured .card-content {
-        width: 100%;
-        max-width: none;
+        align-self: start;
 
-        padding: 0 0 10px;
+        max-width: 100%;
     }
 
-    .featured .card-number {
-        margin-bottom: 18px;
+    .featured .card h3,
+    .featured .card .title,
+    .featured .card .article-title {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+
+        line-height: 0.95;
+
+        letter-spacing: -2px;
     }
-
-    .featured .card h3 {
-        font-size: 3.4rem;
-        line-height: 0.9;
-
-        letter-spacing: -2.5px;
-    }
-
-    .featured .card p {
-        max-width: 310px;
-
-        margin-top: 20px;
-
-        font-size: 12px;
-        line-height: 1.7;
-    }
-
-    .featured .card-link {
-        margin-top: 25px;
-    }
-
-
-    /* CONTROLS */
-
-    .carousel-controls {
-        width: calc(100% - 36px);
-
-        margin-top: 28px;
-
-        gap: 14px;
-    }
-
-    .carousel-arrow {
-        width: 42px;
-        height: 42px;
-
-        flex-basis: 42px;
-    }
-
-    .carousel-progress {
-        width: 90px;
-    }
-}
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-width: 420px) {
 
     .featured .card-image {
         height: 300px;
-        flex-basis: 300px;
     }
 
-    .featured .card h3 {
-        font-size: 3rem;
+    .featured .card p {
+        max-width: 100%;
+    }
+
+    .featured .carousel-controls {
+        width: calc(100% - 32px);
+
+        margin-top: 24px;
     }
 }
-
 
 /* Footer */
 
@@ -1734,6 +1601,17 @@ footer {
     gap: 60px;
 
     align-items: center;
+
+}
+
+.featured-header {
+
+    margin-bottom: 30px;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #c7c7bc;
+    font-family: "Courier New", monospace;
+
 
 }
 

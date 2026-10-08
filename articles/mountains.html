@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Continental Collision Lab | Geosci</title>
+<link rel="icon" type="image/png" href="../images/geosci_logo.png">
+<link rel="stylesheet" href="../styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0b0f0e}
+.lab{display:grid;grid-template-columns:minmax(0,1fr) 400px;height:100vh;min-height:720px;padding-top:0;box-sizing:border-box;background:#050807;color:#f1f1e8;font:15px/1.6 Inter,system-ui,sans-serif}
+.lab *{box-sizing:border-box}
+.lab .wrap{display:flex;flex-direction:column;min-width:0;min-height:0}
+.lab .stage{position:relative;flex:1;min-height:0;}
+.lab #cv{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab}
+.lab #cv:active{cursor:grabbing}
+.lab .hud{position:absolute;display:flex;gap:8px;z-index:4}
+.lab .hint{position:absolute;left:18px;bottom:14px;font-size:12px;color:rgba(241,241,232,.55);letter-spacing:.02em;transition:opacity .8s;pointer-events:none}
+.lab .hint.gone{opacity:0}
+.lab .ghost{font:600 11px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;background:rgba(8,12,11,.65);color:#d8c690;border:1px solid rgba(184,160,106,.3);padding:.65em 1em;border-radius:2px;cursor:pointer;backdrop-filter:blur(6px);transition:border-color .2s,background .2s}
+.lab .ghost:hover,.lab .dd.open .ghost{border-color:rgba(184,160,106,.8);background:rgba(20,26,24,.85)}
+.lab .dd{position:relative}
+.lab .menu{position:absolute;right:0;top:calc(100% + 6px);min-width:210px;background:rgba(9,13,12,.97);border:1px solid rgba(184,160,106,.28);border-radius:2px;padding:6px;display:none;flex-direction:column;gap:1px;z-index:6;box-shadow:0 16px 40px rgba(0,0,0,.55)}
+.lab .dd.open .menu{display:flex}
+.lab .dd.up .menu{top:auto;bottom:calc(100% + 6px);min-width:96px}
+.lab .opt{display:flex;gap:10px;align-items:center;padding:8px 10px;font:500 13px Inter,sans-serif;color:#e8e4d6;background:none;border:0;border-radius:2px;cursor:pointer;text-align:left;white-space:nowrap}
+.lab .opt:hover{background:rgba(184,160,106,.13)}
+.lab .opt input{accent-color:#b8a06a;margin:0}
+.lab .mrow{padding:8px 10px 6px;border-top:1px solid rgba(255,255,255,.08);margin-top:4px;font:500 12px Inter,sans-serif;color:rgba(241,241,232,.7);display:flex;flex-direction:column;gap:6px}
+.lab .leg{position:absolute;left:16px;bottom:38px;display:none;font-size:11px;z-index:3;background:rgba(5,8,7,.72);padding:7px 10px;border:1px solid rgba(255,255,255,.1);color:rgba(241,241,232,.8)}
+.lab .leg i{display:inline-block;width:8px;height:8px;margin-right:5px;border-radius:50%}
+.lab .tip{position:absolute;display:none;background:rgba(8,10,10,.94);border:1px solid rgba(184,160,106,.6);padding:7px 11px;font-size:12px;pointer-events:none;z-index:5;border-radius:2px;line-height:1.5}
+.lab .bar{padding:10px 18px 8px;border-top:1px solid rgba(255,255,255,.08);background:rgba(8,12,11,.9);display:flex;align-items:flex-start;gap:16px}
+.lab .btn{width:36px;height:36px;flex:none;font:700 12px Inter,sans-serif;background:transparent;color:#d8c690;border:1px solid rgba(184,160,106,.5);border-radius:50%;cursor:pointer;margin-top:2px;transition:background .2s}
+.lab .btn:hover{background:rgba(184,160,106,.15)}
+.lab .track{flex:1;min-width:0}
+.lab input[type=range]{-webkit-appearance:none;appearance:none;background:transparent;width:100%;height:20px;margin:0;cursor:pointer}
+.lab input[type=range]::-webkit-slider-runnable-track{height:3px;background:rgba(241,241,232,.2);border-radius:2px}
+.lab input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#d8c690;margin-top:-5.5px;border:2px solid #050807}
+.lab input[type=range]::-moz-range-track{height:3px;background:rgba(241,241,232,.2);border-radius:2px}
+.lab input[type=range]::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:#d8c690;border:2px solid #050807}
+.lab .ticks{position:relative;height:22px}
+.lab .tick{position:absolute;top:2px;transform:translateX(-50%);background:none;border:0;color:rgba(241,241,232,.4);font:600 11px Inter,sans-serif;padding:2px 8px;cursor:pointer}
+.lab .tick:hover{color:#f1f1e8}.lab .tick[aria-pressed=true]{color:#f6dd8e}
+.lab .tinfo{flex:none;text-align:right;min-width:170px;padding-top:2px}
+.lab .tlab{display:block;font-weight:700;font-size:14px;color:#f6dd8e}.lab .tn{display:block;font-size:12px;color:rgba(241,241,232,.55)}
+.lab .spd{margin-top:2px}
+.lab :focus-visible{outline:2px solid #f1f1e8;outline-offset:2px}
+.lab .side{border-left:1px solid rgba(255,255,255,.08);padding:92px 26px 30px;overflow:auto;min-height:0}
+.lab .eyebrow{color:#b8a06a;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin:0 0 8px}
+.lab h2{font-size:27px;line-height:1.12;margin:0 0 14px;font-weight:700;letter-spacing:-.5px}
+.lab .side p{margin:0 0 11px;color:rgba(241,241,232,.82);font-size:14.5px}
+.lab details{border-top:1px solid rgba(255,255,255,.09);padding:12px 0}
+.lab details:last-of-type{border-bottom:1px solid rgba(255,255,255,.09)}
+.lab summary{cursor:pointer;font:600 11px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#b8a06a;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.lab summary::-webkit-details-marker{display:none}
+.lab summary::after{content:'+';font-size:16px;color:rgba(241,241,232,.5);font-weight:400}
+.lab details[open] summary::after{content:'–'}
+.lab details>*:not(summary){margin-top:12px}
+.lab ul{margin:12px 0 0;padding-left:18px;color:rgba(241,241,232,.8);font-size:14px}
+.lab .facts{display:flex;flex-direction:column;gap:6px}.lab .facts span{border-left:2px solid #b8a06a;padding:3px 10px;font-size:13px;color:#ffe9b0;background:rgba(184,160,106,.06)}
+.lab #lens{width:100%;height:auto;display:block;border:1px solid rgba(255,255,255,.1)}
+.lab .note{font-size:12px!important;color:rgba(241,241,232,.55)!important}
+.lab .chips{display:flex;flex-wrap:wrap;gap:6px}
+.lab .chip{font:600 12px Inter,sans-serif;background:transparent;color:#d8c690;border:1px solid rgba(184,160,106,.4);border-radius:2px;padding:.45em .9em;cursor:pointer}
+.lab .chip[aria-pressed=true]{background:#b8a06a;color:#0b0f0e;border-color:#b8a06a}
+.lt{position:fixed;top:0;left:0;right:0;height:60px;z-index:30;display:flex;align-items:center;gap:26px;padding:0 24px;background:linear-gradient(180deg,rgba(5,8,7,.95),rgba(5,8,7,.62));backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.07);font-family:Inter,system-ui,sans-serif;box-sizing:border-box}
+.lt *{box-sizing:border-box}
+.lt a{color:#d8c690;text-decoration:none;font:600 12px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.lt .brand{display:flex;align-items:center;gap:10px;color:#f1f1e8;font-weight:2000;letter-spacing:0em;font-size:20px}
+.lt .brand img{height:26px;width:auto}
+.lt .nav{display:flex;gap:22px}.lt .nav a:hover{color:#f1f1e8}
+.lt .sep{width:1px;height:22px;background:rgba(255,255,255,.16)}
+.lt .ttl{font:600 11px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,241,232,.5);white-space:nowrap}
+.lt .tools{margin-left:auto;display:flex;gap:8px}
+.lt .mob{display:none}
+.lt .ghost{font:600 11px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;background:rgba(8,12,11,.65);color:#d8c690;border:1px solid rgba(184,160,106,.3);padding:.65em 1em;border-radius:2px;cursor:pointer;transition:border-color .2s,background .2s}
+.lt .ghost:hover,.lt .dd.open .ghost{border-color:rgba(184,160,106,.8);background:rgba(20,26,24,.85)}
+.lt .dd{position:relative}
+.lt .menu{position:absolute;right:0;top:calc(100% + 8px);min-width:210px;background:rgba(9,13,12,.98);border:1px solid rgba(184,160,106,.28);border-radius:2px;padding:6px;display:none;flex-direction:column;gap:1px;z-index:40;box-shadow:0 16px 40px rgba(0,0,0,.55)}
+.lt .dd.open .menu{display:flex}
+.lt .opt{display:flex;gap:10px;align-items:center;padding:8px 10px;font:500 13px Inter,sans-serif;letter-spacing:0;text-transform:none;color:#e8e4d6;background:none;border:0;border-radius:2px;cursor:pointer;text-align:left;white-space:nowrap}
+.lt .opt:hover{background:rgba(184,160,106,.13)}.lt .opt input{accent-color:#b8a06a;margin:0}
+.lt .mrow{padding:8px 10px 6px;border-top:1px solid rgba(255,255,255,.08);margin-top:4px;font:500 12px Inter,sans-serif;color:rgba(241,241,232,.7);display:flex;flex-direction:column;gap:6px}
+.lt input[type=range]{-webkit-appearance:none;appearance:none;background:transparent;width:100%;height:20px;margin:0;cursor:pointer}
+.lt input[type=range]::-webkit-slider-runnable-track{height:3px;background:rgba(241,241,232,.2);border-radius:2px}
+.lt input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#d8c690;margin-top:-5.5px;border:2px solid #050807}
+.lt :focus-visible{outline:2px solid #f1f1e8;outline-offset:2px}
+@media(max-width:980px){.lt .nav,.lt .sep,.lt .ttl{display:none}.lt .mob{display:block}.lab{padding-top:60px}.lab .side{padding-top:26px}}
+@media(max-width:980px){.lab{grid-template-columns:1fr;height:auto}.lab .stage{height:56vh;flex:none}.lab .side{border-left:0;border-top:1px solid rgba(255,255,255,.08)}.lab .tinfo{min-width:120px}}
+</style></head>
+<body>
+
+<div class="lt" role="banner">
+<a class="brand" href="../index.html" aria-label="GEOSCI home"><img src="../images/geosci_logo.png" alt=""><span>GEOSCI</span></a>
+<div class="nav" role="navigation" aria-label="Site"><a href="../explore.html">Explore</a><a href="../articles/articles.html">Articles</a><a href="../research/research.html">Research</a><a href="../news/news.html">News</a></div>
+<span class="sep"></span><span class="ttl">Continental collision lab</span>
+<div class="tools">
+<div class="dd mob"><button class="ghost">Menu ▾</button><div class="menu"><a class="opt" href="../explore.html">Explore</a><a class="opt" href="../articles/articles.html">Articles</a><a class="opt" href="../research/research.html">Research</a><a class="opt" href="../news/news.html">News</a></div></div>
+<div class="dd" id="ddv"><button class="ghost">View ▾</button><div class="menu"><div id="cam"></div><div class="mrow"><label for="cut">Slice along the belt</label><input type="range" id="cut" min="0" max="100" value="0"></div></div></div>
+<div class="dd" id="ddl"><button class="ghost">Layers ▾</button><div class="menu" id="tog"></div></div>
+</div></div>
+<main class="lab">
+<section class="wrap">
+<div class="stage" id="stage"><canvas id="cv"></canvas>
+<div class="hint" id="hint">Drag to rotate · scroll to zoom · hover the front face to probe the rock</div>
+<div class="leg" id="leg"><i style="background:#46af7d"></i>greenschist <i style="background:#e5a53c"></i>amphibolite <i style="background:#ff6e28"></i>granulite <i style="background:#ffeb78"></i>melting</div>
+<div class="tip" id="tip"></div></div>
+<div class="bar">
+<button class="btn" id="pp" aria-label="Play or pause">❚❚</button>
+<div class="track"><input type="range" id="tm" min="0" max="1000" value="40" aria-label="Time"><div class="ticks" id="sch"></div></div>
+<div class="tinfo"><span class="tlab" id="tl"></span><span class="tn" id="tn"></span></div>
+<div class="dd up spd"><button class="ghost" id="spb">1× ▾</button><div class="menu" id="spm"></div></div>
+</div></section>
+<aside class="side">
+<p class="eyebrow" id="stg"></p><h2 id="stn"></h2><div id="stt"></div>
+<details open><summary>Close-up</summary><canvas id="lens" width="380" height="210"></canvas><p class="note" id="lcap"></p></details>
+<details><summary>What to look for</summary><ul id="stl"></ul></details>
+<details><summary>Key facts</summary><div class="facts" id="stf"></div></details>
+<details><summary>Real mountain belts</summary><div class="chips" id="exc"></div><p id="exn"></p></details>
+</aside>
+</main>
+<script>
+(function(){
+const $=id=>document.getElementById(id),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const lerp=(a,b,t)=>a+(b-a)*t,cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),R=Math.random,TAU=6.2832,sm=f=>f*f*(3-2*f);
+const hs=(a,b)=>{const x=Math.sin(a*127.1+b*311.7)*43758.5453;return x-Math.floor(x)};
+function spr(col){const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d'),g=x.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,`rgba(${col},.9)`);g.addColorStop(.55,`rgba(${col},.4)`);g.addColorStop(1,`rgba(${col},0)`);x.fillStyle=g;x.fillRect(0,0,64,64);return c}
+const S={ash:spr('104,98,94'),fire:spr('255,140,50'),glow:spr('255,80,25'),white:spr('255,255,255')};
+const dp=(c,s,x,y,r,a)=>{c.globalAlpha=Math.max(0,a);c.drawImage(s,x-r,y-r,r*2,r*2)};
+const BC=['#8a6a4a','#b59467','#7a5e48','#c4a878','#6a5444','#a88a60','#5a4a3e','#9a7a58'];
+const shd=(h,f)=>{const n=parseInt(h.slice(1),16);return `rgb(${Math.round(cl((n>>16&255)*f,0,255))},${Math.round(cl((n>>8&255)*f,0,255))},${Math.round(cl((n&255)*f,0,255))})`};
+const lab=(c,t,x,y,al)=>{c.globalAlpha=1;c.font='600 12px Inter,sans-serif';c.textAlign=al||'center';c.fillStyle='rgba(241,241,232,.95)';c.fillText(t,x,y)};
+const arrow=(c,x,y,d,s,col)=>{c.fillStyle=col||'rgba(184,160,106,.92)';c.beginPath();c.moveTo(x-d*s*.3,y-s*.45);c.lineTo(x+d*s,y);c.lineTo(x-d*s*.3,y+s*.45);c.fill();c.fillRect(Math.min(x-d*s*1.4,x-d*s*.3),y-s*.15,s*1.1,s*.3)};
+
+/* ---------- geometry of a collisional orogen ---------- */
+const mY=y=>.8+.25*Math.sin(y*6.5+1.2)+.1*Math.sin(y*17);
+function geo(p,o){o=o||{};const ero=o.ero||0,col=cl((p-.45)/.55),vL=.3,ut=.5,ua=lerp(o.ua0!=null?o.ua0:.12,.5,cl(p/.45)),hp=col*(o.pl?.11:.1)*(1-ero*.8),root=hp*4.5,ex=o.pl?4:2,cw=o.collapse||0,
+bell=u=>Math.exp(-Math.pow(Math.abs(u-.5)/(.1+.12*col),ex)),fb=u=>col*(Math.exp(-Math.pow((u-.27)/.06,2))+Math.exp(-Math.pow((u-.75)/.06,2))),AY=[.12,.31,.5,.69,.88],
+e=(u,y)=>{if(u>ua&&u<ut&&ua<ut-.01)return{e:0,oc:1};let v=.015+hp*bell(u)*mY(y)+Math.sin(u*70+y*3)*hp*.05*bell(u)-(col>0?ero*.04*bell(u)*(.5+.5*Math.sin(y*13+u*25)):0)-cw*.03*bell(u)*(Math.abs(u-.5)<.07?1:.3);
+if(col<.7)for(const yy of AY)v+=.045*(1-col)*Math.exp(-(Math.pow(u-.62,2)/.0012+Math.pow(y-yy,2)/.003));return{e:Math.max(v,.004),oc:0}},
+T=u=>vL-e(u,0).e,L=(k,u)=>T(u)+k*.016*(1+.3*col*bell(u)+1.5*fb(u))+col*Math.sin(u*34+1)*.012*bell(u)*(1-k*.1),M=u=>vL+.14+root*bell(u)+fb(u)*.02;
+return{col,vL,ut,ua,hp,root,bell,fb,e,T,L,M}}
+
+/* ---------- 2D cross-section drawn onto a cut face ---------- */
+function orog(c,Wd,Hd,p,tm,o){o=o||{};const G=geo(p,o),col=G.col,vL=G.vL,ut=G.ut,ua=G.ua,root=G.root,T=G.T,L=G.L,M=G.M,ero=o.ero||0;c.save();c.beginPath();c.rect(0,0,Wd,Hd);c.clip();c.globalAlpha=1;const px=u=>u*Wd,py=v=>v*Hd;let g;
+g=c.createLinearGradient(0,py(vL+.03),0,py(1));g.addColorStop(0,'#a83a0a');g.addColorStop(.45,'#6a1c08');g.addColorStop(1,'#2a0a04');c.fillStyle=g;c.fillRect(0,py(vL+.03),Wd,Hd*.97+1);
+c.globalCompositeOperation='lighter';for(let i=0;i<5;i++){const a=tm*.2+i*1.3;dp(c,S.fire,px(.1+.2*i+Math.cos(a)*.04),py(.78+Math.sin(a)*.05),Hd*.12,.22)}c.globalCompositeOperation='source-over';c.globalAlpha=1;
+const band=(u0,u1,f1,f2,fill)=>{c.beginPath();for(let u=u0;u<=u1+.001;u+=.01){const x=px(u),y=py(f1(u));u==u0?c.moveTo(x,y):c.lineTo(x,y)}for(let u=u1;u>=u0-.001;u-=.01)c.lineTo(px(u),py(f2(u)));c.closePath();c.fillStyle=fill;c.fill();c.strokeStyle='rgba(0,0,0,.22)';c.lineWidth=1;c.stroke()};
+const lm=u=>M(u)+.1;band(ut,1.02,M,lm,'#5a4a42');if(ua>.01)band(-.02,Math.min(1,ua+col*.03),M,lm,'#5a4a42');
+const sx=px(ut),sy=py(vL),ang=.66,slL=Hd*lerp(.1,.62,cl(p/.45)),br=cl((p-.62)/.3),f1=br>0?.42:1,sp2=f=>[sx+Math.cos(ang)*slL*f,sy+Hd*.03+Math.sin(ang)*slL*f];
+if(ua<ut-.01){c.fillStyle='rgba(30,110,150,.9)';c.fillRect(px(ua),py(vL),(ut-ua)*Wd,Hd*.03)}
+if(p<.95){const a0=px(Math.max(0,ua)),e1=sp2(f1);c.lineCap='butt';c.lineWidth=Hd*.05;c.strokeStyle='#6a5a52';c.beginPath();c.moveTo(a0,sy+Hd*.03);c.lineTo(sx,sy+Hd*.03);c.lineTo(e1[0],e1[1]);c.stroke();
+c.lineWidth=Hd*.012;c.strokeStyle='#2a2a30';c.beginPath();c.moveTo(a0,sy+Hd*.01);c.lineTo(sx,sy+Hd*.01);c.lineTo(sx+Math.cos(ang)*slL*f1,sy+Hd*.01+Math.sin(ang)*slL*f1);c.stroke();
+if(br>0){const d=br*Hd*.6,s2=sp2(1);c.lineWidth=Hd*.05;c.strokeStyle='#6a5a52';c.beginPath();c.moveTo(e1[0]+Math.cos(ang)*Hd*.08,e1[1]+Math.sin(ang)*Hd*.08+d);c.lineTo(s2[0],s2[1]+d);c.stroke()}}
+const cont=(u0,u1)=>{for(let k=0;k<6;k++)band(u0,u1,u=>L(k,u),u=>L(k+1,u),BC[k%8]);band(u0,u1,u=>L(6,u),M,'#7a6a62')};
+if(ua>.01)cont(-.02,Math.min(1.02,ua+col*.03));cont(ut,1.02);
+if(p<.62&&ua<ut-.01){const e1=sp2(f1);c.setLineDash([Hd*.03,Hd*.03]);c.lineDashOffset=-tm*Hd*.06;c.strokeStyle='rgba(255,255,255,.3)';c.lineWidth=Hd*.012;c.beginPath();c.moveTo(px(Math.max(0,ua)),sy+Hd*.01);c.lineTo(sx,sy+Hd*.01);c.lineTo(e1[0],e1[1]-Hd*.02);c.stroke();c.setLineDash([]);
+for(let i=0;i<7;i++){const pp=sp2(.12+i*.11*f1),q=(tm*.8+i*.23)%1;c.fillStyle='#ff4a3a';c.beginPath();c.arc(pp[0],pp[1],Hd*.006,0,TAU);c.fill();c.strokeStyle=`rgba(255,120,80,${1-q})`;c.lineWidth=1.5;c.beginPath();c.arc(pp[0],pp[1],q*Hd*.05+1,0,TAU);c.stroke()}
+for(let i=0;i<16;i++){const pp=sp2((.35+.3*hs(i,1))*f1),a=(tm*.22+hs(i,2))%1;c.fillStyle=`rgba(150,210,255,${.8*(1-a)})`;c.beginPath();c.arc(pp[0]+a*Hd*.06,pp[1]-a*Hd*.16,Hd*.005,0,TAU);c.fill()}
+c.strokeStyle='rgba(255,215,150,.55)';c.lineWidth=2;c.setLineDash([6,6]);c.lineDashOffset=-tm*14;c.beginPath();c.arc(sx+Hd*.52,py(.62),Hd*.07,.5,5);c.stroke();c.setLineDash([])}
+if(p<.6&&ua<ut-.02){c.fillStyle='#b59467';c.beginPath();c.moveTo(px(ut-.07),py(vL+.03));c.lineTo(px(ut),py(vL+.03));c.lineTo(px(ut),py(vL-.02));c.fill()}
+if(col<.7){for(const u of[.58,.64,.7]){const x=px(u),y=py(T(u)),h=Hd*.04*(1-col),w2=Hd*.03;c.fillStyle='#3a2f2a';c.beginPath();c.moveTo(x-w2,y);c.lineTo(x,y-h);c.lineTo(x+w2,y);c.fill();if(h>2){dp(c,S.glow,x,y-h,Hd*.05,.7+.3*Math.sin(tm*5+u*9));dp(c,S.ash,x+Math.sin(tm+u*5)*10,y-h-((tm*30+u*99)%40),Hd*.03,.4)}}
+for(let i=0;i<5;i++){const a=(tm*.18+i*.2)%1,pp=sp2(.55),xx=lerp(pp[0],px(.64),a),yy=lerp(pp[1],py(vL+.1),a);dp(c,S.fire,xx,yy,Hd*.012,.8*(1-a))}c.globalAlpha=1}
+if(o.heat&&col>.02){const cx=px(.5),cy=py(vL+.2+root*.45),r=Wd*.2*(.4+col);c.save();c.translate(cx,cy);c.scale(1.5,1);const rg=c.createRadialGradient(0,0,0,0,0,r);rg.addColorStop(0,`rgba(255,235,120,${.8*col})`);rg.addColorStop(.28,`rgba(255,110,40,${.62*col})`);rg.addColorStop(.58,`rgba(235,165,60,${.5*col})`);rg.addColorStop(.85,`rgba(70,175,125,${.4*col})`);rg.addColorStop(1,'rgba(70,175,125,0)');c.fillStyle=rg;c.beginPath();c.arc(0,0,r,0,TAU);c.fill();c.restore()}
+if(col>.05){for(const s of[-1,1]){const u0=.5+s*.09*(.5+col),x1=px(.5),y1=py(M(.5));c.strokeStyle=o.faults?'rgba(255,230,120,.95)':'rgba(10,5,2,.85)';c.lineWidth=o.faults?4:3;c.beginPath();c.moveTo(px(u0),py(T(u0)));c.lineTo(x1,y1);c.stroke();const q=(tm*.9+(s>0?.4:0))%1;c.strokeStyle=`rgba(255,220,120,${(1-q)*.6*col})`;c.lineWidth=2;c.beginPath();c.arc(x1,y1,q*Hd*.07+1,0,TAU);c.stroke();
+if(o.faults){const a=(tm*.5)%1,xa=lerp(px(u0),x1,a),ya=lerp(py(T(u0)),y1,a);arrow(c,xa,ya,s,Hd*.04,'rgba(255,255,255,.95)')}}
+c.globalCompositeOperation='lighter';dp(c,S.glow,px(.5),py(vL+.2+root*.5),Wd*.16,.6*col);c.globalCompositeOperation='source-over';
+if(col>.65)for(let i=0;i<5;i++){const a=(tm*.1+i*.2)%1;dp(c,S.fire,px(.5+(i-2)*.025),py(lerp(M(.5)-.02,T(.5)+.06,a)),Hd*.015,.85*(1-a*.5))}c.globalAlpha=1}
+if(o.collapse){c.strokeStyle='rgba(10,5,2,.9)';c.lineWidth=3;for(const s of[-1,1]){c.beginPath();c.moveTo(px(.5+s*.06),py(T(.5+s*.06)));c.lineTo(px(.5+s*.17),py(.46));c.stroke()}}
+if(G.hp>.04){c.fillStyle='rgba(255,255,255,.9)';c.beginPath();for(let u=.35;u<=.65;u+=.005)c.lineTo(px(u),py(T(u)));for(let u=.65;u>=.35;u-=.005)c.lineTo(px(u),py(T(u))+Hd*Math.max(0,G.hp*G.bell(u)-G.hp*.55)*.5);c.fill()}
+if(ero>0&&col>0){c.strokeStyle='rgba(90,160,215,.85)';c.lineWidth=2;for(const s of[-1,1])for(let k=0;k<2;k++){c.beginPath();for(let u=.5+s*.02*(k+1);Math.abs(u-.5)<.26;u+=s*.01)c.lineTo(px(u),py(T(u))+2+k*3);c.stroke()}}
+if(o.strain){c.strokeStyle='rgba(255,255,255,.75)';c.lineWidth=1.4;for(let i=0;i<9;i++)for(let j=0;j<5;j++){const u0=.08+i*.105,u1=.5+(u0-.5)*(1-col*.45*Math.exp(-Math.pow((u0-.5)/.2,2))),t1=T(u1),m1=M(u1),vv=t1+(j+.5)/5*(m1-t1);if(u1<ua+col*.03||u1>ut){c.beginPath();c.ellipse(px(u1),py(vv),Math.max(2,Wd*.02*(1-col*.5*G.bell(u1))),Math.max(2,(m1-t1)/5*Hd*.4*(1+col*.5*G.bell(u1))),0,0,TAU);c.stroke()}}}
+if(o.iso){c.setLineDash([6,6]);c.strokeStyle='rgba(255,255,255,.7)';c.lineWidth=1.5;c.beginPath();c.moveTo(0,py(vL));c.lineTo(Wd,py(vL));c.moveTo(px(.25),py(vL+.14));c.lineTo(px(.75),py(vL+.14));c.stroke();c.setLineDash([])}
+c.restore();return Object.assign({},G)}
+function sideFace(c,w,h,G,u){const L=G.L;c.save();c.beginPath();c.rect(0,0,w,h);c.clip();for(let k=0;k<6;k++){c.fillStyle=BC[k%8];c.fillRect(0,h*L(k,u),w,h*(L(k+1,u)-L(k,u))+1)}c.fillStyle='#7a6a62';c.fillRect(0,h*L(6,u),w,h*(G.M(u)-L(6,u))+1);c.fillStyle='#5a4a42';c.fillRect(0,h*G.M(u),w,h*.1+1);
+const g=c.createLinearGradient(0,h*(G.M(u)+.1),0,h);g.addColorStop(0,'#a83a0a');g.addColorStop(.5,'#6a1c08');g.addColorStop(1,'#2a0a04');c.fillStyle=g;c.fillRect(0,h*(G.M(u)+.1),w,h);c.strokeStyle='rgba(0,0,0,.25)';for(let k=0;k<=7;k++){c.beginPath();c.moveTo(0,h*L(k,u));c.lineTo(w,h*L(k,u));c.stroke()}c.restore()}
+const orogCol=(G,o)=>(r,sl,u,y,tm)=>{if(r.oc){const w=.5+.5*Math.sin(u*70-tm*2+y*3);return `rgb(${Math.round(24+w*14)},${Math.round(106+w*20)},${Math.round(140+w*20)})`}
+if(o.collapse&&Math.abs(u-.5)<.07&&G.col>.8)return shd(Math.floor(y*14)%2?'#e8dfd0':'#4a4440',cl(1-sl*.2,.7,1.1));
+const e=r.e,sh=cl(1-sl*.3,.55,1.25),k1=sm(cl((e-.02)/.015)),k2=sm(cl((e-.04)/.015)),k3=sm(cl((e-.062)/.025)),g1=[111,138,74],g2=[138,122,88],g3=[130,118,110],sn=[245,248,250],c1=g1.map((v,i)=>lerp(lerp(lerp(v,g2[i],k1),g3[i],k2),sn[i],k3));return `rgb(${c1.map(v=>Math.round(cl(v*sh,0,255))).join()})`};
+
+/* ---------- metamorphic texture (used in the lens) ---------- */
+function metaTex(c,X,Y,Wd,Hd,u,tm){c.save();c.beginPath();c.rect(X,Y,Wd,Hd);c.clip();const al=sm(cl((u-.15)/.4)),sz=lerp(3,15,sm(u));
+c.fillStyle=u<.2?'#4a423c':u<.4?'#3a3e46':u<.7?'#4a4448':'#5a5250';c.fillRect(X,Y,Wd,Hd);
+for(let i=0;i<320;i++){const x=X+hs(i,1)*Wd,y=Y+hs(i,2)*Hd,a=lerp((hs(i,3)-.5)*3.1,.25+(hs(i,4)-.5)*.2,al),l=sz*(.6+hs(i,5))*.7,lt=Math.round(70+hs(i,6)*60+u*45),w=hs(i,7)<.5;c.save();c.translate(x,y);c.rotate(a);c.fillStyle=u>.55?(w?`hsl(30,20%,${lt*.4}%)`:`hsl(210,8%,${lt*.9}%)`):`rgb(${lt-20},${lt-28},${lt-34})`;c.beginPath();c.ellipse(0,0,l,l*.28,0,0,TAU);c.fill();c.restore()}
+if(u>.7){const k=sm((u-.7)/.3);for(let j=0;j<7;j++){c.fillStyle=j%2?`rgba(235,225,205,${.28*k})`:`rgba(20,16,16,${.3*k})`;c.fillRect(X,Y+j*Hd/7+Math.sin(tm+j)*3,Wd,Hd/7)}}
+if(u>.45&&u<.95){const n=Math.round(9*sm(cl((u-.45)/.2)));for(let i=0;i<n;i++){const x=X+hs(i,11)*Wd,y=Y+hs(i,12)*Hd,r=5+hs(i,13)*5;c.fillStyle='#8a1a2a';c.beginPath();c.arc(x,y,r,0,TAU);c.fill()}}
+if(u>.9){const k=cl((u-.9)/.1);c.strokeStyle=`rgba(255,215,160,${.6*k})`;c.lineWidth=5;for(let j=0;j<4;j++){c.beginPath();for(let x=0;x<=Wd;x+=20)c.lineTo(X+x,Y+Hd*(.15+j*.22)+Math.sin(x*.02+j+tm)*8);c.stroke()}}c.restore()}
+const ROCK=u=>u<.18?'Shale':u<.38?'Slate':u<.7?'Schist':u<.9?'Gneiss':'Migmatite';
+
+/* ---------- content ---------- */
+const STG=[
+{n:'The ocean closes',a:0,b:.28,cam:[.5,.6],ov:{arrows:1},t:['Two continents drift towards each other across an ocean. Cold, dense oceanic plate sinks into the mantle at a subduction zone, and its weight drags the whole plate (and the continent riding on it) towards the trench.','Water driven out of the sinking slab lowers the melting point of the mantle above, so magma rises and builds a chain of volcanoes on the overriding plate. Earthquakes trace the slab as it descends.'],look:['The sinking slab and its quake foci (red)','Water rising off the slab (blue)','The volcanic arc on the right continent','Plate motion arrows'],f:['Closing speed: roughly 2–10 cm a year','The Tethys Ocean closed over about 100 million years']},
+{n:'First contact',a:.28,b:.4,cam:[.4,.5],ov:{arrows:1},t:['When the continental margin reaches the trench, trouble starts. Continental crust (about 2.7 g/cm³) is lighter than the mantle (about 3.3), so it resists being pulled down. Subduction stalls and the plates begin to lock together.','Sediments scraped off the margin are stacked into a wedge, and slivers of old ocean floor (ophiolites) get shoved up onto the continent. The suture between them marks where the ocean used to be.'],look:['Ocean basin gone, margins touching','The scraped-off wedge at the trench','Slab still attached below'],f:['Continental crust ~2.7 vs mantle ~3.3 g/cm³','Collisions slow down but do not stop: India still converges at ~4–5 cm a year']},
+{n:'Shortening: folds and thrusts',a:.4,b:.56,cam:[.2,.8],ov:{faults:1,strain:1},t:['The plates keep pushing, so the crust has to go somewhere. The upper crust shortens by folding and by thrust faults that stack slices of rock on top of each other like roof tiles. Deeper, the crust flows more like putty.','Faults merge into a flat detachment (a décollement) at depth. The whole wedge self-adjusts to a critical taper, like snow piling up in front of a bulldozer.'],look:['Yellow thrust faults slicing the crust','Strain ellipses squashed horizontally and stretched vertically','Fault traces on the surface'],f:['The Alps shortened by well over 100 km','Much of India–Asia convergence (about 2,500 km) was absorbed by thickening and sideways escape of crust']},
+{n:'Thickening and uplift',a:.56,b:.7,cam:[.35,.45],ov:{iso:1,arrows:1},t:['Shortening piles crust up, making it thicker. Thick, light crust floats higher on the mantle, like an iceberg, and most of the extra thickness goes downwards as a root: elevation is only about 18% of the extra crust.','Meanwhile the old oceanic slab below can break off and sink away. That removes a downward pull, and the range can pop up. Under Tibet the crust is roughly 70 km thick, twice normal.'],look:['A deep crustal root beneath the mountain','Dashed lines show sea level and normal Moho depth','The slab breaking off and falling away'],f:['Extra elevation = about 0.18 × extra crust thickness','Everest 8.8 km; Tibetan plateau about 5 km on average']},
+{n:'Metamorphism and melting',a:.7,b:.8,cam:[.0,.35],ov:{heat:1},t:['Buried rocks heat up and are squeezed without melting. Their minerals recrystallise and line up, turning shale into slate, then schist, then gneiss, with telltale minerals such as garnet and kyanite marking each grade.','At the deepest, hottest levels water-bearing rock starts to melt, making granite magma that rises and cools into plutons. Some rock is even dragged down more than 80 km and comes back up (eclogite and coesite are found in the Alps and Himalaya).'],look:['The glowing heat zone under the range','Grade rising from green (low) to red and yellow (melting)','Hover the cut face for temperature and rock type'],f:['Barrovian sequence: slate → schist → gneiss','Ultra-high pressure rocks record burial to over 2.5 GPa']},
+{n:'Erosion and the balance',a:.8,b:.92,cam:[.7,.55],ov:{iso:1},t:['Rain, rivers and glaciers strip material off the range while uplift keeps pushing it up. Sediment fills a basin that sags next to the mountains, the foreland basin.','Removing mass from the top lets the crust below rebound upwards, so erosion actually drives more uplift. When erosion balances uplift, the range holds a steady height for millions of years.'],look:['Rivers carving valleys into the mountain','Thick sediment wedges on both sides','Height settling as erosion catches up'],f:['Rivers can wear down several mm a year locally','About 80% of removed crust is replaced by rebound from below']},
+{n:'Collapse and exhumation',a:.92,b:1,cam:[.9,.5],ov:{faults:1},t:['When the push weakens, thick hot crust can no longer hold itself up. It spreads sideways under its own weight, normal faults open at the top, and deep rocks are dragged up into domes (metamorphic core complexes).','Over hundreds of millions of years only the roots of the old mountains remain, which is what the Appalachians and Urals are: worn-down stumps of ancient collisions.'],look:['Normal faults and a sunken centre','Banded gneiss exposed at the surface','Shorter, eroded mountains'],f:['Tibet is stretching east–west today along normal faults','Deep rocks (gneiss) reach the surface by exhumation']}];
+const EX=[{n:'None',lag:0,pl:0,eb:0,t:''},{n:'Himalaya',lag:.38,pl:1,eb:0,t:'India (the “indenter”) hit Asia corner-first about 50 million years ago, so the collision zipped along the belt, and it still converges at roughly 4–5 cm a year. About 2,400 km long, Everest 8,849 m, with the Tibetan plateau behind.'},{n:'Alps',lag:.12,pl:0,eb:0,t:'Africa’s promontory (Adria) pushed into Europe from about 35 million years ago. Stacks of rock sheets (nappes) were shoved tens of kilometres over each other. About 1,200 km long, Mont Blanc about 4,800 m, still rising by 1–2 mm a year.'},{n:'Appalachians',lag:0,pl:0,eb:.45,t:'Built in several collisions (Taconic, Acadian, Alleghanian, roughly 480–250 million years ago) that assembled Pangaea. Hundreds of millions of years of erosion have worn them low, though they may once have rivalled the Alps. Mt Mitchell is 2,037 m.'},{n:'Urals',lag:0,pl:0,eb:.7,t:'The suture between Europe and Siberia–Kazakhstan, assembled around 300 million years ago. One of the oldest, most deeply eroded belts, about 2,500 km long, with a high point of only 1,895 m.'}];
+
+/* ---------- main 3D lab ---------- */
+const cv=$('cv'),c=cv.getContext('2d'),stg=$('stage'),lens=$('lens'),lc=lens.getContext('2d'),tip=$('tip');
+const st={t:.04,play:true,speed:1,yaw:.55,pitch:.62,tyaw:.55,tpitch:.62,zoom:1,cut:0,lag:.0,ex:EX[0],ov:{arrows:1,faults:0,strain:0,heat:0,iso:0,labels:1},drag:false,px:-1,py:-1,fm:null,stage:-1,hold:0};
+let W,H,dpr;
+function size(){dpr=Math.min(devicePixelRatio||1,1.5);W=stg.clientWidth;H=stg.clientHeight;if(!W||!H)return;cv.width=W*dpr;cv.height=H*dpr}
+new ResizeObserver(size).observe(stg);size();
+const Lx=1.5,Ly=.9,Lz=.85,NU=84,NY=16,WF=630,HF=357,WS=Ly*420;
+function stageOf(t){let i=0;STG.forEach((s,k)=>{if(t>=s.a)i=k});return i}
+const ddAll=[...document.querySelectorAll('.dd')],closeDD=()=>ddAll.forEach(x=>{x.classList.remove('open');x.querySelector('button.ghost').setAttribute('aria-expanded','false')});
+ddAll.forEach(d=>{const b=d.querySelector('button.ghost');b.setAttribute('aria-haspopup','true');b.setAttribute('aria-expanded','false');b.onclick=e=>{e.stopPropagation();const o=!d.classList.contains('open');closeDD();if(o){d.classList.add('open');b.setAttribute('aria-expanded','true')}}});
+document.addEventListener('click',e=>{if(!e.target.closest('.dd'))closeDD()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDD()});
+function syncTog(){$('tog').querySelectorAll('input').forEach(i=>{i.checked=!!st.ov[i.dataset.k]})}
+function setStage(i,jump){st.stage=i;const s=STG[i];$('stg').textContent=`STAGE ${i+1} OF ${STG.length}`;$('stn').textContent=s.n;$('tn').textContent=s.n;$('stt').innerHTML=s.t.map(x=>`<p>${x}</p>`).join('');$('stl').innerHTML=s.look.map(x=>`<li>${x}</li>`).join('');$('stf').innerHTML=s.f.map(x=>`<span>${x}</span>`).join('');
+[...$('sch').children].forEach((b,j)=>b.setAttribute('aria-pressed',j==i));if(jump){st.t=(s.a+s.b)/2;st.tyaw=s.cam[0];st.tpitch=s.cam[1];Object.assign(st.ov,{arrows:0,faults:0,strain:0,heat:0,iso:0},s.ov);syncTog()}}
+STG.forEach((s,i)=>{const b=document.createElement('button');b.className='tick';b.textContent=i+1;b.title=s.n;b.setAttribute('aria-label','Stage '+(i+1)+': '+s.n);b.style.left=(s.a*100+((s.b-s.a)*50))+'%';b.setAttribute('aria-pressed','false');b.onclick=()=>{st.play=false;$('pp').textContent='▶';setStage(i,true)};$('sch').appendChild(b)});
+[['arrows','Plate motion'],['faults','Faults'],['strain','Strain ellipses'],['heat','Heat and metamorphism'],['iso','Isostasy lines'],['labels','Labels']].forEach(([k,n])=>{const l=document.createElement('label');l.className='opt';l.innerHTML=`<input type="checkbox" data-k="${k}"> ${n}`;l.querySelector('input').onchange=e=>{st.ov[k]=e.target.checked?1:0};$('tog').appendChild(l)});syncTog();
+EX.forEach((e,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=e.n==='None'?'Generic collision':e.n;b.setAttribute('aria-pressed',i==0);b.onclick=()=>{st.ex=e;st.lag=e.lag;[...$('exc').children].forEach((x,j)=>x.setAttribute('aria-pressed',j==i));$('exn').textContent=e.t||'A schematic collision. Pick a real mountain belt to see how its history differs.'};$('exc').appendChild(b)});$('exn').textContent='A schematic collision. Pick a real mountain belt to see how its history differs.';
+[['Front section',.03,.3],['3D view',.55,.62],['Top view',.2,1.3],['Along strike',1.45,.45]].forEach(([n,y,p])=>{const b=document.createElement('button');b.className='opt';b.textContent=n;b.onclick=()=>{st.tyaw=y;st.tpitch=p;closeDD()};$('cam').appendChild(b)});
+[[.5,'0.5×'],[1,'1×'],[2,'2×']].forEach(([v,n])=>{const b=document.createElement('button');b.className='opt';b.textContent=n;b.onclick=()=>{st.speed=v;$('spb').textContent=n+' ▾';closeDD()};$('spm').appendChild(b)});
+$('pp').onclick=()=>{st.play=!st.play;$('pp').textContent=st.play?'❚❚':'▶'};
+$('tm').oninput=()=>{st.t=+$('tm').value/1000;st.play=false;$('pp').textContent='▶'};$('cut').oninput=()=>{st.cut=+$('cut').value/100*.75};
+const hint=$('hint');setTimeout(()=>hint.classList.add('gone'),9000);
+/* orbit: drag to rotate, wheel to zoom */
+cv.addEventListener('pointerdown',e=>{hint.classList.add('gone');closeDD();st.drag=true;st.lx=e.clientX;st.ly=e.clientY;cv.setPointerCapture(e.pointerId);tip.style.display='none'});
+cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();st.px=e.clientX-r.left;st.py=e.clientY-r.top;if(st.drag){st.tyaw+=(e.clientX-st.lx)*.008;st.tpitch=cl(st.tpitch+(e.clientY-st.ly)*.006,.15,1.4);st.yaw=st.tyaw;st.pitch=st.tpitch;st.lx=e.clientX;st.ly=e.clientY}});
+cv.addEventListener('pointerup',()=>{st.drag=false});cv.addEventListener('pointerleave',()=>{st.px=-1;tip.style.display='none'});
+cv.addEventListener('wheel',e=>{e.preventDefault();st.zoom=cl(st.zoom*(e.deltaY<0?1.08:.926),.6,2.2)},{passive:false});cv.addEventListener('dblclick',()=>{st.tyaw=.55;st.tpitch=.62;st.zoom=1});
+
+function params(){const t=st.t,P=cl(t/.8),ex=st.ex,lagE=st.lag*(1-cl((t-.8)/.1));return{P,lagE,o:{ero:ex.eb+cl((t-.8)/.12)*.55,collapse:cl((t-.92)/.08),pl:ex.pl,ua0:.12,heat:st.ov.heat,faults:st.ov.faults,strain:st.ov.strain,iso:st.ov.iso}}}
+const PR=(yaw,pitch,S0,mx,my)=>{const cp=Math.cos(yaw),sp=Math.sin(yaw),ct=Math.cos(pitch),st2=Math.sin(pitch);return(x,y,z)=>{x-=Lx/2;y-=Ly/2;z-=Lz/2;const xr=x*cp+y*sp,yr=-x*sp+y*cp;return[mx+S0*xr,my+S0*(-z*ct-yr*st2),yr*ct-z*st2]}};
+function frame(dt,tm){if(!W)return;
+if(st.play){st.t+=dt*.012*st.speed;if(st.t>=1){st.t=1;st.hold+=dt;if(st.hold>2.5){st.t=0;st.hold=0}}else st.hold=0}
+const k=Math.min(1,dt*5);if(!st.drag){st.yaw+=(st.tyaw-st.yaw)*k;st.pitch+=(st.tpitch-st.pitch)*k}
+const si=stageOf(st.t);if(si!==st.stage)setStage(si,false);$('tm').value=Math.round(st.t*1000);const tMy=(st.t-.34)*100;$('tl').textContent=(tMy<0?'T − '+Math.round(-tMy):'T + '+Math.round(tMy))+' million years';
+const {P,lagE,o}=params(),pa=y=>cl(P-lagE*y,0,1),yc=st.cut;
+c.setTransform(dpr,0,0,dpr,0,0);c.globalAlpha=1;let g=c.createRadialGradient(W/2,H*.45,H*.1,W/2,H*.5,H*.9);g.addColorStop(0,'#16233a');g.addColorStop(1,'#050807');c.fillStyle=g;c.fillRect(0,0,W,H);
+c.fillStyle='#fff';for(let i=0;i<36;i++){c.globalAlpha=.12+.25*Math.abs(Math.sin(tm*.7+i));c.fillRect(hs(i,1)*W,hs(i,2)*H*.5,1.2,1.2)}c.globalAlpha=1;
+const yaw=st.yaw+(st.drag?0:.05*Math.sin(tm*.3)),S0=Math.min(W/2.2,H/1.75)*1.02*st.zoom,pr=PR(yaw,st.pitch,S0,W*.5,H*.52+32),cp=Math.cos(yaw),sp=Math.sin(yaw),ct=Math.cos(st.pitch),st2=Math.sin(st.pitch),zs=.7*Lz;
+/* floor grid */
+c.strokeStyle='rgba(255,255,255,.045)';c.lineWidth=1;for(let i=-3;i<=9;i++){const a=pr(i*.25-.3,-.4,-.06*Lz),b=pr(i*.25-.3,Ly+.4,-.06*Lz);c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke()}for(let i=-2;i<=6;i++){const a=pr(-.4,i*.25-.1,-.06*Lz),b=pr(Lx+.4,i*.25-.1,-.06*Lz);c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.stroke()}
+/* top mesh */
+const rows=[];for(let j=0;j<=NY;j++){const yn=yc+(1-yc)*j/NY,p=pa(yn),G=geo(p,o);rows.push({yn,p,G,cf:orogCol(G,o)})}
+const V=rows.map(r=>{const a=[];for(let i=0;i<=NU;i++){const u=i/NU,e=r.G.e(u,r.yn);a.push({e,P:pr(u*Lx,r.yn*Ly,zs+e.e*Lz)})}return a}),Q=[];
+for(let j=0;j<NY;j++)for(let i=0;i<NU;i++){const a=V[j][i],b=V[j][i+1],d=V[j+1][i+1],e=V[j+1][i];Q.push({a,b,d,e,z:(a.P[2]+b.P[2]+d.P[2]+e.P[2])/4,col:rows[j].cf(a.e,(b.e.e-a.e.e)*NU,i/NU,rows[j].yn,tm)})}
+Q.sort((x,y)=>y.z-x.z);for(const q of Q){c.fillStyle=q.col;c.beginPath();c.moveTo(q.a.P[0],q.a.P[1]);c.lineTo(q.b.P[0],q.b.P[1]);c.lineTo(q.d.P[0],q.d.P[1]);c.lineTo(q.e.P[0],q.e.P[1]);c.closePath();c.fill();c.strokeStyle=q.col;c.lineWidth=.7;c.stroke()}
+/* cut faces */
+const y0=yc*Ly,FC=[{k:'f',n:[0,-1,0],O:[0,y0,Lz],U:[Lx,0,0],V:[0,0,-Lz],w:WF,h:HF},{k:'b',n:[0,1,0],O:[0,Ly,Lz],U:[Lx,0,0],V:[0,0,-Lz],w:WF,h:HF},{k:'l',n:[-1,0,0],O:[0,y0,Lz],U:[0,Ly-y0,0],V:[0,0,-Lz],w:WS,h:HF},{k:'r',n:[1,0,0],O:[Lx,y0,Lz],U:[0,Ly-y0,0],V:[0,0,-Lz],w:WS,h:HF}];
+const vis=FC.filter(f=>{const nx=f.n[0]*cp+f.n[1]*sp,ny=-f.n[0]*sp+f.n[1]*cp;return ny*ct-f.n[2]*st2<0});
+for(const f of vis){const m=pr(f.O[0]+f.U[0]/2+f.V[0]/2,f.O[1]+f.U[1]/2,f.O[2]+f.V[2]/2);f.d=m[2]}vis.sort((a,b)=>b.d-a.d);st.fm=null;
+for(const f of vis){const o2=pr(...f.O),u2=pr(f.O[0]+f.U[0],f.O[1]+f.U[1],f.O[2]+f.U[2]),v2=pr(f.O[0]+f.V[0],f.O[1]+f.V[1],f.O[2]+f.V[2]),M=[(u2[0]-o2[0])/f.w,(u2[1]-o2[1])/f.w,(v2[0]-o2[0])/f.h,(v2[1]-o2[1])/f.h,o2[0],o2[1]];
+c.save();c.transform(M[0],M[1],M[2],M[3],M[4],M[5]);if(f.k=='f')orog(c,f.w,f.h,pa(yc),tm,o);else if(f.k=='b')orog(c,f.w,f.h,pa(1),tm,Object.assign({},o,{strain:0,heat:0,faults:0,iso:0}));else sideFace(c,f.w,f.h,f.k=='l'?rows[0].G:rows[NY].G,f.k=='l'?0:1);c.restore();
+if(f.k=='l'||f.k=='r'){c.fillStyle='rgba(0,0,0,.3)';c.beginPath();[o2,u2,[u2[0]+v2[0]-o2[0],u2[1]+v2[1]-o2[1]],v2].forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.fill()}
+c.strokeStyle='rgba(255,255,255,.4)';c.lineWidth=1.5;c.beginPath();[o2,u2,[u2[0]+v2[0]-o2[0],u2[1]+v2[1]-o2[1]],v2].forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();c.stroke();if(f.k=='f')st.fm=M}
+/* overlays on the top surface */
+const sf=(u,y)=>{const j=Math.min(NY,Math.max(0,Math.round((y-yc)/(1-yc)*NY))),e=rows[j].G.e(u,y);return pr(u*Lx,y*Ly,zs+(e.e+.004)*Lz)};
+if(st.ov.faults){c.lineWidth=3;c.strokeStyle='rgba(255,230,120,.95)';for(const s of[-1,1]){c.beginPath();let on=0;for(let j=0;j<=NY;j++){const r=rows[j];if(r.G.col>.05){const u=.5+s*.09*(.5+r.G.col),q=sf(u,r.yn);on?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]);on=1}}c.stroke()}}
+if(st.ov.arrows&&P<.9)for(const s of[-1,1]){const u0=s<0?.07:.93,d=-s,pts=[[0,-.04],[.12*d,-.04],[.12*d,-.08],[.22*d,0],[.12*d,.08],[.12*d,.04],[0,.04]],ym=yc+(1-yc)*.5;c.fillStyle='rgba(184,160,106,.95)';c.beginPath();pts.forEach((q,i)=>{const p2=pr((u0+q[0]+d*Math.sin(tm*2)*.012)*Lx,(ym+q[1]*1.2)*Ly,zs+.08*Lz);i?c.lineTo(p2[0],p2[1]):c.moveTo(p2[0],p2[1])});c.closePath();c.fill()}
+if(st.ov.labels){c.save();c.shadowColor='#000';c.shadowBlur=5;const ym2=yc+(1-yc)*.5,Gm=rows[Math.round(NY/2)].G;c.font='500 11px Inter,sans-serif';c.fillStyle='rgba(241,241,232,.8)';c.textAlign='center';if(Gm.col<.6){const q=sf(.64,ym2*.5+.1);c.fillText('VOLCANIC ARC',q[0],q[1]-24)}if(Gm.col>.4){const q=sf(.5,ym2);c.fillText('MOUNTAIN BELT',q[0],q[1]-22)}c.restore()}
+/* probe on the cut face */
+if(st.fm&&st.px>=0&&!st.drag){const M=st.fm,det=M[0]*M[3]-M[1]*M[2],X=st.px-M[4],Y=st.py-M[5],lx=(M[3]*X-M[2]*Y)/det,ly=(-M[1]*X+M[0]*Y)/det;
+if(lx>=0&&lx<=WF&&ly>=0&&ly<=HF){const u=lx/WF,v=ly/HF,Gp=geo(pa(yc),o),Tt=Gp.T(u),z=Math.max(0,(v-Tt)*250);let nm='Air';
+const ocean=u>Gp.ua&&u<Gp.ut&&Gp.ua<Gp.ut-.01;
+if(ocean){nm=v<Gp.vL?'Air':v<Gp.vL+.03?'Sea water':'Mantle (peridotite)'}else if(v>=Tt){const kk=[0,1,2,3,4,5].find(k=>v<Gp.L(k+1,u));if(kk!=null)nm=['Sandstone','Limestone','Shale','Sandstone','Limestone','Shale'][kk]+' (sedimentary)';else if(v<Gp.M(u))nm='Crystalline basement (granite/gneiss)';else if(v<Gp.M(u)+.1)nm='Lithospheric mantle';else nm='Hot mantle (asthenosphere)'}
+const Tc=15+18*z*(1+.45*Gp.col*Gp.bell(u)),gr=nm.includes('sedim')||nm.includes('base')?(Tc>720?'granulite / partial melt':Tc>500?'amphibolite grade':Tc>300?'greenschist grade':''):'';
+tip.style.display='block';tip.style.left=Math.min(W-200,st.px+16)+'px';tip.style.top=Math.max(8,st.py-10)+'px';tip.innerHTML=`<b>${nm}</b>${v>=Tt&&!ocean?`<br>depth ≈ ${z.toFixed(0)} km · ${Math.round(Tc)} °C · ${(z*.027).toFixed(2)} GPa`:''}${gr?`<br><i>${gr}</i>`:''}`;c.strokeStyle='#ffdc78';c.lineWidth=2;c.beginPath();c.arc(st.px,st.py,5,0,TAU);c.stroke()}else tip.style.display='none'}else if(!st.drag)tip.style.display='none';
+$('leg').style.display=st.ov.heat?'block':'none';
+lensDraw(tm,P,o)}
+
+/* ---------- the lens: a close-up that changes with the stage ---------- */
+function lensDraw(tm,P,o){const w=380,h=210,s=st.stage;lc.setTransform(1,0,0,1,0,0);lc.globalAlpha=1;lc.fillStyle='#08100f';lc.fillRect(0,0,w,h);lc.textAlign='left';lc.font='12px Inter,sans-serif';
+const cap=['Ocean width closing (schematic)','Buoyancy: why continents will not sink','Fold and thrust detail','Isostasy: floating crust','Rock texture at this grade','Uplift against erosion','Normal faults in the collapsing crust'];$('lcap').textContent=cap[s];
+if(s==0){const f=cl(st.t/.34);lc.strokeStyle='rgba(241,241,232,.4)';lc.strokeRect(30,20,320,150);lc.strokeStyle='#ff7a3a';lc.lineWidth=2.5;lc.beginPath();lc.moveTo(30,30);lc.lineTo(350,160);lc.stroke();lc.fillStyle='#fff';lc.beginPath();lc.arc(30+320*f,30+130*f,5,0,TAU);lc.fill();lc.fillStyle='rgba(241,241,232,.8)';lc.fillText('ocean width ≈ '+Math.round(4000*(1-f)).toLocaleString('en-GB')+' km',40,196);lc.fillText('time ▸',300,186)}
+else if(s==1){[['Oceanic crust',3.0,'#3a4a5a'],['Continental crust',2.7,'#9a8a7a'],['Mantle',3.3,'#b8420c']].forEach((b,i)=>{const bw=(b[1]-2)*210;lc.fillStyle=b[2];lc.fillRect(20,28+i*52,bw,28);lc.fillStyle='#f1f1e8';lc.fillText(b[0]+'  '+b[1].toFixed(1)+' g/cm³',26,46+i*52)});lc.fillStyle='#ffdc78';lc.fillText('lighter than the mantle: it floats',20,200);const bob=Math.sin(tm*2)*3;lc.fillStyle='#9a8a7a';lc.fillRect(300,60+bob,60,24)}
+else if(s==2){const sh=cl((P-.5)/.5)*.55,N=2.5,wd=330*(1-sh*.3);let lo=0,hi=wd*.5;for(let i=0;i<12;i++){const A=(lo+hi)/2;let len=0,qx=0,qy=0;for(let k=1;k<=50;k++){const x=wd*k/50,y=A*Math.sin(TAU*N*k/50);len+=Math.hypot(x-qx,y-qy);qx=x;qy=y}len>330?hi=A:lo=A}const A=(lo+hi)/2*.5;for(let k=0;k<7;k++){lc.beginPath();for(let x=0;x<=wd;x+=6){const y=60+k*16+A*Math.sin(TAU*N*x/wd);x?lc.lineTo(25+x,y):lc.moveTo(25+x,y)}for(let x=wd;x>=0;x-=6)lc.lineTo(25+x,76+k*16+A*Math.sin(TAU*N*x/wd));lc.closePath();lc.fillStyle=BC[k%8];lc.fill()}lc.fillStyle='rgba(241,241,232,.8)';lc.fillText('shortened by '+Math.round(sh*100)+'%',25,28);lc.fillText('anticlines up, synclines down',25,196)}
+else if(s==3){const d=cl((P-.7)/.3)*35,e=d*.1818,r=d-e,k=2.6,sl=70;lc.fillStyle='#b8420c';lc.fillRect(0,sl,w,h);lc.fillStyle='rgba(30,110,150,.9)';lc.fillRect(0,sl,60,4);lc.fillRect(320,sl,60,4);lc.fillStyle='#7a6a62';lc.fillRect(70,sl-e*k,240,(35+r+e)*k*.0+ (35+r)*k+e*k);lc.setLineDash([4,4]);lc.strokeStyle='#fff';lc.beginPath();lc.moveTo(60,sl+35*k);lc.lineTo(320,sl+35*k);lc.stroke();lc.setLineDash([]);lc.fillStyle='#fff';lc.fillText('extra thickness '+d.toFixed(0)+' km: stands '+e.toFixed(1)+' km up, root '+r.toFixed(1)+' km down',8,16)}
+else if(s==4){const u=cl((P-.8)/.2);metaTex(lc,10,10,230,190,u,tm);lc.fillStyle='#f6dd8e';lc.font='700 13px Inter,sans-serif';lc.fillText(ROCK(u).toUpperCase(),256,40);lc.fillStyle='rgba(241,241,232,.8)';lc.font='12px Inter,sans-serif';lc.fillText('~'+Math.round(15+18*u*40)+' °C',256,62);lc.fillText('~'+(u*40*.027).toFixed(2)+' GPa',256,80)}
+else if(s==5){const f=cl((st.t-.8)/.12);lc.strokeStyle='rgba(241,241,232,.4)';lc.strokeRect(30,20,320,150);lc.setLineDash([4,4]);lc.strokeStyle='#b8a06a';lc.beginPath();lc.moveTo(30,50);lc.lineTo(350,50);lc.stroke();lc.setLineDash([]);lc.strokeStyle='#ff7a3a';lc.lineWidth=2.5;lc.beginPath();for(let i=0;i<=40;i++){const x=i/40,h2=1-Math.exp(-x*3.5)*.9+.0;lc.lineTo(30+320*x,170-120*h2*.9)}lc.stroke();lc.fillStyle='#fff';const x2=f,y2=170-120*(1-Math.exp(-x2*3.5)*.9)*.9;lc.beginPath();lc.arc(30+320*x2,y2,5,0,TAU);lc.fill();lc.fillStyle='rgba(241,241,232,.8)';lc.fillText('height: rises, then levels off where erosion = uplift',25,194)}
+else{const cw=cl((st.t-.92)/.08),sp2=cw*30;for(let side=-1;side<=1;side+=2){lc.save();lc.beginPath();lc.rect(side<0?0:190,0,190,h);lc.clip();lc.translate(0,side<0?0:sp2);for(let k=0;k<8;k++){lc.fillStyle=BC[k];lc.fillRect(0,50+k*16,w,17)}lc.restore()}lc.fillStyle='rgba(8,10,10,.8)';lc.fillRect(185,0,10,h);lc.fillStyle='#fff';lc.fillText('normal fault: one side drops by '+Math.round(sp2/30*10)+' km (schematic)',16,22)}}
+let last=0;function loop(t){const dt=Math.min(.05,(t-last)/1e3||.016);last=t;frame(dt,t/1e3);if(!rm)requestAnimationFrame(loop);else setTimeout(()=>requestAnimationFrame(loop),400)}
+setStage(0,false);requestAnimationFrame(loop);
+})();
+</script>
+
+
+</body></html>
