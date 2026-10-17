@@ -137,7 +137,7 @@ mountainLabelLayer.show = false;
 const searchIndex = [];
 
 // cluster volcano icons so dense regions stay readable
-volcanoLayer.clustering = new Cesium.EntityCluster({ enabled: true, pixelRange: 38, minimumClusterSize: 4 });
+volcanoLayer.clustering = new Cesium.EntityCluster({ enabled: true, pixelRange: 1, minimumClusterSize: 5 });
 function clusterIcon(n) {
     const c = document.createElement("canvas"); c.width = c.height = 64; const x = c.getContext("2d");
     x.fillStyle = "rgba(8,12,11,.9)"; x.beginPath(); x.arc(32, 32, 28, 0, 6.283); x.fill();
@@ -198,13 +198,14 @@ const pPlates = loadGeo("data/plate_boundaries.json").then(ds => {
     });
 });
 
+const ICE_FILL = Cesium.Color.fromCssColorString("#c3e6ff"), ICE_EDGE = Cesium.Color.fromCssColorString("#cdeeff00");
 const pGlaciers = loadGeo("data/glaciers.json").then(ds => {
     if (!ds) return; glacierLayer = ds; viewer.dataSources.add(ds); ds.show = false;
-    ds.entities.values.forEach(e => { if (e.polygon) { e.polygon.material = Cesium.Color.fromCssColorString("#bfe8ff"); e.polygon.outline = true; e.polygon.outlineColor = Cesium.Color.fromCssColorString("#bfe8ff"); } });
+    ds.entities.values.forEach(e => { if (e.polygon) { e.polygon.material = ICE_FILL; e.polygon.outline = true; e.polygon.outlineColor = ICE_EDGE; } });
 });
 const pSeaIce = loadGeo("data/sea_ice.json").then(ds => {
     if (!ds) return; seaIceLayer = ds; viewer.dataSources.add(ds); ds.show = false;
-    ds.entities.values.forEach(e => { if (e.polygon) { e.polygon.material = Cesium.Color.fromCssColorString("#d9f2ff68"); e.polygon.outline = true; e.polygon.outlineColor = Cesium.Color.fromCssColorString("#c8ecff01"); } });
+    ds.entities.values.forEach(e => { if (e.polygon) { e.polygon.material = Cesium.Color.fromCssColorString("#bfe5fe98"); e.polygon.outline = false; } });
 });
 
 const pVolcanoes = fetch("data/volcanoes.json").then(r => r.json()).then(list => {
@@ -225,7 +226,7 @@ const pVolcanoes = fetch("data/volcanoes.json").then(r => r.json()).then(list =>
 // layer order once everything has loaded (instead of a 2 s timer)
 Promise.all([pContinents, pMountains, pPlates, pGlaciers, pSeaIce, pVolcanoes]).then(() => {
     if (continentLayer) viewer.dataSources.lowerToBottom(continentLayer);
-    [mountainLayer, mountainLabelLayer, plateLayer, volcanoLayer].forEach(l => l && viewer.dataSources.raiseToTop(l));
+    [mountainLayer, mountainLabelLayer, plateLayer, volcanoLayer, quakeLayer].forEach(l => l && viewer.dataSources.raiseToTop(l));
     loadingEl.style.opacity = 0; setTimeout(() => loadingEl.remove(), 900);
 });
 
@@ -256,15 +257,16 @@ layerBtns().forEach(b => b.addEventListener("click", () => setLayer(b.dataset.la
 // --------------------------
 // LIVE EARTHQUAKES (USGS) + X-RAY SLAB VIEW
 // --------------------------
-const quakes = { visible: false, points: null, data: [], range: "day", minMag: 2.5, xray: false, recent: [], loadedAt: 0, timer: null };
+const quakes = { visible: false, data: [], range: "day", minMag: 2.5, xray: false, recent: [], timer: null, loading: false };
+const quakeLayer = new Cesium.CustomDataSource("earthquakes"); viewer.dataSources.add(quakeLayer); quakeLayer.show = false;
 const FEEDS = { day: "all_day", week: "2.5_week", month: "2.5_month" };
-const SURF_H = 20000;                                                     // draw quakes 20 km up so they never z-fight with the globe
-const occluder = new Cesium.EllipsoidalOccluder(Cesium.Ellipsoid.WGS84, Cesium.Cartesian3.ZERO);
+const SURF_H = 30000;                                                     // draw quakes 30 km up so they never z-fight with the globe
 const DEPTH_STOPS = [[35, "#ff5a3c", "0–35 km"], [70, "#ff9a3c", "35–70"], [150, "#ffd23c", "70–150"], [300, "#7be07b", "150–300"], [500, "#3cb4ff", "300–500"], [9999, "#a06cff", "500+ km"]];
 const depthColor = d => Cesium.Color.fromCssColorString((DEPTH_STOPS.find(s => d < s[0]) || DEPTH_STOPS[5])[1]);
-const quakeSize = m => Math.max(3, Math.pow(Math.max(m, 0), 1.9) * 0.55);
+const quakeSize = m => Math.max(5, Math.pow(Math.max(m, 0), 1.9) * 0.6);
+const qPos = q => Cesium.Cartesian3.fromDegrees(q.lon, q.lat, quakes.xray ? -q.depth * 1000 : SURF_H);
+const setStatus = t => { const n = document.getElementById("gxstatus"); if (n) n.textContent = t; console.info("[quakes]", t); };
 
-const mantleShells = viewer.entities.add({ show: false });                 // placeholder parent so we can toggle
 const shells = [410, 660].map(km => viewer.entities.add({
     position: Cesium.Cartesian3.ZERO, show: false,
     ellipsoid: {
@@ -276,66 +278,48 @@ const shells = [410, 660].map(km => viewer.entities.add({
 function setXray(on) {
     quakes.xray = on;
     globe.translucency.enabled = on; globe.translucency.frontFaceAlpha = on ? 0.22 : 1.0; globe.translucency.backFaceAlpha = 1.0;
-    scene.screenSpaceCameraController.enableCollisionDetection = !on;
     shells.forEach(s => s.show = on);
-    if (quakes.points) for (let i = 0; i < quakes.points.length; i++) {
-        const p = quakes.points.get(i), q = p.id.quake;
-        p.position = Cesium.Cartesian3.fromDegrees(q.lon, q.lat, on ? -q.depth * 1000 : SURF_H);
-        p.show = true;
-    }
+    quakeLayer.entities.values.forEach(e => { if (e.quake) { e.position = qPos(e.quake); e.point.disableDepthTestDistance = on ? Number.POSITIVE_INFINITY : 0; } });
     syncDock();
-    if (on && quakes.visible) toast("X-ray on: colour shows depth, and the mantle shells are drawn at 410 km and 660 km");
+    if (on && quakes.visible) toast("X-ray on: colour shows depth, with the mantle shells drawn at 410 km and 660 km");
 }
 
 async function loadQuakes() {
+    if (quakes.loading) return; quakes.loading = true; setStatus("Loading earthquakes from USGS…");
     const base = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/";
     const urls = [base + FEEDS[quakes.range] + ".geojson", base + "2.5_day.geojson"];
+    let json = null, lastErr = null;
     for (const u of urls) {
-        try {
-            const r = await fetch(u); if (!r.ok) throw new Error("HTTP " + r.status);
-            const j = await r.json();
-            quakes.data = j.features.filter(f => f.geometry && f.geometry.coordinates).map(f => ({ lon: f.geometry.coordinates[0], lat: f.geometry.coordinates[1], depth: Math.max(0, f.geometry.coordinates[2] || 0), mag: f.properties.mag || 0, place: f.properties.place, time: f.properties.time, url: f.properties.url, tsunami: f.properties.tsunami }));
-            rebuildQuakes(); toast(quakes.data.length.toLocaleString() + " earthquakes loaded from USGS"); return;
-        } catch (err) { console.warn("USGS feed failed:", u, err); }
+        try { const r = await fetch(u, { cache: "no-store" }); if (!r.ok) throw new Error("HTTP " + r.status); json = await r.json(); break; }
+        catch (e1) { lastErr = e1; try { json = await Cesium.Resource.fetchJson({ url: u }); break; } catch (e2) { lastErr = e2; } }
     }
-    toast("Couldn't reach the USGS earthquake feed (check your connection or console)");
+    quakes.loading = false;
+    if (!json || !json.features) { const m = "Could not download the USGS feed: " + (lastErr && lastErr.message ? lastErr.message : lastErr); setStatus(m); toast(m, 6000); return; }
+    try {
+        quakes.data = json.features.filter(f => f.geometry && f.geometry.coordinates).map(f => ({ lon: f.geometry.coordinates[0], lat: f.geometry.coordinates[1], depth: Math.max(0, f.geometry.coordinates[2] || 0), mag: f.properties.mag || 0, place: f.properties.place, time: f.properties.time, url: f.properties.url, tsunami: f.properties.tsunami }));
+        rebuildQuakes(); setStatus(quakes.data.length.toLocaleString() + " earthquakes downloaded · updated " + new Date().toLocaleTimeString());
+    } catch (err) { console.error(err); setStatus("Could not draw the quakes: " + err.message); toast("Could not draw the quakes: " + err.message, 6000); }
 }
 function rebuildQuakes() {
-    if (quakes.points) scene.primitives.remove(quakes.points);
-    quakes.points = scene.primitives.add(new Cesium.PointPrimitiveCollection());
-    quakes.recent = [];
+    const ents = quakeLayer.entities; ents.suspendEvents(); ents.removeAll(); quakes.recent = [];
     const list = quakes.data.filter(q => q.mag >= quakes.minMag);
     list.forEach(q => {
-        const col = depthColor(q.depth);
-        const p = quakes.points.add({
-            position: Cesium.Cartesian3.fromDegrees(q.lon, q.lat, quakes.xray ? -q.depth * 1000 : SURF_H), pixelSize: quakeSize(q.mag),
-            color: col.withAlpha(0.9), outlineColor: Cesium.Color.BLACK.withAlpha(0.55), outlineWidth: 1, id: { quake: q },
-            disableDepthTestDistance: Number.POSITIVE_INFINITY
-        });
-        if (Date.now() - q.time < 3 * 3600e3) quakes.recent.push(p);
+        const e = ents.add({ position: qPos(q), point: { pixelSize: quakeSize(q.mag), color: depthColor(q.depth).withAlpha(0.92), outlineColor: Cesium.Color.BLACK.withAlpha(0.6), outlineWidth: 1, disableDepthTestDistance: quakes.xray ? Number.POSITIVE_INFINITY : 0 } });
+        e.quake = q; if (Date.now() - q.time < 3 * 3600e3) quakes.recent.push(e);
     });
-    quakes.points.show = quakes.visible;
-    updateQuakeStats(list);
+    ents.resumeEvents(); quakeLayer.show = quakes.visible; updateQuakeStats(list);
 }
 function setQuakes(on) {
-    quakes.visible = on;
-    if (on && !quakes.points) loadQuakes();
-    if (quakes.points) quakes.points.show = on;
+    quakes.visible = on; quakeLayer.show = on;
+    if (on && !quakes.data.length) loadQuakes();
     clearInterval(quakes.timer); if (on) quakes.timer = setInterval(loadQuakes, 5 * 60e3);
     syncDock();
 }
-// hide quakes on the far side of the globe (we turned off depth testing so they can't be buried by it)
-setInterval(() => {
-    if (!quakes.visible || !quakes.points || quakes.xray) return;
-    occluder.cameraPosition = viewer.camera.positionWC;
-    const pts = quakes.points;
-    for (let i = 0; i < pts.length; i++) { const p = pts.get(i); p.show = occluder.isPointVisible(p.position); }
-}, 150);
 // pulse the freshest quakes
 viewer.clock.onTick.addEventListener(() => {
     if (!quakes.visible || !quakes.recent.length) return;
-    const s = 0.5 + 0.5 * Math.sin(performance.now() / 350);
-    quakes.recent.forEach(p => { p.outlineWidth = 1 + 3 * s; p.outlineColor = Cesium.Color.WHITE.withAlpha(0.7 * (1 - s * 0.6)); });
+    const k = 0.5 + 0.5 * Math.sin(performance.now() / 350);
+    quakes.recent.forEach(e => { e.point.outlineWidth = 1 + 3 * k; e.point.outlineColor = Cesium.Color.WHITE.withAlpha(0.75 * (1 - k * 0.6)); });
 });
 
 // --------------------------
@@ -358,7 +342,7 @@ const quakePop = el("div", "gx-pop", `
 <div class="gx-seg" data-k="range"><button data-v="day" class="on">Past day</button><button data-v="week">Past week</button><button data-v="month">Past month</button></div>
 <label>Minimum magnitude: <b id="gxmag">2.5</b><input type="range" id="gxminmag" min="0" max="7" step="0.5" value="2.5"></label>
 <div class="gx-legend" id="gxleg"></div>
-<div class="gx-stats" id="gxstats">Turn on X-ray to see how deep each quake is.</div>`);
+<div class="gx-stats"><div id="gxstatus" style="opacity:.6;font-size:11px;margin-bottom:6px">Not loaded yet</div><div id="gxstats">Turn on X-ray to see how deep each quake is.</div></div>`);
 document.body.appendChild(quakePop);
 $("#gxleg", quakePop).innerHTML = DEPTH_STOPS.map(s => `<span><i style="background:${s[1]}"></i>${s[2]}</span>`).join("") + `<span style="flex-basis:100%;opacity:.7">colour = depth · size = magnitude · pulsing = last 3 h</span>`;
 quakePop.querySelectorAll(".gx-seg button").forEach(b => b.onclick = () => { quakePop.querySelectorAll(".gx-seg button").forEach(x => x.classList.remove("on")); b.classList.add("on"); quakes.range = b.dataset.v; loadQuakes(); });
@@ -366,7 +350,7 @@ $("#gxminmag", quakePop).oninput = e => { quakes.minMag = +e.target.value; $("#g
 function updateQuakeStats(list) {
     if (!list.length) { $("#gxstats", quakePop).textContent = "No quakes match this filter."; return; }
     const big = list.reduce((a, b) => b.mag > a.mag ? b : a), deep = list.reduce((a, b) => b.depth > a.depth ? b : a);
-    $("#gxstats", quakePop).innerHTML = `<b>${list.length.toLocaleString()}</b> quakes shown<br>Largest: <b>M${big.mag.toFixed(1)}</b> ${big.place}<br>Deepest: <b>${Math.round(deep.depth)} km</b> ${deep.place}`;
+    $("#gxstats", quakePop).innerHTML = `<b>${list.length.toLocaleString()}</b> quakes shown on the globe<br>Largest: <b>M${big.mag.toFixed(1)}</b> ${big.place}<br>Deepest: <b>${Math.round(deep.depth)} km</b> ${deep.place}`;
 }
 
 const infoCard = el("div", "gx-card"); document.body.appendChild(infoCard);
