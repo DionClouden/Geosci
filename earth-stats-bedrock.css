@@ -1,0 +1,711 @@
+
+
+/* ==========================================
+   EARTH STATS — ALTERNATING ACCORDION
+========================================== */
+
+.earth-stats {
+    --gold: #b8a06a;
+    --bg: radial-gradient(
+      ellipse at 50% 0%,
+      rgba(43, 66, 91, 0.22) 0%,
+      rgba(15, 24, 36, 0.12) 35%,
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      #080b11 0%,
+      #050608 45%,
+      #030303 100%
+    );
+    --line: rgba(255,255,255,.13);
+    --muted: rgba(255,255,255,.48);
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 95px 0 25px;
+    background: var(--bg);
+    color: #fff;
+    font-family: "Inter", sans-serif;
+
+    
+}
+
+.earth-stats * {
+    box-sizing: border-box;
+}
+
+.earth-stats-header,
+.stats-accordion,
+.earth-stats-footer {
+    width: min(1380px, 90%);
+    margin-inline: auto;
+}
+
+.earth-stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 25px;
+    padding-bottom: 35px;
+}
+
+.stats-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: .16em;
+}
+
+.stats-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+}
+
+.earth-stats-header h2 {
+    margin: 22px 0 0;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    line-height: .95;
+    font-weight: 500;
+    letter-spacing: -.075em;
+}
+
+.earth-stats-header h2 span {
+    color: var(--gold);
+}
+
+.stats-header-index {
+    padding-bottom: 7px;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: .14em;
+    white-space: nowrap;
+}
+
+/* ACCORDION TRACK */
+
+.stats-accordion {
+    display: flex;
+    align-items: stretch;
+    gap: 5px;
+    min-height: 450px;
+}
+
+/* PANELS */
+
+.stats-panel {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 450px;
+    overflow: hidden;
+
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.012);
+
+    cursor: pointer;
+    outline: none;
+
+    transition:
+        flex-grow .75s cubic-bezier(.22,1,.36,1),
+        background .35s ease,
+        border-color .35s ease;
+}
+
+.stats-panel.is-active {
+    flex-grow: 3.3;
+    background: rgba(0, 0, 0, 0.615);
+    border-color: rgba(184,160,106,.55);
+}
+
+.stats-panel:focus-visible {
+    outline: 1px solid var(--gold);
+    outline-offset: 3px;
+}
+
+.stats-panel::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform .5s ease;
+}
+
+.stats-panel.from-left::after {
+    transform-origin: left;
+}
+
+.stats-panel.from-right::after {
+    transform-origin: right;
+}
+
+.stats-panel.is-active::after {
+    transform: scaleX(1);
+}
+
+/* COLLAPSED LABEL */
+
+.panel-closed {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 22px 17px;
+    background: rgba(0, 0, 0, 0.251);
+
+    opacity: 1;
+    transition: opacity .2s ease;
+}
+
+.stats-panel.is-active .panel-closed {
+    opacity: 0;
+    pointer-events: none;
+    transition-delay: 0s;
+}
+
+.panel-number {
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: .1em;
+}
+
+.panel-label {
+    color: var(--muted);
+    font-size: 8px;
+    letter-spacing: .12em;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.panel-closed-title {
+    margin-top: auto;
+    font-size: 14px;
+    line-height: 1.3;
+    font-weight: 500;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.panel-open-icon {
+    margin-top: auto;
+    color: var(--gold);
+    font-size: 17px;
+}
+
+/* EXPANDED CONTENT */
+
+.panel-reveal {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    min-width: 0;
+    padding: 22px 25px 18px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.stats-panel.from-left .panel-reveal {
+    transform: translateX(-22px);
+}
+
+.stats-panel.from-right .panel-reveal {
+    transform: translateX(22px);
+}
+
+.stats-panel.is-active .panel-reveal {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+
+    transition:
+        opacity .45s ease .22s,
+        transform .65s cubic-bezier(.16,1,.3,1) .12s,
+        visibility 0s;
+}
+
+.panel-reveal-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    color: var(--muted);
+    font-size: 8px;
+    letter-spacing: .1em;
+}
+
+.panel-reveal-top span:last-child {
+    color: var(--gold);
+}
+
+/* ANIMATED GRAPHIC AREA */
+
+.panel-graphic {
+    position: relative;
+    width: 100%;
+    height: 125px;
+    flex: 0 0 125px;
+    margin: 12px 0;
+    overflow: hidden;
+}
+
+/* AGE */
+
+.age-graphic {
+    display: grid;
+    place-items: center;
+}
+
+.age-orbit {
+    position: relative;
+    width: 112px;
+    height: 112px;
+    border: 1px solid rgba(184,160,106,.5);
+    border-radius: 50%;
+}
+
+.age-orbit::before,
+.age-orbit::after {
+    content: "";
+    position: absolute;
+    inset: 11px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+}
+
+.age-orbit::after {
+    inset: -8px;
+    border-color: rgba(184,160,106,.15);
+    border-style: dashed;
+}
+
+.age-orbit-inner {
+    position: absolute;
+    inset: 28px;
+    border: 1px solid rgba(184,160,106,.55);
+    border-radius: 50%;
+}
+
+.age-core {
+    position: absolute;
+    inset: 42px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 25px rgba(184,160,106,.25);
+}
+
+.age-orbit-dot {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    z-index: 2;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 12px var(--gold);
+    transform: translateX(-50%);
+}
+
+.stats-panel.is-active .age-orbit {
+    animation: orbitSpin 16s linear infinite;
+}
+
+/* OCEAN */
+
+.ocean-graphic svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.ocean-outline,
+.ocean-wave-line {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1;
+}
+
+.ocean-fill {
+    fill: rgba(184,160,106,.13);
+    transform: translateY(120px);
+}
+
+.ocean-wave-line {
+    opacity: .5;
+    stroke-dasharray: 6 6;
+}
+
+.stats-panel.is-active .ocean-fill {
+    animation: oceanRise 1.1s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.stats-panel.is-active .ocean-wave-line {
+    animation: waveTravel 7s linear infinite;
+}
+
+/* VOLCANO */
+
+.volcano-graphic svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.volcano-mountain {
+    fill: rgba(184,160,106,.1);
+    stroke: var(--gold);
+    stroke-width: 1;
+}
+
+.volcano-ridge,
+.volcano-ground {
+    fill: none;
+    stroke: rgba(255,255,255,.35);
+    stroke-width: 1;
+}
+
+.volcano-flow {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 2;
+    stroke-dasharray: 70;
+    stroke-dashoffset: 70;
+}
+
+.stats-panel.is-active .volcano-flow {
+    animation: drawLine 1.5s ease forwards .25s;
+}
+
+.volcano-pulse {
+    position: absolute;
+    left: 53%;
+    top: 14%;
+    width: 7px;
+    height: 7px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.stats-panel.is-active .volcano-pulse {
+    animation: volcanoPulse 2.2s ease-out infinite;
+}
+
+.volcano-pulse.pulse-two {
+    animation-delay: 1.1s;
+}
+
+/* SEISMIC */
+
+.seismic-graphic svg {
+    width: 100%;
+    height: 100%;
+}
+
+.seismic-grid {
+    fill: none;
+    stroke: rgba(255,255,255,.08);
+    stroke-width: 1;
+}
+
+.seismic-signal {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.6;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+}
+
+.stats-panel.is-active .seismic-signal {
+    animation: seismicDraw 2s ease-out forwards;
+}
+
+/* NUMBERS AND DESCRIPTION */
+
+.panel-stat {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.panel-value {
+    font-size: clamp(2.6rem, 4vw, 4.2rem);
+    font-weight: 500;
+    line-height: .95;
+    letter-spacing: -.075em;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.panel-unit {
+    color: var(--gold);
+    font-size: 8px;
+    letter-spacing: .12em;
+}
+
+.panel-reveal h3 {
+    margin: 0 0 9px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -.025em;
+}
+
+.panel-reveal > p {
+    max-width: 360px;
+    margin: 0 0 18px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.panel-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+
+    color: var(--muted);
+    font-size: 7px;
+    letter-spacing: .08em;
+}
+
+.panel-foot span:last-child {
+    color: var(--gold);
+    text-align: right;
+}
+
+/* FOOTER */
+
+.earth-stats-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 22px;
+
+    color: var(--muted);
+    font-size: 8px;
+    letter-spacing: .12em;
+}
+
+.footer-gold {
+    color: var(--gold);
+}
+
+/* KEYFRAMES */
+
+@keyframes orbitSpin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes oceanRise {
+    to { transform: translateY(15px); }
+}
+
+@keyframes waveTravel {
+    to { stroke-dashoffset: -150; }
+}
+
+@keyframes drawLine {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes volcanoPulse {
+    0% {
+        opacity: .8;
+        transform: scale(.5);
+        box-shadow: 0 0 0 0 rgba(184,160,106,.4);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(3);
+        box-shadow: 0 0 0 10px rgba(184,160,106,0);
+    }
+}
+
+@keyframes seismicDraw {
+    to { stroke-dashoffset: 0; }
+}
+
+/* TABLET */
+
+@media (max-width: 950px) {
+    .stats-accordion {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        gap: 8px;
+    }
+
+    .stats-panel,
+    .stats-panel.is-active {
+        min-height: 420px;
+    }
+
+    .stats-panel.is-active {
+        grid-column: span 2;
+    }
+
+    .panel-closed-title {
+        writing-mode: initial;
+        transform: none;
+        font-size: 18px;
+    }
+
+    .panel-label {
+        writing-mode: initial;
+        transform: none;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 560px) {
+    .earth-stats {
+        padding-top: 65px;
+    }
+
+    .earth-stats-header h2 {
+        font-size: clamp(2.7rem, 11vw, 4rem);
+    }
+
+    .stats-header-index {
+        font-size: 8px;
+    }
+
+    .stats-accordion {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-panel,
+    .stats-panel.is-active {
+        grid-column: auto;
+        min-height: 88px;
+    }
+
+    .stats-panel.is-active {
+        min-height: 420px;
+    }
+
+    .panel-closed {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        padding: 20px;
+    }
+
+    .panel-closed-title {
+        margin: 0;
+        flex: 1;
+        font-size: 13px;
+    }
+
+    .panel-label {
+        font-size: 7px;
+    }
+
+    .panel-open-icon {
+        margin: 0;
+    }
+
+    .panel-reveal {
+        padding: 20px;
+    }
+
+    .panel-value {
+        font-size: 3.2rem;
+    }
+
+    .earth-stats-footer {
+        flex-direction: column;
+        font-size: 7px;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    .earth-stats *,
+    .earth-stats *::before,
+    .earth-stats *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* ==========================================
+   BEDROCK CONTINUATION — SHARED CANVAS
+   Add this at the end of the existing stylesheet.
+   The existing accordion styling above is preserved.
+========================================== */
+
+/* One containing block keeps the same sticky canvas behind both sections. */
+.geo-world {
+    position: relative;
+    isolation: isolate;
+    background: #100d0c;
+}
+
+/* The canvas stays pinned while the journey and stats sections scroll past. */
+.geo-world > .geo-journey__scene {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    margin-bottom: -100vh;
+    margin-bottom: -100svh;
+    overflow: hidden;
+    background: #000;
+    pointer-events: none;
+}
+
+.geo-world > .geo-journey__scene > .geo-journey__canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* The journey is the scroll-progress driver, not the canvas container. */
+.geo-world > .geo-journey {
+    position: relative;
+    z-index: 1;
+    isolation: auto;
+    background: transparent;
+}
+
+/* Keep the original stats layout and accordion styling, but let the canvas
+   texture show through instead of painting the old gradient over it. */
+.geo-world > .earth-stats,
+.geo-world > .geo-stats {
+    position: relative;
+    z-index: 1;
+    isolation: auto;
+    background: transparent;
+}

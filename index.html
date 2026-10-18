@@ -10,6 +10,7 @@
 <link rel="icon" type="image/png" href="images/geosci_logo.png">
 
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="earth-stats-bedrock.css">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -307,75 +308,322 @@
 
 
 <section class="research">
+    <div class="research-inner">
 
-    <div class="container">
+        <div class="research-text">
+            <p class="eyebrow">RESEARCH</p>
 
-        <div class="research-grid">
+            <h2>Advancing<br>Earth Science</h2>
 
-            <div class="research-text">
+            <p>
+                Explore the research and discoveries revealing
+                how our planet works, from its deep interior
+                to the changing landscapes on its surface.
+            </p>
+        </div>
 
-                <p class="eyebrow">RESEARCH</p>
+        <a href="research/research.html" class="research-button">
+            Explore Research
+            <span aria-hidden="true">↗</span>
+        </a>
 
-                <h2>
-                    Advancing Earth Science
-                </h2>
-
-                <p>
-                    Explore the latest research and discoveries
-                    in the field of Earth science.
-                </p>
-
-                <a href="research/research.html" class="button">
-                    Explore Research
-                </a>
-
-            </div>
-
-            <div class="research-image">
-                <img src="images/windfarm.jpg" alt="Research">
-            </div>
-
+        <div class="research-caption">
+            FIELDWORK <span>·</span> GEOLOGY <span>·</span> DISCOVERY
         </div>
 
     </div>
+</section>
+
+
+<div class="geo-world">
+
+  <div class="geo-journey__scene">
+    <canvas class="geo-journey__canvas"></canvas>
+  </div>
+
+  <section class="geo-journey">
+    <div class="geo-journey__scroll"></div>
+  </section>
 
 
 
 
 
-<section class="stats">
 
 
-    <div class="container">
+<section class="earth-stats" id="earth-stats">
 
-        <div class="stats-grid">
+    <div class="earth-stats-header">
+        <div>
+            <span class="stats-eyebrow">
+                <span class="stats-indicator"></span>
+               STATISTICS
+            </span>
+            <h2>Beneath the <span>surface.</span></h2>
+        </div>
 
-            <div class="stat hidden">
+        <span class="stats-header-index"></span>
+    </div>
 
-    <h3 class="counter decimal" data-target="4.5">0</h3>
-    <p>Billion Years of Earth's History</p>
-</div>
+    <div class="stats-accordion">
 
-<div class="stat hidden">
-    <h3 class="counter" data-target="15">0</h3>
-    <p>Major Tectonic Plates</p>
-</div>
+        <!-- PANEL 01: OPENS FROM LEFT -->
+        <article class="stats-panel from-left is-active"
+                 tabindex="0" aria-expanded="true">
 
-<div class="stat hidden">
-    <h3 class="counter" data-target="500">0</h3>
-    <p>Active Volcanoes</p>
-</div>
+            <div class="panel-closed">
+                <span class="panel-number">01</span>
+                <span class="panel-label">GEOCHRONOLOGY</span>
+                <span class="panel-closed-title">A planet in the making.</span>
+                <span class="panel-open-icon">↗</span>
+            </div>
 
-<div class="stat hidden">
-    <h3 class="counter" data-target="71">0</h3>
-    <p>Ocean Coverage</p>
-</div>
+            <div class="panel-reveal">
+                <div class="panel-reveal-top">
+                    <span>GEOCHRONOLOGY</span>
+                    <span>01 / 04</span>
+                </div>
+
+                <div class="panel-graphic age-graphic">
+                    <div class="age-orbit">
+                        <div class="age-orbit-inner"></div>
+                        <div class="age-orbit-dot"></div>
+                        <div class="age-core"></div>
+                    </div>
+                </div>
+
+                <div class="panel-stat">
+                    <span class="panel-value"
+                          data-target="4.54"
+                          data-decimals="2">0</span>
+                    <span class="panel-unit">BILLION YEARS</span>
+                </div>
+
+                <h3>A planet in the making.</h3>
+                <p>
+                    Earth formed approximately 4.54 billion years ago,
+                    leaving a record of its history in ancient minerals
+                    and rocks.
+                </p>
+
+                <div class="panel-foot">
+                    <span>FORMATION OF EARTH</span>
+                    <span>4.54 Ga</span>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- PANEL 02: OPENS FROM RIGHT -->
+        <article class="stats-panel from-right"
+                 tabindex="0" aria-expanded="false">
+
+            <div class="panel-closed">
+                <span class="panel-number">02</span>
+                <span class="panel-label">HYDROSPHERE</span>
+                <span class="panel-closed-title">A blue planet.</span>
+                <span class="panel-open-icon">↗</span>
+            </div>
+
+            <div class="panel-reveal">
+                <div class="panel-reveal-top">
+                    <span>HYDROSPHERE</span>
+                    <span>02 / 04</span>
+                </div>
+
+                <div class="panel-graphic ocean-graphic">
+                    <svg viewBox="0 0 240 120"
+                         role="img"
+                         aria-label="Illustration of ocean coverage">
+                        <path class="ocean-outline"
+                              d="M0 60 Q30 35 60 60 T120 60 T180 60 T240 60"/>
+
+                        <path class="ocean-fill"
+                              d="M0 60 Q30 35 60 60 T120 60 T180 60 T240 60 V120 H0Z"/>
+
+                        <path class="ocean-wave-line"
+                              d="M0 76 Q30 51 60 76 T120 76 T180 76 T240 76"/>
+                    </svg>
+                </div>
+
+                <div class="panel-stat">
+                    <span class="panel-value"
+                          data-target="71"
+                          data-suffix="%">0</span>
+                    <span class="panel-unit">OCEAN COVERAGE</span>
+                </div>
+
+                <h3>A blue planet.</h3>
+                <p>
+                    Oceans cover approximately 71% of Earth's surface,
+                    shaping climate, ecosystems and the global water cycle.
+                </p>
+
+                <div class="panel-foot">
+                    <span>EARTH'S SURFACE</span>
+                    <span>71%</span>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- PANEL 03: OPENS FROM LEFT -->
+        <article class="stats-panel from-left"
+                 tabindex="0" aria-expanded="false">
+
+            <div class="panel-closed">
+                <span class="panel-number">03</span>
+                <span class="panel-label">VOLCANOLOGY</span>
+                <span class="panel-closed-title">A restless interior.</span>
+                <span class="panel-open-icon">↗</span>
+            </div>
+
+            <div class="panel-reveal">
+                <div class="panel-reveal-top">
+                    <span>VOLCANOLOGY</span>
+                    <span>03 / 04</span>
+                </div>
+
+                <div class="panel-graphic volcano-graphic"
+                     aria-hidden="true">
+                    <svg viewBox="0 0 240 120">
+                        <path class="volcano-mountain"
+                              d="M15 120 L83 28 L105 57 L126 12 L205 120Z"/>
+                        <path class="volcano-ridge"
+                              d="M83 28 L96 50 L105 57 M126 12 L143 47 L155 52"/>
+                        <path class="volcano-flow"
+                              d="M126 20 L126 43 L139 57 L139 75"/>
+                        <path class="volcano-ground"
+                              d="M0 120 H240"/>
+                    </svg>
+
+                    <div class="volcano-pulse pulse-one"></div>
+                    <div class="volcano-pulse pulse-two"></div>
+                </div>
+
+                <div class="panel-stat">
+                    <span class="panel-value"
+                          data-target="1350"
+                          data-suffix="+">0</span>
+                    <span class="panel-unit">POTENTIALLY ACTIVE</span>
+                </div>
+
+                <h3>A restless interior.</h3>
+                <p>
+                    More than 1,350 potentially active volcanoes,
+                    excluding those beneath the oceans, are recognised
+                    worldwide.
+                </p>
+
+                <div class="panel-foot">
+                    <span>GLOBAL VOLCANISM</span>
+                    <span>WORLDWIDE</span>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- PANEL 04: OPENS FROM RIGHT -->
+        <article class="stats-panel from-right"
+                 tabindex="0" aria-expanded="false">
+
+            <div class="panel-closed">
+                <span class="panel-number">04</span>
+                <span class="panel-label">SEISMOLOGY</span>
+                <span class="panel-closed-title">A planet that never stands still.</span>
+                <span class="panel-open-icon">↗</span>
+            </div>
+
+            <div class="panel-reveal">
+                <div class="panel-reveal-top">
+                    <span>SEISMOLOGY</span>
+                    <span>04 / 04</span>
+                </div>
+
+                <div class="panel-graphic seismic-graphic">
+                    <svg viewBox="0 0 240 120"
+                         preserveAspectRatio="none">
+                        <path class="seismic-grid"
+                              d="M0 30 H240 M0 60 H240 M0 90 H240"/>
+                        <path class="seismic-signal"
+                              d="M0 60 H35 L47 53 L57 69 L70 20
+                                 L83 101 L97 43 L108 60 H133
+                                 L145 52 L155 66 L169 32 L182 82
+                                 L193 60 H240"/>
+                    </svg>
+                </div>
+
+                <div class="panel-stat">
+                    <span class="panel-value"
+                          data-target="500"
+                          data-suffix="k+">0</span>
+                    <span class="panel-unit">DETECTABLE / YEAR</span>
+                </div>
+
+                <h3>A planet that never stands still.</h3>
+                <p>
+                    Roughly 500,000 earthquakes can be detected worldwide
+                    each year. Most are too small to be felt.
+                </p>
+
+                <div class="panel-foot">
+                    <span>GLOBAL SEISMICITY</span>
+                    <span>ESTIMATED</span>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="earth-stats-footer">
+        <span>GEOSCI</span>
+        <span>EARTH SCIENCE <span class="footer-gold">/</span> #1</span>
+    </div>
+
+
+</section>
+</section>
+
+
+
+
+
+
+</main>
+
+<main class="main-content">
+
+
+<section class="featured-discovery">
+
+    <div class="container featured-grid">
+
+        <div class="featured-image">
+            <img src="images/eyjafjallajokull.jpg" alt="Volcano landscape">
+        </div>
+
+        <div class="featured-text">
+
+            <p class="eyebrow">FEATURED DISCOVERY</p>
+
+            <h2>
+                The Hidden World Beneath Iceland
+            </h2>
+
+            <p>
+                Explore the volcanic forces shaping one of Earth's most active landscapes.
+            </p>
+
+            <a href="articles/iceland1.html" class="button">
+                Explore Discovery
+            </a>
+
         </div>
 
     </div>
 
 </section>
-
+    
 </main>
 
 
@@ -524,6 +772,798 @@ cards.forEach((card, index) => {
 counter.textContent = `01 / ${String(cards.length).padStart(2, "0")}`;
 </script>
 
+
+
+
+<script>
+
+(() => {
+    const section = document.querySelector("#earth-stats");
+
+    if (!section || section.dataset.ready === "true") return;
+    section.dataset.ready = "true";
+
+    const panels = [...section.querySelectorAll(".stats-panel")];
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    let activePanel = null;
+    let animationFrame = null;
+
+    function animateValue(element) {
+        if (animationFrame) cancelAnimationFrame(animationFrame);
+
+        const target = Number(element.dataset.target);
+        const decimals = Number(element.dataset.decimals || 0);
+        const suffix = element.dataset.suffix || "";
+
+        if (reduceMotion) {
+            element.textContent = target.toFixed(decimals) + suffix;
+            return;
+        }
+
+        const duration = 1200;
+        const start = performance.now();
+
+        function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 4);
+            const value = target * eased;
+
+            element.textContent = value.toLocaleString("en-GB", {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals
+            }) + suffix;
+
+            if (progress < 1) {
+                animationFrame = requestAnimationFrame(tick);
+            } else {
+                element.textContent = target.toLocaleString("en-GB", {
+                    minimumFractionDigits: decimals,
+                    maximumFractionDigits: decimals
+                }) + suffix;
+                animationFrame = null;
+            }
+        }
+
+        element.textContent = "0" + suffix;
+        animationFrame = requestAnimationFrame(tick);
+    }
+
+    function openPanel(panel) {
+        if (activePanel === panel) return;
+
+        activePanel = panel;
+
+        panels.forEach(item => {
+            const isActive = item === panel;
+
+            item.classList.toggle("is-active", isActive);
+            item.setAttribute("aria-expanded", String(isActive));
+        });
+
+        // Only animate the newly opened panel's number.
+        const counter = panel.querySelector(".panel-value");
+
+        if (counter) {
+            animateValue(counter);
+        }
+    }
+
+    function closeAll() {
+        activePanel = null;
+
+        panels.forEach(panel => {
+            panel.classList.remove("is-active");
+            panel.setAttribute("aria-expanded", "false");
+        });
+
+        if (animationFrame) {
+            cancelAnimationFrame(animationFrame);
+            animationFrame = null;
+        }
+    }
+
+    const canHover = window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+    );
+
+    panels.forEach(panel => {
+        panel.addEventListener("pointerenter", () => {
+            if (canHover.matches) openPanel(panel);
+        });
+
+        panel.addEventListener("focus", () => {
+            openPanel(panel);
+        });
+
+        panel.addEventListener("click", () => {
+            if (activePanel === panel) {
+                closeAll();
+            } else {
+                openPanel(panel);
+            }
+        });
+
+        panel.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+
+                if (activePanel === panel) {
+                    closeAll();
+                } else {
+                    openPanel(panel);
+                }
+            }
+
+            if (event.key === "Escape") {
+                closeAll();
+                panel.blur();
+            }
+        });
+    });
+
+    // Start with the first panel open, without triggering hover
+    // events or animations before the visitor reaches the section.
+    const observer = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+            openPanel(panels[0]);
+            observer.disconnect();
+        }
+    }, { threshold: 0.2 });
+
+    observer.observe(section);
+})();
+</script>
+
+
+
+<script>
+
+ 
+(() => {
+const root = document.querySelector(".geo-journey");
+const canvas = document.querySelector(".geo-journey__canvas");
+
+  if (!root || !canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  let w = 0;
+  let h = 0;
+  let dpr = 1;
+  let progress = 0;
+  let raf = 0;
+
+  const clamp = (v, min = 0, max = 1) =>
+    Math.max(min, Math.min(max, v));
+
+  const smooth = (a, b, v) => {
+    const t = clamp((v - a) / (b - a));
+    return t * t * (3 - 2 * t);
+  };
+
+  function random(seed) {
+    const n = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
+    return n - Math.floor(n);
+  }
+
+  // --------------------------------------------------
+  // RESIZE
+  // --------------------------------------------------
+
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+
+    w = Math.max(1, rect.width);
+    h = Math.max(1, rect.height);
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw();
+  }
+
+  // --------------------------------------------------
+  // BACKGROUND AND ATMOSPHERE
+  // --------------------------------------------------
+
+  function drawBackground() {
+    const brightness = smooth(0.1, 0.75, progress);
+
+    const r = Math.round(2 + brightness * 8);
+    const g = Math.round(3 + brightness * 17);
+    const b = Math.round(8 + brightness * 33);
+
+    ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+    ctx.fillRect(0, 0, w, h);
+
+    // Atmospheric blue glow as Earth approaches.
+    const glow = smooth(0.25, 0.8, progress);
+
+    if (glow > 0) {
+      const gradient = ctx.createRadialGradient(
+        w * 0.5, h * 0.72, 0,
+        w * 0.5, h * 0.72, h * 0.95
+      );
+
+      gradient.addColorStop(0, `rgba(65,125,180,${0.22 * glow})`);
+      gradient.addColorStop(0.4, `rgba(32,75,125,${0.14 * glow})`);
+      gradient.addColorStop(0.75, `rgba(12,31,58,${0.07 * glow})`);
+      gradient.addColorStop(1, "rgba(0,0,0,0)");
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    // The horizon light moves upward with the surface.
+    const approach = smooth(0.53, 1, progress);
+    const horizon = h * 1.12 - h * 1.34 * approach;
+    const horizonGlow = smooth(0.35, 0.8, progress);
+
+    if (horizonGlow > 0 && horizon > -h * 0.3 && horizon < h * 1.3) {
+      const gradient = ctx.createLinearGradient(
+        0, horizon - h * 0.2,
+        0, horizon + h * 0.17
+      );
+
+      gradient.addColorStop(0, "rgba(30,90,150,0)");
+      gradient.addColorStop(0.5, `rgba(65,135,190,${0.2 * horizonGlow})`);
+      gradient.addColorStop(0.72, `rgba(130,185,215,${0.13 * horizonGlow})`);
+      gradient.addColorStop(1, "rgba(30,70,110,0)");
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, w, h);
+    }
+  }
+
+  // --------------------------------------------------
+  // STARS
+  // --------------------------------------------------
+
+  function drawStars(amount) {
+    if (amount <= 0) return;
+
+    const count = Math.round(clamp((w * h) / 6500, 80, 240));
+
+    ctx.save();
+    ctx.globalAlpha = amount;
+
+    for (let i = 0; i < count; i++) {
+      const x = random(i + 1) * w;
+      const y = random(i + 501) * h;
+      const size = 0.35 + random(i + 1001) * 1.15;
+      const alpha = 0.25 + random(i + 1501) * 0.7;
+
+      ctx.fillStyle = `rgba(220,230,245,${alpha})`;
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (random(i + 2001) > 0.94) {
+        ctx.fillStyle = `rgba(150,190,230,${alpha * 0.15})`;
+        ctx.beginPath();
+        ctx.arc(x, y, size * 3.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    ctx.restore();
+  }
+
+  // --------------------------------------------------
+  // SURFACE PROFILE
+  // --------------------------------------------------
+
+  function surfaceY(x, horizon) {
+    return (
+      horizon +
+      Math.sin(x * 0.009) * h * 0.012 +
+      Math.sin(x * 0.022 + 1.4) * h * 0.006 +
+      Math.sin(x * 0.004 + 2.2) * h * 0.009
+    );
+  }
+
+  // --------------------------------------------------
+  // TREES
+  // --------------------------------------------------
+
+  function drawTree(x, groundY, scale, seed) {
+    ctx.save();
+    ctx.translate(x, groundY);
+    ctx.scale(scale, scale);
+
+    const treeHeight = 34 + random(seed) * 36;
+    const trunkWidth = 2 + random(seed + 1) * 2;
+
+    // Trunk
+    ctx.fillStyle = "#171c18";
+    ctx.beginPath();
+    ctx.moveTo(-trunkWidth / 2, 0);
+    ctx.lineTo(-trunkWidth / 3, -treeHeight);
+    ctx.lineTo(trunkWidth / 3, -treeHeight);
+    ctx.lineTo(trunkWidth / 2, 0);
+    ctx.closePath();
+    ctx.fill();
+
+    // Evergreen branches
+    const tiers = 4 + Math.floor(random(seed + 2) * 3);
+    const greens = ["#172c24", "#1d382b", "#233d2b", "#14271f"];
+
+    for (let i = 0; i < tiers; i++) {
+      const t = i / tiers;
+      const y = -treeHeight * (0.25 + t * 0.72);
+      const spread = treeHeight * (0.13 + t * 0.18);
+      const tipY = y - treeHeight * 0.34;
+
+      ctx.beginPath();
+      ctx.moveTo(0, tipY);
+      ctx.lineTo(-spread, y + treeHeight * 0.13);
+      ctx.lineTo(-spread * 0.45, y + treeHeight * 0.08);
+      ctx.lineTo(0, y + treeHeight * 0.2);
+      ctx.lineTo(spread * 0.5, y + treeHeight * 0.09);
+      ctx.lineTo(spread, y + treeHeight * 0.13);
+      ctx.closePath();
+
+      ctx.fillStyle = greens[
+        Math.floor(random(seed + i * 8) * greens.length)
+      ];
+      ctx.fill();
+    }
+
+    ctx.restore();
+  }
+
+  function drawForest(horizon) {
+    // Distant tree line
+    for (let i = 0; i < 42; i++) {
+      const x = (i / 41) * w;
+      const y = surfaceY(x, horizon) + h * 0.014;
+
+      ctx.save();
+      ctx.globalAlpha = 0.55;
+      drawTree(x, y, 0.35 + random(i + 650) * 0.35, i + 700);
+      ctx.restore();
+    }
+
+    // Foreground woodland
+    for (let i = 0; i < 35; i++) {
+      const x = random(i + 800) * w;
+      const y = surfaceY(x, horizon) + h * 0.005;
+      const scale = 0.45 + random(i + 900) * 0.8;
+
+      drawTree(x, y, scale, i + 1000);
+    }
+  }
+
+  // --------------------------------------------------
+  // GRASS
+  // --------------------------------------------------
+
+  function drawGrass(horizon) {
+    const bladeCount = Math.round(clamp(w * 0.65, 100, 700));
+
+    for (let i = 0; i < bladeCount; i++) {
+      const x = random(i + 1100) * w;
+      const baseY = surfaceY(x, horizon);
+      const height = 3 + random(i + 1200) * 12;
+      const lean = (random(i + 1300) - 0.5) * 8;
+      const green = Math.floor(55 + random(i + 1400) * 75);
+
+      ctx.strokeStyle = `rgba(${Math.floor(green * 0.65)},${green},${Math.floor(green * 0.55)},0.85)`;
+      ctx.lineWidth = 0.6 + random(i + 1600) * 0.8;
+
+      ctx.beginPath();
+      ctx.moveTo(x, baseY);
+      ctx.quadraticCurveTo(
+        x + lean * 0.5,
+        baseY - height * 0.55,
+        x + lean,
+        baseY - height
+      );
+      ctx.stroke();
+    }
+
+    // Small plants
+    for (let i = 0; i < 30; i++) {
+      const x = random(i + 1700) * w;
+      const y = surfaceY(x, horizon);
+      const plantHeight = 3 + random(i + 1800) * 5;
+
+      ctx.strokeStyle = "rgba(100,140,79,0.8)";
+      ctx.lineWidth = 1;
+
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x - 1, y - plantHeight);
+      ctx.moveTo(x, y - plantHeight * 0.5);
+      ctx.lineTo(x + 3, y - plantHeight * 0.8);
+      ctx.stroke();
+    }
+  }
+
+  // --------------------------------------------------
+  // ROOTS
+  // --------------------------------------------------
+
+  function drawRoots(horizon) {
+    for (let i = 0; i < 24; i++) {
+      const x = random(i + 2000) * w;
+      const rootLength = h * (0.025 + random(i + 2100) * 0.07);
+      const branches = 2 + Math.floor(random(i + 2200) * 3);
+      const startY = surfaceY(x, horizon);
+
+      ctx.strokeStyle = `rgba(85,62,43,${0.3 + random(i + 2300) * 0.35})`;
+      ctx.lineWidth = 0.6 + random(i + 2400) * 1.2;
+
+      ctx.beginPath();
+      ctx.moveTo(x, startY);
+      ctx.quadraticCurveTo(
+        x + (random(i + 2500) - 0.5) * 18,
+        startY + rootLength * 0.5,
+        x + (random(i + 2600) - 0.5) * 20,
+        startY + rootLength
+      );
+      ctx.stroke();
+
+      for (let j = 0; j < branches; j++) {
+        const t = 0.25 + j * 0.17;
+        const bx = x + (random(i * 20 + j + 2700) - 0.5) * 8;
+        const by = startY + rootLength * t;
+
+        ctx.beginPath();
+        ctx.moveTo(bx, by);
+        ctx.lineTo(
+          bx + (random(i * 30 + j + 2800) - 0.5) * 20,
+          by + rootLength * 0.16
+        );
+        ctx.stroke();
+      }
+    }
+  }
+
+  // --------------------------------------------------
+  // GEOLOGICAL GROUND AND DESCENT
+  // --------------------------------------------------
+
+  function drawGround(amount) {
+    if (amount <= 0) return;
+
+    /*
+      KEY EFFECT:
+      The surface begins below the viewport and continues
+      travelling upward until it is completely out of sight.
+    */
+    const surfaceProgress = smooth(0.53, 1, progress);
+
+    const startHorizon = h * 1.12;
+    const finalHorizon = -h * 0.24;
+
+    const horizon =
+      startHorizon +
+      (finalHorizon - startHorizon) * surfaceProgress;
+
+    const vegetationVisibility = smooth(
+      -h * 0.08,
+      h * 0.24,
+      horizon
+    );
+
+    ctx.save();
+    ctx.globalAlpha = amount;
+
+    // Atmospheric rim around the surface
+    const rim = ctx.createLinearGradient(
+      0, horizon - 32,
+      0, horizon + 38
+    );
+
+    rim.addColorStop(0, "rgba(95,155,205,0)");
+    rim.addColorStop(0.4, "rgba(100,170,215,0.12)");
+    rim.addColorStop(0.53, "rgba(125,190,225,0.65)");
+    rim.addColorStop(0.7, "rgba(70,125,165,0.25)");
+    rim.addColorStop(1, "rgba(30,55,75,0)");
+
+    ctx.fillStyle = rim;
+    ctx.fillRect(0, horizon - 32, w, 74);
+
+    // Entire underground mass
+    ctx.beginPath();
+    ctx.moveTo(0, surfaceY(0, horizon));
+
+    for (let x = 0; x <= w + 4; x += 4) {
+      ctx.lineTo(x, surfaceY(x, horizon));
+    }
+
+    ctx.lineTo(w, h);
+    ctx.lineTo(0, h);
+    ctx.closePath();
+
+    const rock = ctx.createLinearGradient(0, horizon, 0, h);
+    rock.addColorStop(0, "#3b382f");
+    rock.addColorStop(0.08, "#29251f");
+    rock.addColorStop(0.23, "#332d27");
+    rock.addColorStop(0.42, "#242321");
+    rock.addColorStop(0.62, "#1b1b1b");
+    rock.addColorStop(0.82, "#211a17");
+    rock.addColorStop(1, "#100d0c");
+
+    ctx.fillStyle = rock;
+    ctx.fill();
+
+    // Soil layer directly below the surface.
+    // This moves out of view with the surface.
+    const soilBottom = horizon + h * 0.085;
+
+    ctx.beginPath();
+    for (let x = 0; x <= w + 4; x += 4) {
+      const y = surfaceY(x, horizon);
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+
+    for (let x = w; x >= 0; x -= 4) {
+      ctx.lineTo(x, soilBottom + Math.sin(x * 0.014) * 3);
+    }
+
+    ctx.closePath();
+
+    const soil = ctx.createLinearGradient(0, horizon, 0, soilBottom);
+    soil.addColorStop(0, "#423525");
+    soil.addColorStop(0.35, "#35291e");
+    soil.addColorStop(1, "#211b16");
+
+    ctx.fillStyle = soil;
+    ctx.fill();
+
+
+    // Layered sediment, stone, and bedrock.
+    // Darker charcoal and muted brown tones for a deeper,
+    // more cinematic underground appearance.
+    const layers = [
+      { depth: 0.09, amp: 0.008, color: "rgba(75,55,39,0.32)", width: 4 },
+      { depth: 0.15, amp: 0.012, color: "rgba(55,40,29,0.42)", width: 6 },
+      { depth: 0.23, amp: 0.016, color: "rgba(100,73,45,0.16)", width: 2.8 },
+      { depth: 0.31, amp: 0.012, color: "rgba(43,40,35,0.48)", width: 6 },
+      { depth: 0.41, amp: 0.02, color: "rgba(78,60,43,0.20)", width: 3 },
+      { depth: 0.50, amp: 0.014, color: "rgba(35,34,31,0.55)", width: 6 },
+      { depth: 0.61, amp: 0.02, color: "rgba(63,46,32,0.25)", width: 4 },
+      { depth: 0.72, amp: 0.016, color: "rgba(32,31,29,0.44)", width: 6 },
+      { depth: 0.82, amp: 0.02, color: "rgba(65,39,25,0.32)", width: 4 },
+      { depth: 0.91, amp: 0.015, color: "rgba(29,24,22,0.52)", width: 6 }
+    ];
+
+
+    layers.forEach((layer, index) => {
+      const baseY = horizon + h * layer.depth;
+
+      ctx.beginPath();
+
+      for (let x = 0; x <= w + 4; x += 4) {
+        const wave =
+          Math.sin(x * 0.006 + index * 1.7) * h * layer.amp +
+          Math.sin(x * 0.015 + index) * h * layer.amp * 0.3;
+
+        const y = baseY + wave;
+
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+
+      ctx.strokeStyle = layer.color;
+      ctx.lineWidth = layer.width;
+      ctx.stroke();
+    });
+
+    // Angular cracks and rock fragments.
+    for (let i = 0; i < 110; i++) {
+      const x = random(i + 3000) * w;
+      const y = horizon + h * (0.13 + random(i + 3100) * 1.05);
+      const length = 8 + random(i + 3200) * 38;
+      const tilt = (random(i + 3300) - 0.5) * 12;
+
+      ctx.strokeStyle =
+        random(i + 3400) > 0.5
+          ? "rgba(190,155,113,0.12)"
+          : "rgba(0,0,0,0.3)";
+
+      ctx.lineWidth = 0.6 + random(i + 3500) * 1.1;
+
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + length * 0.45, y + tilt);
+      ctx.lineTo(x + length, y + tilt * 0.5);
+      ctx.stroke();
+    }
+
+    // Embedded stones.
+    for (let i = 0; i < 90; i++) {
+      const x = random(i + 3600) * w;
+      const y = horizon + h * (0.035 + random(i + 3700) * 1.1);
+      const size = 1.2 + random(i + 3800) * 4.5;
+
+      ctx.fillStyle =
+        random(i + 3900) > 0.5
+          ? "rgba(126,111,91,0.55)"
+          : "rgba(16,15,14,0.65)";
+
+      ctx.beginPath();
+      ctx.ellipse(
+        x, y, size * 1.4, size,
+        random(i + 4000) * 0.5,
+        0, Math.PI * 2
+      );
+      ctx.fill();
+    }
+
+    // Woodland, roots, and grass fade out when the surface
+    // has moved above the viewport.
+    if (vegetationVisibility > 0) {
+      ctx.save();
+      ctx.globalAlpha *= vegetationVisibility;
+
+      drawForest(horizon);
+      drawRoots(horizon);
+      drawGrass(horizon);
+
+      ctx.restore();
+    }
+
+    // Deep orange mineral seams become more visible later.
+    const deepGlow = smooth(0.62, 0.9, progress);
+
+    if (deepGlow > 0) {
+      for (let i = 0; i < 5; i++) {
+        const baseY = horizon + h * (0.58 + i * 0.105);
+
+        ctx.beginPath();
+
+        for (let x = 0; x <= w + 4; x += 4) {
+          const y =
+            baseY +
+            Math.sin(x * 0.009 + i * 2) * h * 0.012 +
+            Math.sin(x * 0.02 + i) * h * 0.004;
+
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+
+        ctx.strokeStyle = `rgba(235,105,43,${0.12 * deepGlow})`;
+        ctx.lineWidth = 10;
+        ctx.stroke();
+
+        ctx.strokeStyle = `rgba(246,130,55,${0.3 * deepGlow})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.strokeStyle = `rgba(255,190,100,${0.25 * deepGlow})`;
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+      }
+    }
+
+    // Final deep-rock shading.
+    const depth = smooth(0.55, 1, progress);
+    const depthGradient = ctx.createLinearGradient(0, 0, 0, h);
+
+    depthGradient.addColorStop(
+      0,
+      `rgba(12,11,10,${0.08 + depth * 0.16})`
+    );
+    depthGradient.addColorStop(
+      0.55,
+      `rgba(8,7,7,${0.05 + depth * 0.18})`
+    );
+    depthGradient.addColorStop(
+      1,
+      `rgba(3,3,3,${0.16 + depth * 0.28})`
+    );
+
+    ctx.fillStyle = depthGradient;
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.restore();
+  }
+
+  // --------------------------------------------------
+  // CINEMATIC VIGNETTE
+  // --------------------------------------------------
+
+  function drawVignette() {
+    const underground = smooth(0.7, 1, progress);
+
+    const gradient = ctx.createRadialGradient(
+      w * 0.5, h * 0.48, h * 0.12,
+      w * 0.5, h * 0.5, Math.max(w, h) * 0.78
+    );
+
+    gradient.addColorStop(0, "rgba(0,0,0,0)");
+    gradient.addColorStop(0.65, "rgba(0,0,0,0.08)");
+    gradient.addColorStop(
+      1,
+      `rgba(0,0,0,${0.42 + underground * 0.12})`
+    );
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, w, h);
+  }
+
+  // --------------------------------------------------
+  // MAIN RENDER
+  // --------------------------------------------------
+
+  function draw() {
+    if (!w || !h) return;
+
+    ctx.clearRect(0, 0, w, h);
+
+    drawBackground();
+
+    // Space is visible first and fades as we descend.
+    const starAmount =
+      smooth(0.01, 0.12, progress) *
+      (1 - smooth(0.4, 0.62, progress));
+
+    drawStars(starAmount);
+
+    // The ground rises and eventually moves above the screen.
+    const groundAmount = smooth(0.48, 0.72, progress);
+
+    drawGround(groundAmount);
+
+    drawVignette();
+  }
+
+  // --------------------------------------------------
+  // SCROLL PROGRESS
+  // --------------------------------------------------
+
+  function update() {
+    raf = 0;
+
+    const rect = root.getBoundingClientRect();
+    const travel = Math.max(
+      1,
+      root.offsetHeight - window.innerHeight
+    );
+
+    progress = clamp(-rect.top / travel);
+
+    draw();
+  }
+
+  function requestUpdate() {
+    if (raf) return;
+    raf = window.requestAnimationFrame(update);
+  }
+
+  window.addEventListener("scroll", requestUpdate, {
+    passive: true
+  });
+
+  window.addEventListener("resize", () => {
+    resize();
+    requestUpdate();
+  });
+
+  if ("ResizeObserver" in window) {
+    const observer = new ResizeObserver(() => {
+      resize();
+      requestUpdate();
+    });
+
+    observer.observe(canvas);
+  }
+
+  resize();
+  update();
+})();
+
+</script>
 
 </body>
 
