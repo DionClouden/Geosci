@@ -95,8 +95,10 @@ body {
     display: none !important;
 }
 
+
+
 .news-featured {
-    
+    padding-top: 130px;
     border-bottom: 2px solid #b8a06a;
 }
 
@@ -118,73 +120,6 @@ body {
     padding: 18px;
 }
 
-
-/* =========================
-   NEWS NAVBAR
-========================= */
-
-.navbar {
-    position: relative !important;
-
-    width: 100vw !important;
-    margin-left: calc(50% - 50vw) !important;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: transparent !important;
-
-
-    box-shadow: none !important;
-}
-
-.logo-text {
-    display: flex;
-
-    margin-left: 40px;
-
-    font-weight: 900;
-    font-size: 1.8rem;
-    color:#3f403c;
-    letter-spacing: 1px;
-}
-
-.navbar a {
-    color: #0b0f0e ;
-}
-
-.navbar a:hover {
-    color: #8d7748 ;
-}
-
-.nav-container {
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-
-    padding: 18px 28px;
-
-    height: 85px;
-   background-color: #f3f1eb;
-   border: double 3px #887b5f35;
-   border-radius: 55px;
-}
-
-.nav-container {
-    background:
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(184, 160, 106, 0.12),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 85% 80%,
-            rgba(120, 145, 155, 0.10),
-            transparent 35%
-        ),
-        #f3f1eb;
-}
 
 body {
     background:
@@ -423,4 +358,144 @@ body {
         transform: translateY(-100vh);
     }
 
+}
+
+
+
+
+
+/* =========================
+   GEOSCI LIGHT NAVBAR
+   Match the News Article navbar dimensions and appearance
+========================= */
+
+.navbar {
+    position: fixed !important;
+    top: 25px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: min(90%, 1200px) !important;
+    max-width: 1200px !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+    z-index: 100;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.navbar.scrolled {
+    top: 8px !important;
+}
+
+.nav-container {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 85px !important;
+    min-height: 85px !important;
+    box-sizing: border-box;
+    padding: 18px 30px !important;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(184, 160, 106, 0.12), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(120, 145, 155, 0.10), transparent 35%),
+        #f3f1eb !important;
+    border: double 3px #887b5f35 !important;
+    border-radius: 55px;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transition: padding 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.navbar.scrolled .nav-container {
+    height: 85px !important;
+    min-height: 85px !important;
+    padding: 18px 30px !important;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(184, 160, 106, 0.12), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(120, 145, 155, 0.10), transparent 35%),
+        #f3f1eb !important;
+    box-shadow: none !important;
+}
+
+.logo-text {
+    font-family: inherit;
+    font-weight: 750 !important;
+    font-size: 1.8rem !important;
+    letter-spacing: 0.1px !important;
+    line-height: 1.2 !important;
+    color: #3f403c !important;
+}
+
+.nav-container a {
+    color: #0b0f0e !important;
+    text-decoration: none;
+}
+
+.nav-container a:hover,
+.logo a:hover .logo-text {
+    color: #8d7748 !important;
+}
+
+
+.logo-mark-wrap {
+  display: block;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.nav-container ul {
+    display: flex !important;
+    align-items: center !important;
+     gap: clamp(16px, 2.4vw, 38px);
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+}
+
+.nav-container ul li {
+    display: flex;
+    align-items: center;
+}
+
+.nav-container ul li a,
+.nav-container nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+    font-family: inherit !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+    color: #0b0f0e !important;
+    text-decoration: none !important;
+}
+
+.nav-container nav a::after,
+.nav-container ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 1px;
+    background: #b8a06a;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.nav-container nav a:hover::after,
+.nav-container nav a[aria-current="page"]::after,
+.nav-container ul li a:hover::after,
+.nav-container ul li a[aria-current="page"]::after {
+    transform: scaleX(1);
+}
+
+.nav-container ul li a:hover {
+    color: #8d7748 !important;
 }

@@ -220,3 +220,68 @@ if (logoLink && logoMark) {
     });
 
 }
+
+// =========================
+// MOBILE MENU  (add to your script)
+// =========================
+
+const navToggle = document.querySelector(".nav-toggle");
+const siteNav = document.getElementById("site-nav");
+
+if (navbar && navToggle && siteNav) {
+
+    // dim layer lives on <body> (not inside .navbar, because .navbar has a transform,
+    // which would trap a position:fixed child inside it)
+    const backdrop = document.createElement("div");
+    backdrop.className = "nav-backdrop";
+    document.body.appendChild(backdrop);
+
+    const setMenu = (open) => {
+        navbar.classList.toggle("menu-open", open);
+        document.body.classList.toggle("nav-open", open);
+        backdrop.classList.toggle("show", open);
+        navToggle.setAttribute("aria-expanded", String(open));
+        navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    };
+
+    navToggle.addEventListener("click", () => {
+        setMenu(!navbar.classList.contains("menu-open"));
+    });
+
+    // tap outside, tap a link, or press Escape to close
+    backdrop.addEventListener("click", () => setMenu(false));
+
+    siteNav.addEventListener("click", (e) => {
+        if (e.target.closest("a")) setMenu(false);
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") setMenu(false);
+    });
+
+    // if the window grows past the mobile breakpoint, reset everything
+    window.matchMedia("(min-width: 821px)").addEventListener("change", (e) => {
+        if (e.matches) setMenu(false);
+    });
+}
+
+
+// =========================
+// SAFER READING PROGRESS
+// (your version throws an error on any page without these elements,
+//  for example the home page, on every scroll)
+// =========================
+
+const progressFill = document.querySelector(".reading-progress-fill");
+const progressBar = document.querySelector(".reading-progress");
+const articleHero = document.querySelector(".article-hero");
+
+if (progressFill && progressBar && articleHero) {
+    window.addEventListener("scroll", () => {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+
+        progressFill.style.height = progress + "%";
+        progressBar.classList.toggle("visible", window.scrollY > articleHero.offsetHeight - 100);
+    });
+}
