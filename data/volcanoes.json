@@ -9,7 +9,7 @@
         "type": "Stratovolcano",
         "elevation": "1,651 m",
         "lastEruption": "2010",
-        "description": "Eyjafjallajökull is one of Iceland's most famous volcanoes. Its 2010 eruption caused widespread disruption to European aviation and demonstrated the powerful interaction between ice, water and magma.",
+        "description": "In 2010 this glacier-capped volcano grounded roughly 100,000 flights and stranded millions of travellers. Meltwater flooding the vent shattered the magma into unusually fine, abrasive ash that drifted across European airspace for days.",
         "geology": "Located along Iceland's volcanic rift zone, Eyjafjallajökull is shaped by the interaction between the North American and Eurasian tectonic plates.",
         "image": "images/eyjafjallajokull.jpg",
         "article": "articles/iceland1.html"
@@ -24,7 +24,7 @@
         "type": "Stratovolcano",
         "elevation": "1,222 m",
         "lastEruption": "1708",
-        "description": "Mount Fuji is Japan's highest peak, renowned for its towering near-symmetrical cone shape as well as inspiring centuries worth of Japanese art, literature and poetry.",
+        "description": "Japan's sacred icon last erupted in 1707, dusting Edo (modern Tokyo) with ash 100 km away. Its near-perfect cone has been a pilgrimage site for centuries and the muse behind Hokusai's famous woodblock prints.",
         "geology": "The stratovolcano is located on the Pacific ring of fire, at a triple junction between the Pacific, Phillipine and Eurasian plate.",
         "image": "images/fuji.jpg",
         "article": "articles/iceland1.html"
@@ -39,7 +39,7 @@
         "type": "Shield volcano",
         "elevation": "1,222 m",
         "lastEruption": "2026",
-        "description": "Unlike other volcanoes, Kilauea erupts slowly and gently producing flowing 'pahoehoe' lava as opposed to highly explosive blasts.",
+        "description": "Home of the fire goddess Pele, Kilauea's Halemaʻumaʻu crater has held lava lakes on and off for centuries. Its 2018 eruption drained the summit and sent lava through Leilani Estates, destroying over 700 homes.",
         "geology": "The shield volcano is fed by the Hawaiian hotspot - a lone mantle plume in the centre of the pacific plate.",
         "image": "images/kilauea.jpg",
         "article": "articles/iceland1.html"
@@ -54,7 +54,7 @@
         "type": "Stratovolcano",
         "elevation": "2,549 m",
         "lastEruption": "2008",
-        "description": "Mount St Helens is best known for its unexpected catastrophic 1980 eruption. An earthquake kickstarted a landslide, which triggered a sideways blast, devastating hundreds of square miles at hurricane speeds.",
+        "description": "On 18 May 1980 the mountain's north face collapsed in the largest landslide in recorded history, unleashing a sideways blast that flattened forest across roughly 600 square km and killed 57 people. The summit dropped by about 400 m.",
         "geology": "The Volcano sits above the Cascadia Subduction Zone, where the partial melting of the Juan de Fuca plate results in magma-fuelled eruptions.",
         "image": "images/sthelens.jpg",
         "article": "articles/iceland1.html"
@@ -69,7 +69,7 @@
         "type": "Stratovolcano",
         "elevation": "3,403 m",
         "lastEruption": "2026",
-        "description": "Mount Etna is Europe's most active volcano. Its frequent, spectacular eruptions constantly reshape Sicily's landscape and demonstrate the relentless power of persistent basaltic volcanism.",
+        "description": "Europe's tallest active volcano has been erupting for around half a million years, regularly staging lava fountains over Sicily and coating Catania in ash. Its summit craters reshape themselves with almost every major eruption.",
         "geology": "Etna is a complex stratovolcano formed by the collision of the African and Eurasian plates, fueling its highly active and fluid magma system.",
         "image": "images/etna.jpg",
         "article": "articles/iceland1.html"
@@ -84,7 +84,7 @@
         "type": "Stratovolcano",
         "elevation": "285 m",
         "lastEruption": "2024",
-        "description": "The original Krakatoa volcano was destroyed in it's famous 1883 eruption, which is often described as 'the loudest sound in recorded history', heard up to 5,000 km away.",
+        "description": "The 1883 eruption was heard roughly 4,800 km away and its tsunamis killed over 36,000 people. Today the young island of Anak Krakatau ('Child of Krakatoa') grows from the drowned caldera, and its 2018 flank collapse triggered another deadly wave.",
         "geology": "Krakatoa lives on through Anak Krakatau ('Child of Krakatoa'), which demonstrates frequent, small eruptions.",
         "image": "images/krakatoa.jpg",
         "article": "articles/iceland1.html"
@@ -99,7 +99,7 @@
         "type": "Stratovolcano",
         "elevation": "6,893 m",
         "lastEruption": "2026",
-        "description": "Sitting on the Chile - Argentina border, Ojos del Salado is the highest active volcano in the world.",
+        "description": "At 6,893 m this is the highest active volcano on Earth, straddling the Chile-Argentina border in the bone-dry Atacama. Its summit crater holds what is considered the highest lake in the world, at about 6,390 m.",
         "geology": "Ojos del Salado is a complex stratovolcano formed by the subduction of the Nazca plate beneath the South American plate.",
         "image": "images/ojosdelsalado.jpg",
         "article": "articles/iceland1.html"
@@ -114,7 +114,7 @@
         "type": "Stratovolcano",
         "elevation": "5,895 m",
         "lastEruption": "100,000 years ago",
-        "description": "Mount Kilimanjaro is the highest peak in Africa and the tallest free-standing mountain in the world.",
+        "description": "Africa's highest mountain is a free-standing giant built from three volcanoes: Kibo, Mawenzi and Shira. Kibo is dormant rather than extinct and still vents gas, while the famous summit glaciers are rapidly shrinking.",
         "geology": "Mount Kilimanjaro is a complex stratovolcano formed by the East African Rift system, the same system responsible for most african volcanism today..",
         "image": "images/kilimanjaro.jpg",
         "article": "articles/iceland1.html"
@@ -129,7 +129,7 @@
         "type": "Stratovolcano",
         "elevation": "1,281 m",
         "lastEruption": "1944",
-        "description": "Mount Vesuvius is best known for its catastrophic eruption in 79 AD, which buried the Roman cities of Pompeii and Herculaneum under a thick blanket of volcanic ash.",
+        "description": "The volcano that buried Pompeii and Herculaneum in AD 79 still looms over the Bay of Naples. It last erupted in 1944, and roughly 600,000 people now live in its red zone, making it one of the most closely watched volcanoes on Earth.",
         "geology": "Vesuvius is a complex stratovolcano formed by the subduction of the African plate beneath the Eurasian plate in the Mediterranean region.",
         "image": "images/vesuvius.jpg",
         "article": "articles/iceland1.html"
@@ -144,7 +144,7 @@
         "type": "Stratovolcano",
         "elevation": "5,642 m",
         "lastEruption": "50 AD",
-        "description": "Mount Elbrus is the highest peak in Europe and one of the Seven Summits, attracting climbers from around the world.",
+        "description": "The twin-peaked giant of the Caucasus is the highest mountain in Europe by the usual boundary. Its summits are covered in glaciers that feed several major rivers, though the volcano itself has been quiet for around 2,000 years.",
         "geology": "Elbrus is a complex stratovolcano formed by the subduction of the Arabian plate beneath the Eurasian plate.",
         "image": "images/elbrus.jpg",
         "article": "articles/elbrus.html"
@@ -159,7 +159,7 @@
         "type": "Stratovolcano",
         "elevation": "1,397 m",
         "lastEruption": "1932",
-        "description": "Mount Pelee is a stratovolcano located on the Caribbean island of Martinique. It is infamous for its catastrophic eruption in 1902, which destroyed the town of Saint-Pierre and killed nearly 30,000 people.",
+        "description": "In May 1902 a glowing pyroclastic flow swept down and destroyed the port of Saint-Pierre in minutes, killing roughly 28,000 people. The disaster defined 'Peléan' eruptions and is one of the deadliest volcanic events of the 20th century.",
         "geology": "Pelee is a complex stratovolcano formed by the subduction of the North American plate beneath the Caribbean plate.",
         "image": "images/pelee.jpg",
         "article": "articles/pelee.html"
@@ -174,7 +174,7 @@
         "type": "Stratovolcano",
         "elevation": "2,930 m",
         "lastEruption": "2020",
-        "description": "Mount Merapi is one of Indonesia's most active volcanoes, known for its frequent eruptions and pyroclastic flows that pose significant hazards to nearby communities.",
+        "description": "Indonesia's 'Mountain of Fire' sits just north of Yogyakarta, and its steep lava dome regularly collapses into fast-moving pyroclastic flows. The 2010 eruption killed more than 350 people and displaced around 350,000.",
         "geology": "Merapi is a complex stratovolcano formed by the subduction of the Indo-Australian plate beneath the Eurasian plate.",
         "image": "images/merapi.jpg",
         "article": "articles/merapi.html"
@@ -189,7 +189,7 @@
         "type": "Shield volcano",
         "elevation": "1,156 m",
         "lastEruption": "23 million years ago",
-        "description": "Mount Warning is a shield volcano located in New South Wales, Australia. It is the remnant of an ancient volcanic caldera and is known for its unique geological features and biodiversity.",
+        "description": "The worn-down plug of a vast shield volcano that erupted about 23 million years ago. A ring of mountains around it marks the eroded caldera, and this hard-rock core is all that remains of the central vent.",
         "geology": "Mount Warning is a shield volcano formed by the eruption of basaltic lava flows during the Miocene epoch.",
         "image": "images/warning.jpg",
         "article": "articles/warning.html"
@@ -204,7 +204,7 @@
         "type": "Stratovolcano",
         "elevation": "3,794 m",
         "lastEruption": "2021",
-        "description": "Mount Erebus is the southernmost active volcano on Earth, located on Ross Island in Antarctica. It is known for its persistent lava lake and unique ice fumaroles.",
+        "description": "The world's southernmost active volcano rises from Antarctica's Ross Island and has held a lava lake of molten phonolite for decades. Its summit is studded with ice towers built by freezing volcanic steam.",
         "geology": "Erebus is a complex stratovolcano formed by the subduction of the Pacific plate beneath the Antarctic plate.",
         "image": "images/erebus.jpg",
         "article": "articles/erebus.html"
@@ -219,7 +219,7 @@
         "type": "Stratovolcano",
         "elevation": "4,392 m",
         "lastEruption": "1894",
-        "description": "Mount Rainier is a massive stratovolcano located in Washington State, USA. It is the highest peak in the Cascade Range and is considered one of the most dangerous volcanoes in the United States due to its potential for lahars and pyroclastic flows.",
+        "description": "Draped in around 25 glaciers, Rainier looms over Seattle and Tacoma. Its real threat is lahars: volcanic mudflows from melting ice that could race down valleys into populated areas, which is why it is rated among the most dangerous volcanoes in the US.",
         "geology": "Rainier is a complex stratovolcano formed by the subduction of the Juan de Fuca plate beneath the North American plate.",
         "image": "images/rainier.jpg",
         "article": "articles/rainier.html"
@@ -234,7 +234,7 @@
         "type": "Stratovolcano",
         "elevation": "4,322 m",
         "lastEruption": "1786",
-        "description": "Mount Shasta is a prominent stratovolcano located in northern California, USA. It is part of the Cascade Range and is known for its stunning beauty and recreational opportunities.",
+        "description": "One of the largest stratovolcanoes in the Cascades, Shasta towers over northern California. Its Shastina cone is a volcano in its own right, and the mountain has long been sacred to the region's Native peoples.",
         "geology": "Shasta is a complex stratovolcano formed by the subduction of the Juan de Fuca plate beneath the North American plate.",
         "image": "images/shasta.jpg",
         "article": "articles/shasta.html"
@@ -249,7 +249,7 @@
         "type": "Stratovolcano",
         "elevation": "3,718 m",
         "lastEruption": "1909",
-        "description": "Mount Teide is the highest peak in Spain and the third highest volcano in the world when measured from its base on the ocean floor. It is located on the island of Tenerife in the Canary Islands.",
+        "description": "Spain's highest peak rises over 7,000 m from the Atlantic seabed, making it one of the tallest volcanic structures on Earth. The Guanche people of Tenerife believed the demon Guayota lived inside it.",
         "geology": "Teide is a complex stratovolcano formed by the interaction of the African and Eurasian tectonic plates.",
         "image": "images/teide.jpg",
         "article": "articles/teide.html"
@@ -264,7 +264,7 @@
         "type": "Stratovolcano",
         "elevation": "2,797 m",
         "lastEruption": "2007",
-        "description": "Mount Ruapehu is the largest active volcano in New Zealand and is located in the central North Island. It is known for its ski fields and the Tongariro National Park, which is a UNESCO World Heritage site.",
+        "description": "The North Island's highest peak holds a steaming, acidic crater lake. In 1953 that lake burst through its rim, and the resulting lahar swept away a rail bridge at Tangiwai, killing 151 people on a passing train.",
         "geology": "Ruapehu is a complex stratovolcano formed by the subduction of the Pacific plate beneath the Australian plate.",
         "image": "images/ruapehu.jpg",
         "article": "articles/ruapehu.html"
@@ -279,7 +279,7 @@
         "type": "Stratovolcano",
         "elevation": "1,670 m",
         "lastEruption": "2010",
-        "description": "Arenal is a notable volcano in Alajuela, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Costa Rica's textbook cone erupted violently in 1968, destroying villages, then ran in near-continuous activity for 42 years, glowing red at night. It fell quiet in 2010 and is now wrapped in rainforest and hot springs.",
         "geology": "Arenal is part of the volcanic system of Alajuela. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/arenal.jpg",
         "article": "articles/arenal.html"
@@ -294,7 +294,7 @@
         "type": "Stratovolcano",
         "elevation": "2,687 m",
         "lastEruption": "2025",
-        "description": "Poás is a notable volcano in Alajuela, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Among the largest active craters in the world, Poás holds a steaming turquoise acid lake over a hot, gassy vent. Acid rain from the plume scorches surrounding vegetation, and sudden steam-driven blasts can occur.",
         "geology": "Poás is part of the volcanic system of Alajuela. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/pos.jpg",
         "article": "articles/pos.html"
@@ -309,7 +309,7 @@
         "type": "Stratovolcano",
         "elevation": "3,432 m",
         "lastEruption": "1994",
-        "description": "Irazú is a notable volcano in Cartago, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Costa Rica's highest volcano has a green crater lake and, on clear days, views of both the Pacific and Caribbean. Its 1963 eruption began the day US President Kennedy visited, and ash fell on San José for two years.",
         "geology": "Irazú is part of the volcanic system of Cartago. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/iraz.jpg",
         "article": "articles/iraz.html"
@@ -324,7 +324,7 @@
         "type": "Stratovolcano",
         "elevation": "3,340 m",
         "lastEruption": "2022",
-        "description": "Turrialba is a notable volcano in Cartago, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Quiet for roughly 150 years, Turrialba woke up from 2010 and began belching ash that repeatedly shut San José's international airport. Its summit craters are still steaming and unstable.",
         "geology": "Turrialba is part of the volcanic system of Cartago. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/turrialba.jpg",
         "article": "articles/turrialba.html"
@@ -339,7 +339,7 @@
         "type": "Complex volcano",
         "elevation": "1,916 m",
         "lastEruption": "2025",
-        "description": "Rincón de la Vieja is a notable volcano in Guanacaste, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A steaming mountain of mud pots, fumaroles and hot springs, topped by a hot acidic crater lake. Rincón de la Vieja is best known for small steam-driven explosions that can come with little warning.",
         "geology": "Rincón de la Vieja is part of the volcanic system of Guanacaste. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/rincndelavieja.jpg",
         "article": "articles/rincndelavieja.html"
@@ -354,7 +354,7 @@
         "type": "Stratovolcano",
         "elevation": "3,763 m",
         "lastEruption": "2025",
-        "description": "Fuego is a notable volcano in Chimaltenango / Escuintla, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Guatemala's 'Volcano of Fire' erupts almost continuously, with explosions every hour or so visible from the colonial city of Antigua. On 3 June 2018 pyroclastic flows swept through villages on its flanks, killing hundreds.",
         "geology": "Fuego is part of the volcanic system of Chimaltenango / Escuintla. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/fuego.jpg",
         "article": "articles/fuego.html"
@@ -369,7 +369,7 @@
         "type": "Complex volcano",
         "elevation": "2,552 m",
         "lastEruption": "2021",
-        "description": "Pacaya is a notable volcano in Escuintla, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A popular volcano for hikers, who can roast marshmallows on warm lava rocks near the summit. Pacaya has been erupting more or less continuously since 1961, and an eruption in 2010 closed the capital's airport.",
         "geology": "Pacaya is part of the volcanic system of Escuintla. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/pacaya.jpg",
         "article": "articles/pacaya.html"
@@ -384,7 +384,7 @@
         "type": "Lava-dome complex",
         "elevation": "2,500 m",
         "lastEruption": "2025",
-        "description": "Santiaguito is a notable volcano in Quetzaltenango, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A volcano growing inside another's crater: Santiaguito began as a lava dome in the hole blasted from Santa María in 1902. It has been extruding lava and exploding almost daily since 1922.",
         "geology": "Santiaguito is part of the volcanic system of Quetzaltenango. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/santiaguito.jpg",
         "article": "articles/santiaguito.html"
@@ -399,7 +399,7 @@
         "type": "Stratovolcano",
         "elevation": "3,772 m",
         "lastEruption": "1902",
-        "description": "Santa María is a notable volcano in Quetzaltenango, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "After centuries of silence its 1902 eruption was one of the largest of the 20th century, sending ash across Central America and killing thousands. The blast scooped out a huge crater on the south flank, where Santiaguito now grows.",
         "geology": "Santa María is part of the volcanic system of Quetzaltenango. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/santamara.jpg",
         "article": "articles/santamara.html"
@@ -414,7 +414,7 @@
         "type": "Stratovolcano",
         "elevation": "1,950 m",
         "lastEruption": "1966",
-        "description": "Izalco is a notable volcano in Sonsonate, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Born from a vent in 1770, Izalco erupted so regularly that sailors called it the 'Lighthouse of the Pacific'. It fell silent in 1966, leaving a perfect, steep-sided cone.",
         "geology": "Izalco is part of the volcanic system of Sonsonate. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/izalco.jpg",
         "article": "articles/izalco.html"
@@ -429,7 +429,7 @@
         "type": "Stratovolcano",
         "elevation": "2,381 m",
         "lastEruption": "2005",
-        "description": "Santa Ana (Ilamatepec) is a notable volcano in Santa Ana, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "El Salvador's highest volcano cradles a crater lake of hot, acidic, jade-green water. A sudden explosion in 2005 hurled ash and boulders, killing two people and forcing thousands to evacuate.",
         "geology": "Santa Ana (Ilamatepec) is part of the volcanic system of Santa Ana. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/santaanailamatepec.jpg",
         "article": "articles/santaanailamatepec.html"
@@ -444,7 +444,7 @@
         "type": "Stratovolcano",
         "elevation": "2,130 m",
         "lastEruption": "2023",
-        "description": "San Miguel (Chaparrastique) is a notable volcano in San Miguel, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Known locally as Chaparrastique, this near-perfect cone overlooks the city of San Miguel. It regularly releases gas and small ash explosions, and has produced lava flows within recorded history.",
         "geology": "San Miguel (Chaparrastique) is part of the volcanic system of San Miguel. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/sanmiguelchaparrastique.jpg",
         "article": "articles/sanmiguelchaparrastique.html"
@@ -459,7 +459,7 @@
         "type": "Caldera / complex volcano",
         "elevation": "635 m",
         "lastEruption": "2024",
-        "description": "Masaya is a notable volcano in Masaya, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Spanish conquistadors called Masaya's glowing crater the 'Mouth of Hell' and a friar erected a cross there in the 16th century to ward off the devil. A lava lake in Santiago crater has come and gone in recent years.",
         "geology": "Masaya is part of the volcanic system of Masaya. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/masaya.jpg",
         "article": "articles/masaya.html"
@@ -474,7 +474,7 @@
         "type": "Stratovolcano",
         "elevation": "1,297 m",
         "lastEruption": "2016",
-        "description": "Momotombo is a notable volcano in León, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A steep cone rising from the shore of Lake Managua. Its 1610 eruption helped doom the Spanish colonial city of León Viejo, and its steam now drives a geothermal power station.",
         "geology": "Momotombo is part of the volcanic system of León. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/momotombo.jpg",
         "article": "articles/momotombo.html"
@@ -489,7 +489,7 @@
         "type": "Stratovolcano",
         "elevation": "1,610 m",
         "lastEruption": "2010",
-        "description": "Concepción is a notable volcano in Ometepe Island, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Ometepe Island, in Lake Nicaragua, is made from two volcanoes: the near-perfect active cone of Concepción and the quieter Maderas. Concepción's frequent ash explosions rain down on villages and coffee farms.",
         "geology": "Concepción is part of the volcanic system of Ometepe Island. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/concepcin.jpg",
         "article": "articles/concepcin.html"
@@ -504,7 +504,7 @@
         "type": "Stratovolcano",
         "elevation": "1,745 m",
         "lastEruption": "2022",
-        "description": "San Cristóbal is a notable volcano in Chinandega, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Nicaragua's tallest volcano is the highest point of the Marrabios range, a chain of cones along the Pacific side of the country. It erupts intermittently with ash plumes and explosions that threaten nearby communities.",
         "geology": "San Cristóbal is part of the volcanic system of Chinandega. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/sancristbal.jpg",
         "article": "articles/sancristbal.html"
@@ -519,7 +519,7 @@
         "type": "Complex volcano",
         "elevation": "311 m",
         "lastEruption": "2024",
-        "description": "Taal is a notable volcano in Batangas, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A volcanic island in a lake inside a giant caldera, on an island: Taal is small but deadly. Its 1911 eruption killed over 1,300 people, and its January 2020 eruption blanketed Manila in ash.",
         "geology": "Taal is part of the volcanic system of Batangas. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/taal.jpg",
         "article": "articles/taal.html"
@@ -534,7 +534,7 @@
         "type": "Stratovolcano",
         "elevation": "2,463 m",
         "lastEruption": "2024",
-        "description": "Mayon is a notable volcano in Albay, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Mayon's smooth, almost perfect cone is the Philippines' most iconic volcano. Its 1814 eruption buried the town of Cagsawa and killed over 1,000 people, leaving only the church bell tower standing.",
         "geology": "Mayon is part of the volcanic system of Albay. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/mayon.jpg",
         "article": "articles/mayon.html"
@@ -549,7 +549,7 @@
         "type": "Stratovolcano",
         "elevation": "1,486 m",
         "lastEruption": "1991",
-        "description": "Pinatubo is a notable volcano in Luzon, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "After 500 years of dormancy, Pinatubo erupted in 1991 in the second-largest eruption of the 20th century. The ash cloud rose around 35 km and cooled global temperatures by about half a degree, while timely evacuations saved thousands of lives.",
         "geology": "Pinatubo is part of the volcanic system of Luzon. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/pinatubo.jpg",
         "article": "articles/pinatubo.html"
@@ -564,7 +564,7 @@
         "type": "Stratovolcano",
         "elevation": "2,435 m",
         "lastEruption": "2025",
-        "description": "Kanlaon is a notable volcano in Negros Island, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The highest peak on Negros Island is one of the Philippines' most active volcanoes. Explosive eruptions have repeatedly forced thousands from their homes and showered nearby farms with ash.",
         "geology": "Kanlaon is part of the volcanic system of Negros Island. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/kanlaon.jpg",
         "article": "articles/kanlaon.html"
@@ -579,7 +579,7 @@
         "type": "Stratovolcano",
         "elevation": "1,565 m",
         "lastEruption": "2022",
-        "description": "Bulusan is a notable volcano in Sorsogon, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Located on the southern tip of Luzon, Bulusan is known for frequent small steam-driven explosions that spit ash over villages. It sits inside a natural park along with a serene crater lake.",
         "geology": "Bulusan is part of the volcanic system of Sorsogon. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/bulusan.jpg",
         "article": "articles/bulusan.html"
@@ -594,7 +594,7 @@
         "type": "Stratovolcano",
         "elevation": "725 m",
         "lastEruption": "2024",
-        "description": "Ruang is a notable volcano in Sangihe Islands, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A small island volcano in the Sangihe chain. Its violent April 2024 eruptions forced thousands to evacuate and raised fears of a tsunami, a real risk after its 1871 eruption caused a collapse-driven wave.",
         "geology": "Ruang is part of the volcanic system of Sangihe Islands. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/ruang.jpg",
         "article": "articles/ruang.html"
@@ -609,7 +609,7 @@
         "type": "Stratovolcano",
         "elevation": "3,676 m",
         "lastEruption": "2025",
-        "description": "Semeru is a notable volcano in East Java, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "'Mahameru', the Great Mountain, is Java's highest peak and erupts almost constantly with ash puffs and pyroclastic flows. In December 2021 a flow buried villages in Lumajang and killed dozens.",
         "geology": "Semeru is part of the volcanic system of East Java. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/semeru.jpg",
         "article": "articles/semeru.html"
@@ -624,7 +624,7 @@
         "type": "Somma volcano",
         "elevation": "2,329 m",
         "lastEruption": "2023",
-        "description": "Bromo is a notable volcano in East Java, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A smoking cone rising from a vast sea of volcanic sand inside the Tengger caldera. Visitors ride up for the sunrise, and each year Hindu Tenggerese throw offerings into the crater during the Yadnya Kasada festival.",
         "geology": "Bromo is part of the volcanic system of East Java. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/bromo.jpg",
         "article": "articles/bromo.html"
@@ -639,7 +639,7 @@
         "type": "Stratovolcano / caldera",
         "elevation": "2,799 m",
         "lastEruption": "1999",
-        "description": "Ijen is a notable volcano in East Java, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "At night this crater glows with electric-blue flames from burning sulphuric gas, while miners haul out loads of yellow sulphur. Below sits the largest highly acidic lake in the world, a striking turquoise.",
         "geology": "Ijen is part of the volcanic system of East Java. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/ijen.jpg",
         "article": "articles/ijen.html"
@@ -654,7 +654,7 @@
         "type": "Stratovolcano",
         "elevation": "3,031 m",
         "lastEruption": "2019",
-        "description": "Agung is a notable volcano in Bali, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Bali's highest and holiest mountain, with the island's 'mother temple' Besakih on its slopes. Its 1963 eruption killed about 1,100 people during a major religious ceremony, and ash from 2017-19 closed Bali's airport.",
         "geology": "Agung is part of the volcanic system of Bali. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/agung.jpg",
         "article": "articles/agung.html"
@@ -669,7 +669,7 @@
         "type": "Stratovolcano",
         "elevation": "3,726 m",
         "lastEruption": "2016",
-        "description": "Rinjani is a notable volcano in Lombok, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Lombok's crater lake, Segara Anak, sits within a giant caldera and a newer cone, Barujari, still grows inside it. The caldera came from the colossal 1257 Samalas eruption, which cooled global climate.",
         "geology": "Rinjani is part of the volcanic system of Lombok. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/rinjani.jpg",
         "article": "articles/rinjani.html"
@@ -684,7 +684,7 @@
         "type": "Stratovolcano",
         "elevation": "2,850 m",
         "lastEruption": "1967",
-        "description": "Tambora is a notable volcano in Sumbawa, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The 1815 eruption was the largest in recorded history, killing tens of thousands and shrinking the mountain by over 1,000 m. Its ash and sulphur cooled the planet and triggered 1816's 'Year Without a Summer'.",
         "geology": "Tambora is part of the volcanic system of Sumbawa. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/tambora.jpg",
         "article": "articles/tambora.html"
@@ -699,7 +699,7 @@
         "type": "Stratovolcano",
         "elevation": "1,784 m",
         "lastEruption": "2018",
-        "description": "Soputan is a notable volcano in North Sulawesi, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "One of the most active volcanoes in Sulawesi, Soputan erupts suddenly and explosively, sending ash plumes several kilometres up and lava flows down its sides with little warning.",
         "geology": "Soputan is part of the volcanic system of North Sulawesi. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/soputan.jpg",
         "article": "articles/soputan.html"
@@ -714,7 +714,7 @@
         "type": "Twin stratovolcanoes",
         "elevation": "1,580 m",
         "lastEruption": "2015",
-        "description": "Lokon-Empung is a notable volcano in North Sulawesi, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Lokon and Empung are side-by-side twin peaks overlooking the city of Tomohon. Frequent small eruptions mean the pair are monitored closely, and the city's residents live daily with ash and tremors.",
         "geology": "Lokon-Empung is part of the volcanic system of North Sulawesi. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/lokonempung.jpg",
         "article": "articles/lokonempung.html"
@@ -729,7 +729,7 @@
         "type": "Stratovolcano",
         "elevation": "3,805 m",
         "lastEruption": "2023",
-        "description": "Kerinci is a notable volcano in Sumatra, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The highest volcano in Indonesia towers over Sumatra's Kerinci Seblat National Park, a rainforest home to Sumatran tigers. It steams and sputters regularly, with small ash eruptions from its crater.",
         "geology": "Kerinci is part of the volcanic system of Sumatra. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/kerinci.jpg",
         "article": "articles/kerinci.html"
@@ -744,7 +744,7 @@
         "type": "Stratovolcano",
         "elevation": "2,460 m",
         "lastEruption": "2021",
-        "description": "Sinabung is a notable volcano in North Sumatra, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "After about 400 years of silence, Sinabung roared back in 2010 and has erupted on and off since. Dome collapses sent pyroclastic flows that killed 16 people in 2014 and seven in 2016, displacing thousands.",
         "geology": "Sinabung is part of the volcanic system of North Sumatra. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/sinabung.jpg",
         "article": "articles/sinabung.html"
@@ -759,7 +759,7 @@
         "type": "Complex volcano",
         "elevation": "2,891 m",
         "lastEruption": "2024",
-        "description": "Marapi is a notable volcano in West Sumatra, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A popular climbing mountain in West Sumatra that erupted without warning in December 2023, killing 24 hikers on its slopes. Its steaming summit crater is constantly monitored.",
         "geology": "Marapi is part of the volcanic system of West Sumatra. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/marapi.jpg",
         "article": "articles/marapi.html"
@@ -774,7 +774,7 @@
         "type": "Complex volcano",
         "elevation": "1,335 m",
         "lastEruption": "2025",
-        "description": "Dukono is a notable volcano in Halmahera, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Dukono has been erupting almost continuously since 1933, making it one of the longest-running eruptions on Earth. Its ash plume is regularly visible from space above remote Halmahera.",
         "geology": "Dukono is part of the volcanic system of Halmahera. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/dukono.jpg",
         "article": "articles/dukono.html"
@@ -789,7 +789,7 @@
         "type": "Stratovolcano",
         "elevation": "1,325 m",
         "lastEruption": "2025",
-        "description": "Ibu is a notable volcano in Halmahera, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Ibu has been erupting repeatedly since 2008, sending up ash plumes day after day and growing a lava dome. Authorities keep an exclusion zone around its crater and ash regularly dusts villages.",
         "geology": "Ibu is part of the volcanic system of Halmahera. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/ibu.jpg",
         "article": "articles/ibu.html"
@@ -804,7 +804,7 @@
         "type": "Twin stratovolcanoes",
         "elevation": "1,703 m",
         "lastEruption": "2025",
-        "description": "Lewotobi is a notable volcano in Flores, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Lewotobi is a pair of volcanoes: Laki-laki ('husband') and Perempuan ('wife'), less than 2 km apart. A violent eruption of Laki-laki in November 2024 killed around ten people and sent thousands fleeing.",
         "geology": "Lewotobi is part of the volcanic system of Flores. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/lewotobi.jpg",
         "article": "articles/lewotobi.html"
@@ -819,7 +819,7 @@
         "type": "Stratovolcano",
         "elevation": "4,754 m",
         "lastEruption": "2025",
-        "description": "Klyuchevskoy is a notable volcano in Kamchatka, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Eurasia's highest active volcano is a near-perfect cone about 6,000 years old. It frequently fires off lava fountains and ash clouds, and sits among a cluster of peaks in Kamchatka's Klyuchevskaya group.",
         "geology": "Klyuchevskoy is part of the volcanic system of Kamchatka. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/klyuchevskoy.jpg",
         "article": "articles/klyuchevskoy.html"
@@ -834,7 +834,7 @@
         "type": "Stratovolcano",
         "elevation": "3,283 m",
         "lastEruption": "2025",
-        "description": "Shiveluch is a notable volcano in Kamchatka, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "One of Kamchatka's most active volcanoes, Shiveluch repeatedly grows a huge lava dome that collapses in explosions. These blasts send ash plumes high into the North Pacific air routes.",
         "geology": "Shiveluch is part of the volcanic system of Kamchatka. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/shiveluch.jpg",
         "article": "articles/shiveluch.html"
@@ -849,7 +849,7 @@
         "type": "Stratovolcano",
         "elevation": "2,882 m",
         "lastEruption": "2025",
-        "description": "Bezymianny is a notable volcano in Kamchatka, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Its name means 'Nameless', because it was thought extinct until it erupted in 1955-56 with a massive sideways blast, a close preview of what Mount St. Helens did 24 years later.",
         "geology": "Bezymianny is part of the volcanic system of Kamchatka. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/bezymianny.jpg",
         "article": "articles/bezymianny.html"
@@ -864,7 +864,7 @@
         "type": "Stratovolcano",
         "elevation": "1,536 m",
         "lastEruption": "2025",
-        "description": "Karymsky is a notable volcano in Kamchatka, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Kamchatka's most consistently active cone, erupting small explosions every few minutes. In 1996 an underwater explosion in a nearby caldera lake coincided with a Karymsky eruption, startling volcanologists.",
         "geology": "Karymsky is part of the volcanic system of Kamchatka. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/karymsky.jpg",
         "article": "articles/karymsky.html"
@@ -879,7 +879,7 @@
         "type": "Stratovolcano",
         "elevation": "2,741 m",
         "lastEruption": "2001",
-        "description": "Avachinsky is a notable volcano in Kamchatka, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Looming over the regional capital Petropavlovsk-Kamchatsky, Avachinsky is ranked among the world's 'Decade Volcanoes' because an eruption could be dangerous for such a populated area.",
         "geology": "Avachinsky is part of the volcanic system of Kamchatka. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/avachinsky.jpg",
         "article": "articles/avachinsky.html"
@@ -894,7 +894,7 @@
         "type": "Stratovolcano",
         "elevation": "3,528 m",
         "lastEruption": "1923",
-        "description": "Kronotsky is a notable volcano in Kamchatka, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "One of Kamchatka's most symmetrical cones, set in a remote wilderness reserve beside Lake Kronotskoye. Its last known eruption was in 1923, and few visitors ever see its snowy summit.",
         "geology": "Kronotsky is part of the volcanic system of Kamchatka. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/kronotsky.jpg",
         "article": "articles/kronotsky.html"
@@ -909,7 +909,7 @@
         "type": "Stratovolcano",
         "elevation": "2,339 m",
         "lastEruption": "1997",
-        "description": "Alaid is a notable volcano in Kuril Islands, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Alaid is the highest volcano in the Kuril Islands and makes up the whole of Atlasov Island. Its symmetrical cone rises directly from the stormy Sea of Okhotsk.",
         "geology": "Alaid is part of the volcanic system of Kuril Islands. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/alaid.jpg",
         "article": "articles/alaid.html"
@@ -924,7 +924,7 @@
         "type": "Stratovolcano",
         "elevation": "1,496 m",
         "lastEruption": "2009",
-        "description": "Sarychev Peak is a notable volcano in Kuril Islands, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "This Kuril volcano is famous for a 2009 eruption photographed from the International Space Station. Astronauts captured a pyroclastic flow and ash plume punching through a hole in the cloud layer.",
         "geology": "Sarychev Peak is part of the volcanic system of Kuril Islands. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/sarychevpeak.jpg",
         "article": "articles/sarychevpeak.html"
@@ -939,7 +939,7 @@
         "type": "Stratovolcano",
         "elevation": "1,117 m",
         "lastEruption": "2025",
-        "description": "Sakurajima is a notable volcano in Kagoshima Bay, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Sakurajima erupts almost daily, dusting the nearby city of Kagoshima with ash so regularly that residents carry umbrellas and keep ash-collection bags. Lava flows in 1914 joined it to the mainland, turning an island into a peninsula.",
         "geology": "Sakurajima is part of the volcanic system of Kagoshima Bay. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/sakurajima.jpg",
         "article": "articles/sakurajima.html"
@@ -954,7 +954,7 @@
         "type": "Caldera / complex volcano",
         "elevation": "1,592 m",
         "lastEruption": "2025",
-        "description": "Aso is a notable volcano in Kyushu, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "One of the world's largest calderas, around 25 km across, with towns, farms and railways inside it. Four colossal eruptions between 270,000 and 90,000 years ago formed it, and the central cone of Nakadake still erupts.",
         "geology": "Aso is part of the volcanic system of Kyushu. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/aso.jpg",
         "article": "articles/aso.html"
@@ -969,7 +969,7 @@
         "type": "Complex volcano",
         "elevation": "1,486 m",
         "lastEruption": "1996",
-        "description": "Unzen is a notable volcano in Kyushu, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "In 1991 a lava dome collapse sent a pyroclastic flow down the mountain, killing 43 people including volcanologists Katia and Maurice Krafft. In 1792 a collapse here triggered a tsunami that killed around 15,000 people.",
         "geology": "Unzen is part of the volcanic system of Kyushu. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/unzen.jpg",
         "article": "articles/unzen.html"
@@ -984,7 +984,7 @@
         "type": "Complex volcano",
         "elevation": "2,568 m",
         "lastEruption": "2019",
-        "description": "Asama is a notable volcano in Honshu, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Overlooking the resort town of Karuizawa, Asama is one of Japan's most active volcanoes. Its 1783 Tenmei eruption killed around 1,500 people and contributed to a widespread famine.",
         "geology": "Asama is part of the volcanic system of Honshu. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/asama.jpg",
         "article": "articles/asama.html"
@@ -999,7 +999,7 @@
         "type": "Stratovolcano",
         "elevation": "3,067 m",
         "lastEruption": "2014",
-        "description": "Ontake is a notable volcano in Honshu, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A sacred pilgrimage mountain, Ontake erupted suddenly at lunchtime on 27 September 2014 with no warning, killing 63 hikers. It remains Japan's deadliest volcanic disaster since the Second World War.",
         "geology": "Ontake is part of the volcanic system of Honshu. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/ontake.jpg",
         "article": "articles/ontake.html"
@@ -1014,7 +1014,7 @@
         "type": "Stratovolcano",
         "elevation": "796 m",
         "lastEruption": "2025",
-        "description": "Suwanosejima is a notable volcano in Ryukyu Islands, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A small remote island whose summit crater has been almost continuously active for decades. Explosions regularly send ash and glowing rocks skyward, while a small community lives on the island.",
         "geology": "Suwanosejima is part of the volcanic system of Ryukyu Islands. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/suwanosejima.jpg",
         "article": "articles/suwanosejima.html"
@@ -1029,7 +1029,7 @@
         "type": "Complex volcano",
         "elevation": "2,160 m",
         "lastEruption": "2018",
-        "description": "Kusatsu-Shirane is a notable volcano in Honshu, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Famous for the hot-spring town of Kusatsu at its foot, with a strikingly acidic emerald crater lake called Yugama. A sudden 2018 eruption sent rocks onto a ski slope, killing one person.",
         "geology": "Kusatsu-Shirane is part of the volcanic system of Honshu. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/kusatsushirane.jpg",
         "article": "articles/kusatsushirane.html"
@@ -1044,7 +1044,7 @@
         "type": "Stratovolcano / caldera",
         "elevation": "2,744 m",
         "lastEruption": "1903",
-        "description": "Changbaishan (Paektu) is a notable volcano in Changbai Mountains, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Straddling the China-North Korea border, this volcano holds Heaven Lake in its summit caldera. Its 'Millennium Eruption' around 946 CE was one of the largest of the last 2,000 years, and the mountain is sacred in Korean and Manchu tradition.",
         "geology": "Changbaishan (Paektu) is part of the volcanic system of Changbai Mountains. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/changbaishanpaektu.jpg",
         "article": "articles/changbaishanpaektu.html"
@@ -1059,7 +1059,7 @@
         "type": "Stratovolcano",
         "elevation": "354 m",
         "lastEruption": "2022",
-        "description": "Barren Island is a notable volcano in Andaman Sea, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The only confirmed active volcano in South Asia, a lone island in the Andaman Sea with a flooded caldera opening to the sea. Erupting every few years, it is uninhabited apart from goats and fruit bats.",
         "geology": "Barren Island is part of the volcanic system of Andaman Sea. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/barrenisland.jpg",
         "article": "articles/barrenisland.html"
@@ -1074,7 +1074,7 @@
         "type": "Lava dome / stratovolcano",
         "elevation": "1,750 m",
         "lastEruption": "2025",
-        "description": "Bagana is a notable volcano in Bougainville, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Bagana is a remote steep-sided lava cone on Bougainville that has been oozing lava almost continuously for years. It is one of Papua New Guinea's most active volcanoes yet one of its least studied.",
         "geology": "Bagana is part of the volcanic system of Bougainville. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/bagana.jpg",
         "article": "articles/bagana.html"
@@ -1089,7 +1089,7 @@
         "type": "Stratovolcano",
         "elevation": "2,334 m",
         "lastEruption": "2023",
-        "description": "Ulawun is a notable volcano in New Britain, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Papua New Guinea's 'Father' volcano is one of the country's most active and is a Decade Volcano. Its 2019 eruption sent ash 19 km into the sky and forced thousands to evacuate.",
         "geology": "Ulawun is part of the volcanic system of New Britain. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/ulawun.jpg",
         "article": "articles/ulawun.html"
@@ -1104,7 +1104,7 @@
         "type": "Stratovolcano",
         "elevation": "1,807 m",
         "lastEruption": "2022",
-        "description": "Manam is a notable volcano in Manam Island, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "An entire island that is a volcano, around 10 km wide with thousands of people living on its flanks. Radial valleys channel pyroclastic flows and lava toward the sea, forcing repeated evacuations.",
         "geology": "Manam is part of the volcanic system of Manam Island. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/manam.jpg",
         "article": "articles/manam.html"
@@ -1119,7 +1119,7 @@
         "type": "Caldera",
         "elevation": "688 m",
         "lastEruption": "2014",
-        "description": "Rabaul is a notable volcano in New Britain, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A flooded caldera that forms a natural harbour. In 1994 twin eruptions from Tavurvur and Vulcan buried the town of Rabaul in ash, though early evacuation kept the death toll remarkably low.",
         "geology": "Rabaul is part of the volcanic system of New Britain. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/rabaul.jpg",
         "article": "articles/rabaul.html"
@@ -1134,7 +1134,7 @@
         "type": "Stratovolcano",
         "elevation": "361 m",
         "lastEruption": "2025",
-        "description": "Yasur is a notable volcano in Tanna Island, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Yasur has been erupting almost non-stop for at least 800 years, and Captain Cook saw its glow in 1774. Visitors can walk to its rim at night and watch lava bombs burst above them.",
         "geology": "Yasur is part of the volcanic system of Tanna Island. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/yasur.jpg",
         "article": "articles/yasur.html"
@@ -1149,7 +1149,7 @@
         "type": "Basaltic volcanic complex",
         "elevation": "1,334 m",
         "lastEruption": "2023",
-        "description": "Ambrym is a notable volcano in Ambrym Island, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Ambrym is a huge caldera with twin lava lakes in Marum and Benbow craters. A 2018 rift eruption drained the lakes and forced people from their villages, and the island is known for its carved ritual figures.",
         "geology": "Ambrym is part of the volcanic system of Ambrym Island. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/ambrym.jpg",
         "article": "articles/ambrym.html"
@@ -1164,7 +1164,7 @@
         "type": "Stratovolcano",
         "elevation": "1,413 m",
         "lastEruption": "2006",
-        "description": "Lopevi is a notable volcano in Lopevi Island, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A near-perfect cone that makes up a whole island in Vanuatu. Lopevi erupts frequently, sending ash plumes and lava toward the sea, and nobody lives on it permanently.",
         "geology": "Lopevi is part of the volcanic system of Lopevi Island. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/lopevi.jpg",
         "article": "articles/lopevi.html"
@@ -1179,7 +1179,7 @@
         "type": "Stratovolcano",
         "elevation": "321 m",
         "lastEruption": "2019",
-        "description": "Whakaari / White Island is a notable volcano in Bay of Plenty, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "New Zealand's most active volcano is a mostly submerged cone 48 km offshore, once mined for sulphur. In December 2019 a sudden eruption killed 22 people who were visiting the island.",
         "geology": "Whakaari / White Island is part of the volcanic system of Bay of Plenty. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/whakaariwhiteisland.jpg",
         "article": "articles/whakaariwhiteisland.html"
@@ -1194,7 +1194,7 @@
         "type": "Stratovolcano",
         "elevation": "2,518 m",
         "lastEruption": "1854",
-        "description": "Taranaki / Egmont is a notable volcano in North Island, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Taranaki is a snow-capped, near-symmetrical cone. Māori legend tells that it lost a fight with Tongariro over the mountain Pihanga and fled west to the coast. Its last known eruption was in 1854.",
         "geology": "Taranaki / Egmont is part of the volcanic system of North Island. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/taranakiegmont.jpg",
         "article": "articles/taranakiegmont.html"
@@ -1209,7 +1209,7 @@
         "type": "Volcanic complex",
         "elevation": "1,978 m",
         "lastEruption": "2012",
-        "description": "Tongariro is a notable volcano in North Island, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A World Heritage volcanic massif and the setting for the famous Tongariro Alpine Crossing. It includes Ngauruhoe, which played Mount Doom in the Lord of the Rings films, and a 2012 eruption hurled boulders onto the hiking trail.",
         "geology": "Tongariro is part of the volcanic system of North Island. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/tongariro.jpg",
         "article": "articles/tongariro.html"
@@ -1224,7 +1224,7 @@
         "type": "Stratovolcano",
         "elevation": "1,491 m",
         "lastEruption": "2000",
-        "description": "Hekla is a notable volcano in Southern Iceland, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Medieval Europeans called Hekla the 'Gateway to Hell'. Since 1970 it has erupted roughly every ten years, often with only minutes of warning, and its long ridge looks like an upturned boat.",
         "geology": "Hekla is part of the volcanic system of Southern Iceland. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/hekla.jpg",
         "article": "articles/hekla.html"
@@ -1239,7 +1239,7 @@
         "type": "Subglacial volcano",
         "elevation": "1,512 m",
         "lastEruption": "1918",
-        "description": "Katla is a notable volcano in Southern Iceland, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Katla hides beneath the Mýrdalsjökull ice cap, and its eruptions melt ice into enormous meltwater floods. Its last major eruption was in 1918, so it is considered overdue and is closely monitored.",
         "geology": "Katla is part of the volcanic system of Southern Iceland. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/katla.jpg",
         "article": "articles/katla.html"
@@ -1254,7 +1254,7 @@
         "type": "Subglacial volcano",
         "elevation": "1,725 m",
         "lastEruption": "2011",
-        "description": "Grímsvötn is a notable volcano in Vatnajökull, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Iceland's most frequently erupting volcano lies beneath the Vatnajökull ice cap. Its subglacial lake periodically bursts out as huge floods, and its 2011 eruption sent an ash plume that shut down Icelandic airspace.",
         "geology": "Grímsvötn is part of the volcanic system of Vatnajökull. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/grmsvtn.jpg",
         "article": "articles/grmsvtn.html"
@@ -1269,7 +1269,7 @@
         "type": "Subglacial volcano",
         "elevation": "2,009 m",
         "lastEruption": "2015",
-        "description": "Bárðarbunga is a notable volcano in Vatnajökull, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A vast ice-buried volcano whose 2014-15 Holuhraun eruption lasted six months, the largest in Iceland since 1783. As the magma drained away, the caldera floor sank around 65 m.",
         "geology": "Bárðarbunga is part of the volcanic system of Vatnajökull. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/brarbunga.jpg",
         "article": "articles/brarbunga.html"
@@ -1284,7 +1284,7 @@
         "type": "Caldera",
         "elevation": "1,516 m",
         "lastEruption": "1961",
-        "description": "Askja is a notable volcano in Central Highlands, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A remote highland caldera holding the deep, cold lake Öskjuvatn. Its 1875 eruption dusted Scandinavia with ash, and Apollo astronauts trained here in the 1960s for the Moon landings.",
         "geology": "Askja is part of the volcanic system of Central Highlands. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/askja.jpg",
         "article": "articles/askja.html"
@@ -1299,7 +1299,7 @@
         "type": "Caldera / volcanic system",
         "elevation": "818 m",
         "lastEruption": "1984",
-        "description": "Krafla is a notable volcano in Northern Iceland, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Krafla's 'Fires' of 1975-84 split the ground with nine eruptions and rifting. Today a geothermal power station harnesses its heat, and in 2009 a drill hole accidentally struck liquid magma.",
         "geology": "Krafla is part of the volcanic system of Northern Iceland. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/krafla.jpg",
         "article": "articles/krafla.html"
@@ -1314,7 +1314,7 @@
         "type": "Fissure volcanic system",
         "elevation": "385 m",
         "lastEruption": "2023",
-        "description": "Fagradalsfjall is a notable volcano in Reykjanes Peninsula, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "After around 800 years of silence the Reykjanes Peninsula woke up in March 2021, with lava from Fagradalsfjall flowing in a valley within hiking distance of Reykjavik. Thousands of visitors came to watch.",
         "geology": "Fagradalsfjall is part of the volcanic system of Reykjanes Peninsula. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/fagradalsfjall.jpg",
         "article": "articles/fagradalsfjall.html"
@@ -1329,7 +1329,7 @@
         "type": "Stratovolcano",
         "elevation": "2,277 m",
         "lastEruption": "1985",
-        "description": "Beerenberg is a notable volcano in Jan Mayen, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The northernmost active volcano above sea level on Earth, standing on remote Jan Mayen in the Arctic Ocean. Glaciers pour down its flanks right into the sea.",
         "geology": "Beerenberg is part of the volcanic system of Jan Mayen. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/beerenberg.jpg",
         "article": "articles/beerenberg.html"
@@ -1344,7 +1344,7 @@
         "type": "Stratovolcano",
         "elevation": "924 m",
         "lastEruption": "2025",
-        "description": "Stromboli is a notable volcano in Aeolian Islands, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Known as the 'Lighthouse of the Mediterranean', Stromboli has erupted almost continuously for at least 2,000 years, with small explosions every few minutes. It gave its name to 'Strombolian' eruptions worldwide.",
         "geology": "Stromboli is part of the volcanic system of Aeolian Islands. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/stromboli.jpg",
         "article": "articles/stromboli.html"
@@ -1359,7 +1359,7 @@
         "type": "Stratovolcano",
         "elevation": "501 m",
         "lastEruption": "1890",
-        "description": "Vulcano is a notable volcano in Aeolian Islands, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The Romans believed this island was the chimney of the forge of Vulcan, god of fire, giving the world the word 'volcano'. Today it steams with sulphur vents and mud baths, and last erupted from 1888 to 1890.",
         "geology": "Vulcano is part of the volcanic system of Aeolian Islands. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/vulcano.jpg",
         "article": "articles/vulcano.html"
@@ -1374,7 +1374,7 @@
         "type": "Caldera",
         "elevation": "458 m",
         "lastEruption": "1538",
-        "description": "Campi Flegrei is a notable volcano in Campania, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A supervolcano beside Naples: a caldera about 12 km wide, formed by giant eruptions around 39,000 and 15,000 years ago. The ground has risen by metres in recent decades, and about 500,000 people live inside it.",
         "geology": "Campi Flegrei is part of the volcanic system of Campania. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/campiflegrei.jpg",
         "article": "articles/campiflegrei.html"
@@ -1389,7 +1389,7 @@
         "type": "Volcanic island",
         "elevation": "789 m",
         "lastEruption": "1302",
-        "description": "Ischia is a notable volcano in Tyrrhenian Sea, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A volcanic island in the Bay of Naples, famed for its thermal spas. Its last eruption was in 1302, but the 1883 earthquake at Casamicciola, caused by the same geology, killed around 2,300 people.",
         "geology": "Ischia is part of the volcanic system of Tyrrhenian Sea. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/ischia.jpg",
         "article": "articles/ischia.html"
@@ -1404,7 +1404,7 @@
         "type": "Caldera",
         "elevation": "567 m",
         "lastEruption": "1950",
-        "description": "Santorini is a notable volcano in Cyclades, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The Minoan eruption around 1600 BCE was one of the largest in human history. It left a flooded caldera ringed by cliffs and white-washed towns, and may have inspired the legend of Atlantis.",
         "geology": "Santorini is part of the volcanic system of Cyclades. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/santorini.jpg",
         "article": "articles/santorini.html"
@@ -1419,7 +1419,7 @@
         "type": "Stratovolcano / caldera",
         "elevation": "698 m",
         "lastEruption": "1888",
-        "description": "Nisyros is a notable volcano in Dodecanese, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A small round island in Greece with a hot caldera and a crater, Stefanos, where steam explosions have happened. Myth says Poseidon created Nisyros by throwing a chunk of Kos at the giant Polybotes.",
         "geology": "Nisyros is part of the volcanic system of Dodecanese. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/nisyros.jpg",
         "article": "articles/nisyros.html"
@@ -1434,7 +1434,7 @@
         "type": "Stratovolcano",
         "elevation": "5,137 m",
         "lastEruption": "1840",
-        "description": "Ararat is a notable volcano in Eastern Anatolia, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Turkey's highest peak is an ice-capped giant long said to be the resting place of Noah's Ark. In 1840 an eruption and earthquake triggered landslides that buried a village on its slope.",
         "geology": "Ararat is part of the volcanic system of Eastern Anatolia. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/ararat.jpg",
         "article": "articles/ararat.html"
@@ -1449,7 +1449,7 @@
         "type": "Caldera volcano",
         "elevation": "2,948 m",
         "lastEruption": "1692",
-        "description": "Nemrut is a notable volcano in Eastern Anatolia, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A large caldera with crater lakes and hot springs overlooking Lake Van. Not to be confused with Nemrut Dağ and its statues, this volcano last erupted in 1692 and still steams.",
         "geology": "Nemrut is part of the volcanic system of Eastern Anatolia. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/nemrut.jpg",
         "article": "articles/nemrut.html"
@@ -1464,7 +1464,7 @@
         "type": "Stratovolcano",
         "elevation": "5,610 m",
         "lastEruption": "Unknown",
-        "description": "Damavand is a notable volcano in Alborz Mountains, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The highest volcano in Asia at 5,610 m, topped by sulphurous fumaroles. In Persian legend the tyrant Zahhak is chained inside it by the hero Fereydun.",
         "geology": "Damavand is part of the volcanic system of Alborz Mountains. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/damavand.jpg",
         "article": "articles/damavand.html"
@@ -1479,7 +1479,7 @@
         "type": "Stratovolcano",
         "elevation": "3,470 m",
         "lastEruption": "2021",
-        "description": "Nyiragongo is a notable volcano in Virunga Mountains, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Nyiragongo's lava lake is one of the world's most spectacular, and its lava is so runny that it can flow at highway speeds. Lava reached the city of Goma in 2002, and its 2021 eruption forced hundreds of thousands to flee.",
         "geology": "Nyiragongo is part of the volcanic system of Virunga Mountains. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/nyiragongo.jpg",
         "article": "articles/nyiragongo.html"
@@ -1494,7 +1494,7 @@
         "type": "Shield volcano",
         "elevation": "3,058 m",
         "lastEruption": "2024",
-        "description": "Nyamuragira is a notable volcano in Virunga Mountains, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Africa's most active volcano, erupting every few years and flooding huge lava fields across Virunga National Park. Its wide shield sits close to Nyiragongo and mountain gorilla habitat.",
         "geology": "Nyamuragira is part of the volcanic system of Virunga Mountains. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/nyamuragira.jpg",
         "article": "articles/nyamuragira.html"
@@ -1509,7 +1509,7 @@
         "type": "Stratovolcano",
         "elevation": "2,962 m",
         "lastEruption": "2024",
-        "description": "Ol Doinyo Lengai is a notable volcano in East African Rift, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The Maasai call it the 'Mountain of God'. It is the only volcano in the world that erupts natrocarbonatite lava, a cool, black, runny liquid that turns white after rain.",
         "geology": "Ol Doinyo Lengai is part of the volcanic system of East African Rift. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/oldoinyolengai.jpg",
         "article": "articles/oldoinyolengai.html"
@@ -1524,7 +1524,7 @@
         "type": "Stratovolcano",
         "elevation": "4,040 m",
         "lastEruption": "2012",
-        "description": "Mount Cameroon is a notable volcano in Southwest Region, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "West Africa's highest peak, locally known as 'Mongo ma Ndemi' (Mountain of Greatness). It erupts every decade or two, and is the site of the annual 'Race of Hope' running event.",
         "geology": "Mount Cameroon is part of the volcanic system of Southwest Region. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/mountcameroon.jpg",
         "article": "articles/mountcameroon.html"
@@ -1539,7 +1539,7 @@
         "type": "Stratovolcano",
         "elevation": "2,829 m",
         "lastEruption": "2015",
-        "description": "Pico do Fogo is a notable volcano in Fogo Island, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A 2,829 m cone rising from within a vast caldera on Fogo island. A 2014-15 eruption destroyed the villages of Portela and Bangaeira, though everyone escaped, and farmers there grow wine inside the crater.",
         "geology": "Pico do Fogo is part of the volcanic system of Fogo Island. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/picodofogo.jpg",
         "article": "articles/picodofogo.html"
@@ -1554,7 +1554,7 @@
         "type": "Shield volcano",
         "elevation": "2,632 m",
         "lastEruption": "2023",
-        "description": "Piton de la Fournaise is a notable volcano in Réunion, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "One of the most active volcanoes on Earth, erupting every year or two, often with lava flows spilling toward the ocean. In 2007 the summit crater Dolomieu collapsed about 300 m.",
         "geology": "Piton de la Fournaise is part of the volcanic system of Réunion. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/pitondelafournaise.jpg",
         "article": "articles/pitondelafournaise.html"
@@ -1569,7 +1569,7 @@
         "type": "Shield volcano",
         "elevation": "613 m",
         "lastEruption": "2023",
-        "description": "Erta Ale is a notable volcano in Afar Region, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The 'Smoking Mountain' in the Afar language, set in the scorching Danakil Depression. It's one of the few volcanoes with a long-lived lava lake, and has been glowing for more than a century.",
         "geology": "Erta Ale is part of the volcanic system of Afar Region. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/ertaale.jpg",
         "article": "articles/ertaale.html"
@@ -1584,7 +1584,7 @@
         "type": "Stratovolcano",
         "elevation": "5,897 m",
         "lastEruption": "2023",
-        "description": "Cotopaxi is a notable volcano in Andes, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A glacier-capped, near-perfect cone more than 5,800 m high and one of the world's highest active volcanoes. Eruptions melt its ice into lahars that could reach Latacunga, and in 1877 mudflows travelled around 100 km towards the coast.",
         "geology": "Cotopaxi is part of the volcanic system of Andes. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/cotopaxi.jpg",
         "article": "articles/cotopaxi.html"
@@ -1599,7 +1599,7 @@
         "type": "Stratovolcano",
         "elevation": "6,263 m",
         "lastEruption": "Unknown",
-        "description": "Chimborazo is a notable volcano in Andes, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Chimborazo's summit is the farthest point on Earth's surface from the planet's centre, thanks to the equatorial bulge, beating Everest by around two kilometres. Humboldt tried to climb it in 1802.",
         "geology": "Chimborazo is part of the volcanic system of Andes. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/chimborazo.jpg",
         "article": "articles/chimborazo.html"
@@ -1614,7 +1614,7 @@
         "type": "Stratovolcano",
         "elevation": "5,023 m",
         "lastEruption": "2016",
-        "description": "Tungurahua is a notable volcano in Andes, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Its name means 'Throat of Fire' in Quechua. After waking in 1999 it forced evacuations from nearby Baños, and it was almost constantly erupting until 2016.",
         "geology": "Tungurahua is part of the volcanic system of Andes. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/tungurahua.jpg",
         "article": "articles/tungurahua.html"
@@ -1629,7 +1629,7 @@
         "type": "Stratovolcano",
         "elevation": "5,230 m",
         "lastEruption": "2025",
-        "description": "Sangay is a notable volcano in Andes, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "One of the most continuously active volcanoes on Earth, erupting almost non-stop since 1934. It sits in a remote UNESCO national park, with terrain ranging from jungle to snow.",
         "geology": "Sangay is part of the volcanic system of Andes. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/sangay.jpg",
         "article": "articles/sangay.html"
@@ -1644,7 +1644,7 @@
         "type": "Stratovolcano",
         "elevation": "3,562 m",
         "lastEruption": "2025",
-        "description": "Reventador is a notable volcano in Andes, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Reventador, 'The Exploder', has been erupting since 2002, sending incandescent rocks and lava down its flank. Lahars and ash have damaged nearby roads and oil pipelines.",
         "geology": "Reventador is part of the volcanic system of Andes. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/reventador.jpg",
         "article": "articles/reventador.html"
@@ -1659,7 +1659,7 @@
         "type": "Complex volcano",
         "elevation": "4,784 m",
         "lastEruption": "2002",
-        "description": "Pichincha is a notable volcano in Andes, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Quito, Ecuador's capital, nestles on the eastern slope of this volcano. Guagua Pichincha dusted the city with ash in 1999-2002, and in 1822 the Battle of Pichincha, fought on its slopes, sealed Ecuador's independence.",
         "geology": "Pichincha is part of the volcanic system of Andes. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/pichincha.jpg",
         "article": "articles/pichincha.html"
@@ -1674,7 +1674,7 @@
         "type": "Stratovolcano",
         "elevation": "5,321 m",
         "lastEruption": "2023",
-        "description": "Nevado del Ruiz is a notable volcano in Andes, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "In 1985 a small eruption melted the glacier cap and sent lahars that buried the town of Armero, killing more than 23,000 people. Warnings went unheeded, and the tragedy changed volcano hazard monitoring worldwide.",
         "geology": "Nevado del Ruiz is part of the volcanic system of Andes. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/nevadodelruiz.jpg",
         "article": "articles/nevadodelruiz.html"
@@ -1689,7 +1689,7 @@
         "type": "Stratovolcano",
         "elevation": "4,276 m",
         "lastEruption": "2014",
-        "description": "Galeras is a notable volcano in Nariño, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Colombia's volcano near Pasto, a Decade Volcano. In 1993 it exploded while scientists were inside the crater during a conference, killing six scientists and three tourists.",
         "geology": "Galeras is part of the volcanic system of Nariño. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/galeras.jpg",
         "article": "articles/galeras.html"
@@ -1704,7 +1704,7 @@
         "type": "Stratovolcano",
         "elevation": "5,364 m",
         "lastEruption": "2007",
-        "description": "Nevado del Huila is a notable volcano in Andes, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Colombia's highest volcano at 5,364 m, mantled in glaciers. Eruptions in 2007-08 generated lahars that tore through the Páez River valley, destroying bridges and homes.",
         "geology": "Nevado del Huila is part of the volcanic system of Andes. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/nevadodelhuila.jpg",
         "article": "articles/nevadodelhuila.html"
@@ -1719,7 +1719,7 @@
         "type": "Stratovolcano",
         "elevation": "2,847 m",
         "lastEruption": "2025",
-        "description": "Villarrica is a notable volcano in Araucanía, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "One of the few volcanoes with a persistent lava lake, glowing above the resort town of Pucón. Its Mapuche name, Rukapillán, means 'House of the Spirit', and its snowy cone attracts skiers and climbers.",
         "geology": "Villarrica is part of the volcanic system of Araucanía. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/villarrica.jpg",
         "article": "articles/villarrica.html"
@@ -1734,7 +1734,7 @@
         "type": "Stratovolcano",
         "elevation": "3,125 m",
         "lastEruption": "2009",
-        "description": "Llaima is a notable volcano in Araucanía, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "One of Chile's biggest and most active volcanoes, above Conguillío National Park with its ancient araucaria forests. A 2008-09 eruption sent lava flows down its flank and spread ash over nearby towns.",
         "geology": "Llaima is part of the volcanic system of Araucanía. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/llaima.jpg",
         "article": "articles/llaima.html"
@@ -1749,7 +1749,7 @@
         "type": "Stratovolcano",
         "elevation": "2,003 m",
         "lastEruption": "2015",
-        "description": "Calbuco is a notable volcano in Los Lagos, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "After 43 years of silence, Calbuco erupted without warning in April 2015, sending an ash column about 15 km high. Thousands were evacuated and ash fell across Patagonia into Argentina.",
         "geology": "Calbuco is part of the volcanic system of Los Lagos. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/calbuco.jpg",
         "article": "articles/calbuco.html"
@@ -1764,7 +1764,7 @@
         "type": "Stratovolcano",
         "elevation": "2,652 m",
         "lastEruption": "1869",
-        "description": "Osorno is a notable volcano in Los Lagos, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A symmetrical, snow-capped cone that rises above Lake Llanquihue and is often compared to Mount Fuji. Its last known eruption was in 1869, and today skiers and hikers flock to it.",
         "geology": "Osorno is part of the volcanic system of Los Lagos. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/osorno.jpg",
         "article": "articles/osorno.html"
@@ -1779,7 +1779,7 @@
         "type": "Stratovolcano",
         "elevation": "5,592 m",
         "lastEruption": "2023",
-        "description": "Lascar is a notable volcano in Antofagasta, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The most active volcano in northern Chile. A huge 1993 eruption sent ash across the Andes into Argentina, and its summit still glows and steams in the high Atacama desert.",
         "geology": "Lascar is part of the volcanic system of Antofagasta. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/lascar.jpg",
         "article": "articles/lascar.html"
@@ -1794,7 +1794,7 @@
         "type": "Stratovolcano",
         "elevation": "6,348 m",
         "lastEruption": "Unknown",
-        "description": "Parinacota is a notable volcano in Andes, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A perfect cone beside Lake Chungará, one of the world's highest lakes, which formed after a landslide about 8,000 years ago dammed a river. Along with neighbouring Pomerape it is known as the Payachatas.",
         "geology": "Parinacota is part of the volcanic system of Andes. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/parinacota.jpg",
         "article": "articles/parinacota.html"
@@ -1809,7 +1809,7 @@
         "type": "Stratovolcano",
         "elevation": "5,916 m",
         "lastEruption": "Unknown",
-        "description": "Licancabur is a notable volcano in Andes, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The crater lake near its 5,900 m summit is one of the highest in the world. It was an Inca ritual site, and NASA scientists have studied the lake as an analogue for ancient Martian lakes.",
         "geology": "Licancabur is part of the volcanic system of Andes. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/licancabur.jpg",
         "article": "articles/licancabur.html"
@@ -1824,7 +1824,7 @@
         "type": "Stratovolcano",
         "elevation": "5,976 m",
         "lastEruption": "2025",
-        "description": "Sabancaya is a notable volcano in Arequipa, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Name means 'tongue of fire' in local languages. Sabancaya, near Colca Canyon, has been erupting since 2016 with regular ash plumes that dust nearby villages and farmland.",
         "geology": "Sabancaya is part of the volcanic system of Arequipa. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/sabancaya.jpg",
         "article": "articles/sabancaya.html"
@@ -1839,7 +1839,7 @@
         "type": "Stratovolcano",
         "elevation": "5,672 m",
         "lastEruption": "2025",
-        "description": "Ubinas is a notable volcano in Moquegua, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Peru's most active volcano, repeatedly sending ash plumes over highland villages. Eruptions have poisoned grazing land and forced evacuations, and its crater is over a kilometre wide.",
         "geology": "Ubinas is part of the volcanic system of Moquegua. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/ubinas.jpg",
         "article": "articles/ubinas.html"
@@ -1854,7 +1854,7 @@
         "type": "Stratovolcano",
         "elevation": "5,822 m",
         "lastEruption": "Unknown",
-        "description": "Misti is a notable volcano in Arequipa, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Misti's perfect cone looms over Arequipa, the 'White City', home to around a million people. Inca burials have been found near its summit, and it remains a major hazard to the city.",
         "geology": "Misti is part of the volcanic system of Arequipa. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/misti.jpg",
         "article": "articles/misti.html"
@@ -1869,7 +1869,7 @@
         "type": "Stratovolcano",
         "elevation": "5,426 m",
         "lastEruption": "2025",
-        "description": "Popocatépetl is a notable volcano in Central Mexico, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "'Smoking Mountain' in Nahuatl, rising about 70 km from Mexico City. It has been repeatedly erupting since 1994, and Aztec legend tells of the lovers Popo and Iztaccíhuatl, turned into mountains.",
         "geology": "Popocatépetl is part of the volcanic system of Central Mexico. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/popocatpetl.jpg",
         "article": "articles/popocatpetl.html"
@@ -1884,7 +1884,7 @@
         "type": "Complex volcano",
         "elevation": "3,850 m",
         "lastEruption": "2017",
-        "description": "Colima is a notable volcano in Jalisco / Colima, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Mexico's most active volcano, nicknamed the 'Volcán de Fuego'. It stands beside the older, snow-dusted Nevado de Colima, and its explosions have repeatedly forced evacuations of nearby villages.",
         "geology": "Colima is part of the volcanic system of Jalisco / Colima. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/colima.jpg",
         "article": "articles/colima.html"
@@ -1899,7 +1899,7 @@
         "type": "Stratovolcano",
         "elevation": "5,636 m",
         "lastEruption": "1846",
-        "description": "Pico de Orizaba is a notable volcano in Puebla / Veracruz, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Mexico's highest mountain and North America's third highest, known to the Aztecs as Citlaltépetl, 'Star Mountain'. It is topped with a glacier and so tall that sailors can see it from the Gulf.",
         "geology": "Pico de Orizaba is part of the volcanic system of Puebla / Veracruz. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/picodeorizaba.jpg",
         "article": "articles/picodeorizaba.html"
@@ -1914,7 +1914,7 @@
         "type": "Stratovolcano",
         "elevation": "1,150 m",
         "lastEruption": "1982",
-        "description": "El Chichón is a notable volcano in Chiapas, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Overlooked until its 1982 eruption killed about 2,000 villagers in Chiapas. Its sulphur-rich blast injected aerosols into the stratosphere and cooled the global climate for a couple of years.",
         "geology": "El Chichón is part of the volcanic system of Chiapas. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/elchichn.jpg",
         "article": "articles/elchichn.html"
@@ -1929,7 +1929,7 @@
         "type": "Cinder cone",
         "elevation": "2,800 m",
         "lastEruption": "1952",
-        "description": "Parícutin is a notable volcano in Michoacán, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Parícutin was born in a farmer's cornfield on 20 February 1943 and grew 336 m in a year. It erupted for nine years, burying two villages, with only a church steeple left poking from the lava.",
         "geology": "Parícutin is part of the volcanic system of Michoacán. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/parcutin.jpg",
         "article": "articles/parcutin.html"
@@ -1944,7 +1944,7 @@
         "type": "Lava-dome complex",
         "elevation": "3,187 m",
         "lastEruption": "1917",
-        "description": "Lassen Peak is a notable volcano in California, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "One of the largest lava domes in the world, Lassen erupted from 1914 to 1917. It was the only volcano in the contiguous US to erupt before Mount St. Helens in 1980, and its flanks hold steaming hydrothermal fields.",
         "geology": "Lassen Peak is part of the volcanic system of California. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/lassenpeak.jpg",
         "article": "articles/lassenpeak.html"
@@ -1959,7 +1959,7 @@
         "type": "Shield volcano",
         "elevation": "2,376 m",
         "lastEruption": "Unknown",
-        "description": "Medicine Lake Volcano is a notable volcano in California, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "By volume this is the largest volcano in the Cascades, a broad shield covering around 2,000 square km of northern California. It features glassy obsidian flows and lava-tube caves.",
         "geology": "Medicine Lake Volcano is part of the volcanic system of California. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/medicinelakevolcano.jpg",
         "article": "articles/medicinelakevolcano.html"
@@ -1974,7 +1974,7 @@
         "type": "Shield volcano / caldera",
         "elevation": "2,434 m",
         "lastEruption": "690",
-        "description": "Newberry Volcano is a notable volcano in Oregon, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A huge shield volcano with a caldera holding two lakes, Paulina and East Lake. Its Big Obsidian Flow, about 1,300 years ago, is a gleaming black field of volcanic glass.",
         "geology": "Newberry Volcano is part of the volcanic system of Oregon. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/newberryvolcano.jpg",
         "article": "articles/newberryvolcano.html"
@@ -1989,7 +1989,7 @@
         "type": "Caldera",
         "elevation": "2,487 m",
         "lastEruption": "2850 BCE",
-        "description": "Crater Lake (Mount Mazama) is a notable volcano in Oregon, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Mount Mazama collapsed around 7,700 years ago after a huge eruption, leaving a caldera filled with snowmelt: the deepest lake in the US at 594 m, and one of the clearest. Wizard Island is a cinder cone inside it.",
         "geology": "Crater Lake (Mount Mazama) is part of the volcanic system of Oregon. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/craterlakemountmazama.jpg",
         "article": "articles/craterlakemountmazama.html"
@@ -2004,7 +2004,7 @@
         "type": "Volcanic complex",
         "elevation": "3,157 m",
         "lastEruption": "Unknown",
-        "description": "Three Sisters is a notable volcano in Oregon, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Three peaks in Oregon: North, Middle and South Sister. Since the late 1990s the ground near South Sister has bulged upward by tens of centimetres, a sign of magma moving at depth.",
         "geology": "Three Sisters is part of the volcanic system of Oregon. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/threesisters.jpg",
         "article": "articles/threesisters.html"
@@ -2019,7 +2019,7 @@
         "type": "Stratovolcano",
         "elevation": "3,286 m",
         "lastEruption": "1880",
-        "description": "Mount Baker is a notable volcano in Washington, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Washington's heavily glaciated Mount Baker briefly alarmed scientists in 1975 when its steam output surged. It also holds the world record for snowfall in a season, with about 1,140 inches in 1998-99.",
         "geology": "Mount Baker is part of the volcanic system of Washington. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/mountbaker.jpg",
         "article": "articles/mountbaker.html"
@@ -2034,7 +2034,7 @@
         "type": "Stratovolcano",
         "elevation": "3,213 m",
         "lastEruption": "1700",
-        "description": "Glacier Peak is a notable volcano in Washington, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A remote peak in the North Cascades that few ever see. Despite its isolation it has a history of large explosive eruptions that spread ash as far as Montana.",
         "geology": "Glacier Peak is part of the volcanic system of Washington. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/glacierpeak.jpg",
         "article": "articles/glacierpeak.html"
@@ -2049,7 +2049,7 @@
         "type": "Stratovolcano",
         "elevation": "3,429 m",
         "lastEruption": "1866",
-        "description": "Mount Hood is a notable volcano in Oregon, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Oregon's highest peak sits only about 80 km from Portland, and steaming fumaroles near Crater Rock hint at what's beneath. Native legend knows it as Wy'east, a warrior turned into a mountain.",
         "geology": "Mount Hood is part of the volcanic system of Oregon. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/mounthood.jpg",
         "article": "articles/mounthood.html"
@@ -2064,7 +2064,7 @@
         "type": "Stratovolcano",
         "elevation": "3,742 m",
         "lastEruption": "950",
-        "description": "Mount Adams is a notable volcano in Washington, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Washington's second-highest volcano, a broad mountain with a dozen glaciers. The Yakama Nation call it Pahto, and it is one of the largest volcanoes in the Cascades.",
         "geology": "Mount Adams is part of the volcanic system of Washington. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/mountadams.jpg",
         "article": "articles/mountadams.html"
@@ -2079,7 +2079,7 @@
         "type": "Caldera",
         "elevation": "3,390 m",
         "lastEruption": "1350",
-        "description": "Long Valley Caldera is a notable volcano in California, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The caldera formed in a catastrophic eruption 760,000 years ago that deposited the Bishop Tuff, roughly 600 times the volume of Mount St. Helens in 1980. Mammoth Mountain sits on its edge.",
         "geology": "Long Valley Caldera is part of the volcanic system of California. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/longvalleycaldera.jpg",
         "article": "articles/longvalleycaldera.html"
@@ -2094,7 +2094,7 @@
         "type": "Caldera",
         "elevation": "2,805 m",
         "lastEruption": "640,000 years ago",
-        "description": "Yellowstone Caldera is a notable volcano in Wyoming / Montana / Idaho, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A supervolcano whose three giant eruptions happened 2.1 million, 1.3 million and 640,000 years ago. Its heat now drives Old Faithful and more than 10,000 hydrothermal features across the park.",
         "geology": "Yellowstone Caldera is part of the volcanic system of Wyoming / Montana / Idaho. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/yellowstonecaldera.jpg",
         "article": "articles/yellowstonecaldera.html"
@@ -2109,7 +2109,7 @@
         "type": "Shield volcano",
         "elevation": "4,169 m",
         "lastEruption": "2022",
-        "description": "Mauna Loa is a notable volcano in Hawaii, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The largest active volcano on Earth by volume, making up half of Hawaii island. It erupted in 2022 for the first time in 38 years, sending lava fountains and flows across its northeast rift.",
         "geology": "Mauna Loa is part of the volcanic system of Hawaii. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/maunaloa.jpg",
         "article": "articles/maunaloa.html"
@@ -2124,7 +2124,7 @@
         "type": "Shield volcano",
         "elevation": "4,207 m",
         "lastEruption": "about 4,500 years ago",
-        "description": "Mauna Kea is a notable volcano in Hawaii, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Measured from its base on the sea floor, Mauna Kea is more than 10,000 m tall, taller than Everest. Its summit above the clouds hosts world-class observatories and is sacred in Hawaiian culture.",
         "geology": "Mauna Kea is part of the volcanic system of Hawaii. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/maunakea.jpg",
         "article": "articles/maunakea.html"
@@ -2139,7 +2139,7 @@
         "type": "Shield volcano",
         "elevation": "3,055 m",
         "lastEruption": "1790",
-        "description": "Haleakalā is a notable volcano in Maui, Hawaii, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "'House of the Sun' to Hawaiians. Legend says the demigod Maui lassoed the sun from its summit to slow the day, and visitors still gather at its huge crater-like summit depression for sunrise.",
         "geology": "Haleakalā is part of the volcanic system of Maui, Hawaii. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/haleakal.jpg",
         "article": "articles/haleakal.html"
@@ -2154,7 +2154,7 @@
         "type": "Stratovolcano",
         "elevation": "2,518 m",
         "lastEruption": "2023",
-        "description": "Pavlof is a notable volcano in Alaska Peninsula, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "The most consistently active volcano in the Aleutians. Its eruptions regularly send ash plumes across North Pacific flight routes, and it has produced lava fountains visible from far away.",
         "geology": "Pavlof is part of the volcanic system of Alaska Peninsula. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/pavlof.jpg",
         "article": "articles/pavlof.html"
@@ -2169,7 +2169,7 @@
         "type": "Stratovolcano",
         "elevation": "3,108 m",
         "lastEruption": "2009",
-        "description": "Redoubt is a notable volcano in Alaska, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "In 1989-90 an ash cloud from Redoubt knocked out all four engines of a KLM 747 mid-flight, which dropped thousands of metres before the pilots restarted them. Its 2009 eruption sent ash 19 km high.",
         "geology": "Redoubt is part of the volcanic system of Alaska. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/redoubt.jpg",
         "article": "articles/redoubt.html"
@@ -2184,7 +2184,7 @@
         "type": "Stratovolcano",
         "elevation": "1,252 m",
         "lastEruption": "2006",
-        "description": "Augustine is a notable volcano in Alaska, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "An island volcano in Cook Inlet that erupts repeatedly, in 1976, 1986 and 2006. Its summit periodically collapses, and landslides into the sea can trigger local tsunamis.",
         "geology": "Augustine is part of the volcanic system of Alaska. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/augustine.jpg",
         "article": "articles/augustine.html"
@@ -2199,7 +2199,7 @@
         "type": "Stratovolcano",
         "elevation": "2,047 m",
         "lastEruption": "1912",
-        "description": "Katmai is a notable volcano in Alaska, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "In 1912 Novarupta, next to Katmai, produced the largest eruption of the 20th century. The magma drained from beneath Katmai, whose summit collapsed, and ash filled a valley now called the Valley of Ten Thousand Smokes.",
         "geology": "Katmai is part of the volcanic system of Alaska. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/katmai.jpg",
         "article": "articles/katmai.html"
@@ -2214,7 +2214,7 @@
         "type": "Stratovolcano",
         "elevation": "1,740 m",
         "lastEruption": "2025",
-        "description": "Great Sitkin is a notable volcano in Aleutian Islands, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Great Sitkin has been repeatedly growing a lava dome in its summit crater. It sits on an Aleutian island near the remote community of Adak.",
         "geology": "Great Sitkin is part of the volcanic system of Aleutian Islands. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/greatsitkin.jpg",
         "article": "articles/greatsitkin.html"
@@ -2229,7 +2229,7 @@
         "type": "Stratovolcano",
         "elevation": "1,730 m",
         "lastEruption": "2024",
-        "description": "Cleveland is a notable volcano in Aleutian Islands, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "A remote, uninstrumented volcano on uninhabited Chuginadak Island. Sudden explosions can send ash into the flight paths between Asia and North America with little warning.",
         "geology": "Cleveland is part of the volcanic system of Aleutian Islands. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/cleveland.jpg",
         "article": "articles/cleveland.html"
@@ -2244,7 +2244,7 @@
         "type": "Stratovolcano / caldera",
         "elevation": "2,507 m",
         "lastEruption": "2021",
-        "description": "Veniaminof is a notable volcano in Alaska Peninsula, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "An ice-filled caldera about 10 km wide on the Alaska Peninsula, with an active cone inside it. Eruptions melt the ice and send lava flowing across the glacier.",
         "geology": "Veniaminof is part of the volcanic system of Alaska Peninsula. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/veniaminof.jpg",
         "article": "articles/veniaminof.html"
@@ -2259,7 +2259,7 @@
         "type": "Shield volcano remnant",
         "elevation": "1,156 m",
         "lastEruption": "23 million years ago",
-        "description": "Mount Warning (Wollumbin) is a notable volcano in New South Wales, known for its distinctive volcanic landscape and role in the region's geological history. Its activity and hazards depend on the local magma system and eruption style.",
+        "description": "Wollumbin, often translated as 'cloud catcher', is sacred to the Bundjalung people, who ask visitors not to climb it. Its summit is one of the first places on mainland Australia to catch the morning sun.",
         "geology": "Mount Warning (Wollumbin) is part of the volcanic system of New South Wales. Its volcanism is associated with the regional tectonic setting and the movement of magma through Earth's crust.",
         "image": "images/mountwarningwollumbin.jpg",
         "article": "articles/mountwarningwollumbin.html"

@@ -251,7 +251,17 @@ function layerOn(name) {
 }
 function setLayer(name, on) {
     if (intOn && on) { toast("Map layers are unavailable in Earth Interior mode."); return; }
-    if (name === "volcanoes") volcanoLayer.show = on;
+    if (name === "volcanoes") {
+    volcanoLayer.show = on;
+
+    if (!on) {
+        const panel = document.getElementById("volcanoInfo");
+        if (panel) {
+            panel.classList.remove("open");
+            panel.style.display = "none";
+        }
+    }
+}
     if (name === "glaciers") { if (glacierLayer) glacierLayer.show = on; if (seaIceLayer) seaIceLayer.show = on; }
     if (name === "plates" && plateLayer) plateLayer.show = on;
     if (name === "mountains" && mountainLayer) { mountainLayer.show = on; if (!on) { mountainLabelLayer.entities.removeAll(); mountainLabelLayer.show = false; setHover(null); } }
@@ -639,15 +649,84 @@ handler.setInputAction(click => {
         mountainLabelLayer.show = true; flyToCartesian(pos, 3.0e6, 1.8); return;
     }
 
-    if (!id || !id.volcanoData) return;                         // volcano
-    const volcano = id.volcanoData;
-    flyTo(volcano.lon, volcano.lat, 2.0e6, 2);
-    const panel = document.getElementById("volcanoInfo"); if (!panel) return;
-    panel.style.display = "block"; setTimeout(() => panel.classList.add("open"), 10);
-    const set = (sel, v, prop = "textContent") => { const n = document.querySelector(sel); if (n) n[prop] = v; };
-    set(".info-image", volcano.image, "src"); set(".info-status", String(volcano.status).toUpperCase()); set(".info-name", volcano.name);
-    set(".info-location", volcano.country); set(".info-type", volcano.type); set(".info-description", volcano.description);
-    const link = document.getElementById("articleLink"); if (link) link.href = volcano.article;
+    
+if (!id || !id.volcanoData) return; // volcano
+
+const volcano = id.volcanoData;
+
+flyTo(volcano.lon, volcano.lat, 2.0e6, 2);
+
+const panel = document.getElementById("volcanoInfo");
+if (!panel) return;
+
+const image = panel.querySelector(".info-image");
+
+// Start with the image hidden until we know it has loaded.
+panel.classList.add("no-image");
+
+panel.style.display = "block";
+setTimeout(() => panel.classList.add("open"), 10);
+
+const set = (sel, v, prop = "textContent") => {
+    const n = panel.querySelector(sel);
+    if (n) n[prop] = v ?? "";
+};
+
+// Fill in the volcano information.
+set(".info-status", String(volcano.status || "").toUpperCase());
+set(".info-name", volcano.name);
+set(".info-location", volcano.country);
+set(".info-type", volcano.type);
+set(".info-description", volcano.description);
+
+// Check whether the photo actually loads.
+if (image) {
+    const imageUrl = volcano.image;
+
+    // Keep the image hidden if there is no URL.
+    if (!imageUrl) {
+        image.removeAttribute("src");
+        image.onload = null;
+        image.onerror = null;
+        image.style.display = "none";
+    } else {
+        image.style.display = "";
+
+        // Remember which image this particular load belongs to.
+        image.dataset.requestedSrc = imageUrl;
+
+        image.onload = () => {
+            // Ignore an old image finishing after another volcano was selected.
+            if (image.dataset.requestedSrc !== imageUrl) return;
+
+            if (image.naturalWidth > 0) {
+                panel.classList.remove("no-image");
+            } else {
+                panel.classList.add("no-image");
+            }
+        };
+
+        image.onerror = () => {
+            if (image.dataset.requestedSrc !== imageUrl) return;
+            panel.classList.add("no-image");
+        };
+
+        // Hide first so a broken image never leaves a blank space.
+        panel.classList.add("no-image");
+        image.src = imageUrl;
+
+        // Handle images that loaded immediately from the browser cache.
+        if (image.complete) {
+            if (image.naturalWidth > 0) {
+                panel.classList.remove("no-image");
+            } else {
+                panel.classList.add("no-image");
+            }
+        }
+    }
+}
+
+
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 function hideQuakeCard() { if (!state.touring) hideCard(); }
 

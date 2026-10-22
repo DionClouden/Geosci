@@ -2341,6 +2341,10 @@ body.nav-open {
     animation-delay: 1.1s;
 }
 
+
+
+
+
 /* SEISMIC */
 
 .seismic-graphic svg {
@@ -3990,25 +3994,6 @@ overflow:hidden;
 
 }
 
-#articleLink {
-
-    display:inline-block;
-
-    margin-top:20px;
-
-    padding:12px 20px;
-
-    border-radius:20px;
-
-    background:#b79b5b;
-
-    color:white;
-
-    text-decoration:none;
-
-}
-
-
 
 
 
@@ -4030,7 +4015,7 @@ overflow:hidden;
 
     color:white;
 
-    font-size:28px;
+    font-size:15px;
 
     cursor:pointer;
 
@@ -4048,6 +4033,18 @@ overflow:hidden;
     transform:scale(1.15);
 
 }
+
+
+/* Hide the photo and reclaim its space when it is unavailable */
+.volcano-info.no-image .info-image {
+    display: none;
+}
+
+
+
+
+
+
 
 
 
