@@ -17,6 +17,10 @@ body {
     line-height: 1.6;
     color: #f1f1e8;
     background: #0b0f0e;
+        height: auto;
+    min-height: 100%;
+    overflow-x: clip;
+    overflow-y: auto;
 }
 
 
@@ -1137,15 +1141,132 @@ nav a {
     }
 }
 
+
+.contact-section {
+  position: relative;
+  z-index: 2;
+  padding: 90px 24px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(20, 20, 19, 0) 0%,  rgba(20, 20, 19, 0.752) 100%);
+
+}
+
+.contact-content {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.contact-label {
+  color: #c6a96b;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+}
+
+.contact-section h2 {
+  margin: 5px 0;
+  color: #f2f0e8;
+  font-size: clamp(32px, 5vw, 54px);
+}
+
+.contact-section p {
+  color: #a5a69f;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+
+.contact-button {
+
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 15px 35px;
+
+    background: #b3a5856a;
+
+    color: #fdfcfc;
+
+    border: 1px solid #b79b5b;
+
+    text-decoration: none;
+
+    border-radius: 20px;
+
+    font-weight: 200;
+
+letter-spacing: 0.3px;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+
+.contact-button:hover {
+
+    background: linear-gradient(20deg, rgba(225, 223, 216, 0.25) 0%, rgba(183, 170, 142, 0.192) 50%, rgba(225, 223, 216, 0.25) 100%);
+    
+    transform: translateY(-3px);
+
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.427);
+
+}
+
+
+
 /* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 27px max(24px, calc((100% - 1180px) / 2));
+  border-top: 2px dashed rgba(255, 255, 255, 0.062);
+  background: rgba(20, 20, 19, 0.752);
+  position: relative;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+    z-index: 10;
+  width: 100%;
+  box-sizing: border-box;
 
-footer {
 
-    background: #050807;
+}
 
-    color:#f5f5f2;;
-    text-align: center;
-    padding: 20px;
+.footer-brand {
+  color: #3f403c;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.footer-kicker {
+  color: #3f403c;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.footer-brand span {
+  color: var(--news_article-gold);
+}
+
+.footer p,
+.footer > span {
+  margin: 0;
+  color: #77776f;
+  font-size: 10px;
+}
+
+.footer > span {
+  letter-spacing: 0.08em;
 }
 
 
