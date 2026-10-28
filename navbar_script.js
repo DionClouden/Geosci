@@ -222,7 +222,7 @@ if (logoLink && logoMark) {
 }
 
 // =========================
-// MOBILE MENU  (add to your script)
+// MOBILE MENU  
 // =========================
 
 const navToggle = document.querySelector(".nav-toggle");

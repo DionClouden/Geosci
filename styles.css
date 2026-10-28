@@ -1032,7 +1032,7 @@ nav a {
 .featured .progress-bar {
     display: block;
 
-    width: 33.333%;
+    width: 16.666%;
     height: 1px;
 
     background: #b8a06a;
@@ -2047,6 +2047,66 @@ body.nav-open {
     }
 }
 
+/* =========================================================
+   FEATURED DISCOVERY: MOBILE
+   ========================================================= */
+
+/* tablets and below: stack the columns */
+@media (max-width: 900px) {
+
+    .featured-discovery {
+        padding: 70px 0;
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .featured-image img {
+        height: 420px;
+    }
+}
+
+/* phones */
+@media (max-width: 600px) {
+
+    .featured-discovery {
+        padding: 50px 0;
+    }
+
+    .featured-grid {
+        gap: 30px;
+    }
+
+    .featured-header {
+        margin-bottom: 18px;
+    }
+
+    .featured-text h2 {
+        font-size: clamp(2.1rem, 10vw, 2.8rem);
+        margin: 14px 0;
+    }
+
+    .featured-text p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .eyebrow {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+    }
+
+    .featured-image img {
+        height: 280px;
+        border-radius: 16px;
+    }
+
+    .featured-image::after {
+        border-radius: 16px;
+    }
+}
 
 
 /* ==========================================
@@ -3816,7 +3876,9 @@ overflow:hidden;
 
     height:52px;
 
-    width:1000px;
+
+    width: min(1000px, calc(100vw - 24px));
+
 
     padding:0 28px;
 
@@ -3833,6 +3895,37 @@ overflow:hidden;
 }
 
 
+@media (max-width: 820px) {
+
+    .explore-page .navbar {
+        position: fixed;
+        top: 12px;
+        width: calc(100% - 24px);
+    }
+
+    .explore-page .navbar.scrolled {
+        top: 6px;
+    }
+
+    .explore-page .nav-container {
+        width: 100%;
+        height: auto;
+        gap: 0;
+        justify-content: space-between;
+        padding: 12px 14px 12px 22px;
+        border-radius: 34px;
+    }
+
+    .explore-page .navbar.scrolled .nav-container,
+    .explore-page .navbar.menu-open .nav-container {
+        padding: 8px 10px 8px 20px;
+        background: rgba(10, 15, 14, 0.85);
+    }
+
+    .explore-page .logo {
+        font-size: inherit;
+    }
+}
 
 
 .explore-page .logo {
