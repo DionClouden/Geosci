@@ -78,7 +78,7 @@
 
 <!-- LAYER PANEL -->
 
-<aside class="explore-panel">
+<aside class="explore-panel" id="explorePanel">
 
 
 <p class="panel-subtitle">
@@ -152,7 +152,19 @@ Glaciers
 
 </aside>
 
-
+<button class="layers-toggle" id="layersToggle" type="button"
+        aria-label="Toggle layers" aria-expanded="false" aria-controls="explorePanel">
+    <svg class="icon-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3 3 8l9 5 9-5-9-5Z"/>
+        <path d="m3 12.5 9 5 9-5"/>
+        <path d="m3 17 9 5 9-5" opacity=".5"/>
+    </svg>
+    <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="1.5" stroke-linecap="round">
+        <path d="M6 6l12 12M18 6 6 18"/>
+    </svg>
+</button>
 
 
 
@@ -238,6 +250,43 @@ X
 <script>
     window.CESIUM_BASE_URL = "Cesium-1/Build/Cesium/";
 </script>
+
+<script>
+(function () {
+    const toggle = document.getElementById("layersToggle");
+    const panel  = document.getElementById("explorePanel");
+    if (!toggle || !panel) return;
+
+    function setOpen(open) {
+        panel.classList.toggle("is-open", open);
+        toggle.classList.toggle("is-open", open);
+        toggle.setAttribute("aria-expanded", open);
+    }
+
+    toggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        setOpen(!panel.classList.contains("is-open"));
+    });
+
+    // tap the globe (or anywhere outside) to close
+    document.addEventListener("pointerdown", (e) => {
+        if (!panel.classList.contains("is-open")) return;
+        if (panel.contains(e.target) || toggle.contains(e.target)) return;
+        setOpen(false);
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") setOpen(false);
+    });
+
+    // tidy up if the window is resized back to desktop
+    window.matchMedia("(min-width: 821px)").addEventListener("change", (m) => {
+        if (m.matches) setOpen(false);
+    });
+})();
+</script>
+
+
 
 <script src="Cesium-1/Build/Cesium/Cesium.js"></script>
 

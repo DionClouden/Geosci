@@ -4,24 +4,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--nav-h:68px;--gold:#b8a06a;--ink:#f1f1e8;--line:rgba(255,255,255,.09)}
+:root{--nav-h:0px;--gold:#b8a06a;--ink:#f1f1e8;--line:rgba(255,255,255,.09)}
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;overflow:hidden;background:#060908;color:var(--ink);font-family:Inter,system-ui,sans-serif}
 button{font-family:inherit;color:inherit;cursor:pointer}
-/* Classic Geosci navbar */
-.navbar{position:fixed;inset:0 0 auto 0;height:var(--nav-h);z-index:30;background:rgba(7,11,10,.97);border-bottom:1px solid rgba(184,160,106,.24);backdrop-filter:blur(16px)}
-.nav-container{height:100%;max-width:1400px;margin:0 auto;padding:0 clamp(18px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:28px}
-.logo{margin:0;flex:none;font-size:inherit}
-.logo>a{display:flex;align-items:center;gap:11px;color:#f1f1e8;text-decoration:none}
-.logo-mark-wrap{width:34px;height:34px;display:grid;place-items:center;flex:none}
-.logo-mark{display:block;width:100%;height:100%;object-fit:contain}
-.logo-text{display:flex;align-items:center;font-size:17px;font-weight:800;letter-spacing:.12em}
-.logo-text span{display:inline-block}
-.navbar nav{margin-left:auto;min-width:0}
-.navbar nav ul{display:flex;align-items:center;gap:clamp(18px,3vw,38px);list-style:none;padding:0;margin:0}
-.navbar nav a{position:relative;display:block;padding:8px 0;color:rgba(241,241,232,.72);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.04em;white-space:nowrap;transition:color .2s}
-.navbar nav a:hover,.navbar nav a[aria-current=page]{color:#f1f1e8}
-.navbar nav a[aria-current=page]::after{content:"";position:absolute;left:0;right:0;bottom:-18px;height:2px;background:var(--gold)}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
 .top{position:fixed;top:var(--nav-h);left:0;right:0;z-index:6;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:22px 30px;pointer-events:none}
@@ -98,8 +84,6 @@ button{font-family:inherit;color:inherit;cursor:pointer}
 .ex p{margin:6px 0 0;line-height:1.6}
 
 @media(max-width:820px){
- :root{--nav-h:60px}
- .nav-container{padding:0 14px;gap:12px}.logo-mark-wrap{width:27px;height:27px}.logo-text{font-size:14px;letter-spacing:.08em}.navbar nav ul{gap:clamp(10px,2.5vw,18px)}.navbar nav a{font-size:11px}
  .top{padding:16px 18px}.top .eyebrow{display:none}
  .panel{top:auto;left:0;width:100%;min-width:0;height:58vh;border-left:0;border-top:1px solid rgba(184,160,106,.4);transform:translateY(104%);box-shadow:0 -30px 80px rgba(0,0,0,.55)}
  .panel::before{left:0;right:0;top:-1px;bottom:auto;width:auto;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -108,25 +92,10 @@ button{font-family:inherit;color:inherit;cursor:pointer}
 }
 @media(prefers-reduced-motion:reduce){.panel,.hs,.key,.hint,.pbody>*{transition:none;animation:none}.hs .n::after{animation:none}}
 </style></head>
+
+
+
 <body>
-<header class="navbar">
-  <div class="nav-container">
-    <h1 class="logo">
-      <a href="../index.html">
-        <span class="logo-mark-wrap"><img src="../images/geosci_logo.png" alt="GEOSCI" class="logo-mark"></span>
-        <span class="logo-text"><span>G</span><span>E</span><span>O</span><span>S</span><span>C</span><span>I</span></span>
-      </a>
-    </h1>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="../explore.html">Explore</a></li>
-        <li><a href="../articles/articles.html" aria-current="page">Articles</a></li>
-        <li><a href="../research/research.html">Research</a></li>
-        <li><a href="../news/news.html">News</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
 <header class="top">
   <div><p class="eyebrow">Geosci / Structural geology</p><h1>Reading a geological cross-section</h1></div>
   <div class="tools"><button class="pill" id="hist">Order of events</button><button class="pill" id="keyb" aria-expanded="false" aria-controls="key">Rock key</button></div>
@@ -139,6 +108,9 @@ button{font-family:inherit;color:inherit;cursor:pointer}
   <div class="phead"><div class="pager"><button id="prev" aria-label="Previous feature">←</button><span id="pcount">1 / 8</span><button id="next" aria-label="Next feature">→</button></div><button id="pclose" aria-label="Close panel">×</button></div>
   <div class="pbody" id="pbody"></div>
 </aside>
+
+
+
 <script>
 (function(){
 const $=s=>document.querySelector(s),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -150,6 +122,8 @@ const cell=(x,y)=>{const xi=Math.floor(x),yi=Math.floor(y);let m=9,id=0;for(let 
 
 /* ---------------- the geological model (section coordinates, y down) ---------------- */
 const W=1600,H=760;
+/* the painted world is bigger than the section on every side, so the camera never runs out of rock or sky */
+const MX=520,MT=320,MB=420,BW=W+2*MX,BH=H+MT+MB;
 const ys=x=>150+16*Math.sin(x*.006+1)+9*Math.sin(x*.017)-6*Math.sin(x*.031+2);
 const E0=400,E=x=>E0+12*Math.sin(x*.011)+5*Math.sin(x*.037+1);
 const TH=26*Math.PI/180,PXA=800,PYA=400;
@@ -178,7 +152,7 @@ function shade(x,y,c){
  const ysf=ys(x);if(y<ysf)return false;
  /* intrusions */
  let sdB=1e9,sdD=1e9;const bx=x-CXB,by=y-CYB;
- if(Math.abs(bx)<RXB*1.5&&by>-RYB*1.5){const th=Math.atan2(by/RYB,bx/RXB);sdB=Math.hypot(bx,by)-rhoB(th)}
+ if(Math.abs(bx)<RXB*1.5&&by>-RYB*1.5){const bq=Math.min(by,0),th=Math.atan2(bq/RYB,bx/RXB);sdB=Math.hypot(bx,bq)-rhoB(th)}
  if(y<470){const w=dykeW(y)*(y>420?cl((470-y)/50,0,1):1);sdD=Math.abs(x-dykeX(y))-w}
  const sdI=Math.min(sdB,sdD);
  if(sdI<0){
@@ -202,18 +176,19 @@ function shade(x,y,c){
  const sh=.94+.06*(1-y/H);c[0]*=sh;c[1]*=sh;c[2]*=sh;return true}
 
 /* ---------------- base image (painted once, in chunks so the page never freezes) ---------------- */
-const base=document.createElement('canvas');base.width=W;base.height=H;const bg=base.getContext('2d');
-const sec=document.createElement('canvas');sec.width=W;sec.height=H;const sx=sec.getContext('2d'),img=sx.createImageData(W,H);
+const base=document.createElement('canvas');base.width=BW;base.height=BH;const bg=base.getContext('2d');
+const sec=document.createElement('canvas');sec.width=BW;sec.height=BH;const sx=sec.getContext('2d'),img=sx.createImageData(BW,BH);
 let row=0,baseReady=false;
-function paintSky(){let g=bg.createLinearGradient(0,0,0,ys(0)+10);g.addColorStop(0,'#16213a');g.addColorStop(.55,'#6a5a6a');g.addColorStop(1,'#e8b98a');bg.fillStyle=g;bg.fillRect(0,0,W,H);
- const sg=bg.createRadialGradient(W*.78,150,4,W*.78,150,200);sg.addColorStop(0,'rgba(255,236,190,.95)');sg.addColorStop(.12,'rgba(255,220,150,.6)');sg.addColorStop(1,'rgba(255,200,120,0)');bg.fillStyle=sg;bg.fillRect(0,0,W,260);
- bg.fillStyle='rgba(30,42,66,.55)';bg.beginPath();bg.moveTo(0,150);for(let x=0;x<=W;x+=12)bg.lineTo(x,128-30*Math.abs(Math.sin(x*.004+.5))-14*Math.sin(x*.013));bg.lineTo(W,160);bg.fill();
- bg.fillStyle='rgba(255,255,255,.1)';for(let i=0;i<5;i++){bg.beginPath();bg.ellipse(180+i*320,40+(i%3)*18,90,9,0,0,TAU);bg.fill()}}
-function paintChunk(n){for(let k=0;k<n&&row<H;k++,row++){const y=row;for(let x=0;x<W;x++){const i=(y*W+x)*4;if(shade(x,y,out)){img.data[i]=cl(out[0],0,255);img.data[i+1]=cl(out[1],0,255);img.data[i+2]=cl(out[2],0,255);img.data[i+3]=255}else img.data[i+3]=0}}}
-function finishBase(){sx.putImageData(img,0,0);bg.drawImage(sec,0,0);
- /* trees and shrubs along the surface */
- for(let i=0;i<70;i++){const x=hash(i,3)*W,y=ys(x);if(Math.abs(x-dykeX(150))<30)continue;const h=14+hash(i,5)*22;bg.fillStyle=`rgb(${30+hash(i,6)*20},${70+hash(i,7)*40},${40+hash(i,8)*20})`;if(i%3){for(let k=0;k<3;k++){bg.beginPath();bg.moveTo(x-h*.28*(1-k*.25),y-h*k*.28);bg.lineTo(x,y-h*(k*.28+.5));bg.lineTo(x+h*.28*(1-k*.25),y-h*k*.28);bg.fill()}bg.fillStyle='#3a2a1a';bg.fillRect(x-1.5,y-4,3,5)}else{bg.beginPath();bg.ellipse(x,y-h*.2,h*.5,h*.28,0,0,TAU);bg.fill()}}
- const e=bg.createLinearGradient(0,H-90,0,H);e.addColorStop(0,'rgba(0,0,0,0)');e.addColorStop(1,'rgba(0,0,0,.45)');bg.fillStyle=e;bg.fillRect(0,H-90,W,90);baseReady=true;$('#load').classList.add('gone');showHotspots()}
+function paintSky(){bg.setTransform(1,0,0,1,MX,MT);bg.fillStyle='#2b2823';bg.fillRect(-MX,-MT,BW,BH);
+ const hz=ys(0)+10;let g=bg.createLinearGradient(0,-MT,0,hz);g.addColorStop(0,'#0e1630');g.addColorStop(.45,'#2a2f52');g.addColorStop(.8,'#8a6a7a');g.addColorStop(1,'#eab98a');bg.fillStyle=g;bg.fillRect(-MX,-MT,BW,MT+hz+40);
+ bg.fillStyle='#fff';for(let i=0;i<160;i++){bg.globalAlpha=.15+.5*hash(i,2);bg.fillRect(-MX+hash(i,1)*BW,-MT+Math.pow(hash(i,3),1.6)*(MT+60),1.4,1.4)}bg.globalAlpha=1;
+ const sg=bg.createRadialGradient(W*.78,150,4,W*.78,150,260);sg.addColorStop(0,'rgba(255,236,190,.95)');sg.addColorStop(.12,'rgba(255,220,150,.6)');sg.addColorStop(1,'rgba(255,200,120,0)');bg.fillStyle=sg;bg.fillRect(W*.78-300,-120,600,420);
+ for(const [col,amp,fq,base0] of [['rgba(44,56,92,.5)',40,.004,128],['rgba(26,38,66,.7)',26,.007,142]]){bg.fillStyle=col;bg.beginPath();bg.moveTo(-MX,170);for(let x=-MX;x<=W+MX;x+=12)bg.lineTo(x,base0-amp*Math.abs(Math.sin(x*fq+.5))-14*Math.sin(x*fq*3.1));bg.lineTo(W+MX,180);bg.lineTo(-MX,180);bg.fill()}
+ bg.fillStyle='rgba(255,255,255,.09)';for(let i=0;i<14;i++){bg.beginPath();bg.ellipse(-MX+hash(i,9)*BW,-60+hash(i,8)*150,70+hash(i,7)*90,8+hash(i,6)*6,0,0,TAU);bg.fill()}}
+function paintChunk(n){for(let k=0;k<n&&row<BH;k++,row++){const y=row-MT;for(let xi=0;xi<BW;xi++){const x=xi-MX,i=(row*BW+xi)*4;if(shade(x,y,out)){img.data[i]=cl(out[0],0,255);img.data[i+1]=cl(out[1],0,255);img.data[i+2]=cl(out[2],0,255);img.data[i+3]=255}else img.data[i+3]=0}}}
+function finishBase(){sx.putImageData(img,0,0);bg.setTransform(1,0,0,1,MX,MT);bg.drawImage(sec,-MX,-MT);
+ for(let i=0;i<190;i++){const x=-MX+hash(i,3)*BW,y=ys(x);if(Math.abs(x-dykeX(150))<30)continue;const h=14+hash(i,5)*22;bg.fillStyle=`rgb(${30+hash(i,6)*20},${70+hash(i,7)*40},${40+hash(i,8)*20})`;if(i%3){for(let k=0;k<3;k++){bg.beginPath();bg.moveTo(x-h*.28*(1-k*.25),y-h*k*.28);bg.lineTo(x,y-h*(k*.28+.5));bg.lineTo(x+h*.28*(1-k*.25),y-h*k*.28);bg.fill()}bg.fillStyle='#3a2a1a';bg.fillRect(x-1.5,y-4,3,5)}else{bg.beginPath();bg.ellipse(x,y-h*.2,h*.5,h*.28,0,0,TAU);bg.fill()}}
+ const e=bg.createLinearGradient(0,H-60,0,H+MB);e.addColorStop(0,'rgba(0,0,0,0)');e.addColorStop(1,'rgba(0,0,0,.5)');bg.fillStyle=e;bg.fillRect(-MX,H-60,BW,MB+60);baseReady=true;$('#load').classList.add('gone');showHotspots()}
 
 /* ---------------- the features ---------------- */
 const FT=[
@@ -303,7 +278,8 @@ let Vw=0,Vh=0,dpr=1;const cam={x:W/2,y:H/2,s:1,vx:0},tgt={x:W/2,y:H/2,s:1,vx:0};
 let active=-1,hover=-1,hl=FT.map(()=>0),miniP=0,miniPlay=true,miniT=0,histOpen=false;
 const isMobile=()=>innerWidth<820;
 function fit(open){const vw=open&&!isMobile()?Vw*.5:Vw,vh=open&&isMobile()?Vh*.42:Vh;return Math.min(vw*.94/W,vh*.92/H)}
-function setTarget(){const open=active>=0||histOpen;if(active>=0){const f=FT[active];tgt.s=fit(true)*f.z*1.42;tgt.x=f.mx;tgt.y=f.my}else{tgt.s=fit(open);tgt.x=W/2;tgt.y=H/2}tgt.vx=open&&!isMobile()?Vw*.25:Vw/2;tgt.vy=open&&isMobile()?Vh*.22:Vh/2}
+function clampC(c){const S=c.s,l=c.vx/S,r=(Vw-c.vx)/S,t=c.vy/S,b=(Vh-c.vy)/S,x0=-MX+l,x1=W+MX-r,y0=-MT+t,y1=H+MB-b;c.x=x0>x1?(x0+x1)/2:Math.min(x1,Math.max(x0,c.x));c.y=y0>y1?(y0+y1)/2:Math.min(y1,Math.max(y0,c.y))}
+function setTarget(){const open=active>=0||histOpen;const Smin=Math.max(Vh/BH,Vw/BW)*1.02;if(active>=0){const f=FT[active];tgt.s=Math.max(Smin,fit(true)*f.z);tgt.x=f.mx;tgt.y=f.my}else{tgt.s=Math.max(Smin,fit(open));tgt.x=W/2;tgt.y=H/2}tgt.vx=open&&!isMobile()?Vw*.25:Vw/2;tgt.vy=open&&isMobile()?Vh*.22:Vh/2;clampC(tgt)}
 function resize(){dpr=Math.min(devicePixelRatio||1,2);Vw=stage.clientWidth;Vh=stage.clientHeight;cv.width=Vw*dpr;cv.height=Vh*dpr;setTarget();if(!cam.init){Object.assign(cam,tgt);cam.init=true}}
 addEventListener('resize',resize);
 const HSB=FT.map((f,i)=>{const b=document.createElement('button');b.className='hs';b.innerHTML=`<span class="n">${i+1}</span><span class="lb">${f.n}</span>`;b.setAttribute('aria-label',`${i+1}. ${f.n}`);b.onclick=()=>openFeature(i);b.onmouseenter=()=>hover=i;b.onmouseleave=()=>hover=-1;b.onfocus=()=>hover=i;b.onblur=()=>hover=-1;hsEl.appendChild(b);return b});
@@ -331,21 +307,19 @@ function buildHistory(){$('#pcount').textContent='History';pbody.innerHTML=`<p c
 /* frame loop */
 let last=0;
 function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last)/1000||.016),t=now/1000;last=now;
- if(!baseReady){paintChunk(40);if(row>=H)finishBase();$('#load').textContent=`Mapping the rocks… ${Math.round(row/H*100)}%`}
- const k=rm?1:1-Math.pow(.0009,dt);['x','y','s','vx','vy'].forEach(a=>cam[a]+=(tgt[a]-cam[a])*k);
- g.setTransform(dpr,0,0,dpr,0,0);const bgG=g.createLinearGradient(0,0,0,Vh);bgG.addColorStop(0,'#0c1211');bgG.addColorStop(1,'#060908');g.fillStyle=bgG;g.fillRect(0,0,Vw,Vh);
+ if(!baseReady){paintChunk(40);if(row>=BH)finishBase();$('#load').textContent=`Mapping the rocks… ${Math.round(row/BH*100)}%`}
+ const k=rm?1:1-Math.pow(.0009,dt);['x','y','s','vx','vy'].forEach(a=>cam[a]+=(tgt[a]-cam[a])*k);clampC(cam);
+ g.setTransform(dpr,0,0,dpr,0,0);const bgG=g.createLinearGradient(0,0,0,Vh);bgG.addColorStop(0,'#0e1630');bgG.addColorStop(1,'#2b2823');g.fillStyle=bgG;g.fillRect(0,0,Vw,Vh);
  const S=cam.s,ox=cam.vx-cam.x*S,oy=cam.vy-cam.y*S;
- if(baseReady){g.save();g.shadowColor='rgba(0,0,0,.6)';g.shadowBlur=40;g.fillStyle='#000';g.fillRect(ox,oy,W*S,H*S);g.restore();g.setTransform(dpr*S,0,0,dpr*S,dpr*ox,dpr*oy);g.drawImage(base,0,0);
+ if(baseReady){g.setTransform(dpr*S,0,0,dpr*S,dpr*ox,dpr*oy);g.drawImage(base,-MX,-MT);
   const sel=active;hl.forEach((v,i)=>{const tg=sel===i?1:(hover===i&&sel<0?.6:0);hl[i]+=(tg-v)*Math.min(1,dt*9)});
-  if(sel>=0){const vg=g.createRadialGradient(FT[sel].mx,FT[sel].my,60,FT[sel].mx,FT[sel].my,Math.max(W,H)*.7);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(4,8,7,.55)');g.fillStyle=vg;g.fillRect(0,0,W,H)}
+  if(sel>=0){const vg=g.createRadialGradient(FT[sel].mx,FT[sel].my,60,FT[sel].mx,FT[sel].my,Math.max(W,H)*.7);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(4,8,7,.55)');g.fillStyle=vg;g.fillRect(-MX,-MT,BW,BH)}
   FT.forEach((f,i)=>{if(hl[i]>.02){g.save();g.globalAlpha=hl[i];OV[f.id](g,t);g.restore()}});
-  g.setTransform(dpr,0,0,dpr,0,0);g.strokeStyle='rgba(255,255,255,.1)';g.lineWidth=1;g.strokeRect(ox,oy,W*S,H*S)}
+  g.setTransform(dpr,0,0,dpr,0,0)}
  HSB.forEach((b,i)=>{const x=ox+FT[i].mx*S,y=oy+(FT[i].id==='bed'?FT[i].my:FT[i].my)*S;b.style.transform=`translate(${x}px,${y}px)`;b.classList.toggle('dim',active>=0&&active!==i||histOpen);b.classList.toggle('sel',active===i)});
  if(active>=0){if(miniPlay){miniP+=dt/7;if(miniP>1.18)miniP=0}const p=cl(miniP,0,1),m=$('#mini');if(m){const mg=m.getContext('2d');mg.setTransform(1,0,0,1,0,0);mg.clearRect(0,0,480,230);mg.textAlign='left';const f=FT[active];(MINI[f.id==='anti'||f.id==='syn'?'fold':f.id])(mg,480,230,p,f.id==='anti'?'anti':'syn');$('#mr').value=Math.round(p*1000);const n=f.steps.length,si=Math.min(n-1,Math.floor(p*n*.9999));$('#mlab').textContent=`Step ${si+1} of ${n}`;pbody.querySelectorAll('.steps li').forEach((li,i)=>li.classList.toggle('on',i===si))}}}
 resize();paintSky();requestAnimationFrame(frame)
 })();
 </script>
-
-<script src="../navbar_script.js"></script>
-
 </body></html>
+

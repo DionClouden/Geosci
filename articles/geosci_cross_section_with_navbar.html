@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reading a cross-section | Geosci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Site navbar */
+:root{--nav-h:84px;--gold:#b8a06a;--ink:#f1f1e8;--line:rgba(255,255,255,.09)}
+.site-navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,9,8,.96);border-bottom:1px solid rgba(184,160,106,.28);backdrop-filter:blur(12px)}
+.site-navbar .nav-container{max-width:1400px;margin:0 auto;padding:12px 30px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.site-navbar .logo{margin:0;font-size:1rem;line-height:1}
+.site-navbar .logo a{display:flex;align-items:center;gap:12px;color:#f1f1e8;text-decoration:none}
+.site-navbar .logo-mark-wrap{display:inline-flex;align-items:center}
+.site-navbar .logo-mark{display:block;width:44px;height:44px;object-fit:contain}
+.site-navbar .logo-text{display:flex;gap:2px;font-size:1.2rem;font-weight:800;letter-spacing:.12em}
+.site-navbar nav ul{display:flex;align-items:center;gap:clamp(14px,3vw,36px);list-style:none;margin:0;padding:0}
+.site-navbar nav a{color:rgba(241,241,232,.82);text-decoration:none;font-size:13px;font-weight:600;transition:color .2s}
+.site-navbar nav a:hover,.site-navbar nav a:focus-visible{color:#d8c690}
+
+body{--nav-h:84px}
+.top{top:var(--nav-h)}
+.stage{top:var(--nav-h)}
+.panel{top:var(--nav-h)}
+
+@media(max-width:820px){
+ .site-navbar .nav-container{padding:10px 16px;gap:12px}
+ .site-navbar .logo-mark{width:34px;height:34px}
+ .site-navbar .logo-text{font-size:1rem;letter-spacing:.08em}
+ .site-navbar nav ul{gap:12px}
+ .site-navbar nav a{font-size:11px}
+}
+@media(max-width:520px){
+ .site-navbar .nav-container{align-items:flex-start;flex-direction:column;gap:10px;padding:10px 16px}
+ .site-navbar nav{width:100%;overflow-x:auto}
+ .site-navbar nav ul{width:max-content;gap:20px;padding-bottom:2px}
+ body{--nav-h:112px}
+}
+
+:root{--nav-h:0px;--gold:#b8a06a;--ink:#f1f1e8;--line:rgba(255,255,255,.09)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:#060908;color:var(--ink);font-family:Inter,system-ui,sans-serif}
+button{font-family:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+.top{position:fixed;top:var(--nav-h);left:0;right:0;z-index:6;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:22px 30px;pointer-events:none}
+.top>*{pointer-events:auto}
+.eyebrow{margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.top h1{margin:0;font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:700;letter-spacing:-.6px}
+.tools{display:flex;gap:8px}
+.pill{font:600 11px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;background:rgba(10,14,13,.7);color:#d8c690;border:1px solid rgba(184,160,106,.35);border-radius:999px;backdrop-filter:blur(8px);transition:background .25s,border-color .25s}
+.pill:hover,.pill[aria-expanded=true]{background:rgba(184,160,106,.18);border-color:rgba(184,160,106,.7)}
+
+.stage{position:fixed;top:var(--nav-h);left:0;right:0;bottom:0}
+#cv{position:absolute;inset:0;width:100%;height:100%}
+.load{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:500 12px Inter;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);transition:opacity .8s;pointer-events:none}
+.load.gone{opacity:0}
+
+/* hotspots */
+#hs{position:absolute;inset:0;pointer-events:none}
+.hs{position:absolute;left:0;top:0;width:0;height:0;padding:0;background:none;border:0;opacity:0;pointer-events:none;transition:opacity .6s}
+.hs.in{opacity:1;pointer-events:auto}
+.hs.in.dim{opacity:.22}.hs.in.sel{opacity:1}
+.hs .n{position:absolute;left:-17px;top:-17px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:rgba(10,14,13,.88);border:2px solid var(--gold);font:700 13px Inter;color:#f6e6b8;box-shadow:0 4px 18px rgba(0,0,0,.5);transition:transform .25s,background .25s}
+.hs .n::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--gold);animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.9);opacity:0}}
+.hs:hover .n,.hs:focus-visible .n,.hs.sel .n{transform:scale(1.18);background:var(--gold);color:#0b0f0e}
+.hs.sel .n::after{animation:none;opacity:0}
+.hs .lb{position:absolute;left:26px;top:-14px;white-space:nowrap;padding:7px 14px;background:rgba(10,14,13,.92);border:1px solid rgba(184,160,106,.45);border-radius:999px;font:600 12px Inter;opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s;pointer-events:none}
+.hs:hover .lb,.hs:focus-visible .lb{opacity:1;transform:none}
+.hs.sel .lb{opacity:0}
+
+.hint{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:5;padding:10px 20px;border-radius:999px;background:rgba(10,14,13,.75);border:1px solid var(--line);font-size:13px;color:rgba(241,241,232,.8);backdrop-filter:blur(8px);transition:opacity .6s,transform .6s}
+.hint.gone{opacity:0;transform:translate(-50%,10px);pointer-events:none}
+
+.key{position:fixed;left:30px;bottom:26px;z-index:5;width:240px;padding:16px 18px;background:rgba(10,14,13,.92);border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(12px);font-size:12px;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s,transform .3s}
+.key.open{opacity:1;transform:none;pointer-events:auto}
+.key h4{margin:0 0 10px;font:600 10px Inter;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.key div{display:flex;align-items:center;gap:10px;padding:3px 0;color:rgba(241,241,232,.85)}
+.key i{width:16px;height:16px;border-radius:4px;border:1px solid rgba(255,255,255,.18)}
+
+/* the half-screen swipe panel */
+.panel{position:fixed;top:var(--nav-h);right:0;bottom:0;width:50%;min-width:440px;z-index:20;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(11,16,15,.97),rgba(7,10,9,.98));border-left:1px solid rgba(184,160,106,.4);box-shadow:-30px 0 80px rgba(0,0,0,.55);transform:translateX(104%);transition:transform .8s cubic-bezier(.2,.8,.2,1);outline:none}
+.panel::before{content:"";position:absolute;left:-1px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,var(--gold),transparent);opacity:.8}
+.panel.open{transform:none}
+.phead{display:flex;align-items:center;justify-content:space-between;padding:calc(22px + 0px) 30px 6px}
+.pager{display:flex;align-items:center;gap:6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,241,232,.6)}
+.pager span{min-width:62px;text-align:center}
+.pager button,#pclose{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:18px;line-height:1;transition:background .25s,border-color .25s}
+.pager button:hover,#pclose:hover{background:rgba(184,160,106,.2);border-color:rgba(184,160,106,.6)}
+.pbody{flex:1;overflow:auto;padding:10px 38px 60px;scroll-behavior:smooth}
+.pbody::-webkit-scrollbar{width:8px}.pbody::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:4px}
+.pbody>*{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+.pbody>*:nth-child(2){animation-delay:.05s}.pbody>*:nth-child(3){animation-delay:.1s}.pbody>*:nth-child(4){animation-delay:.15s}.pbody>*:nth-child(n+5){animation-delay:.2s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pbody h2{margin:0 0 14px;font-size:clamp(1.9rem,3.2vw,2.7rem);font-weight:700;letter-spacing:-1px;line-height:1.05}
+.pbody h3{margin:30px 0 12px;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.lead{margin:0 0 22px;font-size:1.08rem;line-height:1.65;color:rgba(241,241,232,.88)}
+.mini{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0a0f0e}
+.mini canvas{display:block;width:100%;height:auto}
+.mctl{display:flex;align-items:center;gap:12px;padding:10px 14px;border-top:1px solid var(--line)}
+.mctl button{width:34px;height:34px;border-radius:50%;background:rgba(184,160,106,.18);border:1px solid rgba(184,160,106,.5);font-size:12px}
+.mctl input{flex:1;accent-color:var(--gold)}
+.mctl span{font-size:12px;color:rgba(241,241,232,.6);min-width:78px;text-align:right}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.steps li{display:flex;gap:16px;padding:14px 16px;border-radius:12px;border:1px solid transparent;transition:background .4s,border-color .4s,opacity .4s;opacity:.62}
+.steps li.on{background:rgba(184,160,106,.09);border-color:rgba(184,160,106,.4);opacity:1}
+.steps.hist li{opacity:1}.steps.hist li[data-f]{cursor:pointer}.steps.hist li[data-f]:hover{background:rgba(184,160,106,.1)}
+.steps li span{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:700 12px Inter;background:rgba(255,255,255,.07);color:#e6d3a1}
+.steps li.on span{background:var(--gold);color:#0b0f0e}
+.steps p{margin:2px 0 0;font-size:.98rem;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{padding:7px 14px;border-radius:999px;background:rgba(184,160,106,.12);border:1px solid rgba(184,160,106,.3);font-size:12.5px;color:#ecd9a6}
+.pbody ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;line-height:1.55;color:rgba(241,241,232,.85)}
+.ex{margin-top:30px;padding:18px 20px;border-left:3px solid var(--gold);background:rgba(184,160,106,.07);border-radius:0 12px 12px 0}
+.ex span{font:600 10px Inter;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.ex p{margin:6px 0 0;line-height:1.6}
+
+@media(max-width:820px){
+ .top{padding:16px 18px}.top .eyebrow{display:none}
+ .panel{top:auto;left:0;width:100%;min-width:0;height:58vh;border-left:0;border-top:1px solid rgba(184,160,106,.4);transform:translateY(104%);box-shadow:0 -30px 80px rgba(0,0,0,.55)}
+ .panel::before{left:0;right:0;top:-1px;bottom:auto;width:auto;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+ .panel.open{transform:none}
+ .pbody{padding:6px 22px 50px}.phead{padding:14px 22px 4px}.key{left:16px;bottom:16px}.hint{bottom:16px}
+}
+@media(prefers-reduced-motion:reduce){.panel,.hs,.key,.hint,.pbody>*{transition:none;animation:none}.hs .n::after{animation:none}}
+</style></head>
+
+
+
+<body>
+<header class="navbar site-navbar">
+  <div class="nav-container">
+    <h1 class="logo">
+      <a href="../index.html">
+        <span class="logo-mark-wrap"><img src="../images/geosci_logo.png" alt="GEOSCI" class="logo-mark"></span>
+        <span class="logo-text"><span>G</span><span>E</span><span>O</span><span>S</span><span>C</span><span>I</span></span>
+      </a>
+    </h1>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="../explore.html">Explore</a></li>
+        <li><a href="../articles/articles.html">Articles</a></li>
+        <li><a href="../research/research.html">Research</a></li>
+        <li><a href="../news/news.html">News</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<header class="top">
+  <div><p class="eyebrow">Geosci / Structural geology</p><h1>Reading a geological cross-section</h1></div>
+  <div class="tools"><button class="pill" id="hist">Order of events</button><button class="pill" id="keyb" aria-expanded="false" aria-controls="key">Rock key</button></div>
+</header>
+<main class="stage" id="stage"><canvas id="cv"></canvas><div id="hs"></div><div class="load" id="load">Mapping the rocks… 0%</div></main>
+<div class="hint" id="hint">Click a numbered marker to explore it · keys 1–8 also work</div>
+<div class="key" id="key" aria-label="Rock key"><h4>Rock key</h4>
+ <div><i style="background:#9a5a3a"></i>Conglomerate</div><div><i style="background:#daa65c"></i>Sandstone</div><div><i style="background:#606874"></i>Shale</div><div><i style="background:#bac4c0"></i>Limestone</div><div><i style="background:#ba644a"></i>Siltstone</div><div><i style="background:#465064"></i>Slate (older, tilted)</div><div><i style="background:#d6a898"></i>Granite (intrusion)</div><div><i style="background:#383f3e"></i>Dolerite (dyke)</div><div><i style="background:#3e3630"></i>Hornfels / marble (baked rock)</div></div>
+<aside class="panel" id="panel" tabindex="-1" aria-hidden="true" aria-labelledby="ptitle">
+  <div class="phead"><div class="pager"><button id="prev" aria-label="Previous feature">←</button><span id="pcount">1 / 8</span><button id="next" aria-label="Next feature">→</button></div><button id="pclose" aria-label="Close panel">×</button></div>
+  <div class="pbody" id="pbody"></div>
+</aside>
+
+
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),lerp=(a,b,t)=>a+(b-a)*t,sm=t=>t*t*(3-2*t),TAU=Math.PI*2;
+/* ---------------- noise ---------------- */
+const hash=(x,y)=>{let h=Math.imul(x|0,374761393)+Math.imul(y|0,668265263);h=Math.imul(h^(h>>>13),1274126177);return((h^(h>>>16))>>>0)/4294967296};
+const vn=(x,y)=>{const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi,u=xf*xf*(3-2*xf),v=yf*yf*(3-2*yf),a=hash(xi,yi),b=hash(xi+1,yi),c=hash(xi,yi+1),d=hash(xi+1,yi+1);return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v};
+const cell=(x,y)=>{const xi=Math.floor(x),yi=Math.floor(y);let m=9,id=0;for(let j=-1;j<=1;j++)for(let i=-1;i<=1;i++){const cx=xi+i+hash(xi+i,yi+j),cy=yi+j+hash(yi+j+91,xi+i+37),d=(x-cx)*(x-cx)+(y-cy)*(y-cy);if(d<m){m=d;id=hash(xi+i+7,yi+j+3)}}return[Math.sqrt(m),id]};
+
+/* ---------------- the geological model (section coordinates, y down) ---------------- */
+const W=1600,H=760;
+/* the painted world is bigger than the section on every side, so the camera never runs out of rock or sky */
+const MX=520,MT=320,MB=420,BW=W+2*MX,BH=H+MT+MB;
+const ys=x=>150+16*Math.sin(x*.006+1)+9*Math.sin(x*.017)-6*Math.sin(x*.031+2);
+const E0=400,E=x=>E0+12*Math.sin(x*.011)+5*Math.sin(x*.037+1);
+const TH=26*Math.PI/180,PXA=800,PYA=400;
+const BST=[['cong',24],['sand1',58],['shale',40],['lime',52],['sand2',48],['silt',9999]];
+const AST=[['slate',44],['quartz',30],['grey',54],['limeA',36],['slate',40],['quartz',34],['grey',50]],ATOT=AST.reduce((a,b)=>a+b[1],0);
+const DIP=65*Math.PI/180,FX0=880,FY0=150,THROW=64,FW=24,planeX=y=>FX0+(y-FY0)/Math.tan(DIP);
+const foldD=(x,y)=>60*Math.exp(-Math.pow((x-330)/260,2))*Math.pow(cl((E0+40-y)/(E0+40-110),0,1),.8)*Math.sin(TAU*(x-115)/300);
+const CXB=1340,CYB=760,RXB=270,RYB=440,AUR_B=80,AUR_D=26;
+const rbF=t=>1+.06*Math.sin(3*t+1)+.04*Math.sin(7*t+.3)+.02*Math.sin(13*t);
+const rhoB=t=>{const r=rbF(t);return Math.hypot(RXB*r*Math.cos(t),RYB*r*Math.sin(t))};
+const dykeX=y=>1120+.0022*(y-150)*(y-150)+6*Math.sin(y*.05),dykeW=y=>9+3*Math.sin(y*.09);
+const bnd=(y0,x)=>{let y=y0-foldD(x,y0);if(x>planeX(y0))y+=THROW;return y};
+
+const LC={cong:[154,90,58],sand1:[218,166,92],shale:[96,104,116],lime:[186,196,192],sand2:[230,190,124],silt:[186,100,74],slate:[70,80,100],quartz:[204,170,162],grey:[120,130,98],limeA:[142,156,154]};
+const out=[0,0,0];
+const mix=(c,d,t)=>{c[0]+=(d[0]-c[0])*t;c[1]+=(d[1]-c[1])*t;c[2]+=(d[2]-c[2])*t};
+function rock(id,x,yu,f,c){const b=LC[id];c[0]=b[0];c[1]=b[1];c[2]=b[2];const g=(vn(x*.5,yu*.5)-.5)*22,m=(vn(x*.035,yu*.09)-.5)*26,lam=Math.sin(yu*(id==='shale'||id==='slate'?2.4:1.1)+vn(x*.04,yu*.15)*4);
+ let sh=g+m+lam*(id==='shale'||id==='slate'?9:4)+(f-.5)*10;
+ if(id==='cong'){const q=cell(x*.11,yu*.11);if(q[0]<.46){const pc=[[170,120,90],[130,100,90],[200,170,140],[110,90,80],[180,140,110]][(q[1]*5)|0];c[0]=pc[0];c[1]=pc[1];c[2]=pc[2];sh+=(q[0]-.25)*-40}else{c[0]=110;c[1]=70;c[2]=52}}
+ else if(id==='lime'||id==='limeA'){if(hash(Math.floor(x/5),Math.floor(yu/5))>.988){c[0]=238;c[1]=240;c[2]=232}if(vn(x*.02,yu*.4)>.84)sh-=22}
+ else if(id==='quartz'&&hash(x>>1,yu>>1)>.9)sh+=22;
+ else if(id==='sand1'||id==='sand2'){const cb=Math.sin((x*.3+yu*.95)*.55+vn(x*.01,yu*.1)*5);sh+=cb*5}
+ else if(id==='grey'&&hash(x>>1,yu>>1)>.93)sh-=18;
+ c[0]+=sh;c[1]+=sh;c[2]+=sh;const e=Math.min(f,1-f)*0;return c}
+function shade(x,y,c){
+ const ysf=ys(x);if(y<ysf)return false;
+ /* intrusions */
+ let sdB=1e9,sdD=1e9;const bx=x-CXB,by=y-CYB;
+ if(Math.abs(bx)<RXB*1.5&&by>-RYB*1.5){const bq=Math.min(by,0),th=Math.atan2(bq/RYB,bx/RXB);sdB=Math.hypot(bx,bq)-rhoB(th)}
+ if(y<470){const w=dykeW(y)*(y>420?cl((470-y)/50,0,1):1);sdD=Math.abs(x-dykeX(y))-w}
+ const sdI=Math.min(sdB,sdD);
+ if(sdI<0){
+  if(sdD<sdB){const n=vn(x*.5,y*.5);c[0]=56+n*20;c[1]=64+n*18;c[2]=62+n*16;if(hash(x>>1,y>>1)>.9){c[0]+=40;c[1]+=44;c[2]+=40}if(sdD>-3){c[0]-=12;c[1]-=12;c[2]-=12}}
+  else{const n=vn(x*.3,y*.3),k=hash(x>>1,y>>1);c[0]=214+n*18;c[1]=168+n*20;c[2]=152+n*16;if(vn(x*.22+7,y*.22)>.7){c[0]=164;c[1]=166;c[2]=172}if(k>.93){c[0]=52;c[1]=42;c[2]=44}else if(k<.05){c[0]=240;c[1]=232;c[2]=224}if(sdB>-5){c[0]-=20;c[1]-=22;c[2]-=22}}
+  return true}
+ /* host rock with faulting + folding undone to find the unit */
+ let y1=y;const dpx=x-planeX(y);if(dpx>-FW)y1=y-THROW*sm(cl((dpx+FW)/(2*FW),0,1));
+ const yu=y1+foldD(x,y1),Ex=E(x);let isLime=false;
+ if(yu<Ex){const z=Ex-yu;let acc=0,idx=0;for(;idx<BST.length-1;idx++){if(z<acc+BST[idx][1])break;acc+=BST[idx][1]}const th=BST[idx][1],f=cl((z-acc)/th,0,1);rock(BST[idx][0],x,yu,f,c);isLime=BST[idx][0]==='lime';if(idx<BST.length-1){const d=Math.min(z-acc,acc+th-z);if(d<1.3){c[0]*=.62;c[1]*=.62;c[2]*=.62}}}
+ else{const v=-(x-PXA)*Math.sin(TH)+(yu-PYA)*Math.cos(TH);let q=((v%ATOT)+ATOT)%ATOT,acc=0,idx=0;for(;idx<AST.length;idx++){if(q<acc+AST[idx][1])break;acc+=AST[idx][1]}if(idx>=AST.length)idx=AST.length-1;const th=AST[idx][1],f=cl((q-acc)/th,0,1);rock(AST[idx][0],x,yu,f,c);isLime=AST[idx][0]==='limeA';const d=Math.min(q-acc,acc+th-q);if(d<1.3){c[0]*=.6;c[1]*=.6;c[2]*=.6}
+  const dE=yu-Ex;if(dE<2.2){c[0]*=.78;c[1]*=.72;c[2]*=.7}}
+ /* contact metamorphism */
+ if(sdI<(sdD<sdB?AUR_D:AUR_B)){const A=sdD<sdB?AUR_D:AUR_B,w=Math.pow(1-sdI/A,1.2);
+  if(isLime){mix(c,[240,230,220],w*.9);if(hash(x,y)>.975)mix(c,[255,255,255],.8)}
+  else{mix(c,[62,54,48],w*.82);if(w<.6&&w>.12&&hash(x>>1,y>>1)>.9)mix(c,[28,24,22],.7);if(w>.75&&hash(x,y)>.96)mix(c,[110,98,88],.7)}}
+ /* fault line */
+ const pd=Math.abs(dpx)*Math.sin(DIP);if(pd<5&&y>FY0){const a=pd<1.5?.75:(hash(x,y)>.6?.28:0);if(a)mix(c,[28,24,22],a)}
+ /* soil */
+ const d0=y-ysf;if(d0<7){mix(c,[58,44,30],cl(1-d0/7,0,1)*.9);if(d0<1.6)mix(c,[82,112,56],.9)}
+ const sh=.94+.06*(1-y/H);c[0]*=sh;c[1]*=sh;c[2]*=sh;return true}
+
+/* ---------------- base image (painted once, in chunks so the page never freezes) ---------------- */
+const base=document.createElement('canvas');base.width=BW;base.height=BH;const bg=base.getContext('2d');
+const sec=document.createElement('canvas');sec.width=BW;sec.height=BH;const sx=sec.getContext('2d'),img=sx.createImageData(BW,BH);
+let row=0,baseReady=false;
+function paintSky(){bg.setTransform(1,0,0,1,MX,MT);bg.fillStyle='#2b2823';bg.fillRect(-MX,-MT,BW,BH);
+ const hz=ys(0)+10;let g=bg.createLinearGradient(0,-MT,0,hz);g.addColorStop(0,'#0e1630');g.addColorStop(.45,'#2a2f52');g.addColorStop(.8,'#8a6a7a');g.addColorStop(1,'#eab98a');bg.fillStyle=g;bg.fillRect(-MX,-MT,BW,MT+hz+40);
+ bg.fillStyle='#fff';for(let i=0;i<160;i++){bg.globalAlpha=.15+.5*hash(i,2);bg.fillRect(-MX+hash(i,1)*BW,-MT+Math.pow(hash(i,3),1.6)*(MT+60),1.4,1.4)}bg.globalAlpha=1;
+ const sg=bg.createRadialGradient(W*.78,150,4,W*.78,150,260);sg.addColorStop(0,'rgba(255,236,190,.95)');sg.addColorStop(.12,'rgba(255,220,150,.6)');sg.addColorStop(1,'rgba(255,200,120,0)');bg.fillStyle=sg;bg.fillRect(W*.78-300,-120,600,420);
+ for(const [col,amp,fq,base0] of [['rgba(44,56,92,.5)',40,.004,128],['rgba(26,38,66,.7)',26,.007,142]]){bg.fillStyle=col;bg.beginPath();bg.moveTo(-MX,170);for(let x=-MX;x<=W+MX;x+=12)bg.lineTo(x,base0-amp*Math.abs(Math.sin(x*fq+.5))-14*Math.sin(x*fq*3.1));bg.lineTo(W+MX,180);bg.lineTo(-MX,180);bg.fill()}
+ bg.fillStyle='rgba(255,255,255,.09)';for(let i=0;i<14;i++){bg.beginPath();bg.ellipse(-MX+hash(i,9)*BW,-60+hash(i,8)*150,70+hash(i,7)*90,8+hash(i,6)*6,0,0,TAU);bg.fill()}}
+function paintChunk(n){for(let k=0;k<n&&row<BH;k++,row++){const y=row-MT;for(let xi=0;xi<BW;xi++){const x=xi-MX,i=(row*BW+xi)*4;if(shade(x,y,out)){img.data[i]=cl(out[0],0,255);img.data[i+1]=cl(out[1],0,255);img.data[i+2]=cl(out[2],0,255);img.data[i+3]=255}else img.data[i+3]=0}}}
+function finishBase(){sx.putImageData(img,0,0);bg.setTransform(1,0,0,1,MX,MT);bg.drawImage(sec,-MX,-MT);
+ for(let i=0;i<190;i++){const x=-MX+hash(i,3)*BW,y=ys(x);if(Math.abs(x-dykeX(150))<30)continue;const h=14+hash(i,5)*22;bg.fillStyle=`rgb(${30+hash(i,6)*20},${70+hash(i,7)*40},${40+hash(i,8)*20})`;if(i%3){for(let k=0;k<3;k++){bg.beginPath();bg.moveTo(x-h*.28*(1-k*.25),y-h*k*.28);bg.lineTo(x,y-h*(k*.28+.5));bg.lineTo(x+h*.28*(1-k*.25),y-h*k*.28);bg.fill()}bg.fillStyle='#3a2a1a';bg.fillRect(x-1.5,y-4,3,5)}else{bg.beginPath();bg.ellipse(x,y-h*.2,h*.5,h*.28,0,0,TAU);bg.fill()}}
+ const e=bg.createLinearGradient(0,H-60,0,H+MB);e.addColorStop(0,'rgba(0,0,0,0)');e.addColorStop(1,'rgba(0,0,0,.5)');bg.fillStyle=e;bg.fillRect(-MX,H-60,BW,MB+60);baseReady=true;$('#load').classList.add('gone');showHotspots()}
+
+/* ---------------- the features ---------------- */
+const FT=[
+{id:'bed',n:'Sedimentary bedding',tag:'Sedimentary structure',mx:700,my:300,z:1.9,
+ what:'Parallel layers of rock called beds or strata. In an undisturbed sequence the oldest bed is at the bottom and the youngest is on top.',
+ steps:['Rivers, wind and currents carry sand, mud and shell debris and drop it where the flow slows down.','Each change in supply or energy lays down a different layer, building a stack: this is the law of superposition.','The weight of new layers squeezes out water (compaction) and minerals glue the grains together (cementation), turning sediment into rock.'],
+ proc:['Deposition','Compaction','Cementation'],look:['Flat, parallel contacts between rock types','Ripple marks, cross-bedding and fossils on bedding planes','Younger beds on top, unless the sequence has been overturned'],ex:'The walls of the Grand Canyon record almost two billion years of stacked beds.'},
+{id:'anti',n:'Anticline',tag:'Fold · arch',mx:195,my:225,z:2.0,
+ what:'An upward arch in layered rock. The beds dip away from the fold axis on both sides, and after erosion the oldest rock is found in the core.',
+ steps:['Plate motion squeezes the crust sideways. Layers that were flat are shortened horizontally.','Unable to simply compress, the layers buckle, sliding over each other like a bent stack of paper (flexural slip).','The upward-bending part forms the anticline. Erosion then bevels the top, exposing older beds at its centre.'],
+ proc:['Horizontal compression','Buckling','Flexural slip'],look:['Beds dipping away from a central line (the axis)','Oldest rocks in the middle of the outcrop pattern','A symmetrical series of rock bands repeated on both sides'],ex:'The long parallel ridges of the Appalachian Valley and Ridge are eroded anticlines and synclines.'},
+{id:'syn',n:'Syncline',tag:'Fold · trough',mx:342,my:318,z:2.0,
+ what:'A downward trough in layered rock, the partner of the anticline. The beds dip toward the fold axis and the youngest rock sits in the core.',
+ steps:['The same sideways squeeze that makes an anticline bends other layers downward between the arches.','The beds dip toward the middle, forming a basin-like shape in cross-section.','Because younger layers are preserved down in the trough, the youngest rock ends up in the centre of the outcrop pattern.'],
+ proc:['Horizontal compression','Buckling','Preservation of young rock'],look:['Beds dipping toward a central line','Youngest rocks in the middle','Often found alternating with anticlines'],ex:'Many coal basins survive in synclines, where young coal-bearing layers were protected from erosion.'},
+{id:'fault',n:'Normal fault',tag:'Fault · extension',mx:964,my:330,z:1.7,
+ what:'A fracture along which rock has slipped. In a normal fault the block above the fault (the hanging wall) moves down relative to the block below it (the footwall).',
+ steps:['Tectonic forces pull the crust apart. The upper crust is cold and brittle, so it stretches by breaking rather than bending.','Stress builds until the rock fails along a steep plane, usually dipping at about 60°, and the hanging wall slides downward.','Repeated earthquakes add up to hundreds of metres of offset, leaving a step in the layers and often a scarp at the surface.'],
+ proc:['Extension','Brittle failure','Earthquake slip'],look:['The same layers sitting at different heights on each side','A steep line of crushed rock (fault breccia) or polished surfaces (slickensides)','A step-like scarp in the landscape'],ex:'The East African Rift and the Basin and Range of western North America are stretched into blocks by normal faults.'},
+{id:'unc',n:'Angular unconformity',tag:'Gap in the record',mx:590,my:404,z:1.7,
+ what:'A surface where younger, flat-lying beds sit on older beds tilted at a different angle. It represents a missing chunk of time: rock that was deformed, then eroded, then buried.',
+ steps:['Older sediments are deposited flat, then compressed and tilted by mountain building.','The tilted rocks are lifted above sea level and eroded flat, removing millions of years of record.','The land sinks or sea level rises, and new sediment is deposited horizontally on the eroded surface.'],
+ proc:['Deposition','Tilting','Uplift and erosion','Renewed deposition'],look:['Beds below meeting the surface at an angle to beds above','A layer of pebbles or conglomerate just above the surface','A sharp, irregular erosion surface between the two sets'],ex:'At Siccar Point in Scotland, James Hutton saw tilted rocks under flat ones in 1788 and realised Earth\'s history must be immensely long.'},
+{id:'intr',n:'Igneous intrusion',tag:'Intrusive igneous rock',mx:1385,my:540,z:1.45,
+ what:'A body of magma that rose into older rock and cooled underground before reaching the surface. Large intrusions like this are called plutons or batholiths and are usually granite.',
+ steps:['Rock deep in the crust or mantle partly melts, often above a subduction zone, and the lighter magma rises because it is buoyant.','The magma pushes into the surrounding rock, forcing it aside and sometimes breaking off blocks that sink into it.','Trapped underground it cools very slowly, over hundreds of thousands to millions of years, so large mineral crystals have time to grow.'],
+ proc:['Partial melting','Magma ascent','Emplacement','Slow crystallisation'],look:['Coarse, visible crystals (feldspar, quartz, mica)','Sharp contacts that cut across the older layers','Chunks of host rock inside the intrusion (xenoliths)'],ex:'Yosemite\'s Half Dome is a piece of the Sierra Nevada batholith, exposed after millions of years of erosion.'},
+{id:'dyke',n:'Dyke',tag:'Intrusive igneous rock',mx:1160,my:262,z:2.0,
+ what:'A sheet of igneous rock that cuts across the layering of the rock around it. Dykes fill cracks that magma forced open as it rose toward the surface.',
+ steps:['Pressure from magma pushes on the surrounding rock until it fractures, in a process like hydraulic fracturing.','Magma flows into the crack and spreads upward. Because the crack is thin, it loses heat fast.','The magma freezes into fine-grained rock (often dolerite or basalt), with even finer chilled margins against the cold walls.'],
+ proc:['Fracturing','Magma injection','Rapid cooling'],look:['A narrow, steep sheet crossing the bedding','Fine-grained rock with chilled edges','Dykes often come in swarms, spreading out from a volcano or intrusion'],ex:'Shiprock in New Mexico is a volcanic plug with long dykes radiating from it.'},
+{id:'cm',n:'Contact metamorphism',tag:'Metamorphism · heat',mx:1086,my:520,z:2.0,
+ what:'Rock baked by the heat of a nearby intrusion. The altered zone around it is called an aureole, and the minerals recrystallise without being strongly squeezed.',
+ steps:['Magma at around 700–1,100 °C heats the surrounding rock, which starts hot-spring-like circulating fluids.','Minerals become unstable and recrystallise into new, stable minerals, closest to the contact first.','Shale becomes hard, dark hornfels, limestone becomes white marble, and sandstone becomes quartzite. The effect fades with distance from the intrusion.'],
+ proc:['Heating','Recrystallisation','Fluid flow'],look:['Hard, dense, fine-grained rock with no layering of crystals (non-foliated)','Marble or spotted slates within a few hundred metres of an intrusion','A baked zone that fades gradually away from the contact'],ex:'The Skiddaw granite in England\'s Lake District is surrounded by an aureole of spotted slates and hornfels.'}];
+const HIST=['Older sediments are deposited (the tilted units at the bottom).','They are squeezed, tilted and folded, then uplifted and eroded flat: the angular unconformity forms.','Younger sediments bury the erosion surface, layer by layer.','Compression gently folds the younger beds into an anticline and a syncline.','The crust is stretched and the normal fault breaks all the layers below.','Magma rises, cutting across the fault and all the layers: the dyke and the intrusion.','The heat of the intrusion bakes the rock around it: the contact aureole.','Erosion cuts the landscape down to the surface you see today.'];
+
+/* ---------------- overlays drawn on the section ---------------- */
+function glow(g,pts,col,w){g.save();g.lineJoin='round';g.lineCap='round';g.strokeStyle=col;g.globalAlpha*=.28;g.lineWidth=w*3.2;g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.stroke();g.globalAlpha/=.28;g.lineWidth=w;g.shadowColor=col;g.shadowBlur=14;g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.stroke();g.restore()}
+const arr=(g,x,y,a,len,col,w)=>{g.save();g.translate(x,y);g.rotate(a);g.strokeStyle=col;g.fillStyle=col;g.lineWidth=w||3;g.lineCap='round';g.beginPath();g.moveTo(0,0);g.lineTo(len,0);g.stroke();g.beginPath();g.moveTo(len+9,0);g.lineTo(len-3,-6);g.lineTo(len-3,6);g.fill();g.restore()};
+const curve=(f,x0,x1,st=8)=>{const p=[];for(let x=x0;x<=x1;x+=st)p.push([x,f(x)]);return p};
+const GOLD='#ffd98a';
+const OV={
+ bed(g,t){for(let k=0;k<4;k++){const p=curve(x=>bnd(E0-60-k*46,x),520,900,10).filter(q=>q[0]<planeX(q[1])-30);glow(g,p,GOLD,2.6)}},
+ anti(g,t){glow(g,curve(x=>bnd(E0-150,x),60,330,6),GOLD,4);g.save();g.setLineDash([10,8]);g.strokeStyle='rgba(255,230,170,.9)';g.lineWidth=2.4;g.beginPath();g.moveTo(190,bnd(E0-150,190)-80);g.lineTo(190,E0+10);g.stroke();g.restore();arr(g,70,262,0,34,GOLD,3);arr(g,520,262,Math.PI,34,GOLD,3)},
+ syn(g,t){glow(g,curve(x=>bnd(E0-150,x),200,520,6),GOLD,4);g.save();g.setLineDash([10,8]);g.strokeStyle='rgba(255,230,170,.9)';g.lineWidth=2.4;g.beginPath();g.moveTo(340,bnd(E0-150,340)-60);g.lineTo(340,E0+10);g.stroke();g.restore();arr(g,100,262,0,34,GOLD,3);arr(g,560,262,Math.PI,34,GOLD,3)},
+ fault(g,t){const p=[];for(let y=FY0;y<=H;y+=20)p.push([planeX(y),y]);glow(g,p,GOLD,4);const ph=Math.sin(t*2)*4;arr(g,planeX(330)+34,300+ph,Math.PI/2+.42,52,GOLD,4);arr(g,planeX(330)-30,310-ph,-Math.PI/2+.42,52,'#8fe0ff',4)},
+ unc(g,t){const p=[];for(let x=30;x<=W-30;x+=10)p.push([x,E(x)+(x>planeX(E(x))?THROW:0)]);glow(g,p,GOLD,4.2);for(let i=0;i<5;i++){const x=120+i*110,y=E(x)+40;g.strokeStyle='#8fe0ff';g.lineWidth=3;g.beginPath();g.moveTo(x-12,y-6);g.lineTo(x+12,y+6);g.stroke()}},
+ intr(g,t){const p=[];for(let a=Math.PI;a<=TAU;a+=.05){const r=rbF(a);p.push([CXB+RXB*r*Math.cos(a),CYB+RYB*r*Math.sin(a)])}glow(g,p.filter(q=>q[1]<H-4),GOLD,4)},
+ dyke(g,t){const l=[],r=[];for(let y=ys(1120);y<=430;y+=8){l.push([dykeX(y)-dykeW(y),y]);r.push([dykeX(y)+dykeW(y),y])}glow(g,l,GOLD,3.4);glow(g,r,GOLD,3.4);arr(g,dykeX(330),360,-Math.PI/2,50,'#ff9a5a',4)},
+ cm(g,t){const pts=[];for(let a=Math.PI;a<=TAU;a+=.04){const r=rbF(a),ex=RXB*r*Math.cos(a),ey=RYB*r*Math.sin(a),rho=Math.hypot(ex,ey),k=(rho+AUR_B)/rho;pts.push([CXB+ex*k,CYB+ey*k])}
+  g.save();g.setLineDash([12,8]);g.lineDashOffset=-t*20;glow(g,pts.filter(z=>z[1]<H-4),'#ffb28a',3.4);g.restore();
+  const l=[];for(let y=ys(1120);y<=440;y+=10)l.push([dykeX(y)-dykeW(y)-AUR_D,y]);g.save();g.setLineDash([8,7]);g.lineDashOffset=-t*20;glow(g,l,'#ffb28a',2.6);g.restore()}
+};
+
+/* ---------------- mini diagrams (formation animations in the panel) ---------------- */
+const PLC=['#c9aa6a','#8a6a4a','#7a8a96','#b9c3c0','#d9a45a','#a8644a'];
+function layersRect(g,x,y,w,h,n,th,cols){for(let i=0;i<n;i++){g.fillStyle=cols[i%cols.length];g.fillRect(x,y+i*th,w,th+1)}}
+const MINI={
+ bed(g,w,h,p){const n=p*6,th=24;g.fillStyle='#5a7a9a';g.fillRect(0,0,w,h);g.fillStyle='#16202a';g.fillRect(0,h-20,w,20);for(let i=0;i<6;i++){const f=cl(n-i,0,1);if(f<=0)continue;g.fillStyle=PLC[i];g.fillRect(50,h-20-(i+1)*th*f-(i)*0,w-100,th*f+.5);if(i)g.fillStyle=PLC[i]}
+  g.fillStyle='rgba(215,190,140,.85)';for(let i=0;i<40;i++){const y=((i*37+p*900)%(h-40));g.fillRect(60+((i*53)%(w-120)),y,2,2)}g.fillStyle='#fff';g.font='600 12px Inter';g.fillText('oldest',56,h-24);g.fillText('youngest',56,Math.max(20,h-20-n*th-6));},
+ fold(g,w,h,p,k){const A=p*40,L=w-120;g.fillStyle='#10181a';g.fillRect(0,0,w,h);for(let i=5;i>=0;i--){g.beginPath();for(let x=0;x<=L;x+=6){const y=70+i*22-A*Math.sin(TAU*x/L)*(1-i*.06);x?g.lineTo(60+x,y):g.moveTo(60+x,y)}for(let x=L;x>=0;x-=6){const y=70+(i+1)*22-A*Math.sin(TAU*x/L)*(1-(i+1)*.06);g.lineTo(60+x,y)}g.closePath();g.fillStyle=PLC[i%6];g.fill()}
+  const s=p*18;arr(g,18+s,120,0,30,GOLD,3);arr(g,w-18-s,120,Math.PI,30,GOLD,3);if(p>.6){const ax=k==='anti'?60+L*.25:60+L*.75,ay=70-(k==='anti'?A:-A)*.0+(k==='anti'?-A:A)-8;g.strokeStyle='rgba(255,255,255,.85)';g.setLineDash([6,5]);g.beginPath();g.moveTo(ax,ay-14);g.lineTo(ax,170);g.stroke();g.setLineDash([]);g.fillStyle='#fff';g.font='600 12px Inter';g.textAlign='center';g.fillText(k==='anti'?'anticline':'syncline',ax,ay-18);g.textAlign='left'}},
+ fault(g,w,h,p){const d=p*38,x0=60,x1=w-60,top=40,bot=h-20,pl=y=>w*.38+(y-top)/Math.tan(DIP);g.fillStyle='#10181a';g.fillRect(0,0,w,h);const draw=(dx,dy)=>{layersRect(g,x0+dx,top+dy,x1-x0,bot-top,5,(bot-top)/5,PLC)};
+  g.save();g.beginPath();g.moveTo(0,0);g.lineTo(pl(top),top);g.lineTo(pl(bot),bot);g.lineTo(0,h);g.clip();draw(0,0);g.restore();
+  g.save();g.beginPath();g.moveTo(w,0);g.lineTo(pl(top),top);g.lineTo(pl(bot),bot);g.lineTo(w,h);g.clip();draw(d*Math.cos(DIP),d*Math.sin(DIP));g.restore();
+  g.strokeStyle='#0a0a0a';g.lineWidth=2.5;g.beginPath();g.moveTo(pl(top),top);g.lineTo(pl(bot),bot);g.stroke();const a=p*14;arr(g,16+(14-a),200,Math.PI,26,GOLD,3);arr(g,w-16-(14-a),200,0,26,GOLD,3);
+  if(p>.5){g.fillStyle='#fff';g.font='600 12px Inter';g.fillText('hanging wall ↓',w*.62,60);g.fillText('footwall',w*.14,60)}},
+ unc(g,w,h,p){const s=p*4,Y=h*.56,th=18;g.fillStyle='#10181a';g.fillRect(0,0,w,h);const tilt=sm(cl(s-1,0,1))*.45,ero=sm(cl(s-2,0,1)),nA=Math.min(8,Math.ceil(cl(s,0,1)*8));
+  g.save();g.beginPath();g.rect(0,lerp(0,Y,ero),w,h);g.clip();g.translate(w/2,h*.75);g.rotate(tilt);for(let i=0;i<nA;i++){g.fillStyle=PLC[i%6];g.fillRect(-w,-i*th-th,w*2,th+.5)}g.restore();
+  if(s>2&&s<3){g.fillStyle='rgba(215,190,140,.8)';for(let i=0;i<30;i++)g.fillRect(((i*47)%w),lerp(0,Y,ero)-((i*13+p*400)%30),2,2)}
+  const nB=Math.ceil(sm(cl(s-3,0,1))*3);for(let i=0;i<nB;i++){const f=cl(sm(cl(s-3,0,1))*3-i,0,1);g.fillStyle=PLC[(i+3)%6];g.fillRect(0,Y-(i+1)*th*f,w,th*f+.5)}
+  g.fillStyle='#fff';g.font='600 12px Inter';g.fillText(['1  deposit flat layers','2  tilt','3  erode flat','4  deposit new layers'][Math.min(3,Math.floor(s))],14,22);if(s>3.2){g.strokeStyle=GOLD;g.lineWidth=3;g.beginPath();g.moveTo(0,Y);g.lineTo(w,Y);g.stroke();g.fillStyle=GOLD;g.fillText('unconformity',w-110,Y-6)}},
+ intr(g,w,h,p){g.fillStyle='#10181a';g.fillRect(0,0,w,h);const rx=w*.2*(.5+.5*p),ytop=h-p*(h*.62),cx=w/2;
+  for(let i=0;i<6;i++){g.beginPath();for(let x=0;x<=w;x+=6){const y=40+i*24-p*34*Math.exp(-Math.pow((x-cx)/(w*.22),2))*(1-i*.08);x?g.lineTo(x,y):g.moveTo(x,y)}for(let x=w;x>=0;x-=6){const y=64+i*24-p*34*Math.exp(-Math.pow((x-cx)/(w*.22),2))*(1-(i+1)*.08);g.lineTo(x,y)}g.closePath();g.fillStyle=PLC[i%6];g.fill()}
+  g.beginPath();g.ellipse(cx,h,rx,h-ytop,0,Math.PI,TAU);g.fillStyle=p<.7?`rgb(255,${120+p*60},40)`:'#d8a898';g.fill();if(p>.7){g.fillStyle='rgba(60,40,40,.6)';for(let i=0;i<30;i++){g.beginPath();g.arc(cx+(hash(i,1)-.5)*rx*1.6,h-hash(i,2)*(h-ytop)*.9,2+hash(i,3)*2,0,TAU);g.fill()}}
+  g.fillStyle='#fff';g.font='600 12px Inter';g.fillText(p<.7?'magma rises':'cools slowly: coarse crystals',14,22)},
+ dyke(g,w,h,p){g.fillStyle='#10181a';g.fillRect(0,0,w,h);layersRect(g,0,40,w,h-40,6,(h-40)/6,PLC);const top=h-p*(h-30),cx=w*.52;g.beginPath();g.moveTo(cx-6,h);for(let y=h;y>=top;y-=6)g.lineTo(cx-6-Math.sin(y*.05)*3-(h-y)*.02,y);for(let y=top;y<=h;y+=6)g.lineTo(cx+6+Math.sin(y*.05)*3-(h-y)*.02,y);g.closePath();g.fillStyle=p<.75?'#ff8a3a':'#38403e';g.fill();arr(g,cx-(h-top)*.01,top+36,-Math.PI/2,28,'#ff9a5a',3);g.fillStyle='#fff';g.font='600 12px Inter';g.fillText(p<.75?'magma fills a crack':'cooled: dark fine-grained dyke',14,22)},
+ cm(g,w,h,p){g.fillStyle='#10181a';g.fillRect(0,0,w,h);const rad=p*70,cx=w*.8,cy=h+10,rx=w*.28,ry=h*.8;const cols=['#4a5160','#b9c3c0','#c4a070','#4a5160','#b9c3c0','#c4a070'],alt=['#3a3430','#f0e6dc','#a88a78','#3a3430','#f0e6dc','#a88a78'];
+  layersRect(g,0,26,w,h-26,6,(h-26)/6,cols);g.save();g.beginPath();g.ellipse(cx,cy,rx+rad,ry+rad,0,0,TAU);g.ellipse(cx,cy,rx,ry,0,0,TAU);g.clip('evenodd');layersRect(g,0,26,w,h-26,6,(h-26)/6,alt);g.restore();
+  g.beginPath();g.ellipse(cx,cy,rx,ry,0,Math.PI,TAU);g.fillStyle='#d8a898';g.fill();g.strokeStyle='rgba(255,170,120,.8)';g.setLineDash([6,5]);g.beginPath();g.ellipse(cx,cy,rx+rad,ry+rad,0,Math.PI,TAU);g.stroke();g.setLineDash([]);g.fillStyle='#fff';g.font='600 12px Inter';g.fillText('shale → hornfels · limestone → marble',14,18);g.fillText('heat spreads out',14,h-8)}
+};
+
+/* ---------------- view, camera and UI ---------------- */
+const cv=$('#cv'),g=cv.getContext('2d'),stage=$('#stage'),hsEl=$('#hs'),panel=$('#panel'),pbody=$('#pbody');
+let Vw=0,Vh=0,dpr=1;const cam={x:W/2,y:H/2,s:1,vx:0},tgt={x:W/2,y:H/2,s:1,vx:0};
+let active=-1,hover=-1,hl=FT.map(()=>0),miniP=0,miniPlay=true,miniT=0,histOpen=false;
+const isMobile=()=>innerWidth<820;
+function fit(open){const vw=open&&!isMobile()?Vw*.5:Vw,vh=open&&isMobile()?Vh*.42:Vh;return Math.min(vw*.94/W,vh*.92/H)}
+function clampC(c){const S=c.s,l=c.vx/S,r=(Vw-c.vx)/S,t=c.vy/S,b=(Vh-c.vy)/S,x0=-MX+l,x1=W+MX-r,y0=-MT+t,y1=H+MB-b;c.x=x0>x1?(x0+x1)/2:Math.min(x1,Math.max(x0,c.x));c.y=y0>y1?(y0+y1)/2:Math.min(y1,Math.max(y0,c.y))}
+function setTarget(){const open=active>=0||histOpen;const Smin=Math.max(Vh/BH,Vw/BW)*1.02;if(active>=0){const f=FT[active];tgt.s=Math.max(Smin,fit(true)*f.z);tgt.x=f.mx;tgt.y=f.my}else{tgt.s=Math.max(Smin,fit(open));tgt.x=W/2;tgt.y=H/2}tgt.vx=open&&!isMobile()?Vw*.25:Vw/2;tgt.vy=open&&isMobile()?Vh*.22:Vh/2;clampC(tgt)}
+function resize(){dpr=Math.min(devicePixelRatio||1,2);Vw=stage.clientWidth;Vh=stage.clientHeight;cv.width=Vw*dpr;cv.height=Vh*dpr;setTarget();if(!cam.init){Object.assign(cam,tgt);cam.init=true}}
+addEventListener('resize',resize);
+const HSB=FT.map((f,i)=>{const b=document.createElement('button');b.className='hs';b.innerHTML=`<span class="n">${i+1}</span><span class="lb">${f.n}</span>`;b.setAttribute('aria-label',`${i+1}. ${f.n}`);b.onclick=()=>openFeature(i);b.onmouseenter=()=>hover=i;b.onmouseleave=()=>hover=-1;b.onfocus=()=>hover=i;b.onblur=()=>hover=-1;hsEl.appendChild(b);return b});
+function showHotspots(){HSB.forEach((b,i)=>setTimeout(()=>b.classList.add('in'),rm?0:300+i*120))}
+function openFeature(i){active=i;histOpen=false;buildPanel();panel.classList.add('open');panel.setAttribute('aria-hidden','false');document.body.classList.add('split');$('#hint').classList.add('gone');setTarget();miniP=0;miniPlay=!rm;setTimeout(()=>panel.focus({preventScroll:true}),400)}
+function closePanel(){active=-1;histOpen=false;panel.classList.remove('open');panel.setAttribute('aria-hidden','true');document.body.classList.remove('split');setTarget()}
+function openHistory(){active=-1;histOpen=true;buildHistory();panel.classList.add('open');panel.setAttribute('aria-hidden','false');document.body.classList.add('split');$('#hint').classList.add('gone');setTarget()}
+function stepFeature(d){if(active>=0)openFeature((active+d+FT.length)%FT.length)}
+$('#pclose').onclick=closePanel;$('#prev').onclick=()=>stepFeature(-1);$('#next').onclick=()=>stepFeature(1);$('#hist').onclick=()=>histOpen?closePanel():openHistory();
+$('#keyb').onclick=()=>{const k=$('#key');k.classList.toggle('open');$('#keyb').setAttribute('aria-expanded',k.classList.contains('open'))};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel();if(active>=0&&(e.key==='ArrowRight'||e.key==='ArrowDown'))stepFeature(1);if(active>=0&&(e.key==='ArrowLeft'||e.key==='ArrowUp'))stepFeature(-1);if(active<0&&/^[1-8]$/.test(e.key))openFeature(+e.key-1)});
+stage.addEventListener('click',e=>{if(e.target===cv&&(active>=0||histOpen))closePanel()});
+
+function buildPanel(){const f=FT[active],mk=f.id==='anti'||f.id==='syn'?'fold':f.id;$('#pcount').textContent=`${active+1} / ${FT.length}`;
+ pbody.innerHTML=`<p class="eyebrow">${f.tag}</p><h2 id="ptitle">${f.n}</h2><p class="lead">${f.what}</p>
+ <div class="mini"><canvas id="mini" width="480" height="230" aria-label="Animation of how the ${f.n.toLowerCase()} forms"></canvas><div class="mctl"><button id="mplay" aria-label="Play or pause the animation">${miniPlay?'❚❚':'▶'}</button><input id="mr" type="range" min="0" max="1000" value="0" aria-label="Formation progress"><span id="mlab"></span></div></div>
+ <h3>How it forms</h3><ol class="steps">${f.steps.map((s,i)=>`<li data-i="${i}"><span>${i+1}</span><p>${s}</p></li>`).join('')}</ol>
+ <h3>Processes</h3><div class="chips">${f.proc.map(p=>`<span>${p}</span>`).join('')}</div>
+ <h3>Spot it in the field</h3><ul>${f.look.map(l=>`<li>${l}</li>`).join('')}</ul>
+ <div class="ex"><span>Real example</span><p>${f.ex}</p></div>`;
+ pbody.scrollTop=0;$('#mplay').onclick=()=>{miniPlay=!miniPlay;$('#mplay').textContent=miniPlay?'❚❚':'▶'};$('#mr').oninput=e=>{miniP=e.target.value/1000;miniPlay=false;$('#mplay').textContent='▶'}}
+function buildHistory(){$('#pcount').textContent='History';pbody.innerHTML=`<p class="eyebrow">Reading the rocks</p><h2 id="ptitle">Order of events</h2><p class="lead">Geologists read a section like a story, using one rule: a feature that cuts across another must be younger than what it cuts. Here is the story of this section, oldest first. Click a step to jump to its feature.</p><ol class="steps hist">${HIST.map((s,i)=>{const map=[4,4,0,1,3,5,7,-1][i];return`<li ${map>=0?`data-f="${map}" tabindex="0" role="button"`:''}><span>${i+1}</span><p>${s}</p></li>`}).join('')}</ol>`;
+ pbody.querySelectorAll('li[data-f]').forEach(li=>{const go=()=>openFeature(+li.dataset.f);li.onclick=go;li.onkeydown=e=>{if(e.key==='Enter')go()}});pbody.scrollTop=0}
+
+/* frame loop */
+let last=0;
+function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last)/1000||.016),t=now/1000;last=now;
+ if(!baseReady){paintChunk(40);if(row>=BH)finishBase();$('#load').textContent=`Mapping the rocks… ${Math.round(row/BH*100)}%`}
+ const k=rm?1:1-Math.pow(.0009,dt);['x','y','s','vx','vy'].forEach(a=>cam[a]+=(tgt[a]-cam[a])*k);clampC(cam);
+ g.setTransform(dpr,0,0,dpr,0,0);const bgG=g.createLinearGradient(0,0,0,Vh);bgG.addColorStop(0,'#0e1630');bgG.addColorStop(1,'#2b2823');g.fillStyle=bgG;g.fillRect(0,0,Vw,Vh);
+ const S=cam.s,ox=cam.vx-cam.x*S,oy=cam.vy-cam.y*S;
+ if(baseReady){g.setTransform(dpr*S,0,0,dpr*S,dpr*ox,dpr*oy);g.drawImage(base,-MX,-MT);
+  const sel=active;hl.forEach((v,i)=>{const tg=sel===i?1:(hover===i&&sel<0?.6:0);hl[i]+=(tg-v)*Math.min(1,dt*9)});
+  if(sel>=0){const vg=g.createRadialGradient(FT[sel].mx,FT[sel].my,60,FT[sel].mx,FT[sel].my,Math.max(W,H)*.7);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(4,8,7,.55)');g.fillStyle=vg;g.fillRect(-MX,-MT,BW,BH)}
+  FT.forEach((f,i)=>{if(hl[i]>.02){g.save();g.globalAlpha=hl[i];OV[f.id](g,t);g.restore()}});
+  g.setTransform(dpr,0,0,dpr,0,0)}
+ HSB.forEach((b,i)=>{const x=ox+FT[i].mx*S,y=oy+(FT[i].id==='bed'?FT[i].my:FT[i].my)*S;b.style.transform=`translate(${x}px,${y}px)`;b.classList.toggle('dim',active>=0&&active!==i||histOpen);b.classList.toggle('sel',active===i)});
+ if(active>=0){if(miniPlay){miniP+=dt/7;if(miniP>1.18)miniP=0}const p=cl(miniP,0,1),m=$('#mini');if(m){const mg=m.getContext('2d');mg.setTransform(1,0,0,1,0,0);mg.clearRect(0,0,480,230);mg.textAlign='left';const f=FT[active];(MINI[f.id==='anti'||f.id==='syn'?'fold':f.id])(mg,480,230,p,f.id==='anti'?'anti':'syn');$('#mr').value=Math.round(p*1000);const n=f.steps.length,si=Math.min(n-1,Math.floor(p*n*.9999));$('#mlab').textContent=`Step ${si+1} of ${n}`;pbody.querySelectorAll('.steps li').forEach((li,i)=>li.classList.toggle('on',i===si))}}}
+resize();paintSky();requestAnimationFrame(frame)
+})();
+</script>
+</body></html>
+
